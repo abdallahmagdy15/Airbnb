@@ -1,6 +1,6 @@
 using System;
 
-namespace Airbnb.Models
+namespace Airbnb.ViewModels
 {
     public class ErrorViewModel
     {
