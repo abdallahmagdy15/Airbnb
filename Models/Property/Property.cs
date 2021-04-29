@@ -11,15 +11,13 @@ namespace Airbnb.Models.Property
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { set; get; }
+        public int Id { set; get; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Range(1, 50)]
-        public int Number_Of_BedRooms { set; get; }
+        public int NumberOfBedRooms { set; get; } = 0;
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Range(1, 50)]
-        public int Number_Of_Beds { set; get; }
+        public int NumberOfBeds { set; get; } = 0;
 
         [Required]
         [MinLength(3)]
@@ -27,27 +25,22 @@ namespace Airbnb.Models.Property
         [MinLength(10)]
         public string Description { set; get; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Price { set; get; }
+        public int Price { set; get; } = 0;
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int NumberOfDaysInAdvance { set; get; } = 0;
 
-        public int Number_Of_Days_Advanced { set; get; }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Number_Of_Days_Notice { set; get; }
+        public int NumberOfDaysNotice { set; get; } = 0;
 
         [Required]
-        public DateTime Start_Booking_Date { set; get; }
+        public DateTime StartBookingDate { set; get; }
 
         [Required]
-        public DateTime End_Booking_Date { set; get; }
+        public DateTime EndBookingDate { set; get; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Max_stay { set; get; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Min_stay { set; get; }
+        public int MaxStay { set; get; } = 0;
+
+        public int MinStay { set; get; } = 0;
 
         [Required]
         public DateTime Date { set; get; }

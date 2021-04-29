@@ -4,14 +4,17 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Airbnb.Models.Property_sub_models
+namespace Airbnb.Models.PropertySubModels
 {
-    public class Category
+    public class HouseRules
     {
         public int Id { get; set; }
+
         [Required]
-        [MinLength(3)]
+        [StringLength(500, MinimumLength = 2)]
         public string Name { get; set; }
-        public string PropertyId { get; set; }
+
+        [Required]
+        public bool IsCustom { get; set; }
     }
 }
