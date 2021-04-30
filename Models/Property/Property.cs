@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Airbnb.Models.Property
+namespace Airbnb.Models
 {
     public class Property
     {
