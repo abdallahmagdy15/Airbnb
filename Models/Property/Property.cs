@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Airbnb.Models.PropertySubModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -44,5 +45,7 @@ namespace Airbnb.Models
 
         [Required]
         public DateTime Date { set; get; }
+
+        public List<PropGuestPlaceType> PropGuestPlaceType { get; set; }
     }
 }

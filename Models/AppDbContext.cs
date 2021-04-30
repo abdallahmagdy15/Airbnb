@@ -30,9 +30,24 @@ namespace Airbnb.Models
         public DbSet<HouseRules> PropSub_HouseRules { get; set; }
         public DbSet<PropertyPhoto> PropSub_PropertyPhoto { get; set; }
         public DbSet<Space> PropSub_Spaces { get; set; }
+        public DbSet<PropGuestPlaceType> PropGuestPlaceType { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<PropGuestPlaceType>()
+                .HasKey(sc => new { sc.PropertyId, sc.GuestPlaceTypeId });
+            builder.Entity<PropGuestPlaceType>().HasOne(sc => sc.Property)
+            .WithMany(s => s.PropGuestPlaceType)
+            .HasForeignKey(sc => sc.PropertyId);
+            builder.Entity<PropGuestPlaceType>().HasOne(sc => sc.GuestPlaceType)
+            .WithMany(s => s.PropGuestPlaceType)
+            .HasForeignKey(sc => sc.GuestPlaceTypeId);
+            //
+            //
+
+
             base.OnModelCreating(builder);
+
         }
     }
 
