@@ -17,7 +17,7 @@ namespace Airbnb.ViewModels
         [Required, MaxLength(255)]
         public String Lname { get; set; }
 
-        public String UserName { get; set; }
+        public DateTime DOB { get; set; }
 
         [Required]
         public Gender Gender { get; set; }
