@@ -35,7 +35,8 @@ namespace Airbnb.Controllers
                     FirstName = model.Fname,
                     LastName = model.Lname,
                     DateOfBirth = model.DOB,
-                    Gender = model.Gender
+                    Gender = model.Gender,
+                    PhotoUrl=model.PhotoUrl
                 };
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
