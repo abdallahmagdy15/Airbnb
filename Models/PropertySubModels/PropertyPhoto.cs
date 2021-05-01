@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Airbnb.Models.PropertySubModels
 {
@@ -12,6 +9,11 @@ namespace Airbnb.Models.PropertySubModels
 
         [Required]
         [StringLength(500, MinimumLength = 2)]
-        public string Name { get; set; }
+        public string Url { get; set; }
+
+        [ForeignKey(nameof(Property))]
+        public int PropertyId { get; set; }
+
+        public Property Property { get; set; }
     }
 }

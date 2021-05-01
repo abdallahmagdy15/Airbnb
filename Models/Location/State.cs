@@ -1,8 +1,7 @@
-﻿using System;
+﻿using NetTopologySuite.Geometries;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Airbnb.Models.Location
 {
@@ -15,17 +14,19 @@ namespace Airbnb.Models.Location
         public string Name { get; set; }
 
         [StringLength(2)]
-        public string Country_code { get; set; }
+        public string CountryCode { get; set; }
 
         [StringLength(10)]
-        public string State_code { get; set; }
+        public string StateCode { get; set; }
 
         [Required]
-        public decimal Latitude { get; set; }
+        public Point Coordinates { get; set; }
 
-        [Required]
-        public decimal Longitude { get; set; }
-
+        [ForeignKey(nameof(Country))]
         public int CountryId { get; set; }
+
+        public Country Country { get; set; }
+
+        public List<City> Cities { get; set; }
     }
 }

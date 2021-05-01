@@ -1,5 +1,3 @@
-using System;
-
 namespace Airbnb.ViewModels
 {
     public class ErrorViewModel

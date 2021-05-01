@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Airbnb.Models.PropertySubModels
 {
@@ -16,5 +13,7 @@ namespace Airbnb.Models.PropertySubModels
 
         [Required]
         public bool IsCustom { get; set; }
+
+        public List<PropertyGuestRequirement> Properties { get; set; }
     }
 }

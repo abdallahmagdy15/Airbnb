@@ -1,10 +1,10 @@
-﻿using Airbnb.Models.PropertySubModels;
+﻿using Airbnb.Models.Location;
+using Airbnb.Models.PropertySubModels;
+using NetTopologySuite.Geometries;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Airbnb.Models
 {
@@ -23,6 +23,7 @@ namespace Airbnb.Models
         [Required]
         [MinLength(3)]
         public string Title { set; get; }
+
         [MinLength(10)]
         public string Description { set; get; }
 
@@ -38,7 +39,6 @@ namespace Airbnb.Models
         [Required]
         public DateTime EndBookingDate { set; get; }
 
-
         public int MaxStay { set; get; } = 0;
 
         public int MinStay { set; get; } = 0;
@@ -46,6 +46,34 @@ namespace Airbnb.Models
         [Required]
         public DateTime Date { set; get; }
 
-        public List<PropGuestPlaceType> PropGuestPlaceType { get; set; }
+        // Address info
+        public Point Coordinates { get; set; }
+
+        [Required, StringLength(20, MinimumLength = 1)]
+        public string BuildingNo { get; set; }
+
+        [Required, StringLength(100, MinimumLength = 2)]
+        public string Street { get; set; }
+
+        [Required, StringLength(20, MinimumLength = 5)]
+        public string Zipcode { get; set; }
+
+        [ForeignKey(nameof(City))]
+        public int CityId { get; set; }
+
+        public City City { get; set; }
+
+        [ForeignKey(nameof(Category))]
+        public int CategoryId { get; set; }
+
+        public Category Category { get; set; }
+        public List<PropertyGuestPlaceType> GuestPlaceTypes { get; set; }
+        public List<PropertyUnavailableDay> UnavailableDays { get; set; }
+        public List<PropertyAmenity> Amenities { get; set; }
+        public List<PropertyGuestRequirement> GuestRequirements { get; set; }
+        public List<PropertyGuestDetail> GuestDetails { get; set; }
+        public List<PropertyHouseRule> HouseRules { get; set; }
+        public List<PropertyPhoto> Photos { get; set; }
+        public List<PropertySpace> Spaces { get; set; }
     }
 }

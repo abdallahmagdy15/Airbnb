@@ -1,10 +1,6 @@
 ﻿using Airbnb.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Airbnb.Controllers
 {
@@ -18,6 +14,7 @@ namespace Airbnb.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
+
         public IActionResult Register()
         {
             return View();
@@ -28,6 +25,5 @@ namespace Airbnb.Controllers
         {
             return View();
         }
-
     }
 }
