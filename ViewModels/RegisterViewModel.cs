@@ -7,7 +7,7 @@ namespace Airbnb.ViewModels
 {
     public class RegisterViewModel
     {
-        [Required,MinLength(2), MaxLength(255)]
+        [Required, MinLength(2), MaxLength(255)]
         public String Fname { get; set; }
 
         [Required, MinLength(2), MaxLength(255)]
@@ -17,14 +17,15 @@ namespace Airbnb.ViewModels
 
         [Required]
         public Gender Gender { get; set; }
-        [Required,MaxLength(12),MinLength(3),RegularExpression(@"\(?\d{3}\)?-? *\d{3}-? *-?\d{4}")]
+        [Required, MaxLength(12), MinLength(3), RegularExpression(@"\(?\d{3}\)?-? *\d{3}-? *-?\d{4}")]
         public String PhoneNumber { get; set; }
-        [Required,EmailAddress]
+        [Required, EmailAddress]
         public String Email { get; set; }
         [Required]
         [Compare("Email")]
         public String EmailConfirmed { get; set; }
-        [Required,RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$")]
+        [Required, DataType(DataType.Password)
+            , RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$")]
         public String Password { get; set; }
         [Compare("Password")]
         public String PasswordConfirmed { get; set; }
