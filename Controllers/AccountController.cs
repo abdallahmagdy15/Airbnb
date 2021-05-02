@@ -8,11 +8,11 @@ namespace Airbnb.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly UserManager<AppUser> userManager;
+        private readonly SignInManager<AppUser> signInManager;
         private readonly ApplicationDbContext db;
 
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
