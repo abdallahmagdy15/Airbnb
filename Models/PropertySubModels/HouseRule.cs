@@ -14,6 +14,6 @@ namespace Airbnb.Models.PropertySubModels
         [Required]
         public bool IsCustom { get; set; }
 
-        public List<PropertyHouseRule> Properties { get; set; }
+        public virtual List<PropertyHouseRule> Properties { get; set; }
     }
 }

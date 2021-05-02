@@ -26,6 +26,7 @@ namespace Airbnb.Models
         [MaxLength(255)]
         public string PhotoUrl { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime JoinDate { get; set; } = DateTime.Now;
 
         // Address info
@@ -41,7 +42,7 @@ namespace Airbnb.Models
         [ForeignKey(nameof(City))]
         public int CityId { get; set; }
 
-        public City City { get; set; }
+        public virtual City City { get; set; }
     }
 
     public enum Gender

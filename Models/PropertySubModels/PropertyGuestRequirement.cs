@@ -9,7 +9,7 @@ namespace Airbnb.Models.PropertySubModels
         [ForeignKey(nameof(GuestRequirement))]
         public int GuestRequirementId { get; set; }
 
-        public Property Property { get; set; }
-        public GuestRequirement GuestRequirement { get; set; }
+        public virtual Property Property { get; set; }
+        public virtual GuestRequirement GuestRequirement { get; set; }
     }
 }

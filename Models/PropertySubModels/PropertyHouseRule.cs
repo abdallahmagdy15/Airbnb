@@ -9,7 +9,7 @@ namespace Airbnb.Models.PropertySubModels
         [ForeignKey(nameof(HouseRule))]
         public int HouseRuleId { get; set; }
 
-        public Property Property { get; set; }
-        public HouseRule HouseRule { get; set; }
+        public virtual Property Property { get; set; }
+        public virtual HouseRule HouseRule { get; set; }
     }
 }
