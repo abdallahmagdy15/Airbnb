@@ -58,7 +58,7 @@ namespace Airbnb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<IActionResult> Login(LoginViewModel model, string ReturnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -67,10 +67,10 @@ namespace Airbnb.Controllers
                     (model.Email, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
                 {
-                    if (string.IsNullOrEmpty(returnUrl))
+                    if (string.IsNullOrEmpty(ReturnUrl) && !Url.IsLocalUrl(ReturnUrl))
                         return RedirectToAction("Index", "Home");
                     else
-                        return Redirect(returnUrl);
+                        return Redirect(ReturnUrl);
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid Login Credentials!");
