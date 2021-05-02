@@ -52,8 +52,7 @@ namespace Airbnb.Migrations
                 name: "Countries",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     PhoneCode = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     Coordinates = table.Column<Point>(type: "geography", nullable: false)
@@ -155,8 +154,7 @@ namespace Airbnb.Migrations
                 name: "States",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CountryCode = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: true),
                     StateCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
@@ -178,24 +176,16 @@ namespace Airbnb.Migrations
                 name: "Cities",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CountryCode = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: true),
                     StateCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     Coordinates = table.Column<Point>(type: "geography", nullable: false),
-                    StateId = table.Column<int>(type: "int", nullable: false),
-                    CountryId = table.Column<int>(type: "int", nullable: true)
+                    StateId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cities", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Cities_Countries_CountryId",
-                        column: x => x.CountryId,
-                        principalTable: "Countries",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Cities_States_StateId",
                         column: x => x.StateId,
@@ -624,11 +614,6 @@ namespace Airbnb.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Cities_CountryId",
-                table: "Cities",
-                column: "CountryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cities_StateId",

@@ -67,9 +67,7 @@ namespace Airbnb.Migrations
             modelBuilder.Entity("Airbnb.Models.Location.City", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<Point>("Coordinates")
                         .IsRequired()
@@ -101,9 +99,7 @@ namespace Airbnb.Migrations
             modelBuilder.Entity("Airbnb.Models.Location.Country", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<Point>("Coordinates")
                         .IsRequired()
@@ -126,9 +122,7 @@ namespace Airbnb.Migrations
             modelBuilder.Entity("Airbnb.Models.Location.State", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<Point>("Coordinates")
                         .IsRequired()
