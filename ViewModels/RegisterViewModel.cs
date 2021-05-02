@@ -8,27 +8,27 @@ namespace Airbnb.ViewModels
     public class RegisterViewModel
     {
         [Required, MinLength(2), MaxLength(255)]
-        public String Fname { get; set; }
+        public string Fname { get; set; }
 
         [Required, MinLength(2), MaxLength(255)]
-        public String Lname { get; set; }
+        public string Lname { get; set; }
         [Required]
         public DateTime DOB { get; set; }
 
         [Required]
         public Gender Gender { get; set; }
         [Required, MaxLength(12), MinLength(3), RegularExpression(@"\(?\d{3}\)?-? *\d{3}-? *-?\d{4}")]
-        public String PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         [Required, EmailAddress]
-        public String Email { get; set; }
+        public string Email { get; set; }
         [Required]
         [Compare("Email")]
-        public String EmailConfirmed { get; set; }
+        public string EmailConfirmed { get; set; }
         [Required, DataType(DataType.Password)
             , RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$")]
-        public String Password { get; set; }
+        public string Password { get; set; }
         [Compare("Password")]
-        public String PasswordConfirmed { get; set; }
-        public String PhotoUrl { get; set; }
+        public string PasswordConfirmed { get; set; }
+        public string PhotoUrl { get; set; }
     }
 }
