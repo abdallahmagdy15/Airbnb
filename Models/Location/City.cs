@@ -7,6 +7,7 @@ namespace Airbnb.Models.Location
 {
     public class City
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         [Required]
