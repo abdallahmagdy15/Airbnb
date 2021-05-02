@@ -1,4 +1,5 @@
-﻿using Airbnb.Models;
+﻿using Airbnb.Data;
+using Airbnb.Models;
 using Airbnb.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +10,7 @@ namespace Airbnb.Controllers
     {
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
-        private readonly AppDbContext db;
+        private readonly ApplicationDbContext db;
 
         public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
@@ -57,7 +58,7 @@ namespace Airbnb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +67,10 @@ namespace Airbnb.Controllers
                     (model.Email, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    if (string.IsNullOrEmpty(returnUrl))
+                        return RedirectToAction("Index", "Home");
+                    else
+                        return Redirect(returnUrl);
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid Login Credentials!");
