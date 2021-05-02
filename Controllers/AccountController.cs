@@ -10,7 +10,6 @@ namespace Airbnb.Controllers
     {
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
-        private readonly ApplicationDbContext db;
 
         public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
