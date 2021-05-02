@@ -13,7 +13,7 @@ namespace Airbnb.Data
         {
         }
 
-        public DbSet<AppUser> AppUsers { get; set; }
+        //public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<CreditCard> CreditCards { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Country> Countries { get; set; }
