@@ -67,7 +67,9 @@ namespace Airbnb.Models
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
-        public virtual List<PropertyGuestPlaceType> GuestPlaceTypes { get; set; }
+        [ForeignKey(nameof(GuestPlaceType))]
+        public int GuestPlaceTypeId { get; set; }
+        public virtual GuestPlaceType GuestPlaceType { get; set; }
         public virtual List<PropertyUnavailableDay> UnavailableDays { get; set; }
         public virtual List<PropertyAmenity> Amenities { get; set; }
         public virtual List<PropertyGuestRequirement> GuestRequirements { get; set; }
