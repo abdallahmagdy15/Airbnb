@@ -10,6 +10,7 @@ namespace Airbnb.Models
 {
     public class Property
     {
+        public int MyProperty { get; set; }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { set; get; }
