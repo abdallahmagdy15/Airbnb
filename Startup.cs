@@ -23,9 +23,10 @@ namespace Airbnb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection"),
-                    x => x.UseNetTopologySuite()));
+                options.UseLazyLoadingProxies()
+                    .UseSqlServer(
+                        Configuration.GetConnectionString("DefaultConnection"),
+                        x => x.UseNetTopologySuite()));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 

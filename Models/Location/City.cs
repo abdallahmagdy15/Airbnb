@@ -26,8 +26,8 @@ namespace Airbnb.Models.Location
         [ForeignKey(nameof(State))]
         public int StateId { get; set; }
 
-        public State State { get; set; }
+        public virtual State State { get; set; }
 
-        public List<Property> Properties { get; set; }
+        public virtual List<Property> Properties { get; set; }
     }
 }

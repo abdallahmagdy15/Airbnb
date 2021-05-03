@@ -20,6 +20,6 @@ namespace Airbnb.Models.Location
         [Required]
         public Point Coordinates { get; set; }
 
-        public List<State> States { get; set; }
+        public virtual List<State> States { get; set; }
     }
 }

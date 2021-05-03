@@ -9,7 +9,7 @@ namespace Airbnb.Models.PropertySubModels
         [ForeignKey(nameof(Space))]
         public int SpaceId { get; set; }
 
-        public Property Property { get; set; }
-        public Space Space { get; set; }
+        public virtual Property Property { get; set; }
+        public virtual Space Space { get; set; }
     }
 }

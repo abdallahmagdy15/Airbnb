@@ -11,6 +11,6 @@ namespace Airbnb.Models
 
         public DateTime UnavailableDay { set; get; }
 
-        public Property Property { get; set; }
+        public virtual Property Property { get; set; }
     }
 }

@@ -11,6 +11,6 @@ namespace Airbnb.Models.PropertySubModels
         [StringLength(500, MinimumLength = 2)]
         public string Name { get; set; }
 
-        public List<PropertyGuestDetail> Properties { get; set; }
+        public virtual List<PropertyGuestDetail> Properties { get; set; }
     }
 }

@@ -61,19 +61,19 @@ namespace Airbnb.Models
         [ForeignKey(nameof(City))]
         public int CityId { get; set; }
 
-        public City City { get; set; }
+        public virtual City City { get; set; }
 
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
 
-        public Category Category { get; set; }
-        public List<PropertyGuestPlaceType> GuestPlaceTypes { get; set; }
-        public List<PropertyUnavailableDay> UnavailableDays { get; set; }
-        public List<PropertyAmenity> Amenities { get; set; }
-        public List<PropertyGuestRequirement> GuestRequirements { get; set; }
-        public List<PropertyGuestDetail> GuestDetails { get; set; }
-        public List<PropertyHouseRule> HouseRules { get; set; }
-        public List<PropertyPhoto> Photos { get; set; }
-        public List<PropertySpace> Spaces { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual List<PropertyGuestPlaceType> GuestPlaceTypes { get; set; }
+        public virtual List<PropertyUnavailableDay> UnavailableDays { get; set; }
+        public virtual List<PropertyAmenity> Amenities { get; set; }
+        public virtual List<PropertyGuestRequirement> GuestRequirements { get; set; }
+        public virtual List<PropertyGuestDetail> GuestDetails { get; set; }
+        public virtual List<PropertyHouseRule> HouseRules { get; set; }
+        public virtual List<PropertyPhoto> Photos { get; set; }
+        public virtual List<PropertySpace> Spaces { get; set; }
     }
 }

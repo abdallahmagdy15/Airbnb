@@ -14,21 +14,21 @@ namespace Airbnb.Data
         }
 
         //public DbSet<AppUser> AppUsers { get; set; }
-        public DbSet<CreditCard> CreditCards { get; set; }
-        public DbSet<City> Cities { get; set; }
-        public DbSet<Country> Countries { get; set; }
-        public DbSet<State> States { get; set; }
-        public DbSet<Property> Properties { get; set; }
-        public DbSet<PropertyUnavailableDay> PropertyUnavailableDays { get; set; }
-        public DbSet<Amenity> Amenities { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<GuestPlaceType> GuestPlaceTypes { get; set; }
-        public DbSet<GuestRequirement> GuestRequirements { get; set; }
-        public DbSet<GuestDetail> GuestsDetails { get; set; }
-        public DbSet<HouseRule> HouseRules { get; set; }
-        public DbSet<PropertyPhoto> PropertyPhoto { get; set; }
-        public DbSet<Space> Spaces { get; set; }
-        public DbSet<PropertyGuestPlaceType> PropertyGuestPlaceTypes { get; set; }
+        public virtual DbSet<CreditCard> CreditCards { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<State> States { get; set; }
+        public virtual DbSet<Property> Properties { get; set; }
+        public virtual DbSet<PropertyUnavailableDay> PropertyUnavailableDays { get; set; }
+        public virtual DbSet<Amenity> Amenities { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<GuestPlaceType> GuestPlaceTypes { get; set; }
+        public virtual DbSet<GuestRequirement> GuestRequirements { get; set; }
+        public virtual DbSet<GuestDetail> GuestsDetails { get; set; }
+        public virtual DbSet<HouseRule> HouseRules { get; set; }
+        public virtual DbSet<PropertyPhoto> PropertyPhoto { get; set; }
+        public virtual DbSet<Space> Spaces { get; set; }
+        public virtual DbSet<PropertyGuestPlaceType> PropertyGuestPlaceTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
