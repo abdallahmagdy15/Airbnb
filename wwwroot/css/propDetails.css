@@ -16,28 +16,21 @@
 body{
     font-family: -apple-system, BlinkMacSystemFont, Roboto,sans-serif;
 }
-.container{
-    margin-top: 25px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-}
 .font-dark{
     font-size: 16px;
-    font-weight: 600px;
+    font-weight: 600;
     line-height: 20px;
     color: var(--dark-font);
 }
 .font-light{
     font-size: 14px;
-    font-weight: 400px;
+    font-weight: 400;
     line-height: 20px;
     color: var(--dark-gray);
 }
 .font-light-dark{
     font-size: 14px;
-    font-weight: 400px;
+    font-weight: 400;
     line-height: 20px;
     color: var(--dark-font);
 }
@@ -77,7 +70,7 @@ a{
 /*start title section*/
 h1{
     color: var(--dark-font);
-    font-weight: 600px;
+    font-weight: 600;
     font-size: 26px;
     line-height: 30px;
 }
@@ -111,7 +104,7 @@ h1{
 }
 
 .dark-span{
-    font-weight: 600px;
+    font-weight: 600;
     font-size: 16px;
     line-height: 20px;
     color: var(--dark-font);
@@ -124,13 +117,13 @@ h1{
 }
 
 .light-span,.light-anchor{
-    font-weight: 400px;
+    font-weight: 400;
     font-size: 16px;
     line-height: 20px;
     color: var(--dark-gray);
 }
 .light-anchor{
-    font-weight: 600px;
+    font-weight: 600;
     text-decoration: underline;
     color: var(--dark-gray);
 }
@@ -204,7 +197,7 @@ h1{
     font-size: 14px;
     line-height: 18px;
     color: var(--dark-font);
-    font-weight: 600px;
+    font-weight: 600;
     border:none;
 }
 .morebtn-containter span{
@@ -293,18 +286,18 @@ h1{
 .data-plugin-in-point .readmore{
     overflow: hidden;
    /* display: -webkit-box; */
-    display: -web-webkit-inline-box;
+    display: -webkit-inline-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     max-width: 650px;
     font-size: 16px;
-    font-weight: 400px;
+    font-weight: 400;
     line-height: 20px;
     color: var(--dark-font);
 }
 .readmore2{
     font-size: 16px;
-    font-weight: 600px;
+    font-weight: 600;
     line-height: 24px;
     color: var(--dark-gray);
     text-decoration: underline;
@@ -326,11 +319,10 @@ h1{
 /*start card*/
 .check{
     grid-area: check;
-    position: -webkit-sticky; /* Safari */
     position: sticky;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
-    height: fit-content;
+    height: max-content;
     top: 0;
 }
 
@@ -391,7 +383,7 @@ h1{
     border-radius: 10px;
     outline: none;
     color: white;
-    font-weight: 600px;
+    font-weight: 600;
     margin-top: 1.5em;
 
     /*   Important!!   */
@@ -403,7 +395,7 @@ h1{
     background: -moz-linear-gradient(90deg, rgba(230, 30, 77, 1) 0%, rgba(215, 5, 102, 1) 100%);
     background: -webkit-linear-gradient(90deg, rgba(230, 30, 77, 1) 0%, rgba(215, 5, 102, 1) 100%);
     background: linear-gradient(90deg, rgba(230, 30, 77, 1) 0%, rgba(215, 5, 102, 1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e61e4d", endColorstr="#d70566", GradientType=1);
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e61e4d", endColorstr="#d70566", GradientType=1);*/
 }
 
 .glow {
@@ -491,7 +483,7 @@ h1{
     .rightt .light-span{
         font-size: 12px;
         line-height: 16px;
-        font-weight: 400px;
+        font-weight: 400;
     }
     
     .check-title .dark-span{
@@ -501,7 +493,7 @@ h1{
     .check-title .dark-span h1{
         font-size: 18px;
         line-height: 16px;
-        font-weight: 400px;
+        font-weight: 400;
     }
     #amountspan{
         top: 0;
@@ -540,7 +532,7 @@ h1{
     ;
     width: 305px;
     position: absolute;
-   height: fit-content;
+   height: fit-content();
     left: 0px;
 }
 
@@ -632,7 +624,7 @@ h1{
 .light-span-menu{
     font-size: 12px;
     line-height: 16px;
-    font-weight: 400px;
+    font-weight: 400;
     color:var(--light-gray);
 }
 /*end drop down in card*/
@@ -682,7 +674,6 @@ h1{
         flex-direction: column;
         text-align: center;
         gap: 10px;
-
     }
 }
 /*end Amenities-arrangment*/
