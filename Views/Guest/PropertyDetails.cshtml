@@ -1,4 +1,5 @@
-﻿@*
+﻿@model PropertyDetailsViewModel
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -22,14 +23,14 @@
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="./images/8931f894-23c1-4be6-8c66-6fd917603b12.webp" class="d-block w-100" alt="...">
+                <img src="~/@Model.Property.Photos[0].Url" class="d-block w-100" alt="image-0">
             </div>
-            <div class="carousel-item">
-                <img src="./images/8f284a9e-b991-464e-a890-0cc84ddb24a1.webp" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="./images/96c9ac6e-897a-47f3-a130-7417b2bafc7e.webp" class="d-block w-100" alt="...">
-            </div>
+            @for (var i = 1; i < Model.Property.Photos.Count - 1; i++)
+            {
+                <div class="carousel-item">
+                    <img src="~/@Model.Property.Photos[i].Url" class="d-block w-100" alt="prop-image-@i">
+                </div>
+            }
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                 data-bs-slide="prev">
@@ -97,11 +98,16 @@
 <section class="pic-area">
     <div class="container">
         <div class="pic_content">
-            <img class="img1" src="./images/8931f894-23c1-4be6-8c66-6fd917603b12.webp">
-            <img class="img2" src="./images/e6d03628-f76e-421b-a82b-b9732e8a67eb.webp">
-            <img class="img3" src="./images/96c9ac6e-897a-47f3-a130-7417b2bafc7e.webp">
+            <img class="img1" src="~/@Model.Property.Photos[0].Url">
+
+            @for (int i = 1; i < 5; i++)
+            {
+                <img class="img@(i + 1)" src="~/@Model.Property.Photos[i].Url">
+            }
+
+            @*<img class="img3" src="./images/96c9ac6e-897a-47f3-a130-7417b2bafc7e.webp">
             <img class="img4" src="./images/daaabdce-1aa9-4aad-b67a-a7f59477af2d.webp">
-            <img class="img5" src="./images/8f284a9e-b991-464e-a890-0cc84ddb24a1.webp">
+            <img class="img5" src="./images/8f284a9e-b991-464e-a890-0cc84ddb24a1.webp">*@
         </div>
     </div>
     <div class="morebtn-containter">
@@ -133,12 +139,10 @@
             </div>
             <div style="height: 100%;" class="offcanvas-body">
                 <div class="container">
-                    <img src="./images/8931f894-23c1-4be6-8c66-6fd917603b12.webp">
-                    <img src="./images/8f284a9e-b991-464e-a890-0cc84ddb24a1.webp">
-                    <img src="./images/96c9ac6e-897a-47f3-a130-7417b2bafc7e.webp">
-                    <img src="./images/daaabdce-1aa9-4aad-b67a-a7f59477af2d.webp">
-                    <img src="./images/e6d03628-f76e-421b-a82b-b9732e8a67eb.webp">
-                    <img src="./images/8931f894-23c1-4be6-8c66-6fd917603b12.webp">
+                    @foreach (var image in Model.Property.Photos)
+                    {
+                    <img src="~/@image.Url" />
+                    }
                 </div>
 
             </div>
@@ -172,48 +176,13 @@
                 <!-----home type and house rules------>
                 <div class="data-plugin-in-point">
                     <div class="entire">
-                        <i class="fas fa-home fa-2x"></i>
+                        @if (Model.Property.GuestPlaceType.Name == "Entire Home")
+                        {
+                            <i class="fas fa-home fa-2x"></i>
+                        }
                         <div class="text">
-                            <h3 class="font-dark">Entire home</h3>
+                            <h3 class="font-dark">@Model.Property.GuestPlaceType.Name</h3>
                             <p class="font-light">You’ll have the apartment to yourself.</p>
-                        </div>
-                    </div>
-                    <div class="entire">
-                        <i class="fas fa-broom fa-2x"></i>
-                        <div class="text">
-                            <h3 class="font-dark">Enhanced Clean home</h3>
-                            <p class="font-light">
-                                This host committed to Airbnb's 5-step enhanced cleaning process.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="entire">
-                        <i class="fas fa-award fa-2x"></i>
-                        <div class="text">
-                            <h3 class="font-dark">Ahmed is a Superhost</h3>
-                            <p class="font-light">
-                                Superhosts are experienced, highly rated hosts who are committed
-                                to providing great stays for guests.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="entire">
-                        <i class="far fa-calendar-plus fa-2x"></i>
-                        <div class="text">
-                            <h3 class="font-dark">Cancellation policy</h3>
-                            <p class="font-light">
-                                Add your trip dates to get the cancellation details for this stay.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="entire">
-                        <i class="far fa-hand-paper fa-2x"></i>
-                        <div class="text">
-                            <h3 class="font-dark">House rules</h3>
-                            <p class="font-light">
-                                This place isn’t suitable for infants (0–2 yrs) and the host
-                                doesn’t allow pets, parties, or smoking.
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -221,12 +190,7 @@
                 <!----- host description ------>
                 <div class="data-plugin-in-point">
                     <p class="readmore">
-                        Enjoy a beautiful and stunning view of the pyramids from your bedroom and a spacious
-                        balcony. A rooftop with an even greater view is available, too. The place is quiet without
-                        street noise. A 2 minute walk from the entrance to the pyramids. Your room was built in 2020
-                        and is brand new. It offers 2 single beds. Breakfast
-                        + Wifi is included and will be served. Any meals can be delivered from the restaurants in
-                        the neighborhood to your private room.
+                       @Model.Property.Description
                         <span class="readmore2">...Read More<a href="#"></a></span>
                     </p>
                     <span id="readmore2" class="readmore2">...Read More<a href="#"></a></span>
