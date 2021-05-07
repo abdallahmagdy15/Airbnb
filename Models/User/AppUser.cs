@@ -40,7 +40,7 @@ namespace Airbnb.Models
         public string Zipcode { get; set; }
 
         [ForeignKey(nameof(City))]
-        public int CityId { get; set; }
+        public int? CityId { get; set; }
 
         public virtual City City { get; set; }
     }
