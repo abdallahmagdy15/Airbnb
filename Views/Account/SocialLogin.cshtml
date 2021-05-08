@@ -1,0 +1,30 @@
+﻿@*@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+@section Styles{
+    <style>
+
+        .social-con .modal-content {
+            width: 60%;
+            margin: 10% auto;
+            border: none;
+        }
+    </style>
+}
+
+<div class="social-con">
+    <div class="modal-content">
+        @foreach (var provider in Model.ExternalLogin)
+        {
+            <form method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+                <div class="btn-container">
+                    <button type="submit" name="provider" value="@provider.Name" title="Login using @provider.Name account">
+                        Continue with @provider.DisplayName
+                    </button>
+                </div>
+            </form>
+            <br />
+        }
+    </div>
+</div>*@
