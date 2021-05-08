@@ -5,6 +5,7 @@
 @{
 }
 
+
 @section Styles {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
@@ -98,16 +99,16 @@
 <section class="pic-area">
     <div class="container">
         <div class="pic_content">
-            <img class="img1" src="~/@Model.Property.Photos[0].Url">
+            @*<img class="img1" src="~/@Model.Property.Photos[0].Url">*@
 
-            @for (int i = 1; i < 5; i++)
+            @*@for (int i = 1; i < 5; i++)
             {
                 <img class="img@(i + 1)" src="~/@Model.Property.Photos[i].Url">
-            }
+            }*@
 
             @*<img class="img3" src="./images/96c9ac6e-897a-47f3-a130-7417b2bafc7e.webp">
-            <img class="img4" src="./images/daaabdce-1aa9-4aad-b67a-a7f59477af2d.webp">
-            <img class="img5" src="./images/8f284a9e-b991-464e-a890-0cc84ddb24a1.webp">*@
+                <img class="img4" src="./images/daaabdce-1aa9-4aad-b67a-a7f59477af2d.webp">
+                <img class="img5" src="./images/8f284a9e-b991-464e-a890-0cc84ddb24a1.webp">*@
         </div>
     </div>
     <div class="morebtn-containter">
@@ -141,7 +142,7 @@
                 <div class="container">
                     @foreach (var image in Model.Property.Photos)
                     {
-                    <img src="~/@image.Url" />
+                        <img src="~/@image.Url" />
                     }
                 </div>
 
@@ -190,7 +191,7 @@
                 <!----- host description ------>
                 <div class="data-plugin-in-point">
                     <p class="readmore">
-                       @Model.Property.Description
+                        @Model.Property.Description
                         <span class="readmore2">...Read More<a href="#"></a></span>
                     </p>
                     <span id="readmore2" class="readmore2">...Read More<a href="#"></a></span>
@@ -223,27 +224,34 @@
                     <div class="Amenities">
                         <!--grid-->
                         <div class="col">
+
+                            @foreach (var item in Model.Property.Amenities)
+                            {
                             <span class="Amenitie">
-                                <i class="fas fa-tv fa-2x"></i>
-                                <span class="dark-light">TV</span>
+                                @Html.Raw( @item.Amenity.Icon )
+                                <span class="dark-light">@item.Amenity.Name</span>
+
                             </span>
-                            <span class="Amenitie">
-                                <i class="fas fa-wifi fa-2x"></i>
-                                <span class="dark-light">Wifi</span>
-                            </span>
-                            <span class="Amenitie">
-                                <i class="fas fa-shower fa-2x"></i>
-                                <span class="dark-light">Essentials</span>
-                            </span>
-                            <span class="Amenitie">
-                                <i class="fas fa-briefcase fa-2x"></i>
-                                <span class="dark-light">Dedicated workspace</span>
-                            </span>
-                            <span class="Amenitie">
-                                <i class="far fa-bell fa-2x"></i>
-                                <span class="dark-light">Carbon monoxide alarm</span>
-                            </span>
-                        </div>
+                                    }
+
+
+                                @*<span class="Amenitie">
+                                    <i class="fas fa-wifi fa-2x"></i>
+                                    <span class="dark-light">Wifi</span>
+                                </span>
+                                <span class="Amenitie">
+                                    <i class="fas fa-shower fa-2x"></i>
+                                    <span class="dark-light">Essentials</span>
+                                </span>
+                                <span class="Amenitie">
+                                    <i class="fas fa-briefcase fa-2x"></i>
+                                    <span class="dark-light">Dedicated workspace</span>
+                                </span>
+                                <span class="Amenitie">
+                                    <i class="far fa-bell fa-2x"></i>
+                                    <span class="dark-light">Carbon monoxide alarm</span>
+                                </span>
+                            </div>
                         <div class="col">
                             <span class="Amenitie">
                                 <i class="fas fa-socks fa-2x"></i>
@@ -268,7 +276,7 @@
                         </div>
                     </div>
                     <a class="show-more">Show all 17 amenities</a>
-                </div>
+                </div>*@
                 <hr>
                 <!----- calendar availability ------>
                 <div class="date-plugin-in-point">
