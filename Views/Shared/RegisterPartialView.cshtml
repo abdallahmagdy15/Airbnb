@@ -1,180 +1,170 @@
-﻿
-@model RegisterViewModel
+﻿@model RegisterViewModel
 
 @section Styles{
     <link href="~/css/register.css" rel="stylesheet" />
 }
-<div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Sign up!</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body ">
-        <!--start register content-->
-        <div class="ajax-container">
-            <div class="signup-pane">
-                <form asp-action="Register" asp-controller="Account" enctype="multipart/form-data" method="post">
-                    <!--first-->
-                    <div asp-validation-summary="ModelOnly"></div>
+    <!--start register content-->
+    <div class="signup-pane">
+        <form asp-action="Register" asp-controller="Account" enctype="multipart/form-data" method="post">
+            <!--first-->
+            <div asp-validation-summary="ModelOnly"></div>
 
-                    <div class="first-page">
-                        <div class="column-container">
-                            <div class="column-container">
-                                <input type="text" asp-for="Email" placeholder="Email" class="phone-number">
-                            </div>
-                            <div class="column-container">
-                                <input type="text" asp-for="EmailConfirmed" placeholder="Email Confirmed" class="phone-number">
-                            </div>
-                        </div>
-                        <div class="column-container">
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
-                        <div class="column-container">
-                            <span asp-validation-for="EmailConfirmed" class="text-danger"></span>
-                        </div>
-                        <div class="message">
-                            <p>
-                                We’ll call or text you to confirm your number. Standard message and data
-                                rates apply.
-                            </p>
-                        </div>
-                        <div class="signup-btn-container">
-                            <p id="continue1" class="btn-glow">
-                                <span class="glow">
-                                    Continue
-                                </span>
-                                Continue
-                            </p>
-                        </div>
+            <div class="first-page">
+                <div class="column-container">
+                    <div class="column-container">
+                        <input type="text" asp-for="Email" placeholder="Email" class="phone-number">
                     </div>
-                    <!--second-->
-                    <div class="second-page">
-                        <div class="column-container">
-                            <input type="text" asp-for="Fname" placeholder="First Name">
-                            <input type="text" asp-for="Lname" placeholder="Last Name">
-                        </div>
-                        <div class="validation-container">
-                            <span class="validation-span" asp-validation-for="Fname"></span>
-                        </div>
-                        <div class="validation-container">
-                            <span class="validation-span" asp-validation-for="Lname"></span>
-                        </div>
-
-                        <div class="message">
-                            <p>Make sure it matches the name on your government ID.</p>
-                        </div>
-                        <div class="dob">
-                            <input type="text" asp-for="PhoneNumber" placeholder="phone number">
-                        </div>
-                        <div class="validation-container">
-                            <span class="validation-span" asp-validation-for="PhoneNumber"></span>
-                        </div>
-                        <div class="dob">
-                            <input type="date" asp-for="DOB" placeholder="Date of Birth">
-                        </div>
-                        <div class="validation-container">
-                            <span class="validation-span" asp-validation-for="DOB"></span>
-                        </div>
-                        <div class="message">
-                            <p>
-                                To sign up, you need to be at least 18. Your birthday won’t be shared
-                                with other people who use Airbnb.
-                            </p>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" asp-for="Gender" id="inlineRadio1" value=0>
-                            <label class="form-check-label" for="inlineRadio1">Male</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" asp-for="Gender" id="inlineRadio2" value=1>
-                            <label class="form-check-label" for="inlineRadio2">Female</label>
-                        </div>
-                        <div class="validation-container">
-                            <span class="validation-span" asp-validation-for="Gender"></span>
-                        </div>
-                        <div class="message">
-                            <p>We'll email you trip confirmations and receipts.</p>
-                        </div>
-                        <div class="signup-btn-container">
-                            <p id="continue2" class="btn-glow">
-                                <span class="glow">
-                                    Agree and continue
-                                </span>
-                                Agree and continue
-                            </p>
-                        </div>
+                    <div class="column-container">
+                        <input type="text" asp-for="EmailConfirmed" placeholder="Email Confirmed" class="phone-number">
                     </div>
-                    <!--third "steps"-->
-                    <div class="steps">
-                        <div class="steps-header">
-                            <h4>Add a profile photo</h4>
-                            <p>Pick an image that shows your face. Hosts won’t be able to see your profile photo until your reservation is confirmed.</p>
-                        </div>
-                        <div class="steps-footer">
-
-                            <div class="form-group">
-                                <div class="btn-container">
-                                    <label class="input-file-label" for="customFile">Upload a photo</label>
-                                    <input asp-for="PhotoUrl" style="width:0px;" id="customFile">
-                                </div>
-                            </div>
-                            <div class="validation-container">
-                                <span class="validation-span" asp-validation-for="PhotoUrl"></span>
-                            </div>
-                            <div class="btn-container">
-                                <button class="decline">Use Facebook photo</button>
-                            </div>
-                            <div class="btn-container">
-                                <p id="continue3" class="decline">I will do this later</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!--final-->
-                    <div class="final">
-                        <div class="column-container">
-                            <div class="column-container">
-                                <input type="password" asp-for="Password" placeholder="Email" class="phone-number">
-                            </div>
-                            <div class="column-container">
-                                <input type="password" asp-for="PasswordConfirmed" placeholder="Email Confirmed" class="phone-number">
-                            </div>
-                            <div class="column-container">
-                                <span class="validation-span" asp-validation-for="Password"></span>
-                            </div>
-                            <div class="column-container">
-                                <span asp-validation-for="PasswordConfirmed" class="validation-span"></span>
-                            </div>
-                        </div>
-                        <div class="signup-btn-container">
-                            <button type="submit" id="done" class="btn-glow">
-                                <span class="glow">
-                                    Register
-                                </span>
-                                Register
-                            </button>
-                        </div>
-                    </div>
-                </form>
-                <div class="first-page">
-                    <div style="text-align: center;">or</div>
-                    <div class="social-btns-container">
-
-                        <div class="btn-container">
-                            <a asp-action="SocialRegister" asp-controller="Account" data-ajax="true" data-ajax-update="#modal-render-body"
-                               class="btn-link">Continue with social accounts</a>
-                        </div>
-                    </div>
-                    <div class="login-msg">
-                        <span>
-                            Already have an account?
-                            <a>Login</a>
+                </div>
+                <div class="column-container">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="column-container">
+                    <span asp-validation-for="EmailConfirmed" class="text-danger"></span>
+                </div>
+                <div class="message">
+                    <p>
+                        We’ll call or text you to confirm your number. Standard message and data
+                        rates apply.
+                    </p>
+                </div>
+                <div class="signup-btn-container">
+                    <p id="continue1" class="btn-glow">
+                        <span class="glow">
+                            Continue
                         </span>
+                        Continue
+                    </p>
+                </div>
+            </div>
+            <!--second-->
+            <div class="second-page">
+                <div class="column-container">
+                    <input type="text" asp-for="Fname" placeholder="First Name">
+                    <input type="text" asp-for="Lname" placeholder="Last Name">
+                </div>
+                <div class="validation-container">
+                    <span class="validation-span" asp-validation-for="Fname"></span>
+                </div>
+                <div class="validation-container">
+                    <span class="validation-span" asp-validation-for="Lname"></span>
+                </div>
+
+                <div class="message">
+                    <p>Make sure it matches the name on your government ID.</p>
+                </div>
+                <div class="dob">
+                    <input type="text" asp-for="PhoneNumber" placeholder="phone number">
+                </div>
+                <div class="validation-container">
+                    <span class="validation-span" asp-validation-for="PhoneNumber"></span>
+                </div>
+                <div class="dob">
+                    <input type="date" asp-for="DOB" placeholder="Date of Birth">
+                </div>
+                <div class="validation-container">
+                    <span class="validation-span" asp-validation-for="DOB"></span>
+                </div>
+                <div class="message">
+                    <p>
+                        To sign up, you need to be at least 18. Your birthday won’t be shared
+                        with other people who use Airbnb.
+                    </p>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" asp-for="Gender" id="inlineRadio1" value=0>
+                    <label class="form-check-label" for="inlineRadio1">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" asp-for="Gender" id="inlineRadio2" value=1>
+                    <label class="form-check-label" for="inlineRadio2">Female</label>
+                </div>
+                <div class="validation-container">
+                    <span class="validation-span" asp-validation-for="Gender"></span>
+                </div>
+                <div class="message">
+                    <p>We'll email you trip confirmations and receipts.</p>
+                </div>
+                <div class="signup-btn-container">
+                    <p id="continue2" class="btn-glow">
+                        <span class="glow">
+                            Agree and continue
+                        </span>
+                        Agree and continue
+                    </p>
+                </div>
+            </div>
+            <!--third "steps"-->
+            <div class="steps">
+                <div class="steps-header">
+                    <h4>Add a profile photo</h4>
+                    <p>Pick an image that shows your face. Hosts won’t be able to see your profile photo until your reservation is confirmed.</p>
+                </div>
+                <div class="steps-footer">
+
+                    <div class="form-group">
+                        <div class="btn-container">
+                            <label class="input-file-label" for="customFile">Upload a photo</label>
+                            <input asp-for="PhotoUrl" style="width:0px;" id="customFile">
+                        </div>
+                    </div>
+                    <div class="validation-container">
+                        <span class="validation-span" asp-validation-for="PhotoUrl"></span>
+                    </div>
+                    <div class="btn-container">
+                        <button class="decline">Use Facebook photo</button>
+                    </div>
+                    <div class="btn-container">
+                        <p id="continue3" class="decline">I will do this later</p>
                     </div>
                 </div>
             </div>
+            <!--final-->
+            <div class="final">
+                <div class="column-container">
+                    <div class="column-container">
+                        <input type="password" asp-for="Password" placeholder="Email" class="phone-number">
+                    </div>
+                    <div class="column-container">
+                        <input type="password" asp-for="PasswordConfirmed" placeholder="Email Confirmed" class="phone-number">
+                    </div>
+                    <div class="column-container">
+                        <span class="validation-span" asp-validation-for="Password"></span>
+                    </div>
+                    <div class="column-container">
+                        <span asp-validation-for="PasswordConfirmed" class="validation-span"></span>
+                    </div>
+                </div>
+                <div class="signup-btn-container">
+                    <button type="submit" id="done" class="btn-glow">
+                        <span class="glow">
+                            Register
+                        </span>
+                        Register
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div class="first-page">
+            <div style="text-align: center;">or</div>
+            <div class="social-btns-container">
+
+                <div class="btn-container">
+                    <a asp-action="SocialRegister" asp-controller="Account" data-ajax="true"
+                       data-ajax-update="#modal-render-body"
+                       class="btn-link">Continue with social accounts</a>
+                </div>
+            </div>
+            <div class="login-msg">
+                <span>
+                    Already have an account?
+                    <a>Login</a>
+                </span>
+            </div>
         </div>
     </div>
-</div>
 
 @section Scripts{
     <!--Logic for register display-->
