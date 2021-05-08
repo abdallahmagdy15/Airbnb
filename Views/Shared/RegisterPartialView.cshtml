@@ -1,6 +1,6 @@
 ﻿
 @model RegisterViewModel
- 
+
 @section Styles{
     <link href="~/css/register.css" rel="stylesheet" />
 }
@@ -13,10 +13,10 @@
         <!--start register content-->
         <div class="ajax-container">
             <div class="signup-pane">
-                <form asp-action="Register" asp-controller="Account" enctype="multipart/form-data"  method="post">
+                <form asp-action="Register" asp-controller="Account" enctype="multipart/form-data" method="post">
                     <!--first-->
                     <div asp-validation-summary="ModelOnly"></div>
-                    
+
                     <div class="first-page">
                         <div class="column-container">
                             <div class="column-container">
@@ -47,17 +47,17 @@
                             </p>
                         </div>
                     </div>
-                        <!--second-->
+                    <!--second-->
                     <div class="second-page">
                         <div class="column-container">
                             <input type="text" asp-for="Fname" placeholder="First Name">
                             <input type="text" asp-for="Lname" placeholder="Last Name">
                         </div>
-                        <div class="validation-container" >
-                            <span class="validation-span" asp-validation-for="Fname" ></span>
+                        <div class="validation-container">
+                            <span class="validation-span" asp-validation-for="Fname"></span>
                         </div>
                         <div class="validation-container">
-                            <span class="validation-span" asp-validation-for="Lname" ></span>
+                            <span class="validation-span" asp-validation-for="Lname"></span>
                         </div>
 
                         <div class="message">
@@ -73,7 +73,7 @@
                             <input type="date" asp-for="DOB" placeholder="Date of Birth">
                         </div>
                         <div class="validation-container">
-                            <span class="validation-span" asp-validation-for="DOB" ></span>
+                            <span class="validation-span" asp-validation-for="DOB"></span>
                         </div>
                         <div class="message">
                             <p>
@@ -90,7 +90,7 @@
                             <label class="form-check-label" for="inlineRadio2">Female</label>
                         </div>
                         <div class="validation-container">
-                            <span class="validation-span" asp-validation-for="Gender" ></span>
+                            <span class="validation-span" asp-validation-for="Gender"></span>
                         </div>
                         <div class="message">
                             <p>We'll email you trip confirmations and receipts.</p>
@@ -104,56 +104,56 @@
                             </p>
                         </div>
                     </div>
-                        <!--third "steps"-->
-                        <div class="steps">
-                            <div class="steps-header">
-                                <h4>Add a profile photo</h4>
-                                <p>Pick an image that shows your face. Hosts won’t be able to see your profile photo until your reservation is confirmed.</p>
-                            </div>
-                            <div class="steps-footer">
+                    <!--third "steps"-->
+                    <div class="steps">
+                        <div class="steps-header">
+                            <h4>Add a profile photo</h4>
+                            <p>Pick an image that shows your face. Hosts won’t be able to see your profile photo until your reservation is confirmed.</p>
+                        </div>
+                        <div class="steps-footer">
 
-                                <div class="form-group">
-                                    <div class="btn-container">
-                                        <label class="input-file-label" for="customFile">Upload a photo</label>
-                                        <input asp-for="PhotoUrl" style="width:0px;" id="customFile">
-                                    </div>
-                                </div>
-                                <div class="validation-container">
-                                    <span class="validation-span" asp-validation-for="PhotoUrl"></span>
-                                </div>
+                            <div class="form-group">
                                 <div class="btn-container">
-                                    <button class="decline">Use Facebook photo</button>
-                                </div>
-                                <div class="btn-container">
-                                    <p id="continue3" class="decline">I will do this later</p>
+                                    <label class="input-file-label" for="customFile">Upload a photo</label>
+                                    <input asp-for="PhotoUrl" style="width:0px;" id="customFile">
                                 </div>
                             </div>
+                            <div class="validation-container">
+                                <span class="validation-span" asp-validation-for="PhotoUrl"></span>
+                            </div>
+                            <div class="btn-container">
+                                <button class="decline">Use Facebook photo</button>
+                            </div>
+                            <div class="btn-container">
+                                <p id="continue3" class="decline">I will do this later</p>
+                            </div>
                         </div>
-                        <!--final-->
-                        <div class="final">
+                    </div>
+                    <!--final-->
+                    <div class="final">
+                        <div class="column-container">
                             <div class="column-container">
-                                <div class="column-container">
-                                    <input type="password" asp-for="Password" placeholder="Email" class="phone-number">
-                                </div>
-                                <div class="column-container">
-                                    <input type="password" asp-for="PasswordConfirmed" placeholder="Email Confirmed" class="phone-number">
-                                </div>
-                                <div class="column-container">
-                                    <span class="validation-span" asp-validation-for="Password"></span>
-                                </div>
-                                <div class="column-container">
-                                    <span asp-validation-for="PasswordConfirmed" class="validation-span"></span>
-                                </div>
+                                <input type="password" asp-for="Password" placeholder="Email" class="phone-number">
                             </div>
-                            <div class="signup-btn-container">
-                                <button type="submit" id="done" class="btn-glow">
-                                    <span class="glow">
-                                        Register
-                                    </span>
-                                    Register
-                                </button>
+                            <div class="column-container">
+                                <input type="password" asp-for="PasswordConfirmed" placeholder="Email Confirmed" class="phone-number">
+                            </div>
+                            <div class="column-container">
+                                <span class="validation-span" asp-validation-for="Password"></span>
+                            </div>
+                            <div class="column-container">
+                                <span asp-validation-for="PasswordConfirmed" class="validation-span"></span>
                             </div>
                         </div>
+                        <div class="signup-btn-container">
+                            <button type="submit" id="done" class="btn-glow">
+                                <span class="glow">
+                                    Register
+                                </span>
+                                Register
+                            </button>
+                        </div>
+                    </div>
                 </form>
                 <div class="first-page">
                     <div style="text-align: center;">or</div>
@@ -176,3 +176,7 @@
     </div>
 </div>
 
+@section Scripts{
+    <!--Logic for register display-->
+    <script src="~/js/register.js"></script>
+}
