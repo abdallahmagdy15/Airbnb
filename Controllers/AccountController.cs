@@ -185,5 +185,17 @@ namespace Airbnb.Controllers
             }
             return uniqueFileName;
         }
+
+        public async Task<IActionResult> IsEmailAvailable(string email)
+        {
+            bool result;
+            var user  = await userManager.FindByNameAsync(email);
+            if(user == null)
+                result = true;
+            
+            else
+                result = false;
+            return Json(data:result);
+        }
     }
 }
