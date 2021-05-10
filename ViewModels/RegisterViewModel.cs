@@ -26,9 +26,7 @@ namespace Airbnb.ViewModels
         public string PhoneNumber { get; set; }
         [Required, EmailAddress]
         public string Email { get; set; }
-        [Required]
-        [Compare("Email")]
-        public string EmailConfirmed { get; set; }
+
         [Required, DataType(DataType.Password)
             , RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$")]
         public string Password { get; set; }

@@ -5,7 +5,9 @@
 }
     <!--start register content-->
     <div class="signup-pane">
-        <form asp-action="Register" asp-controller="Account" enctype="multipart/form-data" method="post">
+        <form asp-action="Register" asp-controller="Account" data-ajax="true"  data-ajax-update="#modal-render-body"
+              data-ajax-success="$('#RegisterModal').modal('show');$('.modal-title').text('Sign Up');" 
+              enctype="multipart/form-data" method="post">
             <!--first-->
             <div asp-validation-summary="ModelOnly"></div>
 
@@ -14,15 +16,9 @@
                     <div class="column-container">
                         <input type="text" asp-for="Email" placeholder="Email" class="phone-number">
                     </div>
-                    <div class="column-container">
-                        <input type="text" asp-for="EmailConfirmed" placeholder="Email Confirmed" class="phone-number">
-                    </div>
                 </div>
                 <div class="column-container">
                     <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-                <div class="column-container">
-                    <span asp-validation-for="EmailConfirmed" class="text-danger"></span>
                 </div>
                 <div class="message">
                     <p>

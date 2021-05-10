@@ -87,6 +87,7 @@ namespace Airbnb.Controllers
                     ModelState.AddModelError("Error", Error.Description);
                 }
             }
+
             return PartialView("~/Views/Shared/RegisterPartialView.cshtml",model);
         }
 
