@@ -1,5 +1,6 @@
 using Airbnb.Data;
 using Airbnb.Models;
+using Airbnb.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -55,6 +56,8 @@ namespace Airbnb
                     options.AppSecret = "0a46289db8d433907f64d6516882ba94";
                 });
 
+
+            services.AddScoped<IPropertyService, PropertyService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

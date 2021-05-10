@@ -1,4 +1,5 @@
 ﻿using Airbnb.Data;
+using Airbnb.Services;
 using Airbnb.ViewModels.Guest;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,17 +11,18 @@ namespace Airbnb.Controllers
 {
     public class PropertyController : Controller
     {
-        private ApplicationDbContext _db;
+        readonly IPropertyService _propertyService;
 
-        public PropertyController(ApplicationDbContext db)
+        public PropertyController(IPropertyService propertyService)
         {
-            _db = db;
+            _propertyService = propertyService;
         }
-        public IActionResult PropertyDetails(int? id)
+        public IActionResult Details(int? id)
         {
-            var property = _db.Properties.Where(p => p.Id == id.Value).FirstOrDefault();
+            if (id == null)
+                return BadRequest();
 
-            var model = new PropertyDetailsViewModel { Property = property };
+            var model = new PropertyDetailsViewModel { Property = _propertyService.GetById(id.Value), };
 
             return View("/views/Guest/PropertyDetails.cshtml", model);
         }
