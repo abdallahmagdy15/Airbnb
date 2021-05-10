@@ -5,8 +5,11 @@
     display: none;
 }
 
-.column-container span {
-    color: darkred;
+.field-validation-error {
+    padding: 5px;
+    font-size: 0.8rem;
+    margin: 5px 0 15px auto;
+    width: fit-content;
 }
 
 .form-group .btn-container .input-file-label {
@@ -79,8 +82,8 @@ h4{
 }
 input[type=text],
 input[type=date],
-input[type=email]
-
+input[type=email],
+input[type=password] 
 {
     width: 100%;
     padding: 18px 22px;
@@ -93,12 +96,19 @@ input[type=email]
     font-weight: 400;
     line-height: 20px;
 }
-#exampleModal .modal-body .message{
+.modal-body .message{
     margin-top: 5px;
     margin-bottom: 10px;
+
 }
-#exampleModal .modal-body .message  p{
-    font-size: 12px;
+.validation-summary-errors ul {
+    list-style: square;
+    width: 100%;
+    padding: 0 1rem;
+    color: red;
+}
+.modal-body .message  p{
+    font-size: .7rem;
     color: #717171;
     font-weight: 400;
 }

@@ -4,12 +4,12 @@
     <link href="~/css/register.css" rel="stylesheet" />
 }
     <!--start register content-->
-    <div class="signup-pane">
+    <div class="signup-pane" >
         <form asp-action="Register" asp-controller="Account" data-ajax="true"  data-ajax-update="#modal-render-body"
               data-ajax-success="$('#RegisterModal').modal('show');$('.modal-title').text('Sign Up');" 
-              enctype="multipart/form-data" method="post">
+              enctype="multipart/form-data" method="post" >
             <!--first-->
-            <div asp-validation-summary="ModelOnly"></div>
+            <div asp-validation-summary="All"></div>
 
             <div class="first-page">
                 <div class="column-container">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="column-container">
-                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <span asp-validation-for="Email" class="badge badge-danger"></span>
                 </div>
                 <div class="message">
                     <p>
@@ -39,13 +39,13 @@
             <div class="second-page">
                 <div class="column-container">
                     <input type="text" asp-for="Fname" placeholder="First Name">
+                    <div class="validation-container">
+                        <span class="validation-span badge badge-danger" asp-validation-for="Fname"></span>
+                    </div>
                     <input type="text" asp-for="Lname" placeholder="Last Name">
                 </div>
                 <div class="validation-container">
-                    <span class="validation-span" asp-validation-for="Fname"></span>
-                </div>
-                <div class="validation-container">
-                    <span class="validation-span" asp-validation-for="Lname"></span>
+                    <span class="validation-span badge badge-danger" asp-validation-for="Lname"></span>
                 </div>
 
                 <div class="message">
@@ -55,13 +55,13 @@
                     <input type="text" asp-for="PhoneNumber" placeholder="phone number">
                 </div>
                 <div class="validation-container">
-                    <span class="validation-span" asp-validation-for="PhoneNumber"></span>
+                    <span class="validation-span badge badge-danger" asp-validation-for="PhoneNumber"></span>
                 </div>
                 <div class="dob">
                     <input type="date" asp-for="DOB" placeholder="Date of Birth">
                 </div>
                 <div class="validation-container">
-                    <span class="validation-span" asp-validation-for="DOB"></span>
+                    <span class="validation-span badge badge-danger" asp-validation-for="DOB"></span>
                 </div>
                 <div class="message">
                     <p>
@@ -78,7 +78,7 @@
                     <label class="form-check-label" for="inlineRadio2">Female</label>
                 </div>
                 <div class="validation-container">
-                    <span class="validation-span" asp-validation-for="Gender"></span>
+                    <span class="validation-span badge badge-danger" asp-validation-for="Gender"></span>
                 </div>
                 <div class="message">
                     <p>We'll email you trip confirmations and receipts.</p>
@@ -106,9 +106,6 @@
                             <input asp-for="PhotoUrl" style="width:0px;" id="customFile">
                         </div>
                     </div>
-                    <div class="validation-container">
-                        <span class="validation-span" asp-validation-for="PhotoUrl"></span>
-                    </div>
                     <div class="btn-container">
                         <button class="decline">Use Facebook photo</button>
                     </div>
@@ -121,16 +118,16 @@
             <div class="final">
                 <div class="column-container">
                     <div class="column-container">
-                        <input type="password" asp-for="Password" placeholder="Email" class="phone-number">
+                        <input type="password" asp-for="Password" placeholder="Password" class="phone-number">
                     </div>
                     <div class="column-container">
-                        <input type="password" asp-for="PasswordConfirmed" placeholder="Email Confirmed" class="phone-number">
+                        <input type="password" asp-for="PasswordConfirmed" placeholder="Confirm Password" class="phone-number">
                     </div>
                     <div class="column-container">
-                        <span class="validation-span" asp-validation-for="Password"></span>
+                        <span class="validation-span badge badge-danger" asp-validation-for="Password"></span>
                     </div>
                     <div class="column-container">
-                        <span asp-validation-for="PasswordConfirmed" class="validation-span"></span>
+                        <span asp-validation-for="PasswordConfirmed" class="validation-span badge badge-danger"></span>
                     </div>
                 </div>
                 <div class="signup-btn-container">

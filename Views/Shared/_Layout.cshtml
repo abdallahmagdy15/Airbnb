@@ -54,27 +54,6 @@
             </div>
         </div>
     </div>
-    <!--Register Modal-->
-    @*<section class=" register-modal-container">
-            <div class="modal fade modal-dialog modal-dialog-scrollable " id="RegisterModal" tabindex="-1"
-                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div id="modal-render-body" class="modal-dialog modal-dialog-scrollable" role="document">
-                    <partial name="RegisterPartialView.cshtml" />
-                </div>
-            </div>
-        </section>*@
-
-    <!--Register Modal-->
-    <!--<section class=" login-modal-container">
-        <div class="modal fade modal-dialog modal-dialog-scrollable " id="LoginModal" tabindex="-1"
-             aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div id="render-section" class="modal-dialog modal-dialog-scrollable" role="document">
-                <partial name="LoginPartialView.cshtml" />
-            </div>
-        </div>
-    </section>-->
-
-
 
     <footer class="border-top text-muted">
         <div class="container">
@@ -82,16 +61,14 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.1/dist/umd/popper.min.js"
             integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
             crossorigin="anonymous"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <!--BS V5-->
-    @*<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
-        integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
-        crossorigin="anonymous"></script>*@
     <!--Logic for Glow Button-->
     <script src="~/js/glow.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
