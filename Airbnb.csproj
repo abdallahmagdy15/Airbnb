@@ -23,6 +23,7 @@
   <ItemGroup>
     <Folder Include="Views\Guest\Partial\" />
     <Folder Include="Views\Host\" />
+    <Folder Include="wwwroot\Listing\" />
   </ItemGroup>
 
 </Project>
