@@ -26,7 +26,6 @@ textarea {
     color: #484848 !important;
     padding-top: 2px !important;
     padding-bottom: 2px !important;
-    max-width: 500px;
 }
 
 .QuestionDescription {
@@ -37,7 +36,6 @@ textarea {
     font-size: 16px !important;
     color: #626262 !important;
     margin-top: 10px;
-    max-width: 500px;
 }
 
 .ContainTypeOfPlace {

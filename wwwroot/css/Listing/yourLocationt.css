@@ -1,65 +1,11 @@
 ﻿
-* {
-    box-sizing: border-box;
-}
-
-.header {
-    width: 100% !important;
-    margin-top: 0px !important;
-    padding: 0px !important;
-    position: relative !important;
-    z-index: 2 !important;
-    box-shadow: 0 1px 0 rgb(0 0 0 / 5%) !important;
-    height: 70px;
-}
-
-    .header svg {
-        color: #008489 !important
+@media only screen and (min-width: 992px) {
+    #city, #state {
+        width: 42%;
     }
-
-.ContainSVG {
-    padding-left: 16px;
-    padding-top: 18px;
 }
 
-progress[value]::-webkit-progress-bar {
-    background-color: #eee;
-}
-
-progress {
-    border-radius: 0px;
-    width: 80%;
-    height: 13px;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
-}
-
-    progress::-webkit-progress-bar {
-        background-color: darkcyan;
-        border-radius: 0px 7px 7px 0px;
-    }
-
-    progress::-webkit-progress-value {
-        background-color: darkcyan;
-        border-radius: 0px 7px 7px 0px;
-    }
-
-.listingType {
-    margin: 0px !important;
-    word-wrap: break-word !important;
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
-    font-size: 26px !important;
-    font-weight: 700 !important;
-    line-height: 1.25em !important;
-    color: #484848 !important;
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
-}
-
-
-
-.ContainPropertyType,
-.ContainTypeOfPlace,
-.ContainNumberOfRooms {
+.ContainPropertyLocation {
     margin-left: 35px;
     margin-top: 65px;
     margin-right: 5%;
@@ -69,7 +15,7 @@ progress {
             margin-top: 65px; */
 }
 
-.ContainQuestion {
+.ContainQuestionLocation {
     margin: 0px !important;
     word-wrap: break-word !important;
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
@@ -81,7 +27,7 @@ progress {
     padding-bottom: 2px !important;
 }
 
-.QuestionDescription {
+.QuestionDescriptionLocation {
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
     font-size: 18px !important;
     font-weight: 400 !important;
@@ -129,11 +75,11 @@ footer {
 
 .ContainRightDiv {
     background-color: #f7f7f7;
-    min-height: 600px
+    height: 1025px;
 }
 
 .ContainBtnUseCurrentLoction {
-    margin-left: 37px;
+    margin-left: 50px;
     margin-top: 20px;
 }
 
@@ -177,17 +123,17 @@ hr {
     width: 90%;
 }
 
-.ContainNumberOfRooms {
+.ContainLocation {
     margin-left: 35px;
     margin-top: 20px;
     margin-right: 5%;
 }
 
-.NumberOfRooms {
+.LocationInput {
     margin-bottom: 7px;
 }
 
-.SelectNumberOfRooms {
+.SelectLocation {
     border-radius: 5px;
     width: 90%;
 }
@@ -204,7 +150,7 @@ select {
     box-shadow: none;
 }
 
-.SelectCategoryInput {
+.SelectLocationInput {
     width: 97%;
     border-radius: 5px;
     height: 60px;
@@ -215,7 +161,7 @@ select {
     border: 1px solid lightgray !important;
 }
 
-    .SelectCategoryInput:focus {
+    .SelectLocationInput:focus {
         outline: none;
     }
 
@@ -227,7 +173,7 @@ select {
     max-width: 90%;
 }
 
-.ContainNumberOfRooms label {
+.ContainLocation label {
     color: rgb(34, 34, 34) !important;
     font-size: 16px !important;
     display: block !important;

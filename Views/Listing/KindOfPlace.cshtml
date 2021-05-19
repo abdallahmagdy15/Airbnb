@@ -24,189 +24,143 @@
 <div>
     <progress id="file" value="10" max="100" style="width: 100%;"> </progress>
 </div>
-<div id="1" style="display:flex ">
-    <div class="col col-12 col-md-7">
+<from method="post">
+    <div id="1" style="display:flex ">
+        <div class="col col-12 col-md-7">
 
-        <div class="ContainListingType col col-11 col-xl-8">
-            <div class="listingType">What kind of place are you listing?</div>
-        </div>
-        <form method="post">
-            <div class="ContainPropertyType col col-11 col-xl-8">
-                <div class="PropertyType">Choose a property type</div>
-                <div class="ContainSelect">
-                    <div class="SelectCategory">
-                        <input asp-for="Categoryname" value="Select one" class="SelectCategoryInput" readonly>
-                        <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false"
-                             style="height: 16px; width: 16px; display: inline; fill: currentcolor;">
-                            <path d="m16.29 4.3a1 1 0 1 1 1.41 1.42l-8 8a1 1 0 0 1 -1.41 0l-8-8a1 1 0 1 1 1.41-1.42l7.29 7.29z"
-                                  fill-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <div class="ContainOptions">
-                        <div class="ContainOneOption">
-                            <div class="OptionCategory">Apartment</div>
-                            <div class="OptionDescription">
-                                Typically located in multi-unit residential buildings or
-                                complexes
-                                where other people live
-                            </div>
-                        </div>
-                        <div class="ContainOneOption">
-                            <div class="OptionCategory">House</div>
-                            <div class="OptionDescription">
-                                Often stand-alone structures but some houses, like duplexes,
-                                may
-                                share
-                                walls or outdoor areas with other houses
-                            </div>
-                        </div>
-                        <div class="ContainOneOption">
-                            <div class="OptionCategory">Secondary unit</div>
-                            <div class="OptionDescription">
-                                Have a private entrance for guests and usually share property
-                                with
-                                anotherstructure
-                            </div>
-                        </div>
-                        <div class="ContainOneOption">
-                            <div class="OptionCategory">Unique space</div>
-                            <div class="OptionDescription">
-                                Places to stay with interesting or unconventional structural
-                                attributes in
-                                comparison with traditional houses and apartments
-                            </div>
-                        </div>
-                        <div class="ContainOneOption">
-                            <div class="OptionCategory">Bed and breakfast</div>
-                            <div class="OptionDescription">
-                                Professional hospitality businesses that offer breakfast for
-                                guests. A
-                                host
-                                usually lives on the property.
-                            </div>
-                        </div>
-                        <div class="ContainOneOption">
-                            <div class="OptionCategory">Boutique hotel</div>
-                            <div class="OptionDescription">
-                                Professional hospitality businesses that usually have a
-                                unique style or theme defining their brand and decor
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- div will show after Select -->
-                <div class="DescriptionDivCategory">
-                </div>
+            <div class="ContainListingType col col-11 col-xl-8">
+                <div class="listingType">What kind of place are you listing?</div>
             </div>
-
-            <div class="ContainNumberOfRooms col col-11 col-xl-8">
-                <div class="NumberOfRooms">
-                    How many total rooms does your property have?
-                </div>
-                <div class="ContainSelectNumberOfRooms">
-                    <div class="SelectNumberOfRooms">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected value="2-5">2-5</option>
-                            <option value="6-10">6-10</option>
-                            <option value="11-20">11-20</option>
-                            <option value="21-30">21-30</option>
-                            <option value="31-40">31-40</option>
-                            <option value="41-50">41-50</option>
-                            <option value="+50">+50</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="ContainTypeOfPlace col col-11 col-xl-8">
-                <div class="TypeOfPlace">Confirm the type of place guests will have</div>
-                <div class="ContainSelectTypeOfPlace">
-                    <div class="SelectTypeOfPlace">
-                        <input asp-for="GuestPlaceTypeName" value="Select one" class="SelectTypeOfPlaceInput" readonly>
-                        <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false"
-                             style="height: 16px; width: 16px; display: inline; fill: currentcolor;">
-                            <path d="m16.29 4.3a1 1 0 1 1 1.41 1.42l-8 8a1 1 0 0 1 -1.41 0l-8-8a1 1 0 1 1 1.41-1.42l7.29 7.29z"
-                                  fill-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <div class="ContainOptionsTypeOfPlace">
-                        <div class="ContainOneOptionTypeOfPlace">
-                            <div class="OptionTypeOfPlace">Entire place</div>
-                            <div class="OptionDescriptionTypeOfPlace">
-                                Guests have the whole place to themselves—there's
-                                a private entrance and no shared spaces. A bedroom, bathroom,
-                                and kitchen are usually included.
-                            </div>
-                        </div>
-                        <div class="ContainOneOptionTypeOfPlace">
-                            <div class="OptionTypeOfPlace">Private room</div>
-                            <div class="OptionDescriptionTypeOfPlace">
-                                Guests have their own private room for sleeping.
-                                Other areas could be shared.
-                            </div>
-                        </div>
-                        <div class="ContainOneOptionTypeOfPlace">
-                            <div class="OptionTypeOfPlace">Shared room</div>
-                            <div class="OptionDescriptionTypeOfPlace">
-                                Guests sleep in a bedroom or a common area that
-                                could be shared with others.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="DescriptionDivTypeOfPlace">
-                </div>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="okkkkkkk">
-            </div>
-            <div class="ContainTipsInSmall">
-                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                     role="presentation" focusable="false"
-                     style="display: block; height: 32px; width: 32px; fill: currentcolor;">
-                    <path d="M24.6666 11.1332V11.5332C24.5999 14.3332 22.9333 17.0665 19.5333 19.7998L19.3333 19.9998H12.6666L12.3999 19.7998C8.99994 17.0665 7.33327 14.3332 7.2666 11.5332V11.1332C7.4666 6.4665 11.2666 2.6665 15.9999 2.6665C20.7333 2.6665 24.5999 6.4665 24.6666 11.1332Z"
-                          fill="#64DEE2"></path>
-                    <path d="M27.3334 11.3333C27.3334 5.06667 22.2667 0 16.0001 0C9.73342 0 4.66675 5.06667 4.66675 11.3333C4.66675 15.2667 6.93341 18.9333 11.3334 22.3333V29.3333C11.3334 30.0667 11.9334 30.6667 12.6667 30.6667H15.3334V32H16.6667V30.6667H19.3334C20.0667 30.6667 20.6667 30.0667 20.6667 29.3333V22.3333C25.0667 18.9333 27.3334 15.2667 27.3334 11.3333ZM19.3334 29.3333H12.6667V26.6667H19.3334V29.3333ZM19.3334 25.3333H12.6667V22.6667H19.3334V25.3333ZM17.3334 21.3333H14.6667V11.3333C14.6667 10.6 15.2667 10 16.0001 10C16.7334 10 17.3334 10.6 17.3334 11.3333V21.3333ZM19.8001 21.3333H18.6667V11.3333C18.6667 9.86667 17.4667 8.66667 16.0001 8.66667C14.5334 8.66667 13.3334 9.86667 13.3334 11.3333V21.3333H12.2001C8.06675 18.2 6.00008 14.8 6.00008 11.3333C6.00008 5.8 10.4667 1.33333 16.0001 1.33333C21.5334 1.33333 26.0001 5.8 26.0001 11.3333C26.0001 14.8 23.9334 18.2 19.8001 21.3333Z"
-                          fill="#222222"></path>
-                </svg>
-            </div>
-            <div>
-                <div class="TipsInMobile" style="position: relative;z-index:2000;background-color: white;border-radius: 5px;padding: 20px;padding-bottom: 30px; display: table;width: 85%;bottom: 90px;right: 20px;position: fixed;">
-                    <div style="margin-bottom: 20px;">
-                        <div style="display: table-cell;vertical-align: middle;">
-                            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                 role="presentation" focusable="false"
-                                 style="display: block; height: 32px; width: 32px; fill: currentcolor;">
-                                <path d="M24.6666 11.1332V11.5332C24.5999 14.3332 22.9333 17.0665 19.5333 19.7998L19.3333 19.9998H12.6666L12.3999 19.7998C8.99994 17.0665 7.33327 14.3332 7.2666 11.5332V11.1332C7.4666 6.4665 11.2666 2.6665 15.9999 2.6665C20.7333 2.6665 24.5999 6.4665 24.6666 11.1332Z"
-                                      fill="#64DEE2"></path>
-                                <path d="M27.3334 11.3333C27.3334 5.06667 22.2667 0 16.0001 0C9.73342 0 4.66675 5.06667 4.66675 11.3333C4.66675 15.2667 6.93341 18.9333 11.3334 22.3333V29.3333C11.3334 30.0667 11.9334 30.6667 12.6667 30.6667H15.3334V32H16.6667V30.6667H19.3334C20.0667 30.6667 20.6667 30.0667 20.6667 29.3333V22.3333C25.0667 18.9333 27.3334 15.2667 27.3334 11.3333ZM19.3334 29.3333H12.6667V26.6667H19.3334V29.3333ZM19.3334 25.3333H12.6667V22.6667H19.3334V25.3333ZM17.3334 21.3333H14.6667V11.3333C14.6667 10.6 15.2667 10 16.0001 10C16.7334 10 17.3334 10.6 17.3334 11.3333V21.3333ZM19.8001 21.3333H18.6667V11.3333C18.6667 9.86667 17.4667 8.66667 16.0001 8.66667C14.5334 8.66667 13.3334 9.86667 13.3334 11.3333V21.3333H12.2001C8.06675 18.2 6.00008 14.8 6.00008 11.3333C6.00008 5.8 10.4667 1.33333 16.0001 1.33333C21.5334 1.33333 26.0001 5.8 26.0001 11.3333C26.0001 14.8 23.9334 18.2 19.8001 21.3333Z"
-                                      fill="#222222"></path>
+            <form method="post">
+                <div class="ContainPropertyType col col-11 col-xl-8">
+                    <div class="PropertyType">Choose a property type</div>
+                    <div class="ContainSelect">
+                        <div class="SelectCategory">
+                            <input asp-for="Categoryname" value="Select one" class="SelectCategoryInput" readonly>
+                            <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false"
+                                 style="height: 16px; width: 16px; display: inline; fill: currentcolor;">
+                                <path d="m16.29 4.3a1 1 0 1 1 1.41 1.42l-8 8a1 1 0 0 1 -1.41 0l-8-8a1 1 0 1 1 1.41-1.42l7.29 7.29z"
+                                      fill-rule="evenodd"></path>
                             </svg>
                         </div>
-                        <div style="width:100%;display: table-cell; vertical-align: middle;"></div>
-
-                        <div style="display: table-cell;vertical-align: middle;">
-                            <button type="button" class="close" aria-label="Close" style="background: none;border: none;font-size: 35px;font-weight: lighter;color:gray;">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                        <div class="ContainOptions">
+                            <div class="ContainOneOption">
+                                <div class="OptionCategory">Apartment</div>
+                                <div class="OptionDescription">
+                                    Typically located in multi-unit residential buildings or
+                                    complexes
+                                    where other people live
+                                </div>
+                            </div>
+                            <div class="ContainOneOption">
+                                <div class="OptionCategory">House</div>
+                                <div class="OptionDescription">
+                                    Often stand-alone structures but some houses, like duplexes,
+                                    may
+                                    share
+                                    walls or outdoor areas with other houses
+                                </div>
+                            </div>
+                            <div class="ContainOneOption">
+                                <div class="OptionCategory">Secondary unit</div>
+                                <div class="OptionDescription">
+                                    Have a private entrance for guests and usually share property
+                                    with
+                                    anotherstructure
+                                </div>
+                            </div>
+                            <div class="ContainOneOption">
+                                <div class="OptionCategory">Unique space</div>
+                                <div class="OptionDescription">
+                                    Places to stay with interesting or unconventional structural
+                                    attributes in
+                                    comparison with traditional houses and apartments
+                                </div>
+                            </div>
+                            <div class="ContainOneOption">
+                                <div class="OptionCategory">Bed and breakfast</div>
+                                <div class="OptionDescription">
+                                    Professional hospitality businesses that offer breakfast for
+                                    guests. A
+                                    host
+                                    usually lives on the property.
+                                </div>
+                            </div>
+                            <div class="ContainOneOption">
+                                <div class="OptionCategory">Boutique hotel</div>
+                                <div class="OptionDescription">
+                                    Professional hospitality businesses that usually have a
+                                    unique style or theme defining their brand and decor
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <div class="TipTitle">Choosing listing categories</div>
-                        <div class="DescriptionTip">
-                            Selecting accurate categories helps guests know what to expect when it comes to the privacy,
-                            style, and level of service they'll receive during their stay at your place.
-                        </div>
+                    <!-- div will show after Select -->
+                    <div class="DescriptionDivCategory">
                     </div>
-
                 </div>
-            </div>
-        </form>
 
-    </div>
-    <div class="col col-md-5 d-none d-md-block ContainRightDiv">
-        <div class="TipsInFullScreen">
-            <div style="margin-bottom: 20px;">
-                <div style="display: table-cell;vertical-align: middle;">
+                <div class="ContainNumberOfRooms col col-11 col-xl-8">
+                    <div class="NumberOfRooms">
+                        How many total rooms does your property have?
+                    </div>
+                    <div class="ContainSelectNumberOfRooms">
+                        <div class="SelectNumberOfRooms">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected value="2-5">2-5</option>
+                                <option value="6-10">6-10</option>
+                                <option value="11-20">11-20</option>
+                                <option value="21-30">21-30</option>
+                                <option value="31-40">31-40</option>
+                                <option value="41-50">41-50</option>
+                                <option value="+50">+50</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="ContainTypeOfPlace col col-11 col-xl-8">
+                    <div class="TypeOfPlace">Confirm the type of place guests will have</div>
+                    <div class="ContainSelectTypeOfPlace">
+                        <div class="SelectTypeOfPlace">
+                            <input asp-for="GuestPlaceTypeName" value="Select one" class="SelectTypeOfPlaceInput" readonly>
+                            <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false"
+                                 style="height: 16px; width: 16px; display: inline; fill: currentcolor;">
+                                <path d="m16.29 4.3a1 1 0 1 1 1.41 1.42l-8 8a1 1 0 0 1 -1.41 0l-8-8a1 1 0 1 1 1.41-1.42l7.29 7.29z"
+                                      fill-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div class="ContainOptionsTypeOfPlace">
+                            <div class="ContainOneOptionTypeOfPlace">
+                                <div class="OptionTypeOfPlace">Entire place</div>
+                                <div class="OptionDescriptionTypeOfPlace">
+                                    Guests have the whole place to themselves—there's
+                                    a private entrance and no shared spaces. A bedroom, bathroom,
+                                    and kitchen are usually included.
+                                </div>
+                            </div>
+                            <div class="ContainOneOptionTypeOfPlace">
+                                <div class="OptionTypeOfPlace">Private room</div>
+                                <div class="OptionDescriptionTypeOfPlace">
+                                    Guests have their own private room for sleeping.
+                                    Other areas could be shared.
+                                </div>
+                            </div>
+                            <div class="ContainOneOptionTypeOfPlace">
+                                <div class="OptionTypeOfPlace">Shared room</div>
+                                <div class="OptionDescriptionTypeOfPlace">
+                                    Guests sleep in a bedroom or a common area that
+                                    could be shared with others.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="DescriptionDivTypeOfPlace">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="okkkkkkk">
+                </div>
+                <div class="ContainTipsInSmall">
                     <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                          role="presentation" focusable="false"
                          style="display: block; height: 32px; width: 32px; fill: currentcolor;">
@@ -216,20 +170,77 @@
                               fill="#222222"></path>
                     </svg>
                 </div>
-                <div style="width:100%;display: table-cell; vertical-align: middle;"></div>
+                <div>
+                    <div class="TipsInMobile" style="position: relative;z-index:2000;background-color: white;border-radius: 5px;padding: 20px;padding-bottom: 30px; display: table;width: 85%;bottom: 90px;right: 20px;position: fixed;">
+                        <div style="margin-bottom: 20px;">
+                            <div style="display: table-cell;vertical-align: middle;">
+                                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                     role="presentation" focusable="false"
+                                     style="display: block; height: 32px; width: 32px; fill: currentcolor;">
+                                    <path d="M24.6666 11.1332V11.5332C24.5999 14.3332 22.9333 17.0665 19.5333 19.7998L19.3333 19.9998H12.6666L12.3999 19.7998C8.99994 17.0665 7.33327 14.3332 7.2666 11.5332V11.1332C7.4666 6.4665 11.2666 2.6665 15.9999 2.6665C20.7333 2.6665 24.5999 6.4665 24.6666 11.1332Z"
+                                          fill="#64DEE2"></path>
+                                    <path d="M27.3334 11.3333C27.3334 5.06667 22.2667 0 16.0001 0C9.73342 0 4.66675 5.06667 4.66675 11.3333C4.66675 15.2667 6.93341 18.9333 11.3334 22.3333V29.3333C11.3334 30.0667 11.9334 30.6667 12.6667 30.6667H15.3334V32H16.6667V30.6667H19.3334C20.0667 30.6667 20.6667 30.0667 20.6667 29.3333V22.3333C25.0667 18.9333 27.3334 15.2667 27.3334 11.3333ZM19.3334 29.3333H12.6667V26.6667H19.3334V29.3333ZM19.3334 25.3333H12.6667V22.6667H19.3334V25.3333ZM17.3334 21.3333H14.6667V11.3333C14.6667 10.6 15.2667 10 16.0001 10C16.7334 10 17.3334 10.6 17.3334 11.3333V21.3333ZM19.8001 21.3333H18.6667V11.3333C18.6667 9.86667 17.4667 8.66667 16.0001 8.66667C14.5334 8.66667 13.3334 9.86667 13.3334 11.3333V21.3333H12.2001C8.06675 18.2 6.00008 14.8 6.00008 11.3333C6.00008 5.8 10.4667 1.33333 16.0001 1.33333C21.5334 1.33333 26.0001 5.8 26.0001 11.3333C26.0001 14.8 23.9334 18.2 19.8001 21.3333Z"
+                                          fill="#222222"></path>
+                                </svg>
+                            </div>
+                            <div style="width:100%;display: table-cell; vertical-align: middle;"></div>
 
-            </div>
-            <div>
-                <div class="TipTitle">Choosing listing categories</div>
-                <div class="DescriptionTip">
-                    Selecting accurate categories helps guests know what to expect when it comes to the privacy,
-                    style, and level of service they'll receive during their stay at your place.
+                            <div style="display: table-cell;vertical-align: middle;">
+                                <button type="button" class="close" aria-label="Close" style="background: none;border: none;font-size: 35px;font-weight: lighter;color:gray;">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="TipTitle">Choosing listing categories</div>
+                            <div class="DescriptionTip">
+                                Selecting accurate categories helps guests know what to expect when it comes to the privacy,
+                                style, and level of service they'll receive during their stay at your place.
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
+            </form>
 
         </div>
+        <div class="col col-md-5 d-none d-md-block ContainRightDiv">
+            <div class="TipsInFullScreen">
+                <div style="margin-bottom: 20px;">
+                    <div style="display: table-cell;vertical-align: middle;">
+                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                             role="presentation" focusable="false"
+                             style="display: block; height: 32px; width: 32px; fill: currentcolor;">
+                            <path d="M24.6666 11.1332V11.5332C24.5999 14.3332 22.9333 17.0665 19.5333 19.7998L19.3333 19.9998H12.6666L12.3999 19.7998C8.99994 17.0665 7.33327 14.3332 7.2666 11.5332V11.1332C7.4666 6.4665 11.2666 2.6665 15.9999 2.6665C20.7333 2.6665 24.5999 6.4665 24.6666 11.1332Z"
+                                  fill="#64DEE2"></path>
+                            <path d="M27.3334 11.3333C27.3334 5.06667 22.2667 0 16.0001 0C9.73342 0 4.66675 5.06667 4.66675 11.3333C4.66675 15.2667 6.93341 18.9333 11.3334 22.3333V29.3333C11.3334 30.0667 11.9334 30.6667 12.6667 30.6667H15.3334V32H16.6667V30.6667H19.3334C20.0667 30.6667 20.6667 30.0667 20.6667 29.3333V22.3333C25.0667 18.9333 27.3334 15.2667 27.3334 11.3333ZM19.3334 29.3333H12.6667V26.6667H19.3334V29.3333ZM19.3334 25.3333H12.6667V22.6667H19.3334V25.3333ZM17.3334 21.3333H14.6667V11.3333C14.6667 10.6 15.2667 10 16.0001 10C16.7334 10 17.3334 10.6 17.3334 11.3333V21.3333ZM19.8001 21.3333H18.6667V11.3333C18.6667 9.86667 17.4667 8.66667 16.0001 8.66667C14.5334 8.66667 13.3334 9.86667 13.3334 11.3333V21.3333H12.2001C8.06675 18.2 6.00008 14.8 6.00008 11.3333C6.00008 5.8 10.4667 1.33333 16.0001 1.33333C21.5334 1.33333 26.0001 5.8 26.0001 11.3333C26.0001 14.8 23.9334 18.2 19.8001 21.3333Z"
+                                  fill="#222222"></path>
+                        </svg>
+                    </div>
+                    <div style="width:100%;display: table-cell; vertical-align: middle;"></div>
+
+                </div>
+                <div>
+                    <div class="TipTitle">Choosing listing categories</div>
+                    <div class="DescriptionTip">
+                        Selecting accurate categories helps guests know what to expect when it comes to the privacy,
+                        style, and level of service they'll receive during their stay at your place.
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
-</div>
+    <partial name="NubmerOfGuests.cshtml" />
+    <partial name="NumberOfBathRooms.cshtml" />
+    <partial name="Location.cshtml" />
+    <partial name="Amenty.cshtml">
+    <partial name="placesCanGuestUse.cshtml">
+    <partial name="Description.cshtml">
+    <partial name="Title.cshtml">
+    <partial name="GuestsRequirement.cshtml">
+     <partial name="HouseRoles.cshtml">
+</from>
 <footer>
     <div>
         <div class="col col-12 col-md-7 containFooter" style="display: table;border-spacing:0px ;">
@@ -356,15 +367,7 @@
         })
     </script>
 }
-<partial name="NubmerOfGuests.cshtml" />
-<partial name="NumberOfBathRooms.cshtml" />
-<partial name="Location.cshtml"/>
-<partial name="Amenty.cshtml">
-<partial name="placesCanGuestUse.cshtml">
-<partial name="Description.cshtml">
-<partial name="Title.cshtml">
-<partial name="GuestsRequirement.cshtml">
-<partial name="HouseRoles.cshtml">
+
 
 
 

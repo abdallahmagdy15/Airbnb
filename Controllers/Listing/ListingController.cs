@@ -51,6 +51,11 @@ namespace Airbnb.Controllers.Listing
         {
             return View();
         }
+        public IActionResult HouseRoles()
+        {
+            return View();
+        }
+
 
     }
 }
