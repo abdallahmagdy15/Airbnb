@@ -4,33 +4,33 @@
 @{
 }
 @{
-   Layout= "~/Views/Shared/ListingLayout.cshtml";
+    Layout = "~/Views/Shared/ListingLayout.cshtml";
 }
-@model KindOfPlace
+@model ListingViewModel
 
-    <div id="bgmodal">
-    </div>
-    <header>
-        <div class="col-md-12 header">
-            <div class="ContainSVG">
-                <svg viewBox="0 0 1000 1000" role="img" aria-hidden="false" aria-label="Home" focusable="false"
-                     style="height:35px;width:35px;display:block;fill:currentColor">
-                    <path d="m499.3 736.7c-51-64-81-120.1-91-168.1-10-39-6-70 11-93 18-27 45-40 80-40s62 13 80 40c17 23 21 54 11 93-11 49-41 105-91 168.1zm362.2 43c-7 47-39 86-83 105-85 37-169.1-22-241.1-102 119.1-149.1 141.1-265.1 90-340.2-30-43-73-64-128.1-64-111 0-172.1 94-148.1 203.1 14 59 51 126.1 110 201.1-37 41-72 70-103 88-24 13-47 21-69 23-101 15-180.1-83-144.1-184.1 5-13 15-37 32-74l1-2c55-120.1 122.1-256.1 199.1-407.2l2-5 22-42c17-31 24-45 51-62 13-8 29-12 47-12 36 0 64 21 76 38 6 9 13 21 22 36l21 41 3 6c77 151.1 144.1 287.1 199.1 407.2l1 1 20 46 12 29c9.2 23.1 11.2 46.1 8.2 70.1zm46-90.1c-7-22-19-48-34-79v-1c-71-151.1-137.1-287.1-200.1-409.2l-4-6c-45-92-77-147.1-170.1-147.1-92 0-131.1 64-171.1 147.1l-3 6c-63 122.1-129.1 258.1-200.1 409.2v2l-21 46c-8 19-12 29-13 32-51 140.1 54 263.1 181.1 263.1 1 0 5 0 10-1h14c66-8 134.1-50 203.1-125.1 69 75 137.1 117.1 203.1 125.1h14c5 1 9 1 10 1 127.1.1 232.1-123 181.1-263.1z">
-                    </path>
-                </svg>
-            </div>
+<div id="bgmodal">
+</div>
+<header>
+    <div class="col-md-12 header">
+        <div class="ContainSVG">
+            <svg viewBox="0 0 1000 1000" role="img" aria-hidden="false" aria-label="Home" focusable="false"
+                 style="height:35px;width:35px;display:block;fill:currentColor">
+                <path d="m499.3 736.7c-51-64-81-120.1-91-168.1-10-39-6-70 11-93 18-27 45-40 80-40s62 13 80 40c17 23 21 54 11 93-11 49-41 105-91 168.1zm362.2 43c-7 47-39 86-83 105-85 37-169.1-22-241.1-102 119.1-149.1 141.1-265.1 90-340.2-30-43-73-64-128.1-64-111 0-172.1 94-148.1 203.1 14 59 51 126.1 110 201.1-37 41-72 70-103 88-24 13-47 21-69 23-101 15-180.1-83-144.1-184.1 5-13 15-37 32-74l1-2c55-120.1 122.1-256.1 199.1-407.2l2-5 22-42c17-31 24-45 51-62 13-8 29-12 47-12 36 0 64 21 76 38 6 9 13 21 22 36l21 41 3 6c77 151.1 144.1 287.1 199.1 407.2l1 1 20 46 12 29c9.2 23.1 11.2 46.1 8.2 70.1zm46-90.1c-7-22-19-48-34-79v-1c-71-151.1-137.1-287.1-200.1-409.2l-4-6c-45-92-77-147.1-170.1-147.1-92 0-131.1 64-171.1 147.1l-3 6c-63 122.1-129.1 258.1-200.1 409.2v2l-21 46c-8 19-12 29-13 32-51 140.1 54 263.1 181.1 263.1 1 0 5 0 10-1h14c66-8 134.1-50 203.1-125.1 69 75 137.1 117.1 203.1 125.1h14c5 1 9 1 10 1 127.1.1 232.1-123 181.1-263.1z">
+                </path>
+            </svg>
         </div>
-    </header>
-    <div>
-        <progress id="file" value="10" max="100" style="width: 100%;"> </progress>
     </div>
-    <div style="display:flex ">
-        <div class="col col-12 col-md-7">
+</header>
+<div>
+    <progress id="file" value="10" max="100" style="width: 100%;"> </progress>
+</div>
+<div id="1" style="display:flex ">
+    <div class="col col-12 col-md-7">
 
-            <div class="ContainListingType col col-11 col-xl-8">
-                <div class="listingType">What kind of place are you listing?</div>
-            </div>
-            <form  method="post">
+        <div class="ContainListingType col col-11 col-xl-8">
+            <div class="listingType">What kind of place are you listing?</div>
+        </div>
+        <form method="post">
             <div class="ContainPropertyType col col-11 col-xl-8">
                 <div class="PropertyType">Choose a property type</div>
                 <div class="ContainSelect">
@@ -156,9 +156,9 @@
                 <div class="DescriptionDivTypeOfPlace">
                 </div>
             </div>
-                <div class="form-group">
+            <div class="form-group">
                 <input type="submit" value="okkkkkkk">
-                </div>
+            </div>
             <div class="ContainTipsInSmall">
                 <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                      role="presentation" focusable="false"
@@ -199,44 +199,61 @@
                     </div>
 
                 </div>
+            </div>
+        </form>
 
+    </div>
+    <div class="col col-md-5 d-none d-md-block ContainRightDiv">
+        <div class="TipsInFullScreen">
+            <div style="margin-bottom: 20px;">
+                <div style="display: table-cell;vertical-align: middle;">
+                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                         role="presentation" focusable="false"
+                         style="display: block; height: 32px; width: 32px; fill: currentcolor;">
+                        <path d="M24.6666 11.1332V11.5332C24.5999 14.3332 22.9333 17.0665 19.5333 19.7998L19.3333 19.9998H12.6666L12.3999 19.7998C8.99994 17.0665 7.33327 14.3332 7.2666 11.5332V11.1332C7.4666 6.4665 11.2666 2.6665 15.9999 2.6665C20.7333 2.6665 24.5999 6.4665 24.6666 11.1332Z"
+                              fill="#64DEE2"></path>
+                        <path d="M27.3334 11.3333C27.3334 5.06667 22.2667 0 16.0001 0C9.73342 0 4.66675 5.06667 4.66675 11.3333C4.66675 15.2667 6.93341 18.9333 11.3334 22.3333V29.3333C11.3334 30.0667 11.9334 30.6667 12.6667 30.6667H15.3334V32H16.6667V30.6667H19.3334C20.0667 30.6667 20.6667 30.0667 20.6667 29.3333V22.3333C25.0667 18.9333 27.3334 15.2667 27.3334 11.3333ZM19.3334 29.3333H12.6667V26.6667H19.3334V29.3333ZM19.3334 25.3333H12.6667V22.6667H19.3334V25.3333ZM17.3334 21.3333H14.6667V11.3333C14.6667 10.6 15.2667 10 16.0001 10C16.7334 10 17.3334 10.6 17.3334 11.3333V21.3333ZM19.8001 21.3333H18.6667V11.3333C18.6667 9.86667 17.4667 8.66667 16.0001 8.66667C14.5334 8.66667 13.3334 9.86667 13.3334 11.3333V21.3333H12.2001C8.06675 18.2 6.00008 14.8 6.00008 11.3333C6.00008 5.8 10.4667 1.33333 16.0001 1.33333C21.5334 1.33333 26.0001 5.8 26.0001 11.3333C26.0001 14.8 23.9334 18.2 19.8001 21.3333Z"
+                              fill="#222222"></path>
+                    </svg>
+                </div>
+                <div style="width:100%;display: table-cell; vertical-align: middle;"></div>
 
             </div>
-       
+            <div>
+                <div class="TipTitle">Choosing listing categories</div>
+                <div class="DescriptionTip">
+                    Selecting accurate categories helps guests know what to expect when it comes to the privacy,
+                    style, and level of service they'll receive during their stay at your place.
+                </div>
+            </div>
 
-</form>
         </div>
-        <div class="col col-md-5 d-none d-md-block ContainRightDiv">
-            <div class="TipsInFullScreen">
-                <div style="margin-bottom: 20px;">
-                    <div style="display: table-cell;vertical-align: middle;">
-                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                             role="presentation" focusable="false"
-                             style="display: block; height: 32px; width: 32px; fill: currentcolor;">
-                            <path d="M24.6666 11.1332V11.5332C24.5999 14.3332 22.9333 17.0665 19.5333 19.7998L19.3333 19.9998H12.6666L12.3999 19.7998C8.99994 17.0665 7.33327 14.3332 7.2666 11.5332V11.1332C7.4666 6.4665 11.2666 2.6665 15.9999 2.6665C20.7333 2.6665 24.5999 6.4665 24.6666 11.1332Z"
-                                  fill="#64DEE2"></path>
-                            <path d="M27.3334 11.3333C27.3334 5.06667 22.2667 0 16.0001 0C9.73342 0 4.66675 5.06667 4.66675 11.3333C4.66675 15.2667 6.93341 18.9333 11.3334 22.3333V29.3333C11.3334 30.0667 11.9334 30.6667 12.6667 30.6667H15.3334V32H16.6667V30.6667H19.3334C20.0667 30.6667 20.6667 30.0667 20.6667 29.3333V22.3333C25.0667 18.9333 27.3334 15.2667 27.3334 11.3333ZM19.3334 29.3333H12.6667V26.6667H19.3334V29.3333ZM19.3334 25.3333H12.6667V22.6667H19.3334V25.3333ZM17.3334 21.3333H14.6667V11.3333C14.6667 10.6 15.2667 10 16.0001 10C16.7334 10 17.3334 10.6 17.3334 11.3333V21.3333ZM19.8001 21.3333H18.6667V11.3333C18.6667 9.86667 17.4667 8.66667 16.0001 8.66667C14.5334 8.66667 13.3334 9.86667 13.3334 11.3333V21.3333H12.2001C8.06675 18.2 6.00008 14.8 6.00008 11.3333C6.00008 5.8 10.4667 1.33333 16.0001 1.33333C21.5334 1.33333 26.0001 5.8 26.0001 11.3333C26.0001 14.8 23.9334 18.2 19.8001 21.3333Z"
-                                  fill="#222222"></path>
-                        </svg>
-                    </div>
-                    <div style="width:100%;display: table-cell; vertical-align: middle;"></div>
-
-                </div>
-                <div>
-                    <div class="TipTitle">Choosing listing categories</div>
-                    <div class="DescriptionTip">
-                        Selecting accurate categories helps guests know what to expect when it comes to the privacy,
-                        style, and level of service they'll receive during their stay at your place.
-                    </div>
-                </div>
-
+    </div>
+</div>
+<footer>
+    <div>
+        <div class="col col-12 col-md-7 containFooter" style="display: table;border-spacing:0px ;">
+            <div style=" display: table-cell;vertical-align: middle;">
+                <svg id="backsvg" viewBox="0 0 18 18" role="presentation" aria-hidden="true"
+                     focusable="false" style="height: 1em; width: 1em; fill: currentcolor;">
+                    <path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z"
+                          fill-rule="evenodd"></path>
+                </svg>
+                <input type="button" value="Back" id="prev" class="btn"
+                       style="margin-left: 0;background-color: white;color:#008489;font-size: 20px;font-weight: bold;">
+            </div>
+            <div style="display: table-cell;vertical-align: middle;">
+                <input type="button" value="Next" id="next" class="btn"
+                       style="padding: 10px 30px;font-size: 20px; font-weight:bold;color: white;background-color: #008489;">
             </div>
         </div>
     </div>
+</footer>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>
+        var PageNumber = 2
         $(function () {
             $('.ContainOptions').css('display', 'none')
             $('.DescriptionDiv').css('display', 'none')
@@ -245,7 +262,15 @@
             $('.ContainNumberOfRooms').css('display', 'none')
             $('.TipsInMobile').css('display', 'none')
             $('#bgmodal').css('display', 'none')
-
+            $('#2').css('display', 'none')
+            $('#3').css('display', 'none')
+            $('#4').css('display', 'none')
+            $('#5').css('display', 'none')
+            $('#6').css('display', 'none')
+            $('#7').css('display', 'none')
+            $('#8').css('display', 'none')
+            $('#9').css('display', 'none')
+            $('#10').css('display', 'none')
 
         })
         $('.SelectCategory').click(function () {
@@ -307,7 +332,45 @@
             $('#bgmodal').css('display', 'none')
 
         })
+        $('#next').click(function () {
+            if (PageNumber < 15) {
+                $("#" + (PageNumber - 1)).css('display', 'none')
+                $("#" + PageNumber).css('display', 'flex')
+                $('#file').val(function (i, oldval) {
+                    return parseInt(oldval, 10) + 25
+                })
+                PageNumber++
+            }
+        })
+        $('#prev').click(function () {
+            if (PageNumber > 2) {
+                console.log(PageNumber)
+                $("#" + (PageNumber - 1)).css('display', 'none')
+                $("#" + (PageNumber - 2)).css('display', 'flex')
+                $('#file').val(function (i, oldval) {
+                    return parseInt(oldval, 10) - 25
+                })
+                PageNumber--
+                console.log(PageNumber)
+            }
+        })
     </script>
 }
 <partial name="NubmerOfGuests.cshtml" />
+<partial name="NumberOfBathRooms.cshtml" />
+<partial name="Location.cshtml"/>
+<partial name="Amenty.cshtml">
+<partial name="placesCanGuestUse.cshtml">
+<partial name="Description.cshtml">
+<partial name="Title.cshtml">
+<partial name="GuestsRequirement.cshtml">
+<partial name="HouseRoles.cshtml">
+
+
+
+
+
+
+
+
 

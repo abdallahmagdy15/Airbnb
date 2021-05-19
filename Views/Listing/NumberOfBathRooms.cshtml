@@ -1,0 +1,65 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/ListingLayout.cshtml";
+
+}
+<div id="3" style="display:flex">
+    <div class="col col-12 col-md-7">
+        <div class="ContainNumberOfBathRooms col col-11 col-xl-8" style="float: right;">
+            <div>
+                <div class="ContainQuestion">How many bathrooms?</div>
+                <div class="QuestionDescription">
+                    Count bathrooms that don’t have a shower or bathtub as a half
+                    bathroom.
+                </div>
+            </div>
+            <div class="contain_Guests col col-11 col-xl-8">
+                <div style="display: inline-block;width: 25%;">
+                    <div class="first_line">Bathrooms</div>
+                </div>
+                <div style="display: inline-block;">
+                    <button disabled id="subtract_Children">
+                        <span>
+                            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                 role="presentation" focusable="false"
+                                 style="fill: none;color: #008489; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;">
+                                <path d="m2 16h28"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div style="display: inline;font-size: 18px;" id="number_Children">0</div>
+                    <button id="add_Children">
+                        <span>
+                            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                 role="presentation" focusable="false"
+                                 style="fill: none;color: #008489; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;">
+                                <path d="m2 16h28m-14-14v28"></path>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- div will show after Select -->
+
+    </div>
+    <div class="col col-md-5 d-none d-md-block ContainRightDiv">
+
+    </div>
+</div>
+<script>
+
+    var NumberOfBathrooms = 0
+    $(function () {
+        $('#number_Children').html(NumberOfBathrooms)
+    })
+    $('#add_Children').click(function () {
+        NumberOfBathrooms += 0.5;
+        $('#number_Children').html(NumberOfBathrooms)
+    })
+
+</script>

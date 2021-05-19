@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 
 namespace Airbnb.ViewModels.Listing
 {
-    public class NumberOfGuests
+    public class ListingViewModel
     {
         public int NumOfGuests { get; set; }
         public int NumOfBeds { get; set; }
         public int NumOfBedrooms { get; set; }
+        public string Categoryname { get; set; }
+        public string GuestPlaceTypeName { get; set; }
     }
 }

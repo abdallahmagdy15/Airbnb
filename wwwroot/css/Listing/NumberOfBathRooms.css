@@ -1,0 +1,146 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+.header {
+    width: 100% !important;
+    margin-top: 0px !important;
+    padding: 0px !important;
+    position: relative !important;
+    z-index: 2 !important;
+    box-shadow: 0 1px 0 rgb(0 0 0 / 5%) !important;
+    height: 70px;
+}
+
+    .header svg {
+        color: #008489 !important
+    }
+
+.ContainSVG {
+    padding-left: 16px;
+    padding-top: 18px;
+}
+
+progress[value]::-webkit-progress-bar {
+    background-color: #eee;
+}
+
+progress {
+    border-radius: 0px;
+    width: 80%;
+    height: 13px;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+    progress::-webkit-progress-bar {
+        background-color: darkcyan;
+        border-radius: 0px 7px 7px 0px;
+    }
+
+    progress::-webkit-progress-value {
+        background-color: darkcyan;
+        border-radius: 0px 7px 7px 0px;
+    }
+
+
+
+
+
+.ContainNumberOfBathRooms {
+    margin-left: 35px;
+    margin-top: 65px;
+    margin-right: 5%;
+}
+
+.ContainQuestion {
+    margin: 0px !important;
+    word-wrap: break-word !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    line-height: 1.25em !important;
+    color: #484848 !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+}
+
+.QuestionDescription {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 1.375em !important;
+    color: #484848 !important;
+    margin-top: 10px;
+}
+
+
+
+
+footer {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.containFooter {
+    background-color: white;
+    position: fixed;
+    bottom: 0px;
+    z-index: 1000;
+    display: flex;
+    padding-bottom: 15px;
+}
+
+.contain_Guests {
+    margin-top: 40px;
+}
+
+    .contain_Guests .first_line {
+        font-size: 18px !important;
+        line-height: 20px !important;
+        font-weight: 600 !important;
+        margin-bottom: 8px;
+    }
+
+
+
+    .contain_Guests span {
+        height: 22px !important;
+        width: 22px !important;
+    }
+
+    .contain_Guests button {
+        width: 35px !important;
+        height: 35px !important;
+        cursor: pointer !important;
+        display: inline-flex !important;
+        margin: 5px 20px !important;
+        padding-bottom: 5px;
+        text-align: center !important;
+        border: 1px solid #008489 !important;
+        color: rgb(113, 113, 113) !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: rgb(255, 255, 255) !important;
+        border-radius: 50% !important;
+    }
+
+
+
+.TipTitle {
+    font-weight: bolder !important;
+    font-size: 20px;
+    color: gray;
+}
+
+.DescriptionTip {
+    padding-top: 12px !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+    color: gray;
+}
+
+.ContainRightDiv {
+    background-color: #f7f7f7;
+    min-height: 600px
+}

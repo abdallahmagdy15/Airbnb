@@ -1,0 +1,148 @@
+﻿.ContainTextArea {
+    margin-top: 10px !important;
+}
+
+textarea {
+    height: 200px;
+    padding: 10px;
+    color: #484848;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.ContainDescription {
+    margin-left: 35px;
+    margin-top: 65px;
+    margin-right: 5%;
+}
+
+.ContainQuestion {
+    margin: 0px !important;
+    word-wrap: break-word !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    line-height: 1.25em !important;
+    color: #484848 !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    max-width: 500px;
+}
+
+.QuestionDescription {
+    font-size: 16px !important;
+    line-height: 20px !important;
+    font-weight: 300 !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 16px !important;
+    color: #626262 !important;
+    margin-top: 10px;
+    max-width: 500px;
+}
+
+.ContainTypeOfPlace {
+    margin-bottom: 400px;
+}
+
+
+.ContainRightDiv {
+    background-color: #f7f7f7;
+    min-height: 600px
+}
+
+.ContainDescription {
+    float: right;
+}
+
+.Questionwithtoggle {
+    -webkit-box-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.TipsInFullScreen {
+    background-color: white;
+    border-radius: 5px;
+    padding: 30px;
+    padding-top: 0px;
+    padding-bottom: 30px;
+    display: table;
+    max-width: 330px;
+    min-width: 250px;
+    margin-left: 30px;
+    border: 1px solid lightgrey;
+    margin-right: 30px;
+    margin-top: 100px;
+}
+
+.TipTitle {
+    margin: 0px !important;
+    overflow-wrap: break-word !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.28571em !important;
+    color: rgb(72, 72, 72) !important;
+}
+
+.lineInTip {
+    width: 100% !important;
+    border-bottom-color: var(--color-divider, #EBEBEB) !important;
+    border-bottom: 1px solid rgb(235, 235, 235) !important;
+}
+
+.ContainImgInTip {
+    display: inline-block;
+    vertical-align: bottom;
+    height: 57px;
+    width: 57px;
+    min-height: 1px;
+    border-radius: 4px;
+}
+
+    .ContainImgInTip img {
+        width: 57px !important;
+        height: 57px;
+    }
+
+.DescriptionTip {
+    padding-top: 12px !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+    color: gray;
+}
+
+.PlaceLocationTip {
+    height: 100%;
+    align-self: center !important;
+    line-height: 18px !important;
+    font-size: 12px !important;
+    margin-left: 15px;
+}
+
+    .PlaceLocationTip span {
+        font-size: 12px;
+    }
+
+.ContainTipsInSmall {
+    border-radius: 50%;
+    bottom: 90px;
+    border: 1px solid lightgray;
+    padding: 10px;
+    position: fixed;
+    z-index: 1000;
+    background-color: white;
+    left: 80%;
+}
+
+#bgmodal {
+    margin: 0 !important;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    position: absolute;
+    opacity: 0.2;
+    top: 0;
+    overflow: scroll;
+    z-index: 2000;
+}

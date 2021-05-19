@@ -1,0 +1,121 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/ListingLayout.cshtml";
+
+}
+<div id="4" style="display:flex">
+    <div class="col col-12 col-md-7">
+        <div style="float: right;">
+            <div class="ContainPropertyType col col-10">
+                <div class="ContainQuestion">
+                    Where’s your place located?
+                </div>
+                <div class="QuestionDescription">
+                    Guests will only get your exact address once they’ve booked a
+                    reservation.
+                </div>
+            </div>
+            <div class="ContainBtnUseCurrentLoction">
+                <button>
+                    <span>
+                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                             role="presentation" focusable="false"
+                             style="display: inline; height: 16px; width: 16px; fill: currentcolor;">
+                            <path d="M16 1C9.925 1 5 6 5 12s3.667 12.167 11 18.5C23.333 24.167 27 18 27 12c0-6.075-4.925-11-11-11zm0 15a4 4 0 1 1 0-8 4 4 0 0 1 0 8z">
+                            </path>
+                        </svg>
+                    </span>
+                    <span>Use current location</span>
+                </button>
+            </div>
+
+            <div class="ConainSpanEnterYourAddress d-none">
+                <span>Or enter your address</span>
+                <span>
+                    <hr style="margin-left: 5%;margin-right: 5%;">
+                </span>
+            </div>
+
+            <div class="ContainNumberOfRooms col col-11">
+                <div class="NumberOfRooms">
+                    Country/Region
+                </div>
+                <div class="ContainSelectNumberOfRooms">
+                    <div class="SelectNumberOfRooms">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected value="2-5">2-5</option>
+                            <option value="6-10">6-10</option>
+                            <option value="11-20">11-20</option>
+                            <option value="21-30">21-30</option>
+                            <option value="31-40">31-40</option>
+                            <option value="41-50">41-50</option>
+                            <option value="+50">+50</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="ContainNumberOfRooms col col-11 ">
+                <label class="NumberOfRooms">
+                    Street
+                </label>
+                <div class="ContainSelectNumberOfRooms">
+                    <div class="SelectNumberOfRooms">
+                        <input type="text" class="SelectCategoryInput">
+                    </div>
+                </div>
+                <div class="DescriptionUnderInput">
+                    House name/number + street/road
+                </div>
+            </div>
+            <div class="ContainNumberOfRooms col col-11 ">
+                <label class="NumberOfRooms">
+                    Apt, Suite. (optional)
+                </label>
+                <div class="ContainSelectNumberOfRooms">
+                    <div class="SelectNumberOfRooms">
+                        <input type="text" class="SelectCategoryInput">
+                    </div>
+                </div>
+                <div class="DescriptionUnderInput">
+                    Apt., suite, building access code
+                </div>
+            </div>
+            <div class="ContainNumberOfRooms col col-11 col-xl-5 d-block d-md-inline-block"
+                 style="margin-right: 0 !important;width: 38% ;">
+                <label class="NumberOfRooms">
+                    City
+                </label>
+                <div class="ContainSelectNumberOfRooms">
+                    <div class="SelectNumberOfRooms">
+                        <input type="text" class="SelectCategoryInput">
+                    </div>
+                </div>
+            </div>
+            <div class="ContainNumberOfRooms col col-11 col-xl-5 d-block d-md-inline-block">
+                <label class="NumberOfRooms">
+                    State
+                </label>
+                <div class="ContainSelectNumberOfRooms">
+                    <div class="SelectNumberOfRooms">
+                        <input type="text" class="SelectCategoryInput">
+                    </div>
+                </div>
+            </div>
+            <div class="ContainNumberOfRooms col col-11" style="margin-bottom: 50px;">
+                <label class="NumberOfRooms">
+                    ZIP Code
+                </label>
+                <div class="ContainSelectNumberOfRooms">
+                    <div class="SelectNumberOfRooms">
+                        <input type="text" class="SelectCategoryInput" style="margin-bottom: 120px;">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col col-md-5 d-none d-md-block ContainRightDiv">
+    </div>
+</div>

@@ -1,0 +1,220 @@
+﻿.ContainPropertyType,
+.ContainTypeOfPlace,
+.ContainNumberOfRooms {
+    margin-left: 35px;
+    margin-top: 65px;
+    margin-right: 5%;
+    /* max-width: 580px !important;
+            min-width: 450px !important;
+            margin-left: 20%;
+            margin-top: 65px; */
+}
+
+.ContainQuestion {
+    margin: 0px !important;
+    word-wrap: break-word !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    line-height: 1.25em !important;
+    color: #484848 !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    max-width: 500px;
+}
+
+.QuestionDescription {
+    font-size: 16px !important;
+    line-height: 20px !important;
+    font-weight: 300 !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 16px !important;
+    color: #626262 !important;
+    margin-top: 10px;
+    max-width: 400px;
+}
+
+.ContainTypeOfPlace {
+    margin-bottom: 400px;
+}
+
+
+
+footer {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.containFooter {
+    background-color: white;
+    position: fixed;
+    bottom: 0px;
+    z-index: 1000;
+    display: flex;
+    padding-bottom: 15px;
+}
+
+
+
+
+
+
+.ContainRightDiv {
+    background-color: #f7f7f7;
+    min-height: 600px
+}
+
+.ContainCheckBox input {
+    height: 23px;
+    width: 23px;
+    margin-top: 1px;
+    -webkit-appearance: inherit;
+    border: 1px solid rgb(192, 190, 190);
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.AmentyName {
+    color: #222222 !important;
+    cursor: inherit !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 16px !important;
+    line-height: 20px !important;
+}
+
+.AmentyDecription {
+    color: #717171 !important;
+    margin-top: 4px !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+}
+
+.ContainAllAmenty {
+    margin-top: 30px;
+    float: right;
+}
+
+.ContainOneAmenty {
+    padding: 8px 0px;
+    display: flex;
+    max-width: 500px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+    /* Hide default HTML checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+.Questionwithtoggle {
+    -webkit-box-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.TipsInFullScreen {
+    background-color: white;
+    border-radius: 5px;
+    padding: 30px;
+    padding-bottom: 30px;
+    display: table;
+    max-width: 330px;
+    min-width: 200px;
+    margin-left: 30px;
+    border: 1px solid lightgrey;
+    margin-right: 30px;
+    margin-top: 100px;
+}
+
+.TipTitle {
+    font-weight: bolder !important;
+    font-size: 20px;
+}
+
+.DescriptionTip {
+    padding-top: 12px !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+    color: gray;
+}
+
+.ContainTipsInSmall {
+    border-radius: 50%;
+    bottom: 90px;
+    border: 1px solid lightgray;
+    padding: 10px;
+    position: fixed;
+    z-index: 1000;
+    background-color: white;
+    left: 80%;
+}
+
+#bgmodal {
+    margin: 0 !important;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    position: absolute;
+    opacity: 0.2;
+    top: 0;
+    overflow: scroll;
+    z-index: 2000;
+}

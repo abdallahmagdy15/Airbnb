@@ -1,6 +1,7 @@
 ﻿using Airbnb.Data;
 using Airbnb.Models.PropertySubModels;
 using Airbnb.ViewModels;
+using Airbnb.ViewModels.Listing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -21,7 +22,7 @@ namespace Airbnb.Controllers.Listing
             return View();
         }
         [HttpPost]
-        public IActionResult KindOfPlace(KindOfPlace kindOfPlace)
+        public IActionResult KindOfPlace(ListingViewModel listingViewModel)
         {
             return RedirectToAction("mona");
         }
@@ -30,5 +31,26 @@ namespace Airbnb.Controllers.Listing
         {
             return View("NubmerOfGuests");
         }
+        public IActionResult Bathrooms()
+        {
+            return View("NumberOfBathRooms");
+        }
+        public IActionResult Location()
+        {
+            return View();
+        }
+        public IActionResult Amenty()
+        {
+            return View();
+        }
+        public IActionResult placesCanGuestUse()
+        {
+            return View();
+        }
+        public IActionResult Description()
+        {
+            return View();
+        }
+
     }
 }
