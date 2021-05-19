@@ -23,10 +23,12 @@ namespace Airbnb.Controllers.Listing
         [HttpPost]
         public IActionResult KindOfPlace(KindOfPlace kindOfPlace)
         {
-           
-            
-
             return RedirectToAction("mona");
+        }
+
+        public IActionResult show()
+        {
+            return View("NubmerOfGuests");
         }
     }
 }
