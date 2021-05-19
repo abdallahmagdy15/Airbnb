@@ -43,7 +43,7 @@ progress {
         border-radius: 0px 7px 7px 0px;
     }
 
-.listingType {
+.HMGuestsNumbers {
     margin-left: 25px !important;
     margin-right: 25px !important;
     word-wrap: break-word !important;
@@ -54,13 +54,13 @@ progress {
     color: #484848 !important;
 }
 
-.ContainListingType {
+.ContainNumberGuests {
     margin-top: 50px;
     display: flex;
     justify-content: center;
 }
 
-.PropertyType {
+.BedsNote {
     margin: 0px !important;
     overflow-wrap: break-word !important;
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
@@ -123,7 +123,7 @@ progress {
     margin-top: 35px;
 }
 
-.ContainPropertyType {
+.ContainBedsNote {
     margin-top: 10px;
     margin-left: 25px;
     margin-right: 25px;
@@ -311,11 +311,11 @@ progress {
 
 @media (min-width: 992px) {
 
-    .ContainListingType {
+    .ContainNumberGuests {
         margin-left: 330px;
     }
 
-    .listingType {
+    .HMGuestsNumbers {
         font-size: 40px;
     }
 
@@ -323,7 +323,7 @@ progress {
         font-size: 20px;
     }
 
-    .PropertyType {
+    .BedsNote {
         font-size: 25px;
     }
 
@@ -331,7 +331,7 @@ progress {
         font-size: 25px;
     }
 
-    .ContainPropertyType {
+    .ContainBedsNote {
         margin-left: 360px;
     }
 
