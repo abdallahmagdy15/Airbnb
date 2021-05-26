@@ -279,7 +279,7 @@ h1{
     color: var(--dark-font);
     margin-right: 10px;
 }
-.data-plugin-in-point{
+.data-plugin-in-point {
     padding-top: 35px;
     padding-bottom: 35px;
 }
@@ -644,37 +644,22 @@ h1{
 /*end details section*/
 /*start Amenities-arrangment*/
 
-.Amenities{
-    display: grid;
-    grid-template-columns:  repeat(auto-fill,minmax(200px,1fr));
-    gap: 30px;
-    margin-bottom: 25px;
-
-}
-.Amenities .col .Amenitie{
-    display: flex;
-   margin-bottom: 30px;
-}
-.Amenities .col .Amenitie i{
-    flex-basis: 60px;
-    padding-right: 15px;
-}
-.Amenities .col .Amenitie span{
-    padding-top: 5px;
-}
-.data-plugin-in-point .show-more{
+.data-plugin-in-point .show-more {
     padding: 15px;
     border: 1px solid black;
     text-decoration: none;
     border-radius: 10px;
 }
-@media(max-width:1200px){
-    .Amenities {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
-    }
+.Amenity{
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
+.Amenity>svg{
+    display:inline-block;
+    margin:0 !important;
+}
+
 /*end Amenities-arrangment*/
 .multi-select-calendar{
     width: 100%;
