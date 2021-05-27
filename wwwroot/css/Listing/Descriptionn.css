@@ -8,35 +8,17 @@ textarea {
     color: #484848;
     font-size: 16px;
     line-height: 24px;
+    border: 1px solid #dfdfda;
+    border-radius: 4px;
 }
 
 .ContainDescription {
     margin-left: 35px;
-    margin-top: 65px;
+    margin-top: 20px;
     margin-right: 5%;
 }
 
-.ContainQuestion {
-    margin: 0px !important;
-    word-wrap: break-word !important;
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
-    font-size: 24px !important;
-    font-weight: 700 !important;
-    line-height: 1.25em !important;
-    color: #484848 !important;
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
-}
 
-.QuestionDescription {
-    font-size: 16px !important;
-    line-height: 20px !important;
-    font-weight: 300 !important;
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
-    font-size: 16px !important;
-    color: #626262 !important;
-    margin-top: 10px;
-}
 
 .ContainTypeOfPlace {
     margin-bottom: 400px;
@@ -144,3 +126,85 @@ textarea {
     overflow: scroll;
     z-index: 2000;
 }
+.ValidationBoxForDescription {
+    position: relative !important;
+    display: table;
+    table-layout: fixed !important;
+    float: right;
+    margin-right: 5%;
+    margin-top: 50px;
+}
+
+.ContainWarningSign {
+    height: 100% !important;
+    display: table-cell !important;
+    vertical-align: top !important;
+    border-style: solid !important;
+    border-width: 2px 0px 2px 2px !important;
+    border-radius: 8px 0px 0px 8px !important;
+    padding: 16px 0px 16px 12px !important;
+    width: 58px !important;
+    background-color: rgb(252, 100, 45) !important;
+    border-color: rgb(252, 100, 45) !important;
+}
+
+.ContainValidationMessage {
+    display: table-cell !important;
+    vertical-align: top !important;
+    width: 90% !important;
+    background-color: rgb(255, 255, 255) !important;
+    border-color: rgb(235, 235, 235) !important;
+    border-style: solid !important;
+    border-width: 2px 2px 2px 0px !important;
+    border-radius: 0px 8px 8px 0px !important;
+    padding: 20px 8px !important;
+}
+
+.ContainMessageAndCloseButton {
+    display: table !important;
+    width: 100% !important;
+    border-spacing: 0px !important;
+}
+
+.MessageAndCloseButton {
+    display: table-cell !important;
+    width: 100% !important;
+    vertical-align: top !important;
+}
+
+.Message {
+    margin: 0px !important;
+    overflow-wrap: break-word !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    line-height: 1.28571em !important;
+    color: rgb(72, 72, 72) !important;
+}
+
+.ContainCloseButton {
+    display: table-cell !important;
+    vertical-align: top !important;
+}
+
+.CloseButton {
+    padding-left: 4px !important;
+    padding-right: 8px !important;
+    padding-top: 2px !important;
+}
+
+.ContainCLoseSpan {
+    appearance: none !important;
+    display: inline-block !important;
+    border-radius: 50% !important;
+    border: 0px !important;
+    outline: 0px !important;
+    margin: -7px !important;
+    padding: 7px !important;
+    color: buttontext !important;
+    background-color: transparent !important;
+    cursor: pointer !important;
+    touch-action: manipulation !important;
+}
+
+

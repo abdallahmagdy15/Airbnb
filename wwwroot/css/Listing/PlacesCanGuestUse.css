@@ -10,27 +10,6 @@
             margin-top: 65px; */
 }
 
-.ContainQuestion {
-    margin: 0px !important;
-    word-wrap: break-word !important;
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
-    font-size: 24px !important;
-    font-weight: 700 !important;
-    line-height: 1.25em !important;
-    color: #484848 !important;
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
-}
-
-.QuestionDescription {
-    font-size: 16px !important;
-    line-height: 20px !important;
-    font-weight: 300 !important;
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
-    font-size: 16px !important;
-    color: #626262 !important;
-    margin-top: 10px;
-}
 
 .ContainTypeOfPlace {
     margin-bottom: 400px;

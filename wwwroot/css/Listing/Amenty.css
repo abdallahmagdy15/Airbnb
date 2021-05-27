@@ -1,93 +1,162 @@
-﻿.ContainAmenties
-         {
-            margin-left: 35px;
-            margin-top: 65px;
-            margin-right: 5%;
-           
-        }
-
-        .ContainQuestion {
-            margin: 0px !important;
-            word-wrap: break-word !important;
-            font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
-            font-size: 24px !important;
-            font-weight: 700 !important;
-            line-height: 1.25em !important;
-            color: #484848 !important;
-            padding-top: 2px !important;
-            padding-bottom: 2px !important;
-        }
-
-        .QuestionDescription {
-
-            font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
-            font-size: 16px !important;
-            font-weight: 400 !important;
-            line-height: 1.375em !important;
-            color: #484848 !important;
-            margin-top: 10px;
-        }
+﻿
 
 
+.ContainAmenties {
+    margin-left: 35px;
+    margin-top: 65px;
+    margin-right: 5%;
+}
 
-        footer {
-            margin-left: 30px;
-            margin-right: 30px;
-        }
+.ContainQuestion {
+    margin: 0px !important;
+    word-wrap: break-word !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    line-height: 1.25em !important;
+    color: #484848 !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+}
 
-        .containFooter {
-            background-color: white;
-            position: fixed;
-            bottom: 0px;
-            z-index: 1000;
-            display: flex;
-            padding-bottom: 15px;
-        }
+.QuestionDescription {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 1.375em !important;
+    color: #484848 !important;
+    margin-top: 10px;
+    max-width: 400px;
+}
 
 
 
+footer {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.containFooter {
+    background-color: white;
+    position: fixed;
+    bottom: 0px;
+    z-index: 1000;
+    display: flex;
+    padding-bottom: 15px;
+}
 
 
 
-        .ContainRightDiv {
-            background-color: #f7f7f7;
-            min-height: 600px
-        }
 
-        .ContainCheckBox input {
-            height: 23px;
-            width: 23px;
-            margin-top: 1px;
-            -webkit-appearance: inherit;
-            border: 1px solid rgb(192, 190, 190);
-            padding: 10px;
-            border-radius: 4px;
-        }
 
-        .AmentyName {
-            color: #222222 !important;
-            cursor: inherit !important;
-            font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
-            font-size: 16px !important;
-            line-height: 20px !important;
-        }
 
-        .AmentyDecription {
-            color: #717171 !important;
-            margin-top: 4px !important;
-            font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
-            font-size: 14px !important;
-            line-height: 18px !important;
+.ContainRightDiv {
+    background-color: #f7f7f7;
+    min-height: 600px
+}
 
-        }
+.ContainCheckBox input {
+    height: 23px;
+    width: 23px;
+    margin-top: 1px;
+    border: 1px solid rgb(192, 190, 190);
+    padding: 10px;
+    border-radius: 4px;
+}
 
-        .ContainAllAmenty {
-            margin-top: 30px;
-            float: right;
-        }
+.AmentyName {
+    color: #222222 !important;
+    cursor: inherit !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 16px !important;
+    line-height: 20px !important;
+}
 
-        .ContainOneAmenty {
-            padding: 8px 0px;
-            display: flex;
-            max-width: 500px;
-        }
+.AmentyDecription {
+    color: #717171 !important;
+    margin-top: 4px !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+    display: block;
+}
+
+.ContainAllAmenty {
+    margin-top: 30px;
+    float: right;
+}
+
+.ContainOneAmenty {
+    padding: 8px 0px;
+    display: flex;
+    max-width: 500px;
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+    /* Hide the browser's default checkbox */
+    .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: white;
+    border: 1px solid rgb(192, 190, 190);
+    border-radius: 4px;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    border: 1px solid black;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: black;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(50deg);
+    -ms-transform: rotate(50deg);
+    transform: rotate(50deg);
+}

@@ -4,6 +4,8 @@
 @{
     Layout = "~/Views/Shared/ListingLayout.cshtml";
 }
+@model ListingViewModel
+
 <div id="5" style="display:flex">
     <div class="col col-12 col-md-7">
 
@@ -12,190 +14,51 @@
             <div class="ContainAllAmenty">
                 <div style="padding-bottom: 30px;">
                     <div class="ContainQuestion">What amenities do you offer?</div>
-                    <div class="QuestionDescription"style="max-width:400px">
+                    <div class="QuestionDescription">
                         These are just the amenities guests usually expect,
                         but you can add even more after you publish
                     </div>
                 </div>
-                <div class="ContainOneAmenty" style="display: flex;">
-                    <div class="ContainCheckBox">
-                        <input type="checkbox">
-                    </div>
-                    <div style="margin-left: 15px;">
-                        <span class="AmentyName">Essentials</span><br>
-                        <span class="AmentyDecription">Towels, bed sheets, soap, toilet paper, and pillows</span>
-                    </div>
-                </div>
-                <div class="ContainOneAmenty" style="display: flex;">
-                    <div class="ContainCheckBox">
-                        <input type="checkbox">
-                    </div>
-                    <div style="margin-left: 15px;padding: 0 !important;">
-                        <span class="AmentyName">Cooking basics</span><br>
-                        <span class="AmentyDecription">Opts and pans, oil, slat and pepper</span>
-                    </div>
-                </div>
-                <div class="ContainOneAmenty" style="display: flex; padding: 20px 0px;">
-                    <div class="ContainCheckBox">
-                        <input type="checkbox">
-                    </div>
-                    <div style="margin-left: 15px;">
-                        <span class="AmentyName">Desk/workspace</span><br>
-                    </div>
-                </div>
-                <div class="ContainOneAmenty" style="display: flex;">
-                    <div class="ContainCheckBox">
-                        <input type="checkbox">
-                    </div>
-                    <div style="margin-left: 15px;">
-                        <span class="AmentyName">Iron</span><br>
-                    </div>
-                </div>
-                <div class="ContainOneAmenty" style="display: flex;">
-                    <div class="ContainCheckBox">
-                        <input type="checkbox">
-                    </div>
-                    <div style="margin-left: 15px;">
-                        <span class="AmentyName">Hair dryer</span><br>
-                    </div>
-                </div>
-                <div class="ContainOneAmenty" style="display: flex;">
-                    <div class="ContainCheckBox">
-                        <input type="checkbox">
-                    </div>
-                    <div style="margin-left: 15px;">
-                        <span class="AmentyName">Shampoo</span><br>
-                    </div>
-                </div>
-                <div class="ContainOneAmenty" style="display: flex;">
-                    <div class="ContainCheckBox">
-                        <input type="checkbox">
-                    </div>
-                    <div style="margin-left: 15px;">
-                        <span class="AmentyName">Hangers</span><br>
-                    </div>
-                </div>
-                <div class="ContainOneAmenty" style="display: flex;">
-                    <div class="ContainCheckBox">
-                        <input type="checkbox">
-                    </div>
-                    <div style="margin-left: 15px;">
-                        <span class="AmentyName">TV</span><br>
-                    </div>
-                </div>
-                <div class="ContainOneAmenty" style="display: flex;">
-                    <div class="ContainCheckBox">
-                        <input type="checkbox">
-                    </div>
-                    <div style="margin-left: 15px;">
-                        <span class="AmentyName">Heating</span><br>
-                    </div>
-                </div>
-                <div class="ContainOneAmenty" style="display: flex;">
-                    <div class="ContainCheckBox">
-                        <input type="checkbox">
-                    </div>
-                    <div style="margin-left: 15px;">
-                        <span class="AmentyName">Pack 'n Play/travel crib</span><br>
-                    </div>
-                </div>
-                <div class="ContainOneAmenty" style="display: flex;">
-                    <div class="ContainCheckBox">
-                        <input type="checkbox">
-                    </div>
-                    <div style="margin-left: 15px;">
-                        <span class="AmentyName">Wifi</span><br>
-                    </div>
-                </div>
-                <div class="ContainOneAmenty" style="display: flex;">
-                    <div class="ContainCheckBox">
-                        <input type="checkbox">
-                    </div>
-                    <div style="margin-left: 15px;">
-                        <span class="AmentyName">Breakefast,coffe,tea</span><br>
-                    </div>
-                </div>
-                <div class="ContainOneAmenty" style="display: flex;">
-                    <div class="ContainCheckBox">
-                        <input type="checkbox">
-                    </div>
-                    <div style="margin-left: 15px;">
-                        <span class="AmentyName">Air conditioning</span><br>
-                    </div>
-                </div>
-                <div class="ContainOneAmenty" style="display: flex;">
-                    <div class="ContainCheckBox">
-                        <input type="checkbox">
-                    </div>
-                    <div style="margin-left: 15px;">
-                        <span class="AmentyName">Fireplace</span><br>
-                    </div>
-                </div>
-                <div class="ContainOneAmenty" style="display: flex;">
-                    <div class="ContainCheckBox">
-                        <input type="checkbox">
-                    </div>
-                    <div style="margin-left: 15px;">
-                        <span class="AmentyName">Private entrance</span><br>
-                    </div>
-                </div>
+                @for(var item=0;item<Model.amenty.Count;item++)
+                {
+                    if (Model.amenty[item].Type != "Safety")
+                    {
+                    <div class="ContainOneAmenty" style="display: flex;">
 
-                <div class="ContainAllAmenty" style="margin-bottom: 100px;">
-                    <div style="padding-bottom: 30px;">
-                        <div class="ContainQuestion">Safety amenities</div>
-                    </div>
-                    <div class="ContainOneAmenty" style="display: flex;">
-                        <div class="ContainCheckBox">
-                            <input type="checkbox">
-                        </div>
-                        <div style="margin-left: 15px;padding: 0 !important;">
-                            <span class="AmentyName">Smoke detector</span><br>
-                            <span class="AmentyDecription">
-                                Check your local laws, which may require
-                                a working smoke detector in every room
-                            </span>
-                        </div>
-                    </div>
-                    <div class="ContainOneAmenty" style="display: flex;">
-                        <div class="ContainCheckBox">
-                            <input type="checkbox">
-                        </div>
-                        <div style="margin-left: 15px;padding: 0 !important;">
-                            <span class="AmentyName">Carbon monoxide detector</span><br>
-                            <span class="AmentyDecription">
-                                Check your local laws, which may require
-                                a working carbon monoxide detector in every room
-                            </span>
-                        </div>
-                    </div>
-                    <div class="ContainOneAmenty" style="display: flex;">
-                        <div class="ContainCheckBox">
-                            <input type="checkbox">
-                        </div>
-                        <div style="margin-left: 15px;padding: 0 !important;">
-                            <span class="AmentyName">First aid kit</span><br>
-                        </div>
-                    </div>
-                    <div class="ContainOneAmenty" style="display: flex;">
-                        <div class="ContainCheckBox">
-                            <input type="checkbox">
-                        </div>
-                        <div style="margin-left: 15px;padding: 0 !important;">
-                            <span class="AmentyName">Fire extinguisher</span><br>
-                        </div>
-                    </div>
-                    <div class="ContainOneAmenty" style="display: flex;">
-                        <div class="ContainCheckBox">
-                            <input type="checkbox">
-                        </div>
-                        <div style="margin-left: 15px;padding: 0 !important;">
-                            <span class="AmentyName">Lock on bedroom door</span><br>
-                            <span class="AmentyDecription">Private room can be locked for safety and privacy</span>
-                        </div>
-                    </div>
-                </div>
-                
+                        <label class="container">
+                            
+                            @Html.DisplayFor(x => Model.amenty[item].Name)
+                            <span class="AmentyDecription">@Html.DisplayFor(modelItem => Model.amenty[item].Description)</span>
+                            <input name="IsChecked" type="checkbox" value="@Model.amenty[item].Id">
+                            <span class="checkmark"></span>
+                        </label>
 
+                    </div>
+                    }
+                }
+
+            <div class="ContainAllAmenty" style="margin-bottom: 100px;">
+                <div style="padding-bottom: 30px;">
+                    <div class="ContainQuestion">Safety amenities</div>
+                </div>
+                @foreach (var item in Model.amenty)
+                {
+                    if (item.Type=="Safety")
+                    {
+                    <div class="ContainOneAmenty" style="display: flex;">
+                        <label class="container">
+                            @Html.DisplayFor(it=>item.Name)
+                            <span style="display: block;" class="AmentyDecription">
+                                @Html.DisplayFor(i=>item.Description)
+                            </span>
+                            <input type="checkbox" value="Cooking basics">
+                            <span class="checkmark"></span>
+                        </label>
+
+                    </div>
+                    }
+                }
+            </div>
             </div>
         </div>
     </div>

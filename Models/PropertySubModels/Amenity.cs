@@ -10,7 +10,12 @@ namespace Airbnb.Models.PropertySubModels
         [Required]
         [StringLength(200, MinimumLength = 2)]
         public string Name { get; set; }
+        [StringLength(200, MinimumLength = 2)]
+
+        public string Description { get; set; }
+
 
         public virtual List<PropertyAmenity> Properties { get; set; }
+        public string Type { set; get; }
     }
 }

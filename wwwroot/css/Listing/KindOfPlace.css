@@ -36,6 +36,7 @@
     z-index: 2 !important;
     box-shadow: 0 1px 0 rgb(0 0 0 / 5%) !important;
     height: 70px;
+    
 }
 
     .header svg {
@@ -46,6 +47,7 @@
     padding-left: 16px;
     padding-top: 18px;
 }
+
 
 progress[value]::-webkit-progress-bar {
     background-color: #eee;
@@ -89,7 +91,6 @@ progress {
 .NumberOfRooms {
     font-size: 20px !important;
     line-height: 24px !important;
-    font-weight: 600 !important;
     margin-bottom: 8px !important;
 }
 
@@ -155,7 +156,7 @@ select {
 .OptionNumberOfRooms {
     font-size: 18px !important;
     line-height: 20px !important;
-    font-weight: 600 !important;
+
 }
 
 .OptionDescription,
@@ -164,6 +165,7 @@ select {
     font-size: 16px !important;
     line-height: 18px !important;
     color: gray;
+    font-family: Airbnb Cereal App Light
 }
 
 .ContainOneOption,

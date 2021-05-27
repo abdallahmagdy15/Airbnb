@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/ListingLayout.cshtml";
 
 }
+
 <div id="3" style="display:flex">
     <div class="col col-12 col-md-7">
         <div class="ContainNumberOfBathRooms col col-11 col-xl-8" style="float: right;">
@@ -20,7 +21,7 @@
                     <div class="first_line">Bathrooms</div>
                 </div>
                 <div style="display: inline-block;">
-                    <button disabled id="subtract_Children">
+                    <button type="button" id="subtract_Children">
                         <span>
                             <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                                  role="presentation" focusable="false"
@@ -29,8 +30,8 @@
                             </svg>
                         </span>
                     </button>
-                    <div style="display: inline;font-size: 18px;" id="number_Children">0</div>
-                    <button id="add_Children">
+                    <input style="border:none;width:50px;display: inline;font-size: 18px;" id="number_Children">
+                    <button type="button" id="add_Children">
                         <span>
                             <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                                  role="presentation" focusable="false"
@@ -38,7 +39,7 @@
                                 <path d="m2 16h28m-14-14v28"></path>
                             </svg>
                         </span>
-                    </button>
+                        </button>
                 </div>
             </div>
             
@@ -55,11 +56,16 @@
 
     var NumberOfBathrooms = 0
     $(function () {
-        $('#number_Children').html(NumberOfBathrooms)
+        $('#number_Children').val(NumberOfBathrooms)
     })
     $('#add_Children').click(function () {
-        NumberOfBathrooms += 0.5;
-        $('#number_Children').html(NumberOfBathrooms)
+        NumberOfBathrooms += 1;
+        $('#number_Children').val(NumberOfBathrooms)
+    })
+    $('#subtract_Children').click(function () {
+        
+        NumberOfBathrooms -= 1;
+        $('#number_Children').val(NumberOfBathrooms)
     })
 
 </script>
