@@ -9,5 +9,6 @@ namespace Airbnb.Services
     public interface IPropertyService
     {
         public Property GetById(int id);
+        public IEnumerable<Property> FilterBy(SearchQuery search);
     }
 }

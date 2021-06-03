@@ -58,6 +58,7 @@ namespace Airbnb
 
 
             services.AddScoped<IPropertyService, PropertyService>();
+            services.AddScoped<ISearchService, PropertySearchService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
