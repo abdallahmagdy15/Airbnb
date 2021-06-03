@@ -1,0 +1,912 @@
+﻿@model IEnumerable<Property>
+@{
+}
+
+@section Styles {
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/Buttons.css">
+    <link rel="stylesheet" href="~/css/Cards.css">
+    <link rel="stylesheet" href="~/css/locationgroup.css">
+    <link rel="stylesheet" href="~/css/left.css">
+    <link rel="stylesheet" href="~/css/map.css">
+    <style>
+        .container {
+            margin: 0;
+            padding: 0;
+        }
+
+        #main-wrapper {
+            display: flex;
+            padding-top: 80px;
+            transition-duration: 0.8s;
+        }
+
+        #btn-fold-map,
+        #btn-unfold-map {
+            display: none;
+        }
+
+        #main-content-left-header {
+            margin: 10px;
+        }
+
+        #main-content-left-header button:hover {
+            border-color: black;
+        }
+
+        #filters-wrapper {
+            display: none;
+        }
+
+        #filters-wrapper>div {
+            position: relative;
+            margin-right: 0.5em;
+        }
+
+        .filter-div {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: max-content;
+            min-width: 350px;
+            background-color: white;
+            z-index: 20;
+            border: 1px solid rgb(218, 218, 218);
+            border-radius: 20px;
+            padding: 2em 1.5em;
+            margin-top: 1em;
+
+        }
+
+        #cancel-main {
+            display: flex;
+            align-items: center;
+        }
+
+        .filter-div-main {
+            padding-bottom: 2em;
+            margin-bottom: 1em;
+            border-bottom: 0.5px solid lightgray;
+            overflow: hidden auto;
+            max-height: 40vh;
+        }
+
+        #cancel-main>span {
+            margin-right: 2em;
+        }
+
+        .filter-div-actions {
+            display: flex;
+        }
+
+        .btn-clear {
+            background: none;
+            border: none;
+            text-decoration: underline;
+            text-decoration-color: inherit;
+            font-weight: bold;
+            outline: none;
+            color: rgb(40, 40, 40);
+        }
+
+        .btn-clear:hover {
+            color: black;
+        }
+
+        .spacer {
+            flex: 1 1 auto;
+        }
+
+        .btn-clear:focus {
+            outline: none;
+        }
+
+        .btn-save {
+            padding: 6px 16px;
+            border: none;
+            background-color: rgb(40, 40, 40);
+            color: white;
+            border-radius: 8px;
+        }
+
+        .btn-save:hover {
+            background-color: black;
+        }
+
+        .switch {
+            width: 50px;
+            height: 34px;
+            background-color: #B0B0B0;
+            border-radius: 17px;
+            border: none;
+            outline: none;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 2px;
+        }
+
+        .switch:hover {
+            background-color: #6b6b6b;
+        }
+
+        .switch:focus {
+            outline: none;
+        }
+
+        .switch.checked {
+            background-color: black;
+        }
+
+        .switch-circle {
+            position: absolute;
+            left: 2px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: white;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition-duration: 0.25s;
+            transition-timing-function: ease-in-out;
+        }
+
+        .switch-circle.checked {
+            transform: translateX(16px);
+        }
+
+        #type-main>label {
+            margin-bottom: 1em;
+        }
+
+        .type-check-header {
+            font-size: larger;
+        }
+
+        #price-main {
+            display: flex;
+            align-items: center;
+        }
+
+        .price-div {
+            border: 0.5px solid rgb(150, 150, 150);
+            border-radius: 10px;
+            width: 150px;
+            padding: 10px;
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        .price-div.active {
+            border: 1px solid black;
+        }
+
+        .price-header {
+            font-size: .8em;
+            color: rgb(100, 100, 100);
+        }
+
+        .price-body {
+            display: flex;
+        }
+
+        .price-input-div {
+            flex: 1 1 auto;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        .price-input {
+            width: 100% !important;
+            border: none !important;
+            outline: none !important;
+            padding: 0px !important;
+            min-height: 1px !important;
+            color: inherit !important;
+            background-color: transparent !important;
+            font-family: inherit !important;
+            font-size: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+            appearance: none !important;
+        }
+
+        #type-filter-div .checkbox {
+            margin-right: 1em;
+        }
+
+        @@media screen and (min-width: 768px) {
+            #filters-wrapper {
+                display: flex;
+            }
+
+            #all-filter {
+                display: none;
+            }
+        }
+
+        @@media screen and (min-width: 1200px) {
+
+            #btn-fold-map,
+            #btn-unfold-map {
+                display: flex;
+            }
+        }
+    </style>
+}
+
+<div id="main-wrapper">
+    <div id="main-content-left">
+        <div id="main-content-left-header" class="mb-4">
+            <h2 class="mb-4">Places to stay near you</h2>
+            <div id="filters-wrapper">
+                <div>
+                    <button class="btn-rounded btn-open-filter" id="type-filter">
+                        Type of Place
+                    </button>
+                    <div id="type-filter-div" class="filter-div d-none">
+                        <div id="type-main" class="filter-div-main">
+                            <label for="type1" class="btn-map-div-horizontal clickable">
+                                <div class="checkbox">
+                                    <input type="checkbox" id="type1" class="checkbox-input">
+                                    <span class="checkbox-visual">
+                                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+                                             aria-hidden="true" role="presentation" focusable="false"
+                                             style="display: block; fill: none; height: 16px; width: 16px; stroke: white; stroke-width: 4; overflow: visible;">
+                                            <path fill="none" d="m4 16.5 8 8 16-16"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div>
+                                    <p class="m-0 type-check-header">Property type 1</p>
+                                    <p class="m-0">
+                                        descripton........
+                                    </p>
+                                </div>
+                            </label>
+                            <label for="type2" class="btn-map-div-horizontal clickable">
+                                <div class="checkbox">
+                                    <input type="checkbox" id="type2" class="checkbox-input">
+                                    <span class="checkbox-visual">
+                                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+                                             aria-hidden="true" role="presentation" focusable="false"
+                                             style="display: block; fill: none; height: 16px; width: 16px; stroke: white; stroke-width: 4; overflow: visible;">
+                                            <path fill="none" d="m4 16.5 8 8 16-16"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div>
+                                    <p class="m-0 type-check-header">Property type 2</p>
+                                    <p class="m-0">
+                                        descripton........
+                                    </p>
+                                </div>
+                            </label>
+                            <label for="type3" class="btn-map-div-horizontal clickable">
+                                <div class="checkbox">
+                                    <input type="checkbox" id="type3" class="checkbox-input">
+                                    <span class="checkbox-visual">
+                                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+                                             aria-hidden="true" role="presentation" focusable="false"
+                                             style="display: block; fill: none; height: 16px; width: 16px; stroke: white; stroke-width: 4; overflow: visible;">
+                                            <path fill="none" d="m4 16.5 8 8 16-16"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div>
+                                    <p class="m-0 type-check-header">Property type 3</p>
+                                    <p class="m-0">
+                                        descripton........
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="filter-div-actions">
+                            <button class="btn-clear">Clear</button>
+                            <span class="spacer"></span>
+                            <button class="btn-save">Save</button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn-rounded btn-open-filter" id="price-filter">
+                        Price
+                    </button>
+                    <div id="price-filter-div" class="d-none filter-div">
+                        <div id="price-main" class="filter-div-main">
+                            <label class="price-div" for="filter-min-price">
+                                <div class="price-header">min price</div>
+                                <div class="price-body">
+                                    <div class="mr-2">$</div>
+                                    <div class="price-input-div">
+                                        <input type="number" id="filter-min-price" class="price-input">
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="m-2">
+                                -
+                            </span>
+                            <label class="price-div" for="filter-max-price">
+                                <div class="price-header">max price</div>
+                                <div class="price-body">
+                                    <div class="mr-2">$</div>
+                                    <div class="price-input-div">
+                                        <input type="number" id="filter-max-price" class="price-input">
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="filter-div-actions">
+                            <button class="btn-clear">Clear</button>
+                            <span class="spacer"></span>
+                            <button class="btn-save">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-rounded" id="all-filter">
+                Filters
+            </button>
+        </div>
+
+
+        <div id="location-groups">
+            <!--<div class="small-card-group">
+                <div class="small-card-group-header">
+                    <div class="group-title">
+                        <h3>Location</h3>
+                    </div>
+                    <a class="group-link" href="">
+                        <span class="spacer"></span>
+                        <span>
+                            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                 role="presentation" focusable="false"
+                                 style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 4; overflow: visible;">
+                                <g fill="none">
+                                    <path d="m12 4 11.2928932 11.2928932c.3905243.3905243.3905243 1.0236893 0 1.4142136l-11.2928932 11.2928932">
+                                    </path>
+                                </g>
+                            </svg>
+                        </span>
+                    </a>
+                    <div class="group-actions">
+                        <span class="group-action-link"><a href="">Show (300+)</a></span>
+                        <button class="btn-circle-direction" aria-label="previous" data-target="group1">
+                            <span class="circle-direction-span">
+                                <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false"
+                                     style="height: 10px; width: 10px; display: block; fill: currentcolor;">
+                                    <path d="m10.8 16c-.4 0-.7-.1-.9-.4l-6.8-6.7c-.5-.5-.5-1.3 0-1.8l6.8-6.7c.5-.5 1.2-.5 1.7 0s .5 1.2 0 1.7l-5.8 5.9 5.8 5.9c.5.5.5 1.2 0 1.7-.2.3-.5.4-.8.4">
+                                    </path>
+                                </svg>
+                            </span>
+                        </button>
+
+                        <button class="btn-circle-direction" aria-label="next" data-target="group1">
+                            <span class="circle-direction-span">
+                                <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false"
+                                     style="height: 10px; width: 10px; display: block; fill: currentcolor;">
+                                    <path d="m5.3 16c .3 0 .6-.1.8-.4l6.8-6.7c.5-.5.5-1.3 0-1.8l-6.8-6.7c-.5-.5-1.2-.5-1.7 0s-.5 1.2 0 1.7l5.8 5.9-5.8 5.9c-.5.5-.5 1.2 0 1.7.2.3.5.4.9.4">
+                                    </path>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="small-card-group-items" id="group1">
+                    <div class="small-card-group-item">
+                        <div class="small-card">
+                            <div class="small-card-images">
+                                <div id="small-card-carousel-1" class="carousel slide small-card-carousel"
+                                     data-ride="carousel">
+
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#small-card-carousel-1" data-slide-to="0" class="active">
+                                        </li>
+                                        <li data-target="#small-card-carousel-1" data-slide-to="1"></li>
+                                        <li data-target="#small-card-carousel-1" data-slide-to="2"></li>
+                                        <li data-target="#small-card-carousel-1" data-slide-to="3"></li>
+                                    </ol>
+
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img class="d-block w-100" src="1.jpg" alt="First slide">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img class="d-block w-100" src="2.jpg" alt="Second slide">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img class="d-block w-100" src="3.jpg" alt="Third slide">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img class="d-block w-100" src="4.jpg" alt="Third slide">
+                                        </div>
+                                    </div>
+
+                                    <a class="carousel-control-prev ml-3 text-dark" href="#small-card-carousel-1"
+                                       role="button" data-slide="prev">
+                                        <span class="circle-direction-span btn-circle-direction">
+                                            <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true"
+                                                 focusable="false"
+                                                 style="height: 10px; width: 10px; display: block; fill: currentcolor;">
+                                                <path d="m10.8 16c-.4 0-.7-.1-.9-.4l-6.8-6.7c-.5-.5-.5-1.3 0-1.8l6.8-6.7c.5-.5 1.2-.5 1.7 0s .5 1.2 0 1.7l-5.8 5.9 5.8 5.9c.5.5.5 1.2 0 1.7-.2.3-.5.4-.8.4">
+                                                </path>
+                                            </svg>
+                                        </span>
+                                    </a>
+
+                                    <a class="carousel-control-next text-dark mr-3" href="#small-card-carousel-1"
+                                       role="button" data-slide="next">
+                                        <span class="circle-direction-span btn-circle-direction">
+                                            <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true"
+                                                 focusable="false"
+                                                 style="height: 10px; width: 10px; display: block; fill: currentcolor;">
+                                                <path d="m5.3 16c .3 0 .6-.1.8-.4l6.8-6.7c.5-.5.5-1.3 0-1.8l-6.8-6.7c-.5-.5-1.2-.5-1.7 0s-.5 1.2 0 1.7l5.8 5.9-5.8 5.9c-.5.5-.5 1.2 0 1.7.2.3.5.4.9.4">
+                                                </path>
+                                            </svg>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="superhost">
+                                SUPERHOST
+                            </div>
+
+                            <button class="btn-like" type="button">
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                     role="presentation" focusable="false"
+                                     style="display: block; fill: rgba(0, 0, 0, 0.5); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2; overflow: visible;">
+                                    <path d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z">
+                                    </path>
+                                </svg>-->
+                                <!-- <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation"
+                                    focusable="false"
+                                    style="display: block; fill: rgb(255, 56, 92); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2; overflow: visible;">
+                                    <path
+                                        d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z">
+                                    </path>
+                                </svg> -->
+                            <!--</button>
+
+                            <a href="" class="carousel-link"></a>
+
+                            <div class="small-card-rating">
+                                <span class="small-rating-star">
+                                    <svg viewBox="0 0 1000 1000" role="presentation" aria-hidden="true"
+                                         focusable="false"
+                                         style="height: 14px; width: 14px; fill: rgb(255, 56, 92);">
+                                        <path d="M972 380c9 28 2 50-20 67L725 619l87 280c11 39-18 75-54 75-12 0-23-4-33-12L499 790 273 962a58 58 0 0 1-78-12 50 50 0 0 1-8-51l86-278L46 447c-21-17-28-39-19-67 8-24 29-40 52-40h280l87-279c7-23 28-39 52-39 25 0 47 17 54 41l87 277h280c24 0 45 16 53 40z">
+                                        </path>
+                                    </svg>
+                                </span>
+                                <span class="rating">4.95</span>
+                                <span class="reviews-count">(4 reviews)</span>
+                            </div>
+
+                            <div class="small-card-text">-->
+                                <!-- apartment type.Location -->
+                                <!--<p class="m-0">
+                                    Entire apartment in Alexandria
+                                </p>-->
+                                <!-- listing title -->
+                                <!--<p class="mb-1">
+                                    Entire apartment in Alexandria
+                                </p>
+                            </div>
+
+                            <div class="small-card-price">
+                                <span class="price"><b>$30</b></span>
+                                / night
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+
+        <div id="popular-locations">
+            @*<div class="location-card-group-header">
+                <div>
+                    <h3>Other Popular Locations</h3>
+                </div>
+                <div class="popular-locations-actions">
+                    <button class="btn-circle-direction" aria-label="previous" data-target="location-card-group">
+                        <span class="circle-direction-span">
+                            <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false"
+                                 style="height: 10px; width: 10px; display: block; fill: currentcolor;">
+                                <path d="m10.8 16c-.4 0-.7-.1-.9-.4l-6.8-6.7c-.5-.5-.5-1.3 0-1.8l6.8-6.7c.5-.5 1.2-.5 1.7 0s .5 1.2 0 1.7l-5.8 5.9 5.8 5.9c.5.5.5 1.2 0 1.7-.2.3-.5.4-.8.4">
+                                </path>
+                            </svg>
+                        </span>
+                    </button>
+
+                    <button class="btn-circle-direction" aria-label="next" data-target="location-card-group">
+                        <span class="circle-direction-span">
+                            <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true" focusable="false"
+                                 style="height: 10px; width: 10px; display: block; fill: currentcolor;">
+                                <path d="m5.3 16c .3 0 .6-.1.8-.4l6.8-6.7c.5-.5.5-1.3 0-1.8l-6.8-6.7c-.5-.5-1.2-.5-1.7 0s-.5 1.2 0 1.7l5.8 5.9-5.8 5.9c-.5.5-.5 1.2 0 1.7.2.3.5.4.9.4">
+                                </path>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div id="location-card-group">
+                <div>
+                    <div class="location-card">
+                        <a href="" class="location-card-link">
+                        </a>
+                        <div class="location-card-image-wrapper">
+                            <img class="location-card-image"
+                                 src="https://a0.muscache.com/im/pictures/ca3737ef-0faf-46ba-b055-b4a2d99e2cea.jpg?im_q=medq&im_w=240"
+                                 alt="air">
+                        </div>
+                        <div class="col-9 location-card-text">
+                            <div><b>Header</b></div>
+                            <div>Body</div>
+                        </div>
+                    </div>
+                    <div class="location-card">
+                        <a href="" class="location-card-link">
+                        </a>
+                        <div class="location-card-image-wrapper">
+                            <img class="location-card-image"
+                                 src="https://a0.muscache.com/im/pictures/ca3737ef-0faf-46ba-b055-b4a2d99e2cea.jpg?im_q=medq&im_w=240"
+                                 alt="air">
+                        </div>
+                        <div class="col-9 location-card-text">
+                            <div><b>Header</b></div>
+                            <div>Body</div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        </div>
+
+        <div id="Explore">
+            @foreach (var item in Model)
+            {
+                <div class="big-card-wrapper">
+                    <div class="big-card">
+                        <div class="big-card-images">
+                            <div id="card-carousel-@item.Id" class="carousel slide small-card-carousel" data-ride="carousel">
+
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src="@item.Photos[0].Url" alt="First slide">
+                                    </div>
+                                    @for (int i = 1; i < item.Photos.Count; i++)
+                                    {
+                                        <div class="carousel-item">
+                                            <img class="d-block w-100" src="@item.Photos[i].Url" alt="First slide">
+                                        </div>
+                                    }
+                                </div>
+
+                                <a class="carousel-control-prev ml-3 text-dark" href="#card-carousel-@item.Id" role="button"
+                                   data-slide="prev">
+                                    <span class="circle-direction-span">
+                                        <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true"
+                                             focusable="false"
+                                             style="height: 10px; width: 10px; display: block; fill: currentcolor;">
+                                            <path d="m10.8 16c-.4 0-.7-.1-.9-.4l-6.8-6.7c-.5-.5-.5-1.3 0-1.8l6.8-6.7c.5-.5 1.2-.5 1.7 0s .5 1.2 0 1.7l-5.8 5.9 5.8 5.9c.5.5.5 1.2 0 1.7-.2.3-.5.4-.8.4">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                </a>
+
+                                <a class="carousel-control-next text-dark mr-3" href="#card-carousel-@item.Id" role="button"
+                                   data-slide="next">
+                                    <span class="circle-direction-span">
+                                        <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true"
+                                             focusable="false"
+                                             style="height: 10px; width: 10px; display: block; fill: currentcolor;">
+                                            <path d="m5.3 16c .3 0 .6-.1.8-.4l6.8-6.7c.5-.5.5-1.3 0-1.8l-6.8-6.7c-.5-.5-1.2-.5-1.7 0s-.5 1.2 0 1.7l5.8 5.9-5.8 5.9c-.5.5-.5 1.2 0 1.7.2.3.5.4.9.4">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="big-card-text">
+                            <button class="btn-big-like" type="button">
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                     role="presentation" focusable="false"
+                                     style="display: block; fill: transparent; height: 24px; width: 24px; stroke: rgb(34, 34, 34); stroke-width: 2; overflow: visible;">
+                                    <path d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z">
+                                    </path>
+                                </svg>
+                                <!-- <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation"
+                                    focusable="false"
+                                    style="display: block; fill: rgb(255, 56, 92); height: 24px; width: 24px; stroke: rgb(255, 56, 92); stroke-width: 2; overflow: visible;">
+                                    <path
+                                        d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z">
+                                    </path>
+                                </svg> -->
+                            </button>
+                            <div class="big-card-title">
+                                <div class="big-card-location">
+                                    @item.GuestPlaceType.Name in @item.City.Name
+                                </div>
+                                <div class="big-card-prop-title">
+                                    @item.Title
+                                </div>
+                            </div>
+
+                            <div class="big-card-spacer"></div>
+
+                            <div class="desc-top">
+                                <span>@item.Capacity guests</span>
+                                <span>&middot;</span>
+                                <span>@item.NumberOfBedRooms bedrooms</span>
+                                <span>&middot;</span>
+                                <span>@item.NumberOfBeds beds</span>
+                                <span>&middot;</span>
+                                <span>@item.NumberOfBathrooms bath</span>
+                            </div>
+
+                            <div class="desc-bot">
+                                <div class="big-card-rating">
+                                    <span class="star">
+                                        <svg viewBox="0 0 1000 1000" role="presentation" aria-hidden="true"
+                                             focusable="false" style="height: 14px; width: 14px; fill: #FF385C;">
+                                            <path d="M972 380c9 28 2 50-20 67L725 619l87 280c11 39-18 75-54 75-12 0-23-4-33-12L499 790 273 962a58 58 0 0 1-78-12 50 50 0 0 1-8-51l86-278L46 447c-21-17-28-39-19-67 8-24 29-40 52-40h280l87-279c7-23 28-39 52-39 25 0 47 17 54 41l87 277h280c24 0 45 16 53 40z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    @* TODO rating after integrating reviews *@
+                                    <span class="rating">4.95</span>
+                                    <span class="reviews-count">&nbsp;(4 reviews)</span>
+                                </div>
+                                <div class="big-card-price">
+                                    <span class="price"><b>@item.Price.ToString("C2")</b></span>
+                                    / night
+                                </div>
+                            </div>
+                        </div>
+
+                        <a asp-controller="Property" asp-action="Details" asp-route-id="@item.Id" class="carousel-link"></a>
+
+                    </div>
+
+                    <div class="divider">
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div id="pagination">
+            <div class="container mt-5">
+                <div id="paging">
+                    <nav>
+                        <div class="paging-links">
+                            <button class="paging-link btn-nostyle" data-direction="prev">
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                     role="presentation" focusable="false"
+                                     style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
+                                    <g fill="none">
+                                        <path d="m20 28-11.29289322-11.2928932c-.39052429-.3905243-.39052429-1.0236893 0-1.4142136l11.29289322-11.2928932">
+                                        </path>
+                                    </g>
+                                </svg>
+                            </button>
+                            <button class="paging-link btn-nostyle active" href="">1</button>
+                            <button class="paging-link btn-nostyle" href="">2</button>
+                            <button class="paging-link btn-nostyle" href="">3</button>
+                            <button class="paging-link btn-nostyle disabled" disabled data-direction="next">
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                     role="presentation" focusable="false"
+                                     style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
+                                    <g fill="none">
+                                        <path d="m12 4 11.2928932 11.2928932c.3905243.3905243.3905243 1.0236893 0 1.4142136l-11.2928932 11.2928932">
+                                        </path>
+                                    </g>
+                                </svg>
+                            </button>
+                        </div>
+                    </nav>
+                    <div class="nav-text">
+                        <p>1 – 20 of 300+ places to stay</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="map-wrapper">
+        <div>
+            <div id="map">
+            </div>
+            <div id="map-left">
+                <button class="btn-map btn-fixed-height btn-nostyle btn-transparent map-control"
+                        id="btn-unfold-map">
+                    <span class="direction-span" data-direction="left">
+                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                             role="presentation" focusable="false"
+                             style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 4; overflow: visible;">
+                            <g fill="none">
+                                <path d="m20 28-11.29289322-11.2928932c-.39052429-.3905243-.39052429-1.0236893 0-1.4142136l11.29289322-11.2928932">
+                                </path>
+                            </g>
+                        </svg>
+                    </span>
+                </button>
+                <button class="btn-map btn-fixed-height btn-nostyle btn-transparent map-control" id="btn-fold-map">
+                    <span class="direction-span" data-direction="right">
+                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                             role="presentation" focusable="false"
+                             style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 4; overflow: visible;">
+                            <g fill="none">
+                                <path d="m12 4 11.2928932 11.2928932c.3905243.3905243.3905243 1.0236893 0 1.4142136l-11.2928932 11.2928932">
+                                </path>
+                            </g>
+                        </svg>
+                    </span>
+                    <span class="btn-map-text">
+                        Show List
+                    </span>
+                </button>
+                <button class="btn-map btn-fixed-height btn-fixed-width p-0 btn-nostyle btn-transparent map-control"
+                        id="btn-close-map">
+                    <span class="direction-span">
+                        <svg viewBox="0 0 12 12" role="presentation" aria-hidden="true" focusable="false"
+                             style="height: 14px; width: 14px; display: block; fill: currentcolor;">
+                            <path d="m11.5 10.5c.3.3.3.8 0 1.1s-.8.3-1.1 0l-4.4-4.5-4.5 4.5c-.3.3-.8.3-1.1 0s-.3-.8 0-1.1l4.5-4.5-4.4-4.5c-.3-.3-.3-.8 0-1.1s.8-.3 1.1 0l4.4 4.5 4.5-4.5c.3-.3.8-.3 1.1 0s .3.8 0 1.1l-4.5 4.5z"
+                                  fill-rule="evenodd"></path>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+            <div id="map-center">
+                <div class="btn-map btn-fixed-height btn-transparent map-control" id="checkbox-search">
+                    <label for="searchOnMove" class="btn-map-div-horizontal clickable">
+                        <div class="checkbox">
+                            <input type="checkbox" id="searchOnMove" class="checkbox-input">
+                            <span class="checkbox-visual">
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                     role="presentation" focusable="false"
+                                     style="display: block; fill: none; height: 16px; width: 16px; stroke: white; stroke-width: 4; overflow: visible;">
+                                    <path fill="none" d="m4 16.5 8 8 16-16"></path>
+                                </svg>
+                            </span>
+                        </div>
+                        <b>Search as I move the map</b>
+                    </label>
+                </div>
+            </div>
+            <div id="map-right">
+                <button class="btn-map btn-fixed-height btn-fixed-width p-0 btn-nostyle btn-transparent map-control"
+                        id="btn-filter-map">
+                    <span class="direction-span">
+                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                             role="presentation" focusable="false"
+                             style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 4; overflow: visible;">
+                            <path d="M7 16H3m26 0H15M29 6h-4m-8 0H3m26 20h-4M7 16a4 4 0 1 0 8 0 4 4 0 0 0-8 0zM17 6a4 4 0 1 0 8 0 4 4 0 0 0-8 0zm0 20a4 4 0 1 0 8 0 4 4 0 0 0-8 0zm0 0H3"
+                                  fill="none"></path>
+                        </svg>
+                    </span>
+                </button>
+                <div class="btn-map btn-map-div-vertical btn-fixed-width map-control" id="btn-zoom">
+                    <button class="btn-nostyle btn-fixed-width btn-fixed-height btn-transparent top-round"
+                            id="btn-map-zoomin">
+                        <svg viewBox="0 0 16 16" height="16" width="16" fill="currentColor" focusable="false">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M7 1a1 1 0 0 1 2 0v14a1 1 0 1 1-2 0V1z">
+                            </path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M0 8a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H1a1 1 0 0 1-1-1z"></path>
+                        </svg>
+                    </button>
+                    <button class="btn-nostyle btn-fixed-width btn-fixed-height btn-transparent bot-round"
+                            id="btn-map-zoomout">
+                        <svg viewBox="0 0 16 16" height="16" width="16" fill="currentColor" focusable="false">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M0 8a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H1a1 1 0 0 1-1-1z"></path>
+                        </svg>
+                    </button>
+                </div>
+                <button class="btn-map btn-fixed-height btn-fixed-width p-0 btn-nostyle btn-transparent map-control"
+                        id="btn-search-map">
+                    <span class="direction-span">
+                        <svg viewBox="0 0 28 28" width="24" height="24">
+                            <path d="m16.679 24.988c0.2505-0.2504 0.5642-0.4263 0.9023-0.5319 4.8782-1.5232 8.4188-6.0764 8.4188-11.456 0-6.6274-5.3726-12-12-12-6.6274 0-12 5.3726-12 12 0 5.5372 3.7504 10.198 8.8495 11.582 0.369 0.1001 0.7125 0.2831 0.9828 0.5534l1.6426 1.6427c0.3905 0.3905 1.0237 0.3905 1.4142 0l1.7898-1.7899z"
+                                  clip-rule="evenodd" fill="currentColor" fill-rule="evenodd"></path>
+                            <path d="m14.875 7.75v4.375h4.375v1.75h-4.375v4.375h-1.75v-4.375h-4.375v-1.75h4.375v-4.375h1.75z"
+                                  fill="#fff"></path>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<button id="btn-show-map">
+    <span>
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation"
+             focusable="false"
+             style="display: block; fill: none; height: 16px; width: 16px; stroke: rgb(255, 255, 255); stroke-width: 2; overflow: visible;">
+            <g fill="none">
+                <path d="m2.78306954 4.82598455 8.21693046-1.82598455 10 2 7.7830695-1.72957101c.5391333-.11980738 1.0733102.22012338 1.1931176.7592566.0158277.0712249.0238129.14396811.0238129.21693046v21.95121235c0 .4686986-.325532.874512-.7830695.9761871l-8.2169305 1.8259845-10-2-7.78306954 1.729571c-.53913323.1198074-1.07331014-.2201234-1.19311752-.7592566-.01582776-.0712249-.02381294-.1439681-.02381294-.2169305v-21.95121229c0-.46869865.32553199-.87451205.78306954-.97618706z">
+                </path>
+                <path d="m9 17h24z" transform="matrix(0 1 -1 0 38 -4)"></path>
+                <path d="m-1 15h24z" transform="matrix(0 1 -1 0 26 4)"></path>
+            </g>
+        </svg>
+    </span>
+    <span id="btn-show-map-text">Map</span>
+</button>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_BPkgYNWQNTrzfp-1tNW1A1tekxyNj1w&callback=initMap&libraries=&v=weekly"
+            async></script>
+    <script src="~/js/locationgroup.js"></script>
+    <script src="~/js/Map.js"></script>
+    <script>
+        $("#btn-show-map").click((e) => {
+            $(e.currentTarget).hide();
+            $("#map-wrapper").show();
+        });
+
+        $("#btn-close-map").click((e) => {
+            $("#map-wrapper").hide();
+            $("#btn-show-map").show();
+        });
+
+        $(".switch").click((e) => {
+            $(e.currentTarget).toggleClass("checked");
+            $(e.currentTarget).find(".switch-circle").toggleClass("checked");
+            $(e.currentTarget).find(".switch-circle").find("svg").toggleClass("d-none");
+        });
+
+        $(".btn-open-filter").click((e) => {
+            e.stopPropagation();
+            let targetDiv = $(e.currentTarget).siblings(".filter-div");
+            if (targetDiv.hasClass("d-none")) {
+                $(".filter-div").addClass("d-none");
+                targetDiv.removeClass("d-none");
+            } else {
+                targetDiv.addClass("d-none");
+            }
+        });
+
+        $(document.body).click(function () {
+            $('.filter-div').addClass("d-none");
+        });
+
+        $('.filter-div').click(function (e) {
+            e.stopPropagation();
+        });
+
+        $(".price-input").focus((e) => {
+            $(e.currentTarget).parents(".price-div").addClass("active");
+        });
+
+        $(".price-input").blur((e) => {
+            $(e.currentTarget).parents(".price-div").removeClass("active");
+        });
+
+    </script>
+}

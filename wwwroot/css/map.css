@@ -1,0 +1,102 @@
+
+#map-wrapper {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 98vw;
+    padding-top: 0;
+    transition-duration: 0.8s;
+    z-index: 100;
+    display: none;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+#map-wrapper>div:first-child {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#map-left {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+#map-center {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#map-right {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+
+#map-right>* {
+    margin-bottom: 20px;
+}
+
+.map-control {
+    background-color: white;
+}
+
+#left {
+    padding-top: 80px;
+    width: 60vw;
+    transition-duration: 1s;
+}
+
+#main {
+    display: flex;
+}
+
+#btn-show-map {
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    background-color: #222222;
+    color: white;
+    outline: none;
+}
+
+#btn-show-map-text {
+    margin-left: 10px;
+}
+
+#checkbox-search {
+    padding: 0 7px !important;
+}
+
+@media screen and (min-width: 1200px) {
+    #map-wrapper {
+        width: 40vw;
+        display: block;
+        flex: 1 0 auto;
+        position: sticky;
+    }
+
+    #btn-filter-map,
+    #btn-close-map,
+    #btn-show-map {
+        display: none;
+    }
+}

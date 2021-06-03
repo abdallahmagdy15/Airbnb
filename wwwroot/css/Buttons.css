@@ -1,0 +1,235 @@
+* {
+    font-family: Airbnb Cereal App;
+}
+
+.btn-rounded {
+    height: 40px;
+    border-radius: 21px;
+    border: 1px solid lightgrey;
+    background-color: white;
+    padding: 6px 12px;
+    outline: none;
+}
+
+.btn-rounded:focus {
+    outline: none;
+}
+
+.btn-transparent {
+    border: none;
+}
+
+.btn-transparent:hover {
+    background-color: rgb(245, 245, 245);
+}
+
+.btn-floating:hover {
+    box-shadow: .2px 2px 4px 0px lightgrey,
+        -.2px 2px 4px 0px lightgrey;
+    transition-duration: 0.3s;
+}
+
+.circle-direction-span {
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+.btn-circle-direction {
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    transition-duration: 0.25s;
+}
+
+.btn-circle-direction:focus {
+    outline: none;
+}
+
+.btn-circle-direction:hover {
+    transform: scale(1.1);
+}
+
+.btn-circle-direction:active {
+    transform: scale(1);
+}
+
+.btn-outline-hover:hover {
+    border-color: black;
+}
+
+.btn-map {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 8px;
+    background: none;
+    border: none;
+    box-shadow: 1px 5px 15px 0px rgba(60, 60, 60, 0.05),
+        -1px 5px 15px 0px rgba(60, 60, 60, 0.05);
+    padding: 0 15px;
+}
+
+.btn-fixed-height {
+    height: 40px;
+}
+
+.btn-fixed-width {
+    width: 40px;
+}
+
+.direction-span {
+    background-color: transparent;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.btn-map-div-vertical {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.btn-map-div-horizontal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: fit-content;
+    margin: 0;
+}
+
+.btn-nostyle {
+    background: none;
+    border: none;
+}
+
+.btn-nostyle:focus {
+    outline: none;
+}
+
+.spacer-horizontal {
+    height: 1px;
+    background-color: rgba(0, 0, 0, .1);
+    margin: 0 5px;
+}
+
+.top-round {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.bot-round {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.btn-map-text {
+    flex-shrink: 0;
+    margin-left: 0.5em;
+}
+
+.checkbox {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin-right: .5em;
+    background-color: white;
+}
+
+.checkbox-input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+
+.checkbox-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 4px;
+}
+
+.checkbox-visual-hover {
+    border-color: black;
+}
+
+.checkbox-visual-checked {
+    background-color: black;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.paging-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.paging-link {
+    background-color: transparent;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 10px;
+}
+
+.paging-link:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.paging-link.disabled {
+    color: lightgray;
+    cursor: not-allowed;
+}
+
+.paging-link.active {
+    color: white;
+    background-color: black;
+    cursor: default;
+    pointer-events: none;
+}
+
+.paging-link.disabled:hover {
+    background: none;
+}
+
+a.paging-link:visited {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+a.paging-link:link {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+.nav-text {
+    text-align: center;
+    font-size: .9em;
+    padding-top: 1em;
+}
