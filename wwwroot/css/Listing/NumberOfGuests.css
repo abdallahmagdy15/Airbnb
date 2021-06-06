@@ -304,9 +304,10 @@ progress {
     height: 1000px;
 }
 
-#backsvg {
-    padding: 0 !important;
-    margin-left: 60px;
+@media (min-width: 1330px) {
+    footer {
+        margin-left: 13.5% !important
+    }
 }
 
 @media (min-width: 992px) {
@@ -326,6 +327,8 @@ progress {
     .BedsNote {
         font-size: 25px;
     }
+
+
 
     .GuestsNumber span {
         font-size: 25px;
@@ -400,32 +403,14 @@ progress {
         height: 70px;
     }
 
-    footer {
-        margin-left: 350px;
-    }
+
 
     .containFooter {
-        width: 800px;
         height: 90px;
     }
 
     .d-md-block {
         font-size: 30px;
         margin-bottom: 40px;
-    }
-
-    #next {
-        margin-left: 420px;
-        width: 150px;
-        height: 60px;
-    }
-
-    #prev {
-        margin-left: 100px;
-    }
-
-    #backsvg {
-        padding: 0 !important;
-        margin-left: 0px;
     }
 }

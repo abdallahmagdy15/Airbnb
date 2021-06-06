@@ -38,7 +38,9 @@ namespace Airbnb.Controllers.Listing
                 Categories = _applicationDbContext.Categories.ToList(),
                 GuestPlaceTypes = _applicationDbContext.GuestPlaceTypes.ToList(),
                 Spaces=_applicationDbContext.Spaces.ToList(),
-                propertyPhotos=_applicationDbContext.PropertyPhoto.ToList()
+                propertyPhotos=_applicationDbContext.PropertyPhoto.ToList(),
+                houseRoles = _applicationDbContext.HouseRules.ToList()
+
             };
             return View(listingViewModel);
         }

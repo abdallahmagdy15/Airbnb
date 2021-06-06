@@ -97,8 +97,8 @@ progress {
 .ContainPropertyType,
 .ContainTypeOfPlace,
 .ContainNumberOfRooms,
-.ContainListingType,
-.containFooter {
+.ContainListingType
+ {
     padding :0 !important;
     margin-left: 30px !important;
     margin-top: 65px !important;
@@ -222,9 +222,12 @@ footer {
 }
 
 .TipTitle {
-    font-weight: bolder !important;
-    font-size: 20px;
-    color: gray;
+    margin: 0px !important;
+    overflow-wrap: break-word !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    line-height: 1.28571em !important;
+    color: rgb(72, 72, 72) !important;
 }
 
 .DescriptionTip {

@@ -74,11 +74,7 @@ footer {
     margin-top: 100px;
 }
 
-.TipTitle {
-    font-size: 16px;
-    line-height: 150%;
-    color: #767676;
-}
+
 
 .lineInTip {
     width: 100% !important;
@@ -120,13 +116,4 @@ footer {
         font-size: 12px;
     }
 
-.ContainTipsInSmall {
-    border-radius: 50%;
-    bottom: 90px;
-    border: 1px solid lightgray;
-    padding: 10px;
-    position: fixed;
-    z-index: 1000;
-    background-color: white;
-    left: 80%;
-}
+

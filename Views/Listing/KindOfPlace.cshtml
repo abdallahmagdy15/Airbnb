@@ -189,24 +189,27 @@
             </div>
         </div>
     </div>
-    <footer>
-        <div>
-            <div class="col col-12 col-md-7 containFooter" style="display: table;border-spacing:0px ;">
-                <div style=" display: table-cell;vertical-align: middle;">
+
+    <footer style=" position: fixed; bottom: 0; width: 100%;z-index:1000">
+                <div class="col col-12 col-md-7" style="position:relative">
+            <div class="col col-11 col-xl-8 containFooter" style="position:absolute;height:90px;">
+                <div style="display:inline-block">
                     <svg id="backsvg" viewBox="0 0 18 18" role="presentation" aria-hidden="true"
                          focusable="false" style="height: 1em; width: 1em; fill: currentcolor;">
                         <path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z"
                               fill-rule="evenodd"></path>
                     </svg>
                     <input type="button" value="Back" id="prev" class="btn"
-                           style="margin-left: 0;background-color: white;color:#008489;font-size: 20px;font-weight: bold;">
+                           style="height:52px;padding:10px 20px;margin-left: 0;background-color: white;color:#008489;font-size: 20px;font-weight: bold;">
                 </div>
-                <div style="display: table-cell;vertical-align: middle;">
+                <div style="position:absolute;right:50px">
                     <input type="button" value="Next" id="next" class="btn"
-                           style="padding: 10px 30px;font-size: 20px; font-weight:bold;color: white;background-color: #008489;">
+                           style="padding: 10px 20px;font-size: 20px; font-weight:bold;color: white;background-color: #008489;">
                 </div>
             </div>
-        </div>
+                    </div>
+        
+          
     </footer>
     <partial name="NubmerOfGuests.cshtml" />
     <partial name="NumberOfBathRooms.cshtml" />
@@ -321,14 +324,14 @@
                     //    $('#next').prop('disabled', true)
                     //}
                     if (PageNumber < 15) {
-                        if ((FormValidation7) == false && $('#7').is(":visible") ||
-                            (FormValidation4) == false && $('#4').is(":visible") ||
-                            (FormValidation8) == false && $('#8').is(":visible"))
-                            {
-                            console.log('cantdothis')
-                            $('.ValidationBoxForDescription').css('display', 'table')
-                        }
-                        else {
+                        //if ((FormValidation7) == false && $('#7').is(":visible") ||
+                        //    (FormValidation4) == false && $('#4').is(":visible") ||
+                        //    (FormValidation8) == false && $('#8').is(":visible"))
+                        //    {
+                        //    console.log('cantdothis')
+                        //    $('.ValidationBoxForDescription').css('display', 'table')
+                        //}
+                        //else {
                             $('.ValidationBoxForDescription').css('display', 'none')
                             $("#" + (PageNumber - 1)).css('display', 'none')
                             $("#" + PageNumber).css('display', 'flex')
@@ -336,7 +339,7 @@
                                 return parseInt(oldval, 10) + 25
                             })
                             PageNumber++
-                        }
+                        //}
                     }
                     switch (PageNumber) {
                         case 3:

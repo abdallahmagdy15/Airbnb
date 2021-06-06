@@ -10,6 +10,7 @@ textarea {
     line-height: 24px;
     border: 1px solid #dfdfda;
     border-radius: 4px;
+    display:block
 }
 
 .ContainDescription {
@@ -40,29 +41,9 @@ textarea {
     align-items: center !important;
 }
 
-.TipsInFullScreen {
-    background-color: white;
-    border-radius: 5px;
-    padding: 30px;
-    padding-top: 0px;
-    padding-bottom: 30px;
-    display: table;
-    max-width: 330px;
-    min-width: 250px;
-    margin-left: 30px;
-    border: 1px solid lightgrey;
-    margin-right: 30px;
-    margin-top: 100px;
-}
 
-.TipTitle {
-    margin: 0px !important;
-    overflow-wrap: break-word !important;
-    font-size: 15px !important;
-    font-weight: 700 !important;
-    line-height: 1.28571em !important;
-    color: rgb(72, 72, 72) !important;
-}
+
+
 
 .lineInTip {
     width: 100% !important;

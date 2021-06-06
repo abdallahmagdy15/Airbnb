@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="ContainInput">
-                        <input name="propertyPhotos[0].Url"   type='file' class="file-upload" value="1"  />                    
+                        <input  type='file' class="file-upload"  multiple />                    
                     <!-- image slider ////////////////////////////////////////////////////////-->
                     <div id="demo" class="carousel slide">
                         <button class="edit">
@@ -151,10 +151,8 @@
                         $('#demo').attr('style', 'display:block ')
 
                         $(".Image" + numberOfImage + "").attr('src', e.target.result);
-                        console.log(file_upload.files[0].name)
                     } else {
-                        $('._amkdao').append("<input name='propertyPhotos[1].Url' type='file' class='file - upload' value='2'/>")
-                        console.log(numberOfImage)
+                        $('._amkdao').append("<input type='file' class='file_upload'/>")
                         // $(".Image"+numberOfImage+"").attr('src',file_upload.files[0].name);
                         $('.carousel-inner').children().last().attr('class', 'carousel-item');
                         $('.carousel-inner').append("<div class='carousel-item active'><img class='Image" + numberOfImage + "' src='" + e.target.result + "'></div>")
@@ -168,6 +166,7 @@
                     }
                     numberOfImage++
                     console.log(imageSrcs.length)
+                    
                 }
 
                 reader.readAsDataURL(input.files[0]);

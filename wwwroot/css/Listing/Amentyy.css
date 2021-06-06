@@ -10,8 +10,8 @@
 .ContainQuestion {
     margin: 0px !important;
     word-wrap: break-word !important;
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
-    font-size: 24px !important;
+    font-family: Airbnb Cereal App;
+    font-size: 28px !important;
     font-weight: 700 !important;
     line-height: 1.25em !important;
     color: #484848 !important;
@@ -20,13 +20,12 @@
 }
 
 .QuestionDescription {
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
-    font-size: 16px !important;
-    font-weight: 400 !important;
+    font-family: Airbnb Cereal App;
+    font-size: 18px !important;
     line-height: 1.375em !important;
-    color: #484848 !important;
+    color: #615f5f !important;
     margin-top: 10px;
-    max-width: 400px;
+    max-width: 550px;
 }
 
 

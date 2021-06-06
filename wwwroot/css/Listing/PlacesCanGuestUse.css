@@ -146,24 +146,9 @@ input:checked + .slider:before {
     align-items: center !important;
 }
 
-.TipsInFullScreen {
-    background-color: white;
-    border-radius: 5px;
-    padding: 30px;
-    padding-bottom: 30px;
-    display: table;
-    max-width: 330px;
-    min-width: 200px;
-    margin-left: 30px;
-    border: 1px solid lightgrey;
-    margin-right: 30px;
-    margin-top: 100px;
-}
 
-.TipTitle {
-    font-weight: bolder !important;
-    font-size: 20px;
-}
+
+
 
 .DescriptionTip {
     padding-top: 12px !important;

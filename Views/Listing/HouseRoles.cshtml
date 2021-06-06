@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/ListingLayout.cshtml";
 
 }
+@model ListingViewModel
 <div id="10" style="display:flex">
     <div class="col col-12 col-md-7">
 
@@ -20,6 +21,8 @@
                 </div>
                 <div style="max-width: 450px;min-width: 380px;"></div>
                 <div>
+                    @foreach(var item in Model.houseRoles)
+                    {
                     <div class="ContainOneRole">
 
                         <div class="RuleName">Suitable for children (2-12 years)</div>
@@ -27,9 +30,7 @@
 
                             <div class="False">
                                 <input class="_1wrrwzb" type="radio"
-                                       name="guest-control-0-row-toggle-DLS-toggle-group-name"
-                                       id="guest-control-0-row-toggle-DLS-toggle-no" aria-label="Turn off"
-                                       tabindex="-1" value="false">
+                                        value="false">
                                 <label Class="FalseLabel">
                                     <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                                          role="presentation" focusable="false"
@@ -40,10 +41,8 @@
                                 </label>
                             </div>
                             <div class="True" style="margin-left: 15px;">
-                                <input class="_1wrrwzb" type="radio"
-                                       name="guest-control-0-row-toggle-DLS-toggle-group-name"
-                                       id="guest-control-0-row-toggle-DLS-toggle-no" aria-label="Turn off"
-                                       tabindex="-1" value="false">
+                                
+                                @Html.RadioButtonFor(x => x.IsHouseRoleChecked,item.Id)
                                 <label class="TrueLabel">
                                     <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                                          role="presentation" focusable="false"
@@ -54,141 +53,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="ContainOneRole">
+                    }
 
-                        <div class="RuleName">Suitable for infants (Under 2 years)</div>
-                        <div class="ContainTrueFalse">
-                            <div class="False">
-                                <input class="_1wrrwzb" type="radio"
-                                       name="guest-control-0-row-toggle-DLS-toggle-group-name"
-                                       id="guest-control-0-row-toggle-DLS-toggle-no" aria-label="Turn off"
-                                       tabindex="-1" value="false">
-                                <label class="FalseLabel">
-                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                         role="presentation" focusable="false"
-                                         style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
-                                        <path d="m6 6 20 20"></path>
-                                        <path d="m26 6-20 20"></path>
-                                    </svg>
-                                </label>
-                            </div>
-                            <div class="True" style="margin-left: 15px;">
-                                <input class="_1wrrwzb" type="radio"
-                                       name="guest-control-0-row-toggle-DLS-toggle-group-name"
-                                       id="guest-control-0-row-toggle-DLS-toggle-no" aria-label="Turn off"
-                                       tabindex="-1" value="false">
-                                <label class="TrueLabel">
-                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                         role="presentation" focusable="false"
-                                         style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
-                                        <path fill="none" d="m4 16.5 8 8 16-16"></path>
-                                    </svg>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ContainOneRole">
 
-                        <div class="RuleName">Suitable for pets</div>
-                        <div class="ContainTrueFalse">
-
-                            <div class="False">
-                                <input class="_1wrrwzb" type="radio"
-                                       name="guest-control-0-row-toggle-DLS-toggle-group-name"
-                                       id="guest-control-0-row-toggle-DLS-toggle-no" aria-label="Turn off"
-                                       tabindex="-1" value="false">
-                                <label class="FalseLabel">
-                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                         role="presentation" focusable="false"
-                                         style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
-                                        <path d="m6 6 20 20"></path>
-                                        <path d="m26 6-20 20"></path>
-                                    </svg>
-                                </label>
-                            </div>
-                            <div class="True" style="margin-left: 15px;">
-                                <input class="_1wrrwzb" type="radio"
-                                       name="guest-control-0-row-toggle-DLS-toggle-group-name"
-                                       id="guest-control-0-row-toggle-DLS-toggle-no" aria-label="Turn off"
-                                       tabindex="-1" value="false">
-                                <label class="TrueLabel">
-                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                         role="presentation" focusable="false"
-                                         style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
-                                        <path fill="none" d="m4 16.5 8 8 16-16"></path>
-                                    </svg>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ContainOneRole">
-
-                        <div class="RuleName">Smoking allowed</div>
-                        <div class="ContainTrueFalse">
-
-                            <div class="False">
-                                <input class="_1wrrwzb" type="radio"
-                                       name="guest-control-0-row-toggle-DLS-toggle-group-name"
-                                       id="guest-control-0-row-toggle-DLS-toggle-no" aria-label="Turn off"
-                                       tabindex="-1" value="false">
-                                <label class="FalseLabel">
-                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                         role="presentation" focusable="false"
-                                         style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
-                                        <path d="m6 6 20 20"></path>
-                                        <path d="m26 6-20 20"></path>
-                                    </svg>
-                                </label>
-                            </div>
-                            <div class="True" style="margin-left: 15px;">
-                                <input class="_1wrrwzb" type="radio"
-                                       name="guest-control-0-row-toggle-DLS-toggle-group-name"
-                                       id="guest-control-0-row-toggle-DLS-toggle-no" aria-label="Turn off"
-                                       tabindex="-1" value="false">
-                                <label class="TrueLabel">
-                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                         role="presentation" focusable="false"
-                                         style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
-                                        <path fill="none" d="m4 16.5 8 8 16-16"></path>
-                                    </svg>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ContainOneRole">
-
-                        <div class="RuleName">Events allowed</div>
-                        <div class="ContainTrueFalse">
-
-                            <div class="False">
-                                <input class="_1wrrwzb" type="radio"
-                                       name="guest-control-0-row-toggle-DLS-toggle-group-name"
-                                       id="guest-control-0-row-toggle-DLS-toggle-no" aria-label="Turn off"
-                                       tabindex="-1" value="false">
-                                <label class="FalseLabel">
-                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                         role="presentation" focusable="false"
-                                         style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
-                                        <path d="m6 6 20 20"></path>
-                                        <path d="m26 6-20 20"></path>
-                                    </svg>
-                                </label>
-                            </div>
-                            <div class="True" style="margin-left: 15px;">
-                                <input class="_1wrrwzb" type="radio"
-                                       name="guest-control-0-row-toggle-DLS-toggle-group-name"
-                                       id="guest-control-0-row-toggle-DLS-toggle-no" aria-label="Turn off"
-                                       tabindex="-1" value="false">
-                                <label class="TrueLabel">
-                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                         role="presentation" focusable="false"
-                                         style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
-                                        <path fill="none" d="m4 16.5 8 8 16-16"></path>
-                                    </svg>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -205,9 +72,8 @@
         var True = $(this).find('.True')[0]
         var False = $(this).find('.False')[0]
         $(True).click(function () {
-            if ($(True).find('input')[0].value == "false") {
-                $(True).find('input')[0].value = true
-                $(False).find('input')[0].value = false
+            if ($(True).find('input')[0].value != "false") {
+                $(True).find('input').attr('checked', 'checked')
                 $(True).find('label')[0].classList.add('SelectedLabel')
                 $(True).find('svg')[0].classList.add('SelectedLabel')
                 $(False).find('label')[0].classList.remove('SelectedLabel')

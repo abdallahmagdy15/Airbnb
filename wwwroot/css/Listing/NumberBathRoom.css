@@ -52,24 +52,7 @@ progress {
     margin-right: 5%;
 }
 
-.ContainQuestion {
-    margin: 0px !important;
-    word-wrap: break-word !important;
-    font-family: Airbnb Cereal App Extra !important;
-    font-size: 26px !important;
-    line-height: 1.25em !important;
-    color: #484848 !important;
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
-}
 
-.QuestionDescription {
-    font-family: Airbnb Cereal App !important;
-    font-size: 16px !important;
-    line-height: 1.375em !important;
-    color: #484848 !important;
-    margin-top: 10px;
-}
 
 
 
@@ -97,6 +80,7 @@ footer {
         line-height: 20px !important;
         font-weight: 600 !important;
         margin-bottom: 8px;
+        font-family: Airbnb Cereal App;
     }
 
 
