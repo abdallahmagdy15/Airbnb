@@ -9,7 +9,7 @@
 <div id="10" style="display:flex">
     <div class="col col-12 col-md-7">
 
-        <div class="ContainPropertyType col col-11">
+        <div class="ContainPropertyType col col-11" style="margin-left:70px !important">
 
             <div class="ContainAllRules">
                 <div style="padding-bottom: 30px;">
@@ -21,38 +21,41 @@
                 </div>
                 <div style="max-width: 450px;min-width: 380px;"></div>
                 <div>
-                    @foreach(var item in Model.houseRoles)
+                    @for (var item = 0; item < Model.houseRoles.Count; item++)
                     {
-                    <div class="ContainOneRole">
+                        <div class="ContainOneRole">
 
-                        <div class="RuleName">Suitable for children (2-12 years)</div>
-                        <div class="ContainTrueFalse" style="padding-left: 26%;display: flex;margin-right: 10px !important;">
-
-                            <div class="False">
-                                <input class="_1wrrwzb" type="radio"
-                                        value="false">
-                                <label Class="FalseLabel">
-                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                         role="presentation" focusable="false"
-                                         style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
-                                        <path d="m6 6 20 20"></path>
-                                        <path d="m26 6-20 20"></path>
-                                    </svg>
-                                </label>
+                            <div class="RuleName">
+                                @Html.DisplayFor(x=>x.houseRoles[item].Name)
                             </div>
-                            <div class="True" style="margin-left: 15px;">
-                                
-                                @Html.RadioButtonFor(x => x.IsHouseRoleChecked,item.Id)
-                                <label class="TrueLabel">
-                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                         role="presentation" focusable="false"
-                                         style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
-                                        <path fill="none" d="m4 16.5 8 8 16-16"></path>
-                                    </svg>
-                                </label>
+                            <div class="ContainTrueFalse" style="padding-left: 15%;display: flex;margin-right: 10px !important;">
+
+                                <div class="False">
+                                    <input class="_1wrrwzb" type="checkbox"
+                                           value="false" style="display:none">
+                                    <label Class="FalseLabel">
+                                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                             role="presentation" focusable="false"
+                                             style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
+                                            <path d="m6 6 20 20"></path>
+                                            <path d="m26 6-20 20"></path>
+                                        </svg>
+                                    </label>
+                                </div>
+                                <div class="True" style="margin-left: 15px;">
+                                    <input name="IsHouseRoleChecked" type="checkbox" value="@Model.houseRoles[item].Id" style="display:none">
+
+                                    @*@Html.RadioButtonFor(x => x.IsHouseRoleChecked[item], Model.houseRoles[item].Id)*@
+                                    <label class="TrueLabel">
+                                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                             role="presentation" focusable="false"
+                                             style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
+                                            <path fill="none" d="m4 16.5 8 8 16-16"></path>
+                                        </svg>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     }
 
 
@@ -83,8 +86,9 @@
 
         $(False).click(function () {
             if ($(False).find('input')[0].value == "false") {
-                $(False).find('input')[0].value = true
-                $(True).find('input')[0].value = false
+                $(False).find('input').attr('checked', 'checked')
+                $(True).find('input').removeAttr('checked', 'checked')
+
                 $(False).find('label')[0].classList.add('SelectedLabel')
                 $(False).find('svg')[0].classList.add('SelectedLabel')
                 $(True).find('label')[0].classList.remove('SelectedLabel')

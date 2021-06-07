@@ -50,21 +50,6 @@ namespace Airbnb.Controllers.Listing
             var name = _applicationDbContext.Categories.FirstOrDefault(x => x.Name == listingViewModel.Categoryname);
             var id = name.Id;
             Property NewProperty = new Property();
-            string UniqueFileName = null;
-            //if (listingViewModel.Image != null)
-            //{
-            //   string uploadsFolder= Path.Combine(hostingEnvironment.WebRootPath,"Images");
-            //   UniqueFileName= Guid.NewGuid().ToString() + "_" + listingViewModel.Image.FileName;
-            //    string FilePath = Path.Combine(uploadsFolder, UniqueFileName);
-            //    listingViewModel.Image.CopyTo(new FileStream(FilePath, FileMode.Create));
-            //    PropertyPhoto photo = new PropertyPhoto();
-            //    photo.PropertyId = 1;
-            //    photo.Url = UniqueFileName;
-            //    _applicationDbContext.Add(photo);
-            //    _applicationDbContext.SaveChanges();
-            //}
-
-
             NewProperty.CategoryId = id;
             NewProperty.Complete = false;
             NewProperty.Zipcode = listingViewModel.ZipCode;
@@ -75,6 +60,24 @@ namespace Airbnb.Controllers.Listing
             NewProperty.NumberOfBathrooms = listingViewModel.NumberOfBathRooms;
             _applicationDbContext.Add(NewProperty);
             _applicationDbContext.SaveChanges();
+            string UniqueFileName = null;
+            if (listingViewModel.Images != null)
+            {
+                for(var i = 0; i < listingViewModel.Images.Count; i++)
+                {
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "Images");
+                    UniqueFileName = Guid.NewGuid().ToString() + "_" + listingViewModel.Images[i].FileName;
+                    string FilePath = Path.Combine(uploadsFolder, UniqueFileName);
+                    listingViewModel.Images[i].CopyTo(new FileStream(FilePath, FileMode.Create));
+                    PropertyPhoto photo = new PropertyPhoto();
+                    photo.PropertyId = 1;
+                    photo.Url = UniqueFileName;
+                    _applicationDbContext.Add(photo);
+                    _applicationDbContext.SaveChanges();
+                }
+               
+            }
+            //amenty
             foreach (var item in listingViewModel.IsChecked)
             {
                 PropertyAmenity amenity = new PropertyAmenity();
@@ -83,9 +86,24 @@ namespace Airbnb.Controllers.Listing
                 _applicationDbContext.Add(amenity);
                 _applicationDbContext.SaveChanges();
             }
-
-
-
+            //SpacesCanGuestUse
+            foreach(var item in listingViewModel.IsSpacesChecked)
+            {
+                PropertySpace propertySpace = new PropertySpace();
+                propertySpace.PropertyId = NewProperty.Id;
+                propertySpace.SpaceId = item;
+                _applicationDbContext.Add(propertySpace);
+                _applicationDbContext.SaveChanges();
+            }
+            //HouseRoles
+            foreach(var item in listingViewModel.IsHouseRoleChecked)
+            {
+                PropertyHouseRule propertyHouseRule = new PropertyHouseRule();
+                propertyHouseRule.PropertyId = NewProperty.Id;
+                propertyHouseRule.HouseRuleId = item;
+                _applicationDbContext.Add(propertyHouseRule);
+                _applicationDbContext.SaveChanges();
+            }
             return RedirectToAction("mona");
         }
 

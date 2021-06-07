@@ -6,7 +6,7 @@
 
 @media only screen and (min-width: 600px) {
     .RuleName {
-        width: 300px;
+        max-width: 100px;
     }
 }
 .RuleName {

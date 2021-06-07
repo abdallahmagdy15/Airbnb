@@ -1,5 +1,14 @@
 ﻿
 
+@media only screen and (min-width: 600px) {
+    .ContainAmenties {
+        margin-left: 0px !important;
+    }
+
+    .QuestionDescription {
+        max-width: 350px;
+    }
+}
 
 .ContainAmenties {
     margin-left: 35px;

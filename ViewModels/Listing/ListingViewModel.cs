@@ -10,6 +10,8 @@ namespace Airbnb.ViewModels.Listing
     public class ListingViewModel
     {
         public int NumOfGuests { get; set; }
+
+        public string NumOfTotalRooms { get; set; } 
         public int NumOfBeds { get; set; }
         public string NumOfBedrooms { get; set; }
         public string Categoryname { get; set; }

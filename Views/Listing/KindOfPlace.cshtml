@@ -72,7 +72,7 @@
                 </div>
                 <div class="ContainSelectNumberOfRooms">
                     <div class="SelectNumberOfRooms">
-                        <select class="form-select" aria-label="Default select example">
+                        <select asp-for="NumOfTotalRooms" class="form-select" aria-label="Default select example">
                             <option selected value="2-5">2-5</option>
                             <option value="6-10">6-10</option>
                             <option value="11-20">11-20</option>
@@ -246,7 +246,7 @@
                     $('#8').css('display', 'none')
                     $('#9').css('display', 'none')
                     $('#10').css('display', 'none')
-                    $('#next').prop('disabled', true)
+                    //$('#next').prop('disabled', true)
 
 
                 })
