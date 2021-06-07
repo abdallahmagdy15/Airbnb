@@ -279,7 +279,7 @@ h1{
     color: var(--dark-font);
     margin-right: 10px;
 }
-.data-plugin-in-point{
+.data-plugin-in-point {
     padding-top: 35px;
     padding-bottom: 35px;
 }
@@ -344,35 +344,6 @@ h1{
 .rightt-btn{
     display: none;
 }
-/*
-.check-body{
-    display: grid;
-    grid-auto-rows: minmax(100px,auto);
-    grid-template-areas:
-    "checkin checkOut"
-    "guests"
-    "btnglow"
-    ;
-    gap: 50px;
-}
-.check-container{
-    align-items: center;
-    margin: 5px;
-}
-.check-in{
-    grid-area:checkin;
-}
-.check-out{
-    grid-area:checkOut;
-    width: 100%;
-    height: 100%;
-}
-.list-guests{
-    grid-area:guests;
-    width: 100%;
-    height: 100%;
-}
-*/
 
 .btn-glow {
     height: 50px;
@@ -518,23 +489,6 @@ h1{
 }
 
 /*start drop down in card*/
-#dropdownMenuButton1{
-    right: 145px;
-}
-.dropdown-menu.show {
-    display: grid;
-    grid-auto-rows: minmax(100px,auto);
-    grid-template-areas:
-    "titles titles bodyy"
-    "titles titles bodyy"
-    "foter foter foter"
-    ;
-    width: 305px;
-    position: absolute;
-   height: fit-content();
-    left: 0px;
-}
-
 .carousel-item img {
     object-fit: cover;
 }
@@ -554,30 +508,8 @@ h1{
 .spacer {
     flex: 1 1 auto;
 }
-.check-availability-footer{
-    grid-area: foter; 
-    margin-top: 15px;
-}
-.titles{
-    grid-area: titles;
-    align-items: center;
-}
-.elementStyle-menu {
-    position: absolute;
-    padding: -1px !important;
-    transform: translate(-3px)!important;
-    top: 42px !important;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    height: 270px !important;
 
-}
-.menu-col div{
-    margin-top: 31px;
-}
-.titles div{
-    margin-top: 30px;
-}
+/**/
 .sub-btn{
     border-radius: 50%;
     margin-right: 5px;
@@ -644,37 +576,22 @@ h1{
 /*end details section*/
 /*start Amenities-arrangment*/
 
-.Amenities{
-    display: grid;
-    grid-template-columns:  repeat(auto-fill,minmax(200px,1fr));
-    gap: 30px;
-    margin-bottom: 25px;
-
-}
-.Amenities .col .Amenitie{
-    display: flex;
-   margin-bottom: 30px;
-}
-.Amenities .col .Amenitie i{
-    flex-basis: 60px;
-    padding-right: 15px;
-}
-.Amenities .col .Amenitie span{
-    padding-top: 5px;
-}
-.data-plugin-in-point .show-more{
+.data-plugin-in-point .show-more {
     padding: 15px;
     border: 1px solid black;
     text-decoration: none;
     border-radius: 10px;
 }
-@media(max-width:1200px){
-    .Amenities {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
-    }
+.Amenity{
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
+.Amenity>svg{
+    display:inline-block;
+    margin:0 !important;
+}
+
 /*end Amenities-arrangment*/
 .multi-select-calendar{
     width: 100%;
