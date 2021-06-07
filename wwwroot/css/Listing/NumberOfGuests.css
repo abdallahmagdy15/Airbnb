@@ -180,8 +180,7 @@ progress {
     align-items: center !important;
     justify-content: center !important;
     height: 100% !important;
-    max-width: 50% !important;
-    min-width: 36px !important;
+    max-width: 90% !important;
     padding-right: 12px !important;
     pointer-events: none !important;
     color: rgb(34, 34, 34) !important;
@@ -246,7 +245,6 @@ progress {
 .addbeds {
     margin-top: 30px;
     display: flex;
-    box-shadow: 0 2px 0px -1px #dddddd;
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -304,20 +302,19 @@ progress {
     height: 1000px;
 }
 
-@media (min-width: 1330px) {
-    footer {
-        margin-left: 13.5% !important
-    }
+#backsvg {
+    padding: 0 !important;
+    margin-left: 60px;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1400px) {
 
     .ContainNumberGuests {
         margin-left: 330px;
     }
 
     .HMGuestsNumbers {
-        font-size: 40px;
+        font-size: 30px;
     }
 
     .ContainBedrooms {
@@ -327,8 +324,6 @@ progress {
     .BedsNote {
         font-size: 25px;
     }
-
-
 
     .GuestsNumber span {
         font-size: 25px;
@@ -379,19 +374,21 @@ progress {
     }
 
     .addbeds {
-        margin-left: 360px;
+        margin-left: 200px;
     }
 
     .spaces {
-        font-size: 25px;
+        font-size: 20px;
+        margin-left: 160px;
     }
 
     .beds {
-        font-size: 25px;
+        margin-left: 160px;
+        font-size: 20px;
     }
 
     .bedsbtn {
-        margin-left: 350px;
+        margin-left: 220px;
     }
 
         .bedsbtn button {
@@ -399,18 +396,36 @@ progress {
         }
 
     .btn-large {
-        width: 180px;
-        height: 70px;
+        width: 140px;
+        height: 50px;
     }
 
-
+    footer {
+        margin-left: 350px;
+    }
 
     .containFooter {
+        width: 40%;
         height: 90px;
     }
 
     .d-md-block {
         font-size: 30px;
         margin-bottom: 40px;
+    }
+
+    #next {
+        margin-left: 420px;
+        width: 25%;
+        height: 60px;
+    }
+
+    #prev {
+        margin-left: 100px;
+    }
+
+    #backsvg {
+        padding: 0 !important;
+        margin-left: 0px;
     }
 }

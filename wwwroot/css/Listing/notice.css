@@ -1,0 +1,299 @@
+﻿html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: Airbnb Cereal App Medium;
+}
+
+.header {
+    width: 100% !important;
+    margin-top: 0px !important;
+    padding: 0px !important;
+    position: relative !important;
+    z-index: 2 !important;
+    box-shadow: 0 1px 0 rgb(0 0 0 / 5%) !important;
+    height: 90px;
+}
+
+    .header svg {
+        color: #008489 !important
+    }
+
+.ContainSVG {
+    padding-left: 16px;
+    padding-top: 18px;
+}
+
+progress[value]::-webkit-progress-bar {
+    background-color: #eee;
+}
+
+progress {
+    border-radius: 0px;
+    width: 80%;
+    height: 13px;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+    progress::-webkit-progress-bar {
+        background-color: darkcyan;
+        border-radius: 0px 7px 7px 0px;
+    }
+
+    progress::-webkit-progress-value {
+        background-color: darkcyan;
+        border-radius: 0px 7px 7px 0px;
+    }
+
+.ContainSVG {
+    font-size: 30px;
+    font-weight: normal;
+    color: rgb(118 118 118);
+}
+
+.question {
+    margin-top: 50px;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.25em;
+    color: rgb(72, 72, 72);
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: rgb(118 118 118);
+    cursor: inherit !important;
+    font-size: 18px;
+    line-height: 20px !important;
+    margin-top: 30px;
+}
+
+    .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.container input:checked ~ .checkmark {
+    background-color: #080808;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+
+.container .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+.answers {
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.tip {
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 150px;
+    overflow-wrap: break-word !important;
+    font-size: 16px;
+    font-weight: 200;
+    line-height: 1.375em;
+    color: rgb(118, 118, 118);
+}
+
+.text-kazan {
+    color: #007a87;
+}
+
+.border-light {
+    margin-left: 30px;
+    width: 85%;
+}
+
+.questionhead {
+    margin-top: 20px;
+    margin-left: 30px;
+    font-size: 18px;
+}
+
+.from {
+    margin-top: 5px;
+    margin-left: 30px;
+}
+
+.space-2 {
+    margin-bottom: 12px;
+}
+
+.col-sm-8 {
+    width: 66.66667%;
+    float: left;
+}
+
+.text-large {
+    font-size: 16px;
+}
+
+.select-jumbo {
+    width: 100%;
+    max-width: 320px;
+    font-size: 19px;
+}
+
+.text-gray {
+    color: #767676;
+}
+
+._hs3i8o {
+    position: relative !important;
+    display: flex !important;
+    width: 100% !important;
+    margin: 0px !important;
+    border: none !important;
+    color: rgb(34, 34, 34) !important;
+    background-color: rgb(255, 255, 255) !important;
+    border-radius: 8px !important;
+    box-shadow: rgb(176 176 176) 0px 0px 0px 1px inset !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    font-size: 16px !important;
+    line-height: 20px !important;
+    font-weight: 400 !important;
+}
+
+.to {
+    margin-left: 30px;
+}
+
+._1aqr8le {
+    height: 56px;
+    width: 100% !important;
+    border: none !important;
+    outline: none !important;
+    margin: 0px !important;
+    padding: 10px 36px 10px 12px !important;
+    background-color: transparent !important;
+    color: inherit !important;
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit !important;
+    appearance: none !important;
+}
+
+._vgx32s {
+    -webkit-box-pack: center !important;
+    -webkit-box-align: center !important;
+    position: absolute !important;
+    right: 0px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 100% !important;
+    max-width: 50% !important;
+    min-width: 36px !important;
+    padding-right: 12px !important;
+    pointer-events: none !important;
+    color: rgb(34, 34, 34) !important;
+}
+
+.containrigght.d-md-block {
+    background-color: rgb(250, 250, 250) !important;
+    height: 940px;
+    float: right;
+    display: inline-flex;
+    min-width:370px;
+}
+
+.wrapper {
+    display: flex;
+}
+
+@media(min-width:1400px) {
+
+    .containlefft {
+        margin-top: 40px;
+        margin-left: 200px;
+        width: 45%;
+    }
+
+    .containrigght {
+        width: 55%;
+    }
+        .containrigght.d-md-block {
+            min-width: 800px
+        }
+
+        .question {
+            font-size: 50px;
+        }
+
+    .container {
+        font-size: 25px;
+        padding-left: 50px;
+    }
+
+    .tip {
+        font-size: 25px;
+        margin-right: 450px;
+    }
+
+    .questionhead {
+        font-size: 25px;
+    }
+
+    .text-large {
+        display: flex;
+        font-size: 20px;
+    }
+
+    ._1aqr8le {
+        height: 75px;
+        font-size: 25px;
+        font-weight: 400;
+    }
+}

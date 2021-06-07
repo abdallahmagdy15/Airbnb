@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\Listing\**" />
+    <Content Remove="wwwroot\Listing\**" />
+    <EmbeddedResource Remove="wwwroot\Listing\**" />
+    <None Remove="wwwroot\Listing\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="bootstrap" Version="4.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.5" />
@@ -24,7 +31,6 @@
   <ItemGroup>
     <Folder Include="Views\Guest\Partial\" />
     <Folder Include="Views\Host\" />
-    <Folder Include="wwwroot\Listing\" />
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
