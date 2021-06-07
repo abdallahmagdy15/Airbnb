@@ -215,17 +215,23 @@
     <partial name="NumberOfBathRooms.cshtml" />
     <partial name="Location.cshtml" />
     <partial name="Amenty.cshtml">
- <partial name="placesCanGuestUse.cshtml">
- <partial name="Description.cshtml">
-<partial name="Title.cshtml">
-<partial name="GuestsRequirement.cshtml">
-<partial name="HouseRoles.cshtml">
-<partial name="PopertyImages.cshtml">
+    <partial name="placesCanGuestUse.cshtml">
+    <partial name="Description.cshtml">
+    <partial name="Title.cshtml">
+    <partial name="GuestsRequirement.cshtml">
+    <partial name="HouseRoles.cshtml">
+    <partial name="PopertyImages.cshtml">
+    <partial name="Tips.cshtml">
+    <partial name="successhosting.cshtml">
+    <partial name="QuestionToStart.cshtml">
+    <partial name="notice.cshtml">
+    <partial name="howfar.cshtml">
+    <partial name="howlong.cshtml">
+    <partial name="price.cshtml">
 
 </form>
 
-        @section Scripts {
-            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        @section Scripts{
             <script>
                 var PageNumber = 2
                 $(function () {
@@ -246,7 +252,15 @@
                     $('#8').css('display', 'none')
                     $('#9').css('display', 'none')
                     $('#10').css('display', 'none')
-                    $('#next').prop('disabled', true)
+                    $('#11').css('display', 'none')
+                    $('#12').css('display', 'none')
+                    $('#13').css('display', 'none')
+                    $('#14').css('display', 'none')
+                    $('#15').css('display', 'none')
+                    $('#16').css('display', 'none')
+                    $('#17').css('display', 'none')
+                    $('#18').css('display', 'none')
+                   // $('#next').prop('disabled', true)
 
 
                 })
@@ -323,7 +337,7 @@
                     //if ($('#3').is(":visible")){
                     //    $('#next').prop('disabled', true)
                     //}
-                    if (PageNumber < 15) {
+                    if (PageNumber < 25) {
                         //if ((FormValidation7) == false && $('#7').is(":visible") ||
                         //    (FormValidation4) == false && $('#4').is(":visible") ||
                         //    (FormValidation8) == false && $('#8').is(":visible"))
@@ -334,7 +348,11 @@
                         //else {
                             $('.ValidationBoxForDescription').css('display', 'none')
                             $("#" + (PageNumber - 1)).css('display', 'none')
+                            if(PageNumber==12 ||PageNumber==13){
+                 $("#" + PageNumber).css('display', 'block')
+                }else{
                             $("#" + PageNumber).css('display', 'flex')
+                }
                             $('#file').val(function (i, oldval) {
                                 return parseInt(oldval, 10) + 25
                             })
@@ -408,7 +426,54 @@
                             break;
                     }
                 })
-                
+
+                 var minNiights = 0
+    var maxNights = 0
+    $("#minnightsminus").click(function (event) {
+        if (minNiights > 0) {
+            minNiights--;
+            if (minNiights == 0) {
+                $('#min').val("Min");
+            } else {
+                $('#min').val("" + minNiights + "  " + "Min");
+            }
+        }
+    });
+    $("#minnightsplus").click(function (event) {
+        if (minNiights < maxNights) {
+            minNiights++;
+            $('#min').val("" + minNiights + "  " + "Min");
+        }
+    });
+    $("#maxnightsminus").click(function (event) {
+        if (maxNights > minNiights) {
+            if (maxNights > 0) {
+                maxNights--;
+                if (maxNights == 0) {
+                    $('#max').val("Max");
+                } else {
+                    $('#max').val("" + maxNights + "  " + "Max");
+                }
+
+            }
+        }
+    });
+    $("#maxnightsplus").click(function (event) {
+        maxNights++;
+        $('#max').val("" + maxNights + "  " + "Max");
+    });
+       
+                  function smartprice() {
+        var x = document.getElementById("myDIV");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+        var elem = document.getElementById("smartpricebtn");
+        if (elem.value == "Use base price only") elem.value = "Set up Smart Pricing";
+        else elem.value = "Use base price only";
+    }
             </script>
         }
         
