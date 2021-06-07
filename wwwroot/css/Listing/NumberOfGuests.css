@@ -306,7 +306,11 @@ progress {
     padding: 0 !important;
     margin-left: 60px;
 }
-
+@media (min-width: 1330px) {
+    footer {
+        margin-left: 13.5% !important
+    }
+}
 @media (min-width: 1400px) {
 
     .ContainNumberGuests {
@@ -400,12 +404,8 @@ progress {
         height: 50px;
     }
 
-    footer {
-        margin-left: 350px;
-    }
 
     .containFooter {
-        width: 40%;
         height: 90px;
     }
 
@@ -414,18 +414,5 @@ progress {
         margin-bottom: 40px;
     }
 
-    #next {
-        margin-left: 420px;
-        width: 25%;
-        height: 60px;
-    }
-
-    #prev {
-        margin-left: 100px;
-    }
-
-    #backsvg {
-        padding: 0 !important;
-        margin-left: 0px;
-    }
+ 
 }

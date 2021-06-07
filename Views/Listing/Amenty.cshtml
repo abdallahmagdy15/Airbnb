@@ -25,12 +25,12 @@
                     {
                     <div class="ContainOneAmenty" style="display: flex;">
 
-                        <label class="container">
+                        <label class="Amentycontainer">
                             
                             @Html.DisplayFor(x => Model.amenty[item].Name)
                             <span class="AmentyDecription">@Html.DisplayFor(modelItem => Model.amenty[item].Description)</span>
                             <input name="IsChecked" type="checkbox" value="@Model.amenty[item].Id">
-                            <span class="checkmark"></span>
+                            <span class="Amentycheckmark"></span>
                         </label>
 
                     </div>
@@ -45,13 +45,13 @@
                     if (item.Type=="Safety")
                     {
                     <div class="ContainOneAmenty" style="display: flex;">
-                        <label class="container">
+                        <label class="Amentycontainer">
                             @Html.DisplayFor(it=>item.Name)
                             <span style="display: block;" class="AmentyDecription">
                                 @Html.DisplayFor(i=>item.Description)
                             </span>
                             <input type="checkbox" value="Cooking basics">
-                            <span class="checkmark"></span>
+                            <span class="Amentycheckmark"></span>
                         </label>
 
                     </div>

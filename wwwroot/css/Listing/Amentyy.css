@@ -100,7 +100,7 @@ footer {
     max-width: 500px;
 }
 
-.container {
+.Amentycontainer {
     display: block;
     position: relative;
     padding-left: 40px;
@@ -114,16 +114,16 @@ footer {
 }
 
     /* Hide the browser's default checkbox */
-    .container input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        height: 0;
-        width: 0;
-    }
+.Amentycontainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
 
 /* Create a custom checkbox */
-.checkmark {
+.Amentycheckmark {
     position: absolute;
     top: 0;
     left: 0;
@@ -135,29 +135,29 @@ footer {
 }
 
 /* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
+.Amentycontainer:hover input ~ .Amentycheckmark {
     border: 1px solid black;
 }
 
 /* When the checkbox is checked, add a blue background */
-.container input:checked ~ .checkmark {
+.Amentycontainer input:checked ~ .Amentycheckmark {
     background-color: black;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
+.Amentycheckmark:after {
     content: "";
     position: absolute;
     display: none;
 }
 
 /* Show the checkmark when checked */
-.container input:checked ~ .checkmark:after {
+.Amentycontainer input:checked ~ .Amentycheckmark:after {
     display: block;
 }
 
 /* Style the checkmark/indicator */
-.container .checkmark:after {
+.Amentycontainer .Amentycheckmark:after {
     left: 9px;
     top: 5px;
     width: 5px;
