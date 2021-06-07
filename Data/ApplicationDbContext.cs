@@ -1,5 +1,6 @@
 ﻿using Airbnb.Models;
 using Airbnb.Models.Location;
+using Airbnb.Models.Messaging;
 using Airbnb.Models.PropertySubModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +29,9 @@ namespace Airbnb.Data
         public virtual DbSet<HouseRule> HouseRules { get; set; }
         public virtual DbSet<PropertyPhoto> PropertyPhoto { get; set; }
         public virtual DbSet<Space> Spaces { get; set; }
+
+        public virtual DbSet<Chat> Chats { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -98,6 +102,7 @@ namespace Airbnb.Data
 
             builder.Entity<PropertyUnavailableDay>()
                 .HasKey(p => new { p.PropertyId, p.UnavailableDay });
+
 
             base.OnModelCreating(builder);
         }
