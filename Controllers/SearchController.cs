@@ -21,7 +21,7 @@ namespace Airbnb.Controllers
 
         public IActionResult Index(SearchQuery search)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || search.CityId == 0)
             {
                 return BadRequest();
             }
@@ -31,7 +31,30 @@ namespace Airbnb.Controllers
             ViewBag.coordX = city.Coordinates.Coordinate.X;
             ViewBag.coordY = city.Coordinates.Coordinate.Y;
 
-            return View(_propService.FilterBy(search));
+            ViewBag.search = search;
+
+            var properties = _propService.FilterBy(search);
+
+            var count = properties.Count();
+
+            var pages = count / search.Limit;
+
+            var orderedPrices = properties
+                .OrderBy(p => p.Price)
+                .Select(p => p.Price);
+
+            ViewBag.minPrice = orderedPrices.FirstOrDefault();
+            ViewBag.maxPrice = orderedPrices.LastOrDefault();
+
+            if (count % search.Limit > 0)
+                pages += 1;
+
+            ViewBag.Count = count;
+            ViewBag.pages = pages;
+
+            ViewBag.PlaceTypes = _db.GuestPlaceTypes;
+
+            return View(properties.Skip(search.Limit * search.Page).Take(search.Limit));
         }
     }
 }

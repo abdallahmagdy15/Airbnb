@@ -16,34 +16,7 @@ function HomeControl(controlDiv, map) {
     console.log($("#btn-map-zoomin").get());
 }
 
-function initMap() {
-    let initialLocation;
-    
-    // The current location
-    const uluru = { lat: -25.344, lng: 131.036 };
-    // The map, centered at Uluru
-    const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 7,
-        disableDefaultUI: true,
-    });
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            map.setCenter(initialLocation);
-            const marker = new google.maps.Marker({
-                position: initialLocation,
-                map: map,
-            });
-        });
-    }
-
-    // The marker, positioned at Uluru
-    
-
-    var homeControlDiv = document.createElement('div');
-    var homeControl = new HomeControl(homeControlDiv, map);
-}
 
 $("#btn-fold-map").hide();
 
@@ -61,7 +34,7 @@ $("#btn-unfold-map").click((e) => {
     $(e.currentTarget).hide();
     $("#btn-fold-map, #btn-filter-map").show();
     $("#map-wrapper").css({
-        width: "100vw",
+        width: "99vw",
     });
     $("#main-wrapper").css({
         transform: "translateX(-59%)",

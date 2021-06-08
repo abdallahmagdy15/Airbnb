@@ -9,5 +9,3 @@
     }
 });
 
-$('.dropdown-toggle').dropdown()
-

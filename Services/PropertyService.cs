@@ -46,7 +46,7 @@ namespace Airbnb.Services
                 properties =
                     _searchService.FilterByPlaceTypes(properties, search.PlaceTypeIds);
 
-            return properties.Skip(search.Limit * search.Page).Take(search.Limit);
+            return properties;
         }
     }
 }
