@@ -73,14 +73,20 @@ namespace Airbnb.Services
             var myChats = await GetMyChats();
             var chat = await chatRepository.Get(chatId);
             if (myChats.Contains(chat))
+            {
                 await chatRepository.Remove(chatId);
+                await chatRepository.Save();
+            }
         }
 
         public async Task RemoveMessage(int messageId)
         {
             var message = await messageRepository.Get(messageId);
             if (message.UserId == CurrentUserId)
+            {
                 await messageRepository.Remove(messageId);
+                await messageRepository.Save();
+            }
         }
 
         public async Task SendMessage(Message message)
@@ -88,7 +94,10 @@ namespace Airbnb.Services
             var currUser = await userManager.FindByIdAsync(CurrentUserId) as AppUser;
             var chat = currUser.Chats.Where(x => x.ChatId == message.ChatId).FirstOrDefault();
             if (chat != null)
+            {
                 await messageRepository.Add(message);
+                await messageRepository.Save();
+            }
         }
     }
 
