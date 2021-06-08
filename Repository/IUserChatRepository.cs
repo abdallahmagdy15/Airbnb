@@ -8,6 +8,6 @@ namespace Airbnb.Repository
 {
     public interface IUserChatRepository:IRepositoryBase<UserChat>
     {
-
+        public Task<Chat> GetChatWith(string currentUserId, string recieverId);
     }
 }

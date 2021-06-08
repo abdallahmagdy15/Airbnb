@@ -24,15 +24,15 @@ namespace Airbnb.Repository
                 await db.UsersChats.AddAsync(chatUser);
         }
 
-        public async Task<UserChat> Get(int chatId,string userId)
+        public async Task<UserChat> Get(int chatId, string userId)
         {
-            var chatuser = await db.UsersChats.FirstOrDefaultAsync(c => c.ChatId == chatId && c.UserId == userId );
+            var chatuser = await db.UsersChats.FirstOrDefaultAsync(c => c.ChatId == chatId && c.UserId == userId);
             return chatuser;
         }
 
-        public async Task Remove(int chatId,string userId)
+        public async Task Remove(int chatId, string userId)
         {
-            var userChat = await Get(chatId,userId);
+            var userChat = await Get(chatId, userId);
             db.UsersChats.Remove(userChat);
         }
 
@@ -42,15 +42,22 @@ namespace Airbnb.Repository
             db.Entry(_userChat).CurrentValues.SetValues(userchat);
         }
 
-        public List<Chat> GetAll()
+        public List<UserChat> GetAll()
         {
-            return db.Chats.ToList();
+            return db.UsersChats.ToList();
         }
-        public List<Chat> Find(Expression<Func<Chat, bool>> expression)
+        public List<UserChat> Find(Expression<Func<UserChat, bool>> expression)
         {
-            return db.Chats.Where(expression).ToList();
+            return db.UsersChats.Where(expression).ToList();
         }
-
+        public async Task<Chat> GetChatWith(string currentUserId, string recieverId)
+        {
+            var chat = await (from sender in db.UsersChats
+                                from reciever in db.UsersChats.Where(x => x.ChatId == sender.ChatId)
+                                where sender.UserId == currentUserId && reciever.UserId == recieverId
+                                select sender.Chat).FirstOrDefaultAsync();
+            return chat;
+        }
         public async Task Save()
         {
             await db.SaveChangesAsync();
