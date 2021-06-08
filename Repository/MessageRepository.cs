@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Airbnb.Repository
 {
-    public class MessageRepository : IRepositoryBase<Message>, IDisposable
+    public class MessageRepository : IMessageRepository, IDisposable
     {
         private readonly ApplicationDbContext db;
 

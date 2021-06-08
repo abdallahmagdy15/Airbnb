@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
+using Airbnb.Repository;
 
 namespace Airbnb
 {
@@ -56,8 +58,13 @@ namespace Airbnb
                     options.AppSecret = "0a46289db8d433907f64d6516882ba94";
                 });
 
-
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IPropertyService, PropertyService>();
+            services.AddScoped<IMessagingService, MessagingService>();
+            services.AddScoped<IChatRepository, ChatRepository>();
+            services.AddScoped<IUserChatRepository, UserChatRepository>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

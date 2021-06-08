@@ -7,7 +7,5 @@ using System.Threading.Tasks;
 namespace Airbnb.Repository
 {
     public interface IMessageRepository:IRepositoryBase<Message>
-    {
-       
-    }
+    {}
 }

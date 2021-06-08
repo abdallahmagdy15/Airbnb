@@ -6,6 +6,8 @@ using System.Web;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace Airbnb.Services
 {
@@ -15,25 +17,26 @@ namespace Airbnb.Services
         private readonly IMessageRepository messageRepository;
         private readonly IUserChatRepository userChatRepository;
         private readonly UserManager<AppUser> userManager;
-        private readonly string currentUserId;
+        private readonly string CurrentUserId;
 
-        public MessagingService(string _currentUserId, IChatRepository chatRepository, IMessageRepository messageRepository, IUserChatRepository userChatRepository, UserManager<AppUser> userManager)
+        public MessagingService(IHttpContextAccessor contextAccessor, IChatRepository chatRepository, IMessageRepository messageRepository, IUserChatRepository userChatRepository, UserManager<AppUser> userManager)
         {
             this.chatRepository = chatRepository;
             this.messageRepository = messageRepository;
             this.userChatRepository = userChatRepository;
             this.userManager = userManager;
-            this.currentUserId = _currentUserId;
+            CurrentUserId = contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
         }
+
         public async Task<Chat> CreateChat(string recieverUserId)
         {
             //check if already chat created
-            Chat chat = await userChatRepository.GetChatWith(currentUserId, recieverUserId);
+            Chat chat = await userChatRepository.GetChatWith(CurrentUserId, recieverUserId);
             if (chat != null) // already created
                 return chat;
             //if not created 
             chat = new Chat();
-            var sender = await userManager.FindByIdAsync(currentUserId);
+            var sender = await userManager.FindByIdAsync(CurrentUserId);
             var reciever = await userManager.FindByIdAsync(recieverUserId);
             var chatSender = new UserChat() { Chat = chat, User = sender };
             var chatReciever = new UserChat() { Chat = chat, User = reciever };
@@ -56,12 +59,12 @@ namespace Airbnb.Services
 
         public async Task<Chat> GetChatWith(string recieverUserId)
         {
-            return await userChatRepository.GetChatWith(currentUserId, recieverUserId);
+            return await userChatRepository.GetChatWith(CurrentUserId, recieverUserId);
         }
 
         public async Task<List<Chat>> GetMyChats()
         {
-            AppUser user = await userManager.FindByIdAsync(currentUserId);
+            AppUser user = await userManager.FindByIdAsync(CurrentUserId);
             return user.Chats.Select(x => x.Chat).ToList();
         }
 
@@ -76,13 +79,13 @@ namespace Airbnb.Services
         public async Task RemoveMessage(int messageId)
         {
             var message = await messageRepository.Get(messageId);
-            if (message.UserId == currentUserId)
+            if (message.UserId == CurrentUserId)
                 await messageRepository.Remove(messageId);
         }
 
         public async Task SendMessage(Message message)
         {
-            var currUser = await userManager.FindByIdAsync(currentUserId) as AppUser;
+            var currUser = await userManager.FindByIdAsync(CurrentUserId) as AppUser;
             var chat = currUser.Chats.Where(x => x.ChatId == message.ChatId).FirstOrDefault();
             if (chat != null)
                 await messageRepository.Add(message);
