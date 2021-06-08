@@ -8,13 +8,13 @@ namespace Airbnb.Repository
 {
     public interface IRepositoryBase<T>
     {
-        public void Add(T t);
-        public void Remove(int id);
-        public void Update(T t);
-        public T Get(int id);
+        public Task Add(T t);
+        public Task Remove(int id);
+        public Task Update(T t);
+        public Task<T> Get(int id);
         public List<T> GetAll();
         public List<T> Find(Expression<Func<T, bool>> expression);
-        public void Save();
+        public Task Save();
 
     }
 }

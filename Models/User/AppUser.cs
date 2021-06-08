@@ -1,6 +1,8 @@
 ﻿using Airbnb.Models.Location;
+using Airbnb.Models.Messaging;
 using Microsoft.AspNetCore.Identity;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -43,6 +45,9 @@ namespace Airbnb.Models
         public int? CityId { get; set; }
 
         public virtual City City { get; set; }
+
+        public virtual List<Message> Messages { get; set; }
+        public virtual List<UserChat> Chats { get; set; }
     }
 
     public enum Gender

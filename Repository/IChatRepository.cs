@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Airbnb.Repository
 {
-    interface IChatRepository:IRepositoryBase<Chat>
+    public interface IChatRepository:IRepositoryBase<Chat>
     {
         
     }

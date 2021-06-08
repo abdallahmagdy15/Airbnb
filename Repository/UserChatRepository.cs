@@ -9,43 +9,42 @@ using System.Threading.Tasks;
 
 namespace Airbnb.Repository
 {
-    public class ChatRepository : IChatRepository, IDisposable
+    public class UserChatRepository : IUserChatRepository
     {
         private readonly ApplicationDbContext db;
 
-        public ChatRepository(ApplicationDbContext db)
+        public UserChatRepository(ApplicationDbContext db)
         {
             this.db = db;
         }
-        public async Task Add(Chat chat)
+        public async Task Add(UserChat chatUser)
         {
 
-            if (chat != null)
-                await db.Chats.AddAsync(chat);
+            if (chatUser != null)
+                await db.UsersChats.AddAsync(chatUser);
         }
 
-        public async Task<Chat> Get(int chatId)
+        public async Task<UserChat> Get(int chatId,string userId)
         {
-            Chat chat = null;
-            chat = await db.Chats.FirstOrDefaultAsync(c => c.ChatId == chatId);
-            return chat;
+            var chatuser = await db.UsersChats.FirstOrDefaultAsync(c => c.ChatId == chatId && c.UserId == userId );
+            return chatuser;
         }
 
-        public async Task Remove(int chatId)
+        public async Task Remove(int chatId,string userId)
         {
-            var chat = await Get(chatId);
-            db.Chats.Remove(chat);
+            var userChat = await Get(chatId,userId);
+            db.UsersChats.Remove(userChat);
         }
 
-        public async Task Update(Chat chat)
+        public async Task Update(UserChat userchat)
         {
-            var _chat = await Get(chat.ChatId);
-            db.Entry(_chat).CurrentValues.SetValues(chat);
+            var _userChat = await Get(userchat.ChatId, userchat.UserId);
+            db.Entry(_userChat).CurrentValues.SetValues(userchat);
         }
 
         public List<Chat> GetAll()
         {
-            return  db.Chats.ToList();
+            return db.Chats.ToList();
         }
         public List<Chat> Find(Expression<Func<Chat, bool>> expression)
         {

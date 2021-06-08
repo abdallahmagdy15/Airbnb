@@ -32,6 +32,7 @@ namespace Airbnb.Data
 
         public virtual DbSet<Chat> Chats { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
+        public virtual DbSet<UserChat> UsersChats { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -99,6 +100,16 @@ namespace Airbnb.Data
                 .HasOne(pa => pa.Space)
                 .WithMany(a => a.Properties)
                 .HasForeignKey(pa => pa.SpaceId);
+
+            builder.Entity<UserChat>()
+               .HasOne(x => x.Chat)
+               .WithMany(x => x.Users)
+               .HasForeignKey(x => x.ChatId);
+
+            builder.Entity<UserChat>()
+                .HasOne(x => x.User)
+                .WithMany(x => x.Chats)
+                .HasForeignKey(x => x.UserId);
 
             builder.Entity<PropertyUnavailableDay>()
                 .HasKey(p => new { p.PropertyId, p.UnavailableDay });
