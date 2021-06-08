@@ -7,7 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Airbnb.Repository
+namespace Airbnb.Repositories
 {
     public class MessageRepository : IMessageRepository, IDisposable
     {

@@ -1,6 +1,6 @@
 ﻿using Airbnb.Models;
 using Airbnb.Models.Messaging;
-using Airbnb.Repository;
+using Airbnb.Repositories;
 using Microsoft.AspNetCore.Identity;
 using System.Web;
 using System.Collections.Generic;
@@ -95,6 +95,7 @@ namespace Airbnb.Services
             var chat = currUser.Chats.Where(x => x.ChatId == message.ChatId).FirstOrDefault();
             if (chat != null)
             {
+                message.UserId = CurrentUserId;
                 await messageRepository.Add(message);
                 await messageRepository.Save();
             }
