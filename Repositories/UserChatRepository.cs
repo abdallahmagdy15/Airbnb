@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Airbnb.Repositories
 {
-    public class UserChatRepository : IUserChatRepository
+    public class UserChatRepository : IUserChatRepository, IDisposable
     {
         private readonly ApplicationDbContext db;
 
@@ -80,6 +80,17 @@ namespace Airbnb.Repositories
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        //unused methods...
+        public Task Remove(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<UserChat> Get(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
