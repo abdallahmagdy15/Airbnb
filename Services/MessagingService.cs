@@ -46,7 +46,12 @@ namespace Airbnb.Services
         }
         public async Task<Chat> GetChatById(int chatId)
         {
-            return await chatRepository.Get(chatId);
+            var myChats = await GetMyChats();
+            var chat = await chatRepository.Get(chatId);
+            if (myChats.Contains(chat))
+                return chat;
+            else
+                return null;
         }
 
         public async Task<Chat> GetChatWith(string recieverUserId)
@@ -62,7 +67,10 @@ namespace Airbnb.Services
 
         public async Task RemoveChat(int chatId)
         {
-            await chatRepository.Remove(chatId);
+            var myChats = await GetMyChats();
+            var chat = await chatRepository.Get(chatId);
+            if (myChats.Contains(chat))
+                await chatRepository.Remove(chatId);
         }
 
         public async Task RemoveMessage(int messageId)
