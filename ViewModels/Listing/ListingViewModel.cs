@@ -26,6 +26,14 @@ namespace Airbnb.ViewModels.Listing
         public string Description { set; get; }
         public string Title { set; get; }
 
+        public int NumberOfMonthsInAdvance { set; get; }
+        public int NumberOfDaysNotice { set; get; }
+
+        public string MinNights { set; get; }
+        public string MaxNights { set; get; }
+
+        public int Price { set; get; }
+
         public List<Amenity> amenty { set; get; }
         public List<Space> Spaces { set; get; }
         public List<Category> Categories { set; get; }

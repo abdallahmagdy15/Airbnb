@@ -59,6 +59,12 @@ footer {
     display: flex !important;
     align-items: center !important;
 }
+@media only screen and (min-width: 600px) {
+   .TipsInFullScreen{
+       max-width:0 !important;
+       margin-left:10px !important;
+   }
+}
 
 .TipsInFullScreen {
     background-color: white;

@@ -16,14 +16,17 @@ footer {
     margin-left: 30px;
     margin-right: 30px;
 }
-
-.containFooter {
-    background-color: white;
-    position: fixed;
-    bottom: 0px;
-    z-index: 1000;
-    display: flex;
-    padding-bottom: 15px;
+@media only screen and (min-width: 600px){
+    .containFooter {
+        left:0 !important
+    }
+.containFooter{
+background-color: white;
+position: fixed;
+bottom: 0px;
+z-index: 1000;
+display: flex;
+padding-bottom: 15px;
 }
 
 .ContainRightDiv {

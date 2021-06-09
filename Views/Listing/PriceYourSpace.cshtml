@@ -1,0 +1,117 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model ListingViewModel
+<div id="18" style="display:flex">
+    <div class="col col-12 col-md-7">
+
+        <div class="ContainPropertyType col col-11">
+            <div>
+
+                <div class="ContainDescription">
+                    <div style="padding-bottom: 20px;">
+                        <div class="ContainQuestion">
+                            Price your space
+                        </div>
+
+                    </div>
+                    <div class="PriceNotice">
+                        <div>
+                            Increase your chances of getting booked
+                        </div>
+                        <div>
+                            Set up Smart Pricing to automatically keep your nightly prices competitive as demand in your area changes.
+                        </div>
+                    </div>
+                    <div class="PriceNotice" style="margin-top: 30px;">
+                        <div>
+                            Set up Smart Pricing
+                        </div>
+                        <div>
+                            A 14% guest service fee is added to every host's price—but sometimes the amount will vary, depending on the length of the trip.
+                        </div>
+                    </div>
+                    <div class="PriceNotice" style="margin-top: 30px;">
+                        <div>
+                            Base price
+                        </div>
+                        <div>
+                            This will be your default price for days when you decide to turn off Smart Pricing.
+                        </div>
+                        <div>
+                            <input type="text" asp-for="Price">
+                        </div>
+                        <div>
+                            Tip: $40
+                        </div>
+                    </div>
+                    <div id="myDIV">
+                    <div class="PriceNotice" style="margin-top: 30px;">
+                        <div>
+                            Minimum price
+                        </div>
+                        <div>
+                            When demand for your space is low, nightly prices will drop to attract more guests to book. What’s the lowest price you’re comfortable with?
+                        </div>
+                        <div>
+                            <input type="text">
+                        </div>
+                        <div>
+                            Tip: $28
+                        </div>
+                    </div>
+                    <div class="PriceNotice" style="margin-top: 30px;">
+                        <div>
+                            Maximum price
+                        </div>
+                        <div>
+                            If demand is high, e.g. if there’s a popular festival in town, what’s the highest price you’re willing to charge guests per night?
+                        </div>
+                        <div>
+                            <input type="text">
+                        </div>
+                        <div>
+                            Tip: $128
+                        </div>
+                    </div>
+                       
+                    <div style="max-width: 450px; color: #484848 !important ;
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 1.375em !important;margin-top: 30px;">
+                        You’re always in control of your nightly price. By continuing, you agree to turn on Smart Pricing. You can change this later in settings.
+
+                    </div>
+                        </div>
+                    <div style="width: 95%;margin-top: 30px;">
+                        <hr>
+                    </div>
+                    <div class="pricebtn" style="margin-top: 30px;margin-bottom:50px">
+                        <input class="btn" type="button" onclick="smartprice()" id="smartpricebtn"
+                               value="Use base price only" />
+                    </div>
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- div will show after Select -->
+
+
+
+
+
+    </div>
+    <div class="col col-md-5 d-none d-md-block ContainRightDiv">
+
+    </div>
+</div>

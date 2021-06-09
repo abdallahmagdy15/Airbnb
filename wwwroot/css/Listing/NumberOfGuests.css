@@ -302,10 +302,7 @@ progress {
     height: 1000px;
 }
 
-#backsvg {
-    padding: 0 !important;
-    margin-left: 60px;
-}
+
 @media (min-width: 1330px) {
     footer {
         margin-left: 13.5% !important

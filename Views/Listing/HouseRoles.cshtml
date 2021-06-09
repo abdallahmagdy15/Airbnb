@@ -9,27 +9,27 @@
 <div id="10" style="display:flex">
     <div class="col col-12 col-md-7">
 
-        <div class="ContainPropertyType col col-11" style="margin-left:70px !important">
+        <div class="ContainPropertyType col col-11" style="margin-left:0px !important">
 
-            <div class="ContainAllRules">
+            <div class="ContainAllRules col col-11 col-xl-8" style="margin-right:5%">
                 <div style="padding-bottom: 30px;">
                     <div class="ContainQuestion">Set house rules for your guests</div>
-                    <div class="QuestionDescription">
+                    <div class="QuestionDescription" style="margin-right:5%;max-width:550px">
                         Guests must agree to your house rules
                         before they book.
                     </div>
                 </div>
-                <div style="max-width: 450px;min-width: 380px;"></div>
+                <div style="max-width: 550px;min-width: 380px;"></div>
                 <div>
                     @for (var item = 0; item < Model.houseRoles.Count; item++)
                     {
                         <div class="ContainOneRole">
 
-                            <div class="RuleName">
+                            <div class="RuleName" style="max-width:550px;font-size:20px !important">
                                 @Html.DisplayFor(x=>x.houseRoles[item].Name)
                             </div>
                             <div class="ContainTrueFalse" style="padding-left: 15%;display: flex;margin-right: 10px !important;">
-
+                                <div style="position:absolute;right:0;display:flex">
                                 <div class="False">
                                     <input class="_1wrrwzb" type="checkbox"
                                            value="false" style="display:none">
@@ -54,6 +54,7 @@
                                         </svg>
                                     </label>
                                 </div>
+                                    </div>
                             </div>
                         </div>
                     }

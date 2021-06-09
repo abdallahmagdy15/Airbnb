@@ -47,17 +47,27 @@ namespace Airbnb.Controllers.Listing
         [HttpPost]
         public IActionResult KindOfPlace(ListingViewModel listingViewModel)
         {
+            var minNights = int.Parse(listingViewModel.MinNights.Split(' ')[0]);
+            var maxNights = int.Parse(listingViewModel.MaxNights.Split(' ')[0]);
+
             var name = _applicationDbContext.Categories.FirstOrDefault(x => x.Name == listingViewModel.Categoryname);
             var id = name.Id;
             Property NewProperty = new Property();
             NewProperty.CategoryId = id;
             NewProperty.Complete = false;
+            NewProperty.NumberOfBedRooms = int.Parse(listingViewModel.NumOfBedrooms);
+            NewProperty.NumberOfBeds = listingViewModel.NumOfBeds;
             NewProperty.Zipcode = listingViewModel.ZipCode;
             NewProperty.BuildingNo = listingViewModel.Apt_Suite;
             NewProperty.Street = listingViewModel.Street;
             NewProperty.Title = listingViewModel.Title;
             NewProperty.Description = listingViewModel.Description;
             NewProperty.NumberOfBathrooms = listingViewModel.NumberOfBathRooms;
+            NewProperty.NumberOfDaysInAdvance = listingViewModel.NumberOfMonthsInAdvance;
+            NewProperty.NumberOfDaysNotice = listingViewModel.NumberOfDaysNotice;
+            NewProperty.MinStay = minNights;
+            NewProperty.MaxStay = maxNights;
+            NewProperty.Price = listingViewModel.Price;
             _applicationDbContext.Add(NewProperty);
             _applicationDbContext.SaveChanges();
             string UniqueFileName = null;

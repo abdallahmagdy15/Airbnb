@@ -40,10 +40,10 @@
                                 <path d="m2 16h28m-14-14v28"></path>
                             </svg>
                         </span>
-                        </button>
+                    </button>
                 </div>
             </div>
-            
+
         </div>
 
         <!-- div will show after Select -->
@@ -53,20 +53,21 @@
 
     </div>
 </div>
-<script>
+@section Scripts {
+    <script>
 
-    var NumberOfBathrooms = 0
-    $(function () {
-        $('#number_Children').val(NumberOfBathrooms)
-    })
-    $('#add_Children').click(function () {
-        NumberOfBathrooms += 1;
-        $('#number_Children').val(NumberOfBathrooms)
-    })
-    $('#subtract_Children').click(function () {
-        
-        NumberOfBathrooms -= 1;
-        $('#number_Children').val(NumberOfBathrooms)
-    })
+        var NumberOfBathrooms = 0
+        $(function () {
+            $('#number_Children').val(NumberOfBathrooms)
+        })
+        $('#add_Children').click(function () {
+            NumberOfBathrooms += 1;
+            $('#number_Children').val(NumberOfBathrooms)
+        })
+        $('#subtract_Children').click(function () {
 
-</script>
+            NumberOfBathrooms -= 1;
+            $('#number_Children').val(NumberOfBathrooms)
+        })
+    </script>
+}

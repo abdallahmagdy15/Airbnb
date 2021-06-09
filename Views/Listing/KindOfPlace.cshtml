@@ -26,7 +26,7 @@
 <div>
     <progress id="file" value="10" max="100" style="width: 100%;"> </progress>
 </div>
-<form enctype="multipart/form-data" method="post" >
+<form enctype="multipart/form-data" method="post">
 
     <div id="1" style="display:flex ">
         <div class="col col-12 col-md-7">
@@ -38,7 +38,7 @@
                 <div class="PropertyType">Choose a property type</div>
                 <div class="ContainSelect">
                     <div class="SelectCategory">
-                        <input  asp-for="Categoryname" value="Select one" class="SelectCategoryInput" readonly>
+                        <input asp-for="Categoryname" value="Select one" class="SelectCategoryInput" readonly>
                         <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false"
                              style="height: 16px; width: 16px; display: inline; fill: currentcolor;">
                             <path d="m16.29 4.3a1 1 0 1 1 1.41 1.42l-8 8a1 1 0 0 1 -1.41 0l-8-8a1 1 0 1 1 1.41-1.42l7.29 7.29z"
@@ -48,15 +48,15 @@
                     <div class="ContainOptions">
                         @foreach (var item in Model.Categories)
                         {
-                        <div class="ContainOneOption">
-                            <div class="OptionCategory">
-                                @Html.DisplayFor(x=>item.Name)
+                            <div class="ContainOneOption">
+                                <div class="OptionCategory">
+                                    @Html.DisplayFor(x => item.Name)
+                                </div>
+                                <div class="OptionDescription">
+                                    @Html.DisplayFor(x => item.Description)
+
+                                </div>
                             </div>
-                            <div class="OptionDescription">
-                                @Html.DisplayFor(x=>item.Description)
-                                
-                            </div>
-                        </div>
                         }
 
                     </div>
@@ -100,7 +100,7 @@
                         {
                             <div class="ContainOneOptionTypeOfPlace">
                                 <div class="OptionTypeOfPlace">
-                                @Html.DisplayFor(itemModel=>item.Name)
+                                    @Html.DisplayFor(itemModel => item.Name)
                                 </div>
                                 <div class="OptionDescriptionTypeOfPlace">
                                     @Html.DisplayFor(itemModel => item.Description)
@@ -190,9 +190,10 @@
         </div>
     </div>
 
-  <footer style=" position: fixed; bottom: 0; width: 100%;z-index:1000">
-                <div class="col col-12 col-md-7" style="position:relative">
-            <div class="col col-11 col-xl-8 containFooter" style="position:absolute;height:90px;">
+    <footer style=" position: fixed; bottom: 0; width: 100%;z-index:1000">
+        <div class="col col-12 col-md-7 ContainContainFooter" style="position:relative">
+            <div class="col col-11 col-xl-8 containFooter" style="left:55px;border-top:1px solid lightgray;padding-top:15px;margin-top:15px;position:absolute;height:90px;">
+
                 <div style="display:inline-block">
                     <svg id="backsvg" viewBox="0 0 18 18" role="presentation" aria-hidden="true"
                          focusable="false" style="height: 1em; width: 1em; fill: currentcolor;">
@@ -207,27 +208,33 @@
                            style="padding: 10px 20px;font-size: 20px; font-weight:bold;color: white;background-color: #008489;">
                 </div>
             </div>
-                    </div>
-        
-          
+        </div>
+
+
     </footer>
-    <partial name="NubmerOfGuests.cshtml" />
+    <partial name="NumberOfGustsAndBeds.cshtml" />
+    @*<partial name="NubmerOfGuests.cshtml" />*@
     <partial name="NumberOfBathRooms.cshtml" />
     <partial name="Location.cshtml" />
     <partial name="Amenty.cshtml">
-    <partial name="placesCanGuestUse.cshtml">
-    <partial name="Description.cshtml">
-    <partial name="Title.cshtml">
-    <partial name="GuestsRequirement.cshtml">
-    <partial name="HouseRoles.cshtml">
-    <partial name="PopertyImages.cshtml">
-    <partial name="Tips.cshtml">
-    <partial name="successhosting.cshtml">
-    <partial name="QuestionToStart.cshtml">
-    <partial name="notice.cshtml">
-    <partial name="howfar.cshtml">
-    <partial name="howlong.cshtml">
-    <partial name="price.cshtml">
+        <partial name="placesCanGuestUse.cshtml">
+            <partial name="Description.cshtml">
+                <partial name="Title.cshtml">
+                    <partial name="GuestsRequirement.cshtml">
+                        <partial name="HouseRoles.cshtml">
+                            <partial name="PopertyImages.cshtml">
+                                <partial name="HowGuestWillBook.cshtml">
+                                    @*<partial name="Tips.cshtml">*@
+                                    <partial name="successhosting.cshtml">
+                                        @*<partial name="QuestionToStart.cshtml">*@
+                                        <partial name="TwoQuestionToStart.cshtml">
+                                            <partial name="DayNotice.cshtml">
+                                                @*<partial name="howfar.cshtml">*@
+                                                <partial name="HowFarInAdvance.cshtml">
+                                                    @*<partial name="howlong.cshtml">*@
+                                                    <partial name="HowLongCanGuestStay">
+                                                        @*<partial name="price.cshtml">*@
+                                                        <partial name="PriceYourSpace">
 
 </form>
 
@@ -337,6 +344,13 @@
                     //if ($('#3').is(":visible")){
                     //    $('#next').prop('disabled', true)
                     //}
+                    if (PageNumber == 18) {
+                        $('#next').val('finsh')
+                    }
+                    if (PageNumber == 19) {
+                        $('#next').prop('type', 'submit')
+
+                    }
                     if (PageNumber < 25) {
                         //if ((FormValidation7) == false && $('#7').is(":visible") ||
                         //    (FormValidation4) == false && $('#4').is(":visible") ||
@@ -346,6 +360,17 @@
                         //    $('.ValidationBoxForDescription').css('display', 'table')
                         //}
                         //else {
+                        if (PageNumber == 12) {
+                            $('.ContainContainFooter').addClass('col col-md-11')
+                            $('.containFooter').addClass('col col-xl-7 ')
+                            $('.containFooter').css('left', '5%')
+                        }
+                        else {
+                            $('.ContainContainFooter').removeClass('col col-md-11')
+                            $('.containFooter').removeClass('col col-xl-12')
+                            $('.containFooter').css('left', '55px')
+                        }
+                       
                             $('.ValidationBoxForDescription').css('display', 'none')
                             $("#" + (PageNumber - 1)).css('display', 'none')
                             if(PageNumber==12 ||PageNumber==13){
@@ -357,8 +382,8 @@
                                 return parseInt(oldval, 10) + 25
                             })
                             PageNumber++
-                        //}
-                    }
+                        }
+                    //}
                     switch (PageNumber) {
                         case 3:
                         case 4:
@@ -391,8 +416,20 @@
                     $('.ValidationBoxForDescription').css('display', 'none')
 
                     if (PageNumber > 2) {
+                        if (PageNumber == 14) {
+                            $('.containFooter').addClass('col col-xl-12')
+                            $('.containFooter').css('left', '15%')
+                        }
+                        else {
+                            $('.containFooter').removeClass('col col-xl-12')
+                            $('.containFooter').css('left', '55px')
+                        }
                         $("#" + (PageNumber - 1)).css('display', 'none')
-                        $("#" + (PageNumber - 2)).css('display', 'flex')
+                        if (PageNumber == 14 || PageNumber == 15) {
+                            $("#" + (PageNumber - 2)).css('display', 'block')
+                        } else {
+                            $("#" + (PageNumber - 2)).css('display', 'flex')
+                        }
                         $('#file').val(function (i, oldval) {
                             return parseInt(oldval, 10) - 25
                         })
@@ -436,14 +473,14 @@
             if (minNiights == 0) {
                 $('#min').val("Min");
             } else {
-                $('#min').val("" + minNiights + "  " + "Min");
+                $('#min').val("" + minNiights + "  " + "min Nights");
             }
         }
     });
     $("#minnightsplus").click(function (event) {
         if (minNiights < maxNights) {
             minNiights++;
-            $('#min').val("" + minNiights + "  " + "Min");
+            $('#min').val("" + minNiights + "  " + "min Nights");
         }
     });
     $("#maxnightsminus").click(function (event) {
@@ -453,7 +490,7 @@
                 if (maxNights == 0) {
                     $('#max').val("Max");
                 } else {
-                    $('#max').val("" + maxNights + "  " + "Max");
+                    $('#max').val("" + maxNights + "  " + "max Nights");
                 }
 
             }
@@ -461,7 +498,7 @@
     });
     $("#maxnightsplus").click(function (event) {
         maxNights++;
-        $('#max').val("" + maxNights + "  " + "Max");
+        $('#max').val("" + maxNights + "  " + "max Nights");
     });
        
                   function smartprice() {
@@ -473,8 +510,50 @@
         }
         var elem = document.getElementById("smartpricebtn");
         if (elem.value == "Use base price only") elem.value = "Set up Smart Pricing";
-        else elem.value = "Use base price only";
-    }
+                      else elem.value = "Use base price only";
+
+
+                }
+                ///NumberOfGuestsAndBeds
+                var NumberOfGuest = 0
+                var NumberOfBeds = 0
+                $(function () {
+                    $('#number_Guests').val(NumberOfGuest)
+                    //$('#number_Beds').val(NumberOfBeds)
+                    $('#subtract_Guests').prop("disabled", true)
+                    $('#subtract_Beds').prop("disabled", true)
+
+
+                })
+                $('#add_Guests').click(function () {
+                    NumberOfGuest += 1;
+                    $('#subtract_Guests').prop("disabled", false)
+                    $('#number_Guests').val(NumberOfGuest)
+                })
+                $('#subtract_Guests').click(function () {
+                    if (NumberOfGuest <= 0) {
+                        $('#subtract_Guests').prop("disabled", true)
+
+                    } else {
+                        NumberOfGuest -= 1;
+                        $('#number_Guests').val(NumberOfGuest)
+                    }
+                })
+                $('#add_Beds').click(function () {
+                    NumberOfBeds += 1;
+                    $('#number_Beds').val(NumberOfBeds)
+                    $('#subtract_Beds').prop("disabled", false)
+
+                })
+                $('#subtract_Beds').click(function () {
+                    if (NumberOfBeds <= 0) {
+                        $('#subtract_Beds').prop("disabled", true)
+
+                    } else {
+                        NumberOfBeds -= 1;
+                        $('#number_Beds').val(NumberOfBeds)
+                    }
+                })
             </script>
         }
         
