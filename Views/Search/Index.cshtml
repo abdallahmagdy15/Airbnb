@@ -656,14 +656,31 @@
 
             var homeControlDiv = document.createElement('div');
             var homeControl = new HomeControl(homeControlDiv, map);
+
+            @foreach (var item in Model)
+            {
+                @:createMarker(@(item.Coordinates.Coordinate.X), @(item.Coordinates.Coordinate.Y), map, '../images/mark.png', '@(item.Price.ToString("C0"))')
+                    
+                    @:.addListener("click", (e) => {
+                          @:const infoWind = createInfoWindow('@(item.Title)', '@(item.Photos[0].Url)', @(item.Id));
+                          @:infoWind.setPosition(e.latLng);
+                          @:infoWind.open(map);
+                      @:});
+            }
         }
 
-        function createMarker(long, lat, map) {
+        function createMarker(long, lat, map, imageUrl, price) {
             var mLoc = new google.maps.LatLng(lat, long);
             const marker = new google.maps.Marker({
                 position: mLoc,
                 map: map,
             });
+
+            if (imageUrl)
+                marker.setIcon(imageUrl);
+
+            if (price)
+                marker.setLabel(price);
 
             return marker;
         }
@@ -702,5 +719,22 @@
                     break;
             }
         });
+
+        function createInfoWindow(title, img, id) {
+            const content = `
+                <div>
+                    <h5 style="text-align: center;">${title}</h5>
+                    <div style="width: 150px; height: 150px; overflow: hidden; margin: auto;">
+                        <img src="${img}" alt="imag" style="object-fit: cover; width: 100%; height: 100%; border-radius: 10px;" />
+                    </div>
+                    <a href="../Property/Details/${id}" style=" display: block; text-decoration: none; color: gray; margin: 10px auto;">Go To Page</a>
+                </div>
+            `;
+            const infowindow = new google.maps.InfoWindow({
+                content: content,
+            });
+
+            return infowindow;
+        }
     </script>
 }
