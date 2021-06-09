@@ -352,14 +352,15 @@
 
                     }
                     if (PageNumber < 25) {
-                        //if ((FormValidation7) == false && $('#7').is(":visible") ||
-                        //    (FormValidation4) == false && $('#4').is(":visible") ||
-                        //    (FormValidation8) == false && $('#8').is(":visible"))
-                        //    {
-                        //    console.log('cantdothis')
-                        //    $('.ValidationBoxForDescription').css('display', 'table')
-                        //}
-                        //else {
+                        if ((FormValidation7) == false && $('#7').is(":visible") ||
+                            (FormValidation4) == false && $('#4').is(":visible") ||
+                            (FormValidation8) == false && $('#8').is(":visible") ||
+                            (FormValidation18) == false && $('#18').is(":visible"))
+                            {
+                            console.log('cantdothis')
+                            $('.ValidationBoxForDescription').css('display', 'table')
+                        }
+                        else {
                         if (PageNumber == 12) {
                             $('.ContainContainFooter').addClass('col col-md-11')
                             $('.containFooter').addClass('col col-xl-7 ')
@@ -379,11 +380,11 @@
                             $("#" + PageNumber).css('display', 'flex')
                 }
                             $('#file').val(function (i, oldval) {
-                                return parseInt(oldval, 10) + 25
+                                return parseInt(oldval, 10) + (100/18)
                             })
                             PageNumber++
                         }
-                    //}
+                    }
                     switch (PageNumber) {
                         case 3:
                         case 4:
@@ -404,9 +405,19 @@
                             break;
                         case 10:
                         case 11:
+                        case 12:
+                        case 13:
                             $('.ContainTitle').html('Booking settings');
-
                             break;
+                        case 15:
+                        case 16:
+                        case 17:
+                            $('.ContainTitle').html('Calendar and availability');
+                            break;
+                        case 18:
+                            $('.ContainTitle').html('Pricing');
+                            break;
+
                         default:
                             $('.ContainTitle').html('none');
                             break;
@@ -431,7 +442,7 @@
                             $("#" + (PageNumber - 2)).css('display', 'flex')
                         }
                         $('#file').val(function (i, oldval) {
-                            return parseInt(oldval, 10) - 25
+                            return parseInt(oldval, 10) - (100 / 18)
                         })
                         PageNumber--
                         console.log(PageNumber)
@@ -455,7 +466,17 @@
                             break;
                         case 10:
                         case 11:
+                        case 12:
+                        case 13:
                             $('.ContainTitle').html('Booking settings');
+                            break;
+                        case 15:
+                        case 16:
+                        case 17:
+                            $('.ContainTitle').html('Calendar and availability');
+                            break;
+                        case 18:
+                            $('.ContainTitle').html('Pricing');
                             break;
 
                         default:

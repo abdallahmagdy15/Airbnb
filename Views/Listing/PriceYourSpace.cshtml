@@ -9,6 +9,43 @@
 
         <div class="ContainPropertyType col col-11">
             <div>
+                <div class="ValidationBoxForDescription" style="max-width:550px">
+                    <div class="ContainWarningSign">
+                        <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true"
+                             focusable="false"
+                             style="height: 24px; width: 24px; display: block; fill: rgb(255, 255, 255);">
+                            <path d="m23.49 20.79c.39.73.12 1.64-.61 2.03-.22.12-.46.18-.71.18h-20.33c-.83 0-1.5-.67-1.5-1.5 0-.25.06-.49.18-.71l10.16-18.94c.39-.73 1.3-1 2.03-.61.26.14.47.35.61.61zm-11.05-18.47c-.05-.09-.12-.16-.2-.2-.24-.13-.55-.04-.68.2l-10.16 18.94c-.04.07-.06.15-.06.24 0 .28.22.5.5.5h20.33c.08 0 .16-.02.24-.06.24-.13.33-.43.2-.68zm-.48 4.68c-.58.02-1.04.51-1.02 1.1l.29 7.42c.01.27.23.48.5.48h.54c.27 0 .49-.21.5-.48l.29-7.42c0-.01 0-.03 0-.04 0-.58-.47-1.06-1.06-1.06-.01 0-.03 0-.04 0zm-.96 12c0 .55.45 1 1 1s1-.45 1-1-.45-1-1-1-1 .45-1 1z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="ContainValidationMessage">
+                        <div class="ContainMessageAndCloseButton">
+                            <div class="MessageAndCloseButton">
+                                <div class="Message">
+                                    <span>
+                                        You need to complete the fields to progress
+                                        forward
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ContainCloseButton">
+                                <div class="CloseButton">
+                                    <button aria-label="Close" type="button"
+                                            class="ContainCLoseSpan">
+                                        <span class="_3hmsj">
+                                            <svg viewBox="0 0 12 12"
+                                                 role="presentation" aria-hidden="true" focusable="false"
+                                                 style="height: 12px; width: 12px; display: block; fill: rgb(118, 118, 118);">
+                                                <path d="m11.5 10.5c.3.3.3.8 0 1.1s-.8.3-1.1 0l-4.4-4.5-4.5 4.5c-.3.3-.8.3-1.1 0s-.3-.8 0-1.1l4.5-4.5-4.4-4.5c-.3-.3-.3-.8 0-1.1s.8-.3 1.1 0l4.4 4.5 4.5-4.5c.3-.3.8-.3 1.1 0s .3.8 0 1.1l-4.5 4.5z"
+                                                      fill-rule="evenodd"></path>
+                                            </svg>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="ContainDescription">
                     <div style="padding-bottom: 20px;">
@@ -41,50 +78,50 @@
                             This will be your default price for days when you decide to turn off Smart Pricing.
                         </div>
                         <div>
-                            <input type="text" asp-for="Price">
+                            <input type="text" id="Price" asp-for="Price">
                         </div>
                         <div>
                             Tip: $40
                         </div>
                     </div>
                     <div id="myDIV">
-                    <div class="PriceNotice" style="margin-top: 30px;">
-                        <div>
-                            Minimum price
+                        <div class="PriceNotice" style="margin-top: 30px;">
+                            <div>
+                                Minimum price
+                            </div>
+                            <div>
+                                When demand for your space is low, nightly prices will drop to attract more guests to book. What’s the lowest price you’re comfortable with?
+                            </div>
+                            <div>
+                                <input type="text">
+                            </div>
+                            <div>
+                                Tip: $28
+                            </div>
                         </div>
-                        <div>
-                            When demand for your space is low, nightly prices will drop to attract more guests to book. What’s the lowest price you’re comfortable with?
+                        <div class="PriceNotice" style="margin-top: 30px;">
+                            <div>
+                                Maximum price
+                            </div>
+                            <div>
+                                If demand is high, e.g. if there’s a popular festival in town, what’s the highest price you’re willing to charge guests per night?
+                            </div>
+                            <div>
+                                <input type="text">
+                            </div>
+                            <div>
+                                Tip: $128
+                            </div>
                         </div>
-                        <div>
-                            <input type="text">
-                        </div>
-                        <div>
-                            Tip: $28
-                        </div>
-                    </div>
-                    <div class="PriceNotice" style="margin-top: 30px;">
-                        <div>
-                            Maximum price
-                        </div>
-                        <div>
-                            If demand is high, e.g. if there’s a popular festival in town, what’s the highest price you’re willing to charge guests per night?
-                        </div>
-                        <div>
-                            <input type="text">
-                        </div>
-                        <div>
-                            Tip: $128
-                        </div>
-                    </div>
-                       
-                    <div style="max-width: 450px; color: #484848 !important ;
+
+                        <div style="max-width: 450px; color: #484848 !important ;
                         font-weight: 400;
                         font-size: 16px;
                         line-height: 1.375em !important;margin-top: 30px;">
-                        You’re always in control of your nightly price. By continuing, you agree to turn on Smart Pricing. You can change this later in settings.
+                            You’re always in control of your nightly price. By continuing, you agree to turn on Smart Pricing. You can change this later in settings.
 
-                    </div>
                         </div>
+                    </div>
                     <div style="width: 95%;margin-top: 30px;">
                         <hr>
                     </div>
@@ -115,3 +152,19 @@
 
     </div>
 </div>
+@section Scripts{
+
+    <script>
+        var FormValidation18 = false
+        $('#Price').keyup(function () {
+            if ($('#Price').val() != '') {
+                $('.ValidationBoxForDescription').css('display', 'none')
+                FormValidation18 = true
+            }
+            else {
+                $('.ValidationBoxForDescription').css('display', 'table')
+                FormValidation18 = false
+            }
+        })
+        </script>
+}
