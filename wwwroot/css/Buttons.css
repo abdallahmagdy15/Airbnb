@@ -11,6 +11,30 @@
     outline: none;
 }
 
+.btn-big-like {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background-color: transparent;
+    color: white;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .btn-big-like:focus {
+        outline: none;
+    }
+
+    .btn-big-like:hover {
+        background-color: rgb(245, 245, 245);
+    }
+
 .btn-rounded:focus {
     outline: none;
 }
