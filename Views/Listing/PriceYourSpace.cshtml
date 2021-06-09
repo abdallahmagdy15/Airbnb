@@ -58,7 +58,7 @@
                         <div>
                             Increase your chances of getting booked
                         </div>
-                        <div>
+                        <div style="max-width:550px">
                             Set up Smart Pricing to automatically keep your nightly prices competitive as demand in your area changes.
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                         <div>
                             Set up Smart Pricing
                         </div>
-                        <div>
+                        <div style="max-width:550px">
                             A 14% guest service fee is added to every host's price—but sometimes the amount will vary, depending on the length of the trip.
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                         <div>
                             Base price
                         </div>
-                        <div>
+                        <div style="max-width:550px">
                             This will be your default price for days when you decide to turn off Smart Pricing.
                         </div>
                         <div>
@@ -155,16 +155,6 @@
 @section Scripts{
 
     <script>
-        var FormValidation18 = false
-        $('#Price').keyup(function () {
-            if ($('#Price').val() != '') {
-                $('.ValidationBoxForDescription').css('display', 'none')
-                FormValidation18 = true
-            }
-            else {
-                $('.ValidationBoxForDescription').css('display', 'table')
-                FormValidation18 = false
-            }
-        })
+       
         </script>
 }

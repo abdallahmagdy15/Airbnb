@@ -88,31 +88,40 @@ namespace Airbnb.Controllers.Listing
                
             }
             //amenty
-            foreach (var item in listingViewModel.IsChecked)
+            if (listingViewModel.IsChecked != null)
             {
-                PropertyAmenity amenity = new PropertyAmenity();
-                amenity.AmenityId = item;
-                amenity.PropertyId = NewProperty.Id;
-                _applicationDbContext.Add(amenity);
-                _applicationDbContext.SaveChanges();
+                foreach (var item in listingViewModel.IsChecked)
+                {
+                    PropertyAmenity amenity = new PropertyAmenity();
+                    amenity.AmenityId = item;
+                    amenity.PropertyId = NewProperty.Id;
+                    _applicationDbContext.Add(amenity);
+                    _applicationDbContext.SaveChanges();
+                }
             }
             //SpacesCanGuestUse
-            foreach(var item in listingViewModel.IsSpacesChecked)
+            if (listingViewModel.IsSpacesChecked != null)
             {
-                PropertySpace propertySpace = new PropertySpace();
-                propertySpace.PropertyId = NewProperty.Id;
-                propertySpace.SpaceId = item;
-                _applicationDbContext.Add(propertySpace);
-                _applicationDbContext.SaveChanges();
+                foreach (var item in listingViewModel.IsSpacesChecked)
+                {
+                    PropertySpace propertySpace = new PropertySpace();
+                    propertySpace.PropertyId = NewProperty.Id;
+                    propertySpace.SpaceId = item;
+                    _applicationDbContext.Add(propertySpace);
+                    _applicationDbContext.SaveChanges();
+                }
             }
             //HouseRoles
-            foreach(var item in listingViewModel.IsHouseRoleChecked)
+            if (listingViewModel.IsHouseRoleChecked != null)
             {
-                PropertyHouseRule propertyHouseRule = new PropertyHouseRule();
-                propertyHouseRule.PropertyId = NewProperty.Id;
-                propertyHouseRule.HouseRuleId = item;
-                _applicationDbContext.Add(propertyHouseRule);
-                _applicationDbContext.SaveChanges();
+                foreach (var item in listingViewModel.IsHouseRoleChecked)
+                {
+                    PropertyHouseRule propertyHouseRule = new PropertyHouseRule();
+                    propertyHouseRule.PropertyId = NewProperty.Id;
+                    propertyHouseRule.HouseRuleId = item;
+                    _applicationDbContext.Add(propertyHouseRule);
+                    _applicationDbContext.SaveChanges();
+                }
             }
             return RedirectToAction("mona");
         }
