@@ -360,6 +360,7 @@ h1 {
     border-radius: 10px;
     height: max-content;
     top: 10%;
+    z-index: 100;
 }
 
 .check-title, .check-body {
@@ -461,6 +462,10 @@ h1 {
         gap: 80px;
     }
 
+    .details {
+        padding-bottom: 150px;
+    }
+
     .entire {
         flex-direction: column;
         text-align: center;
@@ -468,12 +473,13 @@ h1 {
 
     .check {
         grid-area: check;
-        position: -webkit-sticky; /* Safari */
-        position: sticky;
+        position: fixed;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         border-radius: 10px;
-        height: 60px;
-        bottom: 0;
+        width: 90%;
+        top: 80%;
+        left: 5%;
+        padding: 10px;
     }
 
     .check-body {

@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Property>
 @{
+    ViewData["Title"] = ViewBag.city;
 }
 
 @section Styles {
@@ -722,13 +723,13 @@
 
         function createInfoWindow(title, img, id) {
             const content = `
-                <div>
-                    <h5 style="text-align: center;">${title}</h5>
-                    <div style="width: 150px; height: 150px; overflow: hidden; margin: auto;">
+                <a href="../Property/Details/${id}" style=" display: block; text-decoration: none; color: gray; margin: 10px auto;">
+                    <div style="width: 300px; overflow: hidden; margin: auto;">
                         <img src="${img}" alt="imag" style="object-fit: cover; width: 100%; height: 100%; border-radius: 10px;" />
                     </div>
-                    <a href="../Property/Details/${id}" style=" display: block; text-decoration: none; color: gray; margin: 10px auto;">Go To Page</a>
-                </div>
+                    
+                    <h5 style="text-align: center; padding-top: 20px;">${title}</h5>
+                </a>
             `;
             const infowindow = new google.maps.InfoWindow({
                 content: content,

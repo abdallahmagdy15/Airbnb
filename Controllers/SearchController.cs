@@ -32,6 +32,7 @@ namespace Airbnb.Controllers
             ViewBag.coordY = city.Coordinates.Coordinate.Y;
 
             ViewBag.search = search;
+            ViewBag.city = city.Name;
 
             var properties = _propService.FilterBy(search);
 
