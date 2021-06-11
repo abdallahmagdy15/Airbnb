@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Airbnb.Models.AppUser>
+
+<h2>User Mangment</h2>
+<div class="search_container">
+    <form asp-action="FindUser" asp-controller="Admin" method="post">
+        <div class="row">
+            <input name="name" id="search_text" type="text" placeholder="Search">
+            <button type="button" onclick="findUser()" class="btn-dark" id="search_btn" >Find</button>
+            <a id="download-data" class="btn-success" asp-action="UsersExcel" asp-controller="Admin">Export data in CVS</a>
+        </div>
+    </form>
+</div>
+<table class="table table-responsive table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Profile ID</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Join Date</th>
+            <th scope="col">View</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <th scope="row">@user.Id</th>
+                <td>@user.FirstName @user.LastName</td>
+                <td>@user.Email</td>
+                <td>@user.PhoneNumber</td>
+                <td>@user.JoinDate.ToString("MM/dd/yyyy")</td>
+                <td><button class="btn btn-info">View</button></td>
+                <td><a asp-action="DeleteUser" onclick="return confirm('Are you sure ?')" asp-controller="Admin" asp-route-id="@user.Id" class="btn btn-danger">Delete</a></td>
+            </tr>
+        }
+
+       
+    </tbody>
+</table>

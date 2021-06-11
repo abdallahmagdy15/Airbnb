@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Airbnb.Models.Property>
+
+<h2>User Mangment</h2>
+<div class="search_container">
+    <form>
+        <div class="row">
+            <input id="search_text" type="text" placeholder="Search">
+            <button class="btn-dark" id="search_btn">Find</button>
+            <a id="download-data" class="btn-success" asp-action="PropertyExcel" asp-controller="Admin">Export data in CVS</a>
+        </div>
+    </form>
+</div>
+<table class="table table-responsive table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Proprity ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">City</th>
+            <th scope="col">Price</th>
+            <th scope="col">Max Stay</th>
+            <th scope="col">Min Stay</th>
+            <th scope="col">Adding Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">View</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var prop in Model)
+        {
+        <tr>
+            <th scope="row">@prop.Id</th>
+            <td>@prop.Title</td>
+            <td>@prop.City.Name</td>
+            <td>@prop.Price</td>
+            <td>@prop.MaxStay</td>
+            <td>@prop.MinStay</td>
+            <td>@prop.Date.ToString("dd/MM/yyyy")</td>
+            <td>@prop.EndBookingDate.ToString("dd/MM/yyyy")</td>
+            <td><button class="btn btn-info">View</button></td>
+            <td><a asp-action="DeleteProperty" onclick="return confirm('Are you sure ?')" asp-controller="Admin" asp-route-id="@prop.Id" class="btn btn-danger">Delete</a></td>
+        </tr>
+        }
+
+
+    </tbody>
+</table>
