@@ -30,15 +30,18 @@ namespace Airbnb
                         Configuration.GetConnectionString("DefaultConnection"),
                         x => x.UseNetTopologySuite()));
 
+
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddIdentity<AppUser, IdentityRole>(options =>
            {
-               options.SignIn.RequireConfirmedAccount = true;
+               options.SignIn.RequireConfirmedAccount = false;
                options.Password.RequiredLength = 8;
                options.Password.RequireLowercase = false;
                options.Password.RequireUppercase = false;
            }).AddEntityFrameworkStores<ApplicationDbContext>();
+
 
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -59,6 +62,8 @@ namespace Airbnb
 
             services.AddScoped<IPropertyService, PropertyService>();
             services.AddScoped<ISearchService, PropertySearchService>();
+            services.AddScoped<IAdminServices, AdminServices>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<IdentityRole>
+
+
+<h2>All Roles</h2>
+
+<table class="table table-responsive table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Role ID</th>
+            <th scope="col">Role Name</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            @foreach (var role in Model)
+            {
+                <tr>
+                    <th scope="row">@role.Id</th>
+                    <td>@role.Name</td>
+                    <td><a asp-action="DeleteRole" onclick="return confirm('Are you sure ?')" asp-controller="Admin" asp-route-id="@role.Id" class="btn btn-danger">Delete</a></td>
+                </tr>
+            }
+        }
+        else
+        {
+               <tr>
+                    <td colspan="3">
+                        <button type="button" onclick="getCreateRoleView()" class="dashboard-button">Add Role</button>
+                    </td>
+               </tr>
+        }
+    </tbody>
+</table>
