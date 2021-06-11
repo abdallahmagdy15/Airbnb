@@ -1,0 +1,321 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/PaymentLayout.cshtml";
+}
+@model Airbnb.Models.CreditCard
+
+<form asp-action="charge" asp-controller="Payment" method="post" id="payment-form">
+    <div class="container-fluid">
+        <div class="row mynavbar">
+            <nav class="navbar navbar-expand-lg navbar-white bg-white">
+                <ul class="nav">
+                    <li class="navbar-brand">
+                        <a class="fab fa-airbnb" style="font-weight: bold ; font-size:xx-large;" href="https://www.airbnb.com"><span id="logo"> airbnb</span></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="header col col-12 col-md-6" id="myHeader" style="background-color: white;">
+                <i class="fas fa-chevron-left"></i>
+                <span>Request to book</span><br><br>
+            </div>
+        </div>
+        <div class="row mycardimage">
+            <div class="cardimage col col-4 ">
+                <img src="https://a0.muscache.com/im/pictures/0f4c088e-b8a6-4979-a990-de64bfe797e4.jpg?aki_policy=large">
+            </div>
+            <div class="col col-8">
+                <div class="cardheader">
+                    Campsite in Siwa oasis
+                </div>
+                <div class="cardheader" style="margin-top: 5px; font-size: medium;">
+                    Tent & Breakfast in Forest Camp in Siwaكامب الغابة
+                </div>
+                <div class="cardheader bedsandpaths">
+                    0 beds · 2 baths
+                </div>
+                <div class="cardheader" style="margin-top: 8px;">
+                    <i class="fa fa-star" aria-hidden="true" style="color: #ff385c;"></i>
+                    5.0 (1)
+                </div><br>
+            </div>
+            <div class="row myPriceDetailsmd">
+                <div style="margin-top: 30px; margin-left: 10px;">
+                    <h4>Price Details</h4>
+                </div>
+                <div style="margin-top: 5px;">
+                    <span class="date" style="display: inline-flex;"> $14.41 x 1 night</span>
+                    <span class="price"> $14.41</span>
+                </div>
+                <div style="margin-top: 5px;">
+                    <span class="date" style="display: inline-flex;"> Service fee</span>
+                    <span class="servicefeemd"> $2.03</span>
+                </div>
+                <div style="margin-top: 5px; margin-bottom: 20px;">
+                    <h6 style="display: inline; margin-left: 10px;">Total<a href="#" style="color: black;">(AUD)</a></h6>
+                    <span class="total">$16.44</span>
+                </div>
+            </div>
+
+            <div class="row Freecancellation">
+                <div>
+                    <h5 style="margin-top: 30px;">Free cancellation until 10:00 AM on Apr 15</h5>
+                    <span style="color: rgb(176, 176, 176,1);">After that, cancel before 10:00 AM on Apr 16 and get a full refund, minus the first night and service fee.</span>
+                </div>
+            </div>
+        </div>
+        <div class="row mytrip">
+            <div style="margin-top: 30px; margin-left: 10px; font-weight: bold;color: #222222;">
+                <h4>Your trip</h4>
+            </div>
+            <div class="dates">
+                <h6>Dates</h6>
+
+            </div>
+            <div class="date" style="margin-top: 8px;">
+                Apr 28 – 29
+            </div>
+            <div class="gustes">
+                <h6>Guests</h6>
+            </div>
+            <div class="date" style="margin-top: 8px; margin-bottom: 20px;">
+                1 guest
+            </div>
+        </div>
+        <div class="row myPriceDetailssm" style="box-shadow: 0 8px 0px -1px #dddddd;">
+            <div style="margin-top: 30px; margin-left: 10px;">
+                <h4>Price Details</h4>
+            </div>
+            <div style="margin-top: 5px;">
+                <span class="date" style="display: inline-flex;"> $14.41 x 1 night</span>
+                <span class="price"> $14.41</span>
+            </div>
+            <div style="margin-top: 5px;">
+                <span class="date" style="display: inline-flex;"> Service fee</span>
+                <span class="servicefee"> $2.03</span>
+            </div>
+            <div style="margin-top: 5px; margin-bottom: 20px;">
+                <h6 style="display: inline; margin-left: 10px;">Total<a href="#" style="color: black;">(AUD)</a></h6>
+                <span style="margin-left: 230px;">$16.44</span>
+            </div>
+        </div>
+
+        <div class="row pay">
+            <div style="margin-top: 30px; margin-left: 10px;">
+                <h4>Payment</h4>
+                <div style="margin-left:125px" class="form-row">
+                    <i class="fab fa-cc-stripe text-dark col col-3 col-md-3" style="font-size:40px;margin-left:7px"></i>
+                    <i class="fab fa-cc-paypal text-warning col col-3 col-md-3" style="font-size:40px;margin-left:7px"></i>
+                    <i class="fab fa-cc-visa text-primary col col-3 col-md-3" style="font-size:40px;margin-left:7px"></i>
+                </div>
+            </div>
+            <div class="form-row" style="margin-left:20px">
+                <div class="form-group col col-10 col-md-12">
+                    <label for="card-number">Name</label>
+                    <input id="card-number" class="form-control" asp-for="Name" /><br />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-row" style="margin-left:20px">
+                <div class="form-group col col-5 col-md-6">
+                    <label for="card-number">City</label>
+                    <input id="card-number" class="form-control" asp-for="usercity" /><br />
+                    <span asp-validation-for="usercity" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col col-5 col-md-6">
+                    <label for="card-number">Zipcode</label>
+                    <input id="card-number" class="form-control" asp-for="Zipcode" /><br />
+                    <span asp-validation-for="Zipcode" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-row" style="margin-left:20px">
+                <div class="form-group col col-5 col-md-6">
+                    <label for="card-number">Card Number</label>
+                    <input id="card-number" class="form-control" asp-for="Number" placeholder="0000-0000-0000-0000" /><br />
+                    <span asp-validation-for="Number" class="text-danger"></span>
+                </div>
+                <div class="form-group col col-5 col-md-6">
+                    <label for="card-cvc">CVC Number</label>
+                    <input id="card-cvc" class="form-control" asp-for="CVV" placeholder="123" /><br />
+                    <span asp-validation-for="CVV" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row" style="margin-left:20px">
+
+                <div class="form-group col col-5 col-md-6">
+                    <label for="card-exp-year">Expiration year</label>
+                    <input id="card-exp-year" type="number" class="form-control" asp-for="Year" /><br />
+                    <span asp-validation-for="Year" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col col-5 col-md-6">
+                    <label for="card-exp-month">Expiration month</label>
+                    <input id="card-exp-month" type="number" class="form-control" asp-for="Month" /><br />
+                    <span asp-validation-for="Month" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group col col-10 col-md-12" style="margin-left:20px  ">
+                <label for="card-exp">Value</label>
+                <input id="card-exp" class="form-control" asp-for="Value" /><br />
+                <span asp-validation-for="Value" class="text-danger"></span>
+            </div>
+
+        </div>
+        @*<div class="row required">
+                <div style="margin-top: 30px; margin-left: 10px;">
+                    <h4>Required for your trip</h4>
+                </div>
+                <div style="margin-top: 5px;">
+                    <h6 style="display: inline-flex; margin-left: 10px;">Message the host</h6>
+                    <button class="btn-add-msg">Add</button>
+                    <div style="margin-bottom: 10px;margin-left: 10px;" class="date">
+                        Let the host know why you're traveling
+                        and when you'll check in.
+                    </div>
+                </div>
+                <div style="margin-top: 25px; margin-bottom: 20px;">
+                    <h6 style="display: inline-flex; margin-left: 10px;">Phone number</h6>
+                    <button class="btn-add-phone">Add</button>
+                    <div style="margin-bottom: 10px;margin-left: 10px;" class="date">
+                        Add and confirm your phone number to
+                        get trip updates.
+                    </div>
+                </div>
+            </div>
+            <div class="line1">&nbsp;</div>
+            <div class="row Cancellation">
+                <div style="border-left: 6px solid rgb(255, 175, 15,1); height: 200px; margin-top: 20px; margin-bottom: 20px;">
+                    <div style="margin-top: 30px; margin-left: 10px;">
+                        <h4>Cancellation policy</h4>
+                    </div>
+                    <div style="margin-top: 5px; margin-left: 10px;  color: rgb(176, 176, 176,1); margin-bottom: 10px;">
+                        Free cancellation until 10:00 AM on Apr 27. After that, cancel before 10:00 AM on Apr 28 and get a
+                        full refund, minus the first night and service fee.
+                    </div>
+                </div>
+            </div>*@
+        <div class="row Cancellation">
+            <div style="margin-top: 30px; margin-left: 10px; margin-bottom: 10px;">
+                <i class="fas fa-calendar-check fa-lg" style="color: rgb(227, 28, 95,1);"></i>
+                <span style="font-weight: bold; font-size: 13px;">
+                    Your reservation won’t be confirmed
+                    until the host accepts your request (within 24 hours).
+                </span>
+                <span style="font-size: 11px;">You won’t be charged until then.</span>
+            </div>
+        </div>
+        <div class="row pay">
+            <div class="agree" style="margin-top:30px">
+                By selecting the button below, I agree <a href="#" style="color: blue; text-decoration: underline;">
+                    the House Rules, Safety Disclosures, Cancellation
+                    Policy, Airbnb’s social-distancing and other COVID-19-related guidelines,
+                </a>and the <a>
+                    Guest Refund
+                    Policy
+                </a>. I also agree pay the total amount shown, which includes Service Fees.
+            </div>
+            <div style="margin-left: 20px;">
+                <button class="btn-glow" type="submit">
+                    <span class="glow">
+                        Request to book
+                    </span>
+                    Request to book
+                </button>
+            </div>
+        </div>
+        <div class="row footersm">
+            <div class="footer">
+                <div class="about" style="box-shadow: 0 2px 0px -1px #dddddd;">
+                    <h4>about</h4>
+                    <ul>
+                        <li><a href="#">How Airbnb works</a></li>
+                        <li><a href="#">Newsroom</a></li>
+                        <li><a href="#">Investors</a></li>
+                        <li><a href="#">Airbnb Plus</a></li>
+                        <li><a href="#">Airbnb Luxe</a></li>
+                        <li><a href="#">HotelTonight</a></li>
+                        <li><a href="#">Airbnb for Work</a></li>
+                        <li><a href="#">Made possible by Hosts</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Founders'Letter</a></li>
+                        <br />
+                    </ul>
+                </div>
+                <div class="community" style="box-shadow: 0 2px 0px -1px #dddddd;">
+                    <h4>community</h4>
+                    <ul>
+                        <li><a href="#">Diversity & Belonging</a></li>
+                        <li><a href="#">Against Discrimination</a></li>
+                        <li><a href="#">Accessibility</a></li>
+                        <li><a href="#">Airbnb Associates</a></li>
+                        <li><a href="#">Frontline Stays</a></li>
+                        <li><a href="#">Guest Referrals</a></li>
+                        <li><a href="#">Gift cards</a></li>
+                        <li><a href="#">Airbnb.org</a></li>
+                        <br>
+                    </ul>
+                </div>
+                <div class="host" style="box-shadow: 0 2px 0px -1px #dddddd;">
+                    <h4>host</h4>
+                    <ul>
+                        <li><a href="#">Host your home</a></li>
+                        <li><a href="#">Host an Online Experience</a></li>
+                        <li><a href="#">Host an Experience</a></li>
+                        <li><a href="#">Responsible hosting</a></li>
+                        <li><a href="#">Resource Center</a></li>
+                        <li><a href="#">Community Center</a></li>
+                        <br>
+                    </ul>
+                </div>
+                <div class="support" style="box-shadow: 0 2px 0px -1px #dddddd;">
+                    <h4>support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Cancellation options</a></li>
+                        <li><a href="#">Neighborhood Support</a></li>
+                        <li><a href="#">Responsible hosting</a></li>
+                        <li><a href="#">Trust & Safety</a></li>
+                        <br>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="footermd">
+                <div class="socialandlan">
+                    <span class="glope" style="display:inline-flex;">
+                        <i class="fas fa-globe"></i>
+                    </span>
+                    <a href="#" style="color: black; text-decoration: underline;">English(US)</a>
+                    <span class="money">
+                        <i class="fas fa-dollar-sign"></i>
+                        <a href="#" style="color: black; text-decoration: underline;">AUD</a>
+                    </span>
+                    <span class="socialmedia">
+                        <ul style="display: inline-flex;">
+                            <il style="padding-right: 20px;"><a href="#"><i class="fab fa-facebook-f fa-lg" style="color: black;"></i></a></il>
+                            <il style="padding-right: 20px;"><a href="#"><i class="fab fa-twitter fa-lg" style="color: black;"></i></a></il>
+                            <il style="padding-right: 20px;"><a href="#"><i class="fab fa-instagram fa-lg" style="color: black;"></i></a></il>
+                        </ul>
+                    </span>
+                </div>
+                <div class="copyrights">
+                    ©2021 Airbnb, Inc.
+                </div>
+                <span class="footerlinks">
+                    <ul>
+                        <il><a href="#" style="color: #222222">Privacy</a></il>
+                        <il><a href="#" style="color: #222222">Terms</a></il>
+                        <il><a href="#" style="color: #222222">Sitemap</a></il>
+                    </ul>
+                </span>
+            </div>
+        </div>
+    </div>
+</form>
