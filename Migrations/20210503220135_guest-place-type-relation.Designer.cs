@@ -4,20 +4,22 @@ using Airbnb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 
 namespace Airbnb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210503220135_guest-place-type-relation")]
+    partial class guestplacetyperelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.6")
+                .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Airbnb.Models.AppUser", b =>
@@ -32,7 +34,7 @@ namespace Airbnb.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int?>("CityId")
+                    b.Property<int>("CityId")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -141,7 +143,7 @@ namespace Airbnb.Migrations
                     b.Property<int>("CVV")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CityId")
+                    b.Property<int>("CityId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreditExpire")
@@ -271,29 +273,22 @@ namespace Airbnb.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int>("Capacity")
-                        .HasColumnType("int");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CityId")
+                    b.Property<int>("CityId")
                         .HasColumnType("int");
-
-                    b.Property<bool>("Complete")
-                        .HasColumnType("bit");
 
                     b.Property<Point>("Coordinates")
                         .HasColumnType("geography");
 
-                    b.Property<DateTime?>("Date")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("EndBookingDate")
+                    b.Property<DateTime>("EndBookingDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("GuestPlaceTypeId")
@@ -302,28 +297,25 @@ namespace Airbnb.Migrations
                     b.Property<int>("MaxStay")
                         .HasColumnType("int");
 
-                    b.Property<int?>("NumberOfBathrooms")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumberOfBathrooms")
+                    b.Property<int>("MinStay")
                         .HasColumnType("int");
 
                     b.Property<int>("NumberOfBedRooms")
                         .HasColumnType("int");
 
-                    b.Property<int?>("NumberOfBeds")
+                    b.Property<int>("NumberOfBeds")
                         .HasColumnType("int");
 
-                    b.Property<int?>("NumberOfDaysInAdvance")
+                    b.Property<int>("NumberOfDaysInAdvance")
                         .HasColumnType("int");
 
-                    b.Property<int?>("NumberOfDaysNotice")
+                    b.Property<int>("NumberOfDaysNotice")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("Money");
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime?>("StartBookingDate")
+                    b.Property<DateTime>("StartBookingDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Street")
@@ -333,8 +325,7 @@ namespace Airbnb.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Zipcode")
                         .IsRequired()
@@ -359,21 +350,10 @@ namespace Airbnb.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Icon")
-                        .HasMaxLength(5000)
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -386,10 +366,6 @@ namespace Airbnb.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -424,10 +400,6 @@ namespace Airbnb.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -741,7 +713,9 @@ namespace Airbnb.Migrations
                 {
                     b.HasOne("Airbnb.Models.Location.City", "City")
                         .WithMany()
-                        .HasForeignKey("CityId");
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("City");
                 });
@@ -750,7 +724,9 @@ namespace Airbnb.Migrations
                 {
                     b.HasOne("Airbnb.Models.Location.City", "City")
                         .WithMany()
-                        .HasForeignKey("CityId");
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("City");
                 });
@@ -787,7 +763,9 @@ namespace Airbnb.Migrations
 
                     b.HasOne("Airbnb.Models.Location.City", "City")
                         .WithMany("Properties")
-                        .HasForeignKey("CityId");
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Airbnb.Models.PropertySubModels.GuestPlaceType", "GuestPlaceType")
                         .WithMany("Properties")

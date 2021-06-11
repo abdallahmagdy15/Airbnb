@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Airbnb.ViewModels
 {
@@ -15,5 +16,6 @@ namespace Airbnb.ViewModels
         public string Password { get; set; }
         [Display(Name = "Remember Me")]
         public bool RememberMe { get; set; }
+
     }
 }

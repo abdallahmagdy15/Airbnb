@@ -1,5 +1,6 @@
 using Airbnb.Data;
 using Airbnb.Models;
+using Airbnb.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Airbnb
 {
@@ -40,6 +42,23 @@ namespace Airbnb
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    options.ClientId = "510487169069-5lklvod6ve9it74tdf48kt6336dbiumt.apps.googleusercontent.com";
+                    options.ClientSecret = "ixPPMW0IFZF-aSf8GKM92-Kh";
+                })
+                .AddFacebook(options =>
+                {
+                    options.AppId = "1417682328592643";
+                    options.AppSecret = "0a46289db8d433907f64d6516882ba94";
+                });
+
+
+            services.AddScoped<IPropertyService, PropertyService>();
+            services.AddScoped<ISearchService, PropertySearchService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

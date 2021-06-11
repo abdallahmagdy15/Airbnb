@@ -1,0 +1,50 @@
+﻿@model LoginViewModel
+
+    <!--start register content-->
+    <div class="signup-pane">
+        <form asp-action="Login" asp-controller="Account" method="post" data-ajax="true"  data-ajax-update="#modal-render-body"
+              data-ajax-success="$('#RegisterModal').modal('show');$('.modal-title').text('Sign In');" >
+            <div class="column-container">
+                <input type="text" asp-for="Email" placeholder="Email">
+                <input type="text" asp-for="Password" placeholder="Password">
+            </div>
+            <div class="validation-container">
+                <span class="validation-span" asp-validation-for="Email"></span>
+            </div>
+            <div class="validation-container">
+                <span class="validation-span" asp-validation-for="Password"></span>
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                    <input asp-for="RememberMe" type="checkbox" class="custom-control-input">
+                    <label class="custom-control-label" asp-for="RememberMe">@Html.DisplayNameFor(m => m.RememberMe)</label>
+                </div>
+            </div>
+            <div class="signup-btn-container">
+                <button class="btn-glow">
+                    <span class="glow">
+                        Continue
+                    </span>
+                    Continue
+                </button>
+            </div>
+        </form>
+        <!--
+              <div class="first-page">
+            <div style="text-align: center;">or</div>
+            <div class="social-btns-container">
+
+                <div class="btn-container">
+                    <a id="social" asp-action="SocialLogin" asp-controller="Account">Login with social accounts</a>
+                </div>
+            </div>
+            <div class="login-msg">
+                <span>
+                    Already have an account?
+                    <a>Login</a>
+                </span>
+            </div>
+        </div>
+        -->
+
+    </div>

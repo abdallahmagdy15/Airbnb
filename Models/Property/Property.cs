@@ -22,15 +22,21 @@ namespace Airbnb.Models
         [Range(1,20)]
         public int? NumberOfBathrooms { set; get; }
 
-        [MinLength(3)]
+        [Range(1, 50)]
+        public int NumberOfBathrooms { set; get; } = 0;
+
+        [Range(1, 50)]
+        public int Capacity { set; get; } = 0;
+
+        [Required]
+        [StringLength(500, MinimumLength = 3)]
         public string Title { set; get; }
 
-        [MinLength(10)]
+        [StringLength(1000, MinimumLength = 3)]
         public string Description { set; get; }
 
-        public int? Price { set; get; } = 0;
-
-        public int? NumberOfDaysInAdvance { set; get; } = 0;
+        [Column(TypeName = "Money")]
+        public decimal Price { set; get; } = 0;
 
         public int? NumberOfDaysNotice { set; get; } = 0;
 
@@ -42,8 +48,10 @@ namespace Airbnb.Models
 
         public int? MinStay { set; get; } = 0;
 
-        public DateTime? Date { set; get; }
+        public int MinStay { set; get; } = 0;
 
+        [Required]
+        public DateTime Date { set; get; } = DateTime.Now;
         public bool Complete { set; get; }
 
         // Address info
@@ -69,7 +77,6 @@ namespace Airbnb.Models
         public virtual Category Category { get; set; }
         [ForeignKey(nameof(GuestPlaceType))]
         public int GuestPlaceTypeId { get; set; }
-
         public virtual GuestPlaceType GuestPlaceType { get; set; }
         public virtual List<PropertyUnavailableDay> UnavailableDays { get; set; }
         public virtual List<PropertyAmenity> Amenities { get; set; }

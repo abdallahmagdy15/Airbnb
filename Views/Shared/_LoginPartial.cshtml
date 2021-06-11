@@ -18,10 +18,18 @@
     else
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            <a asp-action="Register" asp-controller="Account" class="btn btn-primary"
+               data-ajax="true" data-ajax-update="#modal-render-body"
+               data-ajax-success="$('#RegisterModal').modal('show');$('.modal-title').text('Sign Up');">Register</a>
+
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+
+            <a asp-action="Login" asp-controller="Account" class="btn btn-primary"
+               data-ajax="true" data-ajax-update="#modal-render-body"
+               data-ajax-success="$('#RegisterModal').modal('show');$('.modal-title').text('Log In');">Login</a>
         </li>
+
     }
 </ul>
+

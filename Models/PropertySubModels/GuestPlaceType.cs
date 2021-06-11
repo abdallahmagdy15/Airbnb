@@ -16,5 +16,6 @@ namespace Airbnb.Models.PropertySubModels
 
 
 
+        public virtual List<Property> Properties { get; set; }
     }
 }
