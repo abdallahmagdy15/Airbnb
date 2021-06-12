@@ -1,3 +1,37 @@
-﻿.msg-item{
+﻿.msgs-cr {
+    padding: 1rem 0;
+}
 
+.msg-item {
+    padding: 1rem;
+    border-bottom: 1px solid rgb(182, 182, 182);
+    display: flex;
+    justify-content: space-between;
+}
+
+.msg-item:hover {
+    background-color: whitesmoke;
+}
+.img-cr{
+    width: 5rem;
+    height: 5rem;
+}
+.rounded-circle{
+    width: inherit;
+    height: auto;
+    border-radius: 50%;
+    border: 2px solid whitesmoke;
+    box-sizing: border-box;
+}
+.dimmed-sm-label{
+    font-size: .8rem;
+    color: darkgray;
+}
+
+.normal-text{
+    font-size: 1rem;
+}
+.row{
+    display: flex;
+    justify-content: space-between;
 }
