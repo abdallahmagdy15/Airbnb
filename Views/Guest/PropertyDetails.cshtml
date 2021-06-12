@@ -3,6 +3,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Details";
 }
 
 @section Styles {
@@ -13,6 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/propDetails.css" />
+    <link rel="stylesheet" href="~/css/Buttons.css" />
 }
 
 <!--start pic-caursel-->
@@ -43,10 +45,10 @@
 </section>
 <!--end pic-caursel-->
 <!--start title section-->
-<section class="container">
+<section class="container mt-5" style="position: relative;">
     <div>
         <h1>
-            Great Pyramids View from your Sky Lounge (1)
+            @Model.Property.Title
         </h1>
     </div>
     <div class="information">
@@ -57,38 +59,26 @@
                 <span class="light-span">(23)</span>
             </span>
             <span>&middot;</span>
-            <span>
-                <i class="fas fa-award red_icon"></i>
-                <span class="light-span">Superhost</span>
-            </span>
-            <span>&middot;</span>
             <span class="address">
-                <a href="#"><span class="light-anchor">Nazlet El-Semman, Giza Governorate, Egypt</span></a>
+                <a asp-controller="search" asp-action="index" asp-route-cityid="@Model.Property.City.Id"><span class="light-anchor">@Model.Property.City.Name, @Model.Property.City.State.Name, @Model.Property.City.State.Country.Name</span></a>
             </span>
-        </div>
-        <div class="social-btns">
-            <div class="btn-container">
-                <button class="btns-social">
-                    <div>
-                        <span>
-                            <i class="fas fa-external-link-alt dark_icon"></i>
-                        </span>
-                        <span class="dark-span">Share</span>
-                    </div>
-                </button>
-            </div>
-            <div class="btn-container">
-                <button class="btns-social">
-                    <div>
-                        <span>
-                            <i class="far fa-heart dark_icon"></i>
-                        </span>
-                        <span class="dark-span">Save</span>
-                    </div>
-                </button>
-            </div>
         </div>
     </div>
+    <button class="btn-big-like" type="button">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+             role="presentation" focusable="false"
+             style="display: block; fill: transparent; height: 24px; width: 24px; stroke: rgb(34, 34, 34); stroke-width: 2; overflow: visible;">
+            <path d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z">
+            </path>
+        </svg>
+        <!-- <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation"
+            focusable="false"
+            style="display: block; fill: rgb(255, 56, 92); height: 24px; width: 24px; stroke: rgb(255, 56, 92); stroke-width: 2; overflow: visible;">
+            <path
+                d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z">
+            </path>
+        </svg> -->
+    </button>
 </section>
 <!--end title section-->
 <!--start pic section-->
@@ -102,44 +92,34 @@
                 <img class="img@(i + 1)" src="~/@Model.Property.Photos[i].Url">
             }
         </div>
-    </div>
-    <div class="morebtn-containter">
-        <span>
-            <i class="fas fa-angle-double-right"></i>
-        </span>
-        <!--start offcanvas-->
-        <button data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
-            Show
-            all photos
-        </button>
-        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom"
-             aria-labelledby="offcanvasBottomLabel">
-            <div class="offcanvas-header">
+        <div class="morebtn-containter">
+            <span>
+                <i class="fas fa-angle-double-right"></i>
+            </span>
+            <!--start offcanvas-->
+            <button data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
+                Show
+                all photos
+            </button>
+            <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom"
+                 aria-labelledby="offcanvasBottomLabel">
+                <div class="offcanvas-header">
 
-                <button type="button" class=" text-reset dark_icon" data-bs-dismiss="offcanvas" aria-label="Close">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
-                <span style="margin-right:20px;">
-                    <span>
-                        <i class="far fa-share-square dark_icon"></i>
-                        <span class="font-dark">Share</span>
-                    </span>
-                    <span>
-                        <i class="far fa-heart dark_icon"></i>
-                        <span class="font-dark">Save</span>
-                    </span>
-                </span>
-            </div>
-            <div style="height: 100%;" class="offcanvas-body">
-                <div class="container">
-                    @foreach (var image in Model.Property.Photos)
-                    {
-                        <img src="~/@image.Url" />
-                    }
+                    <button type="button" class=" text-reset dark_icon" data-bs-dismiss="offcanvas" aria-label="Close">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+                <div style="height: 100%;" class="offcanvas-body">
+                    <div class="container">
+                        @foreach (var image in Model.Property.Photos)
+                        {
+                            <img src="~/@image.Url" />
+                        }
+                    </div>
                 </div>
             </div>
+            <!--end offcanvas-->
         </div>
-        <!--end offcanvas-->
     </div>
 </section>
 <!--end pic section-->
@@ -151,96 +131,90 @@
             <div class="houseData">
                 <!--basic info-->
                 <div class="data-plugin-in-point">
-                    <h1>Entire apartment hosted by Ahmed</h1>
-                    <span>@Model.Property guests</span>
+                    <h1>@Model.Property.GuestPlaceType.Name hosted by Ahmed</h1>
+                    <span>@Model.Property.Capacity guests</span>
                     <span>&middot;</span>
-                    <span>1 bedroom</span>
+                    <span>@Model.Property.NumberOfBedRooms bedroom</span>
                     <span>&middot;</span>
-                    <span> 2 beds</span>
+                    <span>@Model.Property.NumberOfBeds beds</span>
                     <span>&middot;</span>
-                    <span>1 bath</span>
+                    <span>@Model.Property.NumberOfBathrooms baths</span>
                     <div class="hostImg">
-                        <!--absolute-->
-                        <img src="./images/test.jpg">
-                    </div>
-                </div>
-                <hr>
-                <!-----home type and house rules------>
-                <div class="data-plugin-in-point">
-                    <div class="entire">
-                        @if (Model.Property.GuestPlaceType.Name == "Entire Home")
-                        {
-                            <i class="fas fa-home fa-2x"></i>
-                        }
-                        <div class="text">
-                            <h3 class="font-dark">@Model.Property.GuestPlaceType.Name</h3>
-                            <p class="font-light">You’ll have the apartment to yourself.</p>
-                        </div>
+                        <!-- Host Image Tag Here -->
                     </div>
                 </div>
                 <hr>
                 <!----- host description ------>
                 <div class="data-plugin-in-point">
+                    <h1 class="mb-4">Description</h1>
                     <p class="readmore">
                         @Model.Property.Description
-                        <span class="readmore2">...Read More<a href="#"></a></span>
                     </p>
-                    <span id="readmore2" class="readmore2">...Read More<a href="#"></a></span>
-
-                    <a href="#">Contact host</a>
-                </div>
-                <hr>
-                <!------ sleeping arrangement ----->
-                <div class="data-plugin-in-point data-plugin-in-point2">
-                    <div class="sleeping-arrangment">
-                        <h1>Sleeping arrangements</h1>
-                        <div id="sleepingdiv">
-                            <span>
-                                <span style="display: inline;">
-                                    <i class="fas fa-bed fa-2x"></i>
-                                </span>
-                                <span style="display: inline;">
-                                    <i class="fas fa-bed fa-2x"></i>
-                                </span>
-                            </span>
-                            <h3 class="font-dark">Bedroom 1</h3>
-                            <p class="font-light">2 Single beds</p>
-                        </div>
-                    </div>
                 </div>
                 <hr>
                 <!----- amenities list ------>
                 <div class="data-plugin-in-point">
-                    <h1>Amenities</h1>
-                    <div id="divAmenity" style="overflow:hidden;height:73px">
+                    <h1 class="mb-4">Amenities</h1>
+                    <div id="divAmenity" style="overflow:hidden;height:140px;">
                         <!--grid-->
                         <div class="row">
 
                             @foreach (var item in Model.Property.Amenities)
                             {
 
-                                <div class="Amenity col-6">
+                                <div class="Amenity col-12 col-lg-6">
                                     @Html.Raw(@item.Amenity.Icon)
                                     <span class="dark-light">@item.Amenity.Name</span>
-
                                 </div>
                             }
                         </div>
                     </div>
-                    <button id="show_all_Amenity" class="show-more"style="background:#ffffff;margin-top:10px">Show all 17 amenities</button>
+                    @if (Model.Property.Amenities.Count > 6)
+                    {
+                        <button id="show_all_Amenity" class="show-more">Show More</button>
+                        <button id="show_less_Amenity" class="show-more hide">Show Less</button>
+                    }
                 </div>
-                <hr>
-                <!----- calendar availability ------>
-                <div class="date-plugin-in-point">
-                    <div>
-                        <div id="multiple" class="article">
-                            <div class="multi-select-calendar"></div>
+
+                <div class="data-plugin-in-point">
+                    <hr />
+                    <h1 class="mb-4 mt-2">House Rules</h1>
+                    <div id="house-rules">
+                        <!--grid-->
+                        <div class="row">
+
+                            @foreach (var item in Model.Property.HouseRules)
+                            {
+                                <div class="Amenity col-12 col-lg-6">
+                                    <i class="fas fa-exclamation"></i>
+                                    <span class="dark-light">@item.HouseRule.Name</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data-plugin-in-point">
+                    <hr />
+                    <h1 class="mb-4 mt-2">Things to know</h1>
+                    <div id="for-guests">
+                        <!--grid-->
+                        <div class="row">
+
+                            @foreach (var item in Model.Property.GuestDetails)
+                            {
+                                <div class="Amenity col-12 col-lg-6">
+                                    <i class="fas fa-exclamation"></i>
+                                    <span class="dark-light">@item.GuestDetail.Name</span>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
+            <!--start check-card-->
         </div>
-        <!--start check-card-->
+
         <div class="card check">
             <div class="check-container">
                 <div class="check-title">
@@ -329,6 +303,102 @@
             <!--end check-card-->
         </div>
     </div>
+
+    @*Reviews*@
+    <div class="Reviews">
+        <hr>
+
+        <h1 class="mt-5">Reviews</h1>
+
+        <div class="total-review">
+            <i class="fas fa-star red_icon"></i>
+            <span class="dark-span">5.0 (30 Reviews)</span>
+        </div>
+
+        <div class="row mt-5 ">
+            <div class="review col-12 col-lg-6">
+                <div class="review-header">
+                    <div class="review-image">
+                        <img src="https://banner2.cleanpng.com/20180920/yko/kisspng-computer-icons-portable-network-graphics-avatar-ic-5ba3c66df14d32.3051789815374598219884.jpg" alt="imag" />
+                    </div>
+                    <div class="review-user">
+                        <h5>Ahmed</h5>
+                        <div>@DateTime.Now.ToLongDateString()</div>
+                    </div>
+                    <div class="spacer"></div>
+                    <div>
+                        <i class="fas fa-star red_icon"></i>
+                        <span class="dark-span">5.0</span>
+                    </div>
+                </div>
+                <div class="review-body">
+                    Review Body will be written here..........................................
+                    Review Body will be written here..........................................
+                    Review Body will be written here..........................................
+                    Review Body will be written here..........................................
+                    Review Body will be written here..........................................
+                </div>
+            </div>
+            <div class="review col-12 col-lg-6">
+                <div class="review-header">
+                    <div class="review-image">
+                        <img src="https://banner2.cleanpng.com/20180920/yko/kisspng-computer-icons-portable-network-graphics-avatar-ic-5ba3c66df14d32.3051789815374598219884.jpg" alt="imag" />
+                    </div>
+                    <div class="review-user">
+                        <h5>Ahmed</h5>
+                        <div>@DateTime.Now.ToLongDateString()</div>
+                    </div>
+                    <div class="spacer"></div>
+                    <div>
+                        <i class="fas fa-star red_icon"></i>
+                        <span class="dark-span">5.0</span>
+                    </div>
+                </div>
+                <div class="review-body">
+                    Review Body will be written here..........................................
+                    Review Body will be written here..........................................
+                    Review Body will be written here..........................................
+                    Review Body will be written here..........................................
+                    Review Body will be written here..........................................
+                </div>
+            </div>
+            <div class="review col-12 col-lg-6">
+                <div class="review-header">
+                    <div class="review-image">
+                        <img src="https://banner2.cleanpng.com/20180920/yko/kisspng-computer-icons-portable-network-graphics-avatar-ic-5ba3c66df14d32.3051789815374598219884.jpg" alt="imag" />
+                    </div>
+                    <div class="review-user">
+                        <h5>Ahmed</h5>
+                        <div>@DateTime.Now.ToLongDateString()</div>
+                    </div>
+                    <div class="spacer"></div>
+                    <div>
+                        <i class="fas fa-star red_icon"></i>
+                        <span class="dark-span">5.0</span>
+                    </div>
+                </div>
+                <div class="review-body">
+                    Review Body will be written here..........................................
+                    Review Body will be written here..........................................
+                    Review Body will be written here..........................................
+                    Review Body will be written here..........................................
+                    Review Body will be written here..........................................
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="Reviews">
+        <hr />
+        <h1 class="mt-4">Location</h1>
+        <div>
+            @Model.Property.Street,
+            @Model.Property.City.Name,
+            @Model.Property.City.State.Name,
+            @Model.Property.City.State.Country.Name
+        </div>
+        <div id="map"></div>
+    </div>
 </section>
 <!--end details section-->
 
@@ -341,19 +411,56 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
             integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
             crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_BPkgYNWQNTrzfp-1tNW1A1tekxyNj1w&callback=initMap&libraries=&v=weekly"
+            async></script>
 
     <!--logic.js-->
-    <script src="~/js/bs.js" type="text/javascript"></script>
-    @*<script src="~/js/calender.js" type="text/javascript"></script>*@
-    <script type="text/javascript" src="~/js/logic.js"></script>
-<script>
-    $('#show_all_Amenity').click(function () {
-        console.log("Clicked");
-        $('#divAmenity').css("height", "150px");
-        $('#show_all_Amenity').css("display", "none");
+    <script src="~/js/glow.js" type="text/javascript"></script>
+    <script>
+        $('#show_all_Amenity').click(function () {
+            $('#divAmenity').css("height", "fit-content");
+            $('#show_all_Amenity').addClass('hide');
+            $('#show_less_Amenity').removeClass('hide');
+        });
 
+        $('#show_less_Amenity').click(function () {
+            $('#divAmenity').css("height", "140px");
+            $('#show_all_Amenity').removeClass('hide');
+            $('#show_less_Amenity').addClass('hide');
+        });
 
-    })
+        $('#add-btn-Adult').click(function (event) {
+            var AdultValue = $('#Adult-value').html();
+            if (AdultValue < @(Model.Property.Capacity)) {
+                AdultValue++;
+                $('#Adult-value').html(AdultValue);
+            }
+            event.stopPropagation();
+        });
 
-</script>
+        $('#sub-btn-Adult').click(function (event) {
+            var AdultValue = $('#Adult-value').html();
+            if (AdultValue > 1) {
+                AdultValue--;
+                $('#Adult-value').html(AdultValue);
+            }
+            event.stopPropagation();
+        });
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                disableDefaultUI: false,
+            });
+
+            let initialLocation = new google.maps.LatLng(@(Model.Property.Coordinates.Coordinate.Y), @(Model.Property.Coordinates.Coordinate.X));
+            map.setCenter(initialLocation);
+
+            const marker = new google.maps.Marker({
+                position: initialLocation,
+                map: map,
+                icon: '../../images/home.png',
+            });
+        }
+    </script>
 }

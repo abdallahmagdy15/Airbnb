@@ -10,7 +10,7 @@ namespace Airbnb.Services
 {
     public interface ISearchService
     {
-        public IEnumerable<Property> FilterByLocation(IEnumerable<Property> properties, City city)
+        public IEnumerable<Property> FilterByLocation(IEnumerable<Property> properties, int cityId)
         ;
 
         public IEnumerable<Property> FilterByDate(IEnumerable<Property> properties, DateTime checkin, DateTime checkout)
@@ -22,7 +22,7 @@ namespace Airbnb.Services
         public IEnumerable<Property> FilterByPrice(IEnumerable<Property> properties, decimal min, decimal max)
         ;
 
-        public IEnumerable<Property> FilterByPlaceTypes(IEnumerable<Property> properties, List<GuestPlaceType> pTypes)
+        public IEnumerable<Property> FilterByPlaceTypes(IEnumerable<Property> properties, List<int> pTypeIds)
         ;
     }
 }

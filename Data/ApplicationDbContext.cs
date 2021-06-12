@@ -28,6 +28,7 @@ namespace Airbnb.Data
         public virtual DbSet<HouseRule> HouseRules { get; set; }
         public virtual DbSet<PropertyPhoto> PropertyPhoto { get; set; }
         public virtual DbSet<Space> Spaces { get; set; }
+        public virtual DbSet<Review> Reviews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
