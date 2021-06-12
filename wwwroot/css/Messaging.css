@@ -1,15 +1,15 @@
-﻿.msgs-cr {
+﻿.chats-cr {
     padding: 1rem 0;
 }
 
-.msg-item {
+.chat-item {
     padding: 1rem;
     border-bottom: 1px solid rgb(182, 182, 182);
     display: flex;
     justify-content: space-between;
 }
 
-.msg-item:hover {
+.chat-item:hover {
     background-color: whitesmoke;
 }
 .img-cr{
@@ -34,4 +34,7 @@
 .row{
     display: flex;
     justify-content: space-between;
+}
+.input-icon{
+    width: 1rem;
 }

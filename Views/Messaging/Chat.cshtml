@@ -1,0 +1,49 @@
+﻿@using Airbnb.ViewModels.Messaging
+@model ChatViewModel
+@{
+    var contact = Model.Chat.Users.FirstOrDefault(x => x.UserId != Model.CurrentUser.Id).User;
+    DateTime lastDate = new DateTime(2000, 1, 1);
+}
+<div class="row pinned-top">
+    <h2>@contact.FirstName @contact.LastName</h2>
+    <span>icons</span>
+</div>
+<ul type=none class="chat-cr pinned-center">
+    @if (Model.Chat.Messages != null)
+        foreach (var msg in Model.Chat.Messages.TakeLast(20))
+        {
+            <li class="msg-item">
+                @if ((msg.DateTime - lastDate).TotalDays != 0) // if msg is in earlier day than the prev msg then print curr msg date
+                {
+                    <span class="dimmed-sm-label">@msg.DateTime.ToString()</span>
+                }
+                <div class="img-cr">
+
+                    <img src="@msg.User.PhotoUrl" class="rounded-circle" />
+                </div>
+                <div class="msg-details">
+                    <div class="row">
+                        <label class="name-sm-label">@msg.User.FirstName</label>
+                    </div>
+                    <div class="row">
+                        <p class="normal-text font-weight-bold">@msg.Text</p>
+                    </div>
+                </div>
+            </li>
+        }
+    else
+    {
+        <li class="normal-text font-weight-bold">
+            <h1>
+                Start a converstaion with @contact.FirstName @contact.LastName
+            </h1>
+        </li>
+    }
+</ul>
+<div class="row">
+    <label for="ImageInput">
+        <img class="input-icon" src="~/assets/images/imageinput.png" />
+        <input id="ImageInput" name="Image" type="file" accept="image/*" />
+    </label>
+    <input class="form-control" name="Text" type="text" />
+</div>

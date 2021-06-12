@@ -1,72 +1,74 @@
 ﻿@using Airbnb.Models;
 @using Airbnb.Models.Messaging;
 @model AppUser
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="row">
-                <h2>All Messages</h2>
-                <div>
-                    + Add Chat
+
+    <link href="~/css/Messaging.css" rel="stylesheet" />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <h2>All Messages</h2>
+                    <div>
+                        + Add Chat
+                    </div>
                 </div>
-            </div>
-            <ul type=none class="msgs-cr">
-                @foreach (var userChat in Model.Chats)
-                {
-                    var chat = userChat.Chat;
-                    var contact = chat.Users.FirstOrDefault(x => x.UserId != Model.Id).User;
-                    Message lastMessage = null;
-                    @if (chat.Messages.Count() > 0)
+                <ul type=none class="chats-cr">
+                    @foreach (var userChat in Model.Chats)
                     {
-                        lastMessage = chat.Messages.ToList().Last();
-                    }
-                    <li class="msg-item">
-                        <div class="img-cr">
-                            <img src="@contact.PhotoUrl" class="rounded-circle" />
-                        </div>
-                        <div class="details">
-                            <div class="row">
-                                <span class="dimmed-sm-label">
-                                    status
-                                </span>
-                                <span class="dimmed-sm-label">
-                                    @lastMessage?.DateTime.ToShortTimeString();
-                                </span>
+                        var chat = userChat.Chat;
+                        var contact = chat.Users.FirstOrDefault(x => x.UserId != Model.Id).User;
+                        Message lastMessage = null;
+                        @if (chat.Messages.Count() > 0)
+                        {
+                            lastMessage = chat.Messages.ToList().Last();
+                        }
+                        <li class="chat-item">
+                            <div class="img-cr">
+                                <img src="@contact.PhotoUrl" class="rounded-circle" />
                             </div>
-                            <div class="row">
-                                <label class="name-sm-label">Name</label>
-                                <span class="icon-cr"></span>
-                            </div>
-                            <div class="row">
-                                @if (lastMessage != null)
-                                {
-                                    if (lastMessage.User.Id == Model.Id)
+                            <div class="chat-details">
+                                <div class="row">
+                                    <span class="dimmed-sm-label">
+                                        status
+                                    </span>
+                                    <span class="dimmed-sm-label">
+                                        @lastMessage?.DateTime.ToShortTimeString();
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <label class="name-sm-label">Name</label>
+                                    <span class="icon-cr"></span>
+                                </div>
+                                <div class="row">
+                                    @if (lastMessage != null)
                                     {
-                                        <p class="normal-text">@lastMessage.Text</p>
+                                        if (lastMessage.User.Id == Model.Id)
+                                        {
+                                            <p class="normal-text">@lastMessage.Text</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="normal-text font-weight-bold">@lastMessage.User.FirstName : @lastMessage.Text</p>
+                                        }
                                     }
                                     else
                                     {
-                                        <p class="normal-text font-weight-bold">@lastMessage.User.FirstName : @lastMessage.Text</p>
+                                        <p class="normal-text font-weight-bold">Start a converstaion with @contact.FirstName</p>
                                     }
-                                }
-                                else
-                                {
-                                    <p class="normal-text font-weight-bold">Start a converstaion with @contact.FirstName</p>
-                                }
 
+                                </div>
+                                <div class="row">
+                                    <span class="dimmed-sm-label">
+                                        @lastMessage?.DateTime.ToShortDateString();
+                                    </span>
+                                    <span class="dimmed-sm-label">property name</span>
+                                </div>
                             </div>
-                            <div class="row">
-                                <span class="dimmed-sm-label">
-                                    @lastMessage?.DateTime.ToShortDateString();
-                                </span>
-                                <span class="dimmed-sm-label">property name</span>
-                            </div>
-                        </div>
-                    </li>
-                }
-            </ul>
-        </div>
-        <div class="col-md-8 chat-cr">
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="col-md-8 chat-cr">
+            </div>
         </div>
     </div>
-</div>
