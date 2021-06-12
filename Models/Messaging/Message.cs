@@ -18,6 +18,9 @@ namespace Airbnb.Models.Messaging
         public virtual AppUser User { get; set; }
         [ForeignKey("Chat"),Required]
         public int ChatId { get; set; }
+
+        public DateTime DateTime{ get; set; }
+
         public virtual Chat Chat { get; set; }
     }
 }

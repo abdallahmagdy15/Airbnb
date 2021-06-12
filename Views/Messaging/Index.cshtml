@@ -1,0 +1,59 @@
+﻿@using Airbnb.Models;
+@using Airbnb.Models.Messaging;
+@model AppUser
+
+
+<ul type=none>
+    @foreach (var userChat in Model.Chats)
+    {
+        var chat = userChat.Chat;
+        var contact = chat.Users.FirstOrDefault(x => x.UserId != Model.Id).User;
+        Message lastMessage = null;
+        @if (chat.Messages.Count() > 0)
+        {
+            lastMessage = chat.Messages.ToList().Last();
+        }
+        <li class="msg-item">
+            <div>
+                <img src="@contact.PhotoUrl" class="rounded-circle" />
+            </div>
+            <div class="details">
+                <div class="row">
+                    <span class="dimmed-sm-label">
+                        status
+                    </span>
+                    <span class="dimmed-sm-label">
+                        @lastMessage?.DateTime.ToShortTimeString();
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="name-sm-label">Name</label>
+                    <span class="icon-cr"></span>
+                </div>
+                <div class="row">
+                    @if (lastMessage != null)
+                    {
+                        if (lastMessage.User.Id == Model.Id)
+                        {
+                            <p class="normal-text">@lastMessage.Text</p>
+                        }
+                        else
+                        {
+                            <p class="normal-text">@lastMessage.User.FirstName : @lastMessage.Text</p>
+                        }
+                    }else
+                {
+                    <p>Start a converstaion with @contact.FirstName</p>
+                }
+
+                </div>
+                    <div class="row">
+                        <span class="dimmed-sm-label">
+                            @lastMessage?.DateTime.ToShortDateString();
+                        </span>
+                        <span class="dimmed-sm-label">property name</span>
+                    </div>
+                </div>
+            </li>
+        }
+</ul>
