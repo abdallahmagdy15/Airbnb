@@ -4,15 +4,17 @@ using Airbnb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 
 namespace Airbnb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210612105544_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -586,37 +588,6 @@ namespace Airbnb.Migrations
                     b.ToTable("PropertyUnavailableDays");
                 });
 
-            modelBuilder.Entity("Airbnb.Models.Reservation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CheckIn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("CheckOut")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("PropertyId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PropertyId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Reservations");
-                });
-
             modelBuilder.Entity("Airbnb.Models.Review", b =>
                 {
                     b.Property<int>("Id")
@@ -649,28 +620,6 @@ namespace Airbnb.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Reviews");
-                });
-
-            modelBuilder.Entity("Airbnb.Models.Transaction", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("Money");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ReservationId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ReservationId")
-                        .IsUnique();
-
-                    b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -986,23 +935,6 @@ namespace Airbnb.Migrations
                     b.Navigation("Property");
                 });
 
-            modelBuilder.Entity("Airbnb.Models.Reservation", b =>
-                {
-                    b.HasOne("Airbnb.Models.Property", "Property")
-                        .WithMany()
-                        .HasForeignKey("PropertyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Airbnb.Models.AppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Property");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Airbnb.Models.Review", b =>
                 {
                     b.HasOne("Airbnb.Models.Property", "Property")
@@ -1020,17 +952,6 @@ namespace Airbnb.Migrations
                     b.Navigation("Property");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Airbnb.Models.Transaction", b =>
-                {
-                    b.HasOne("Airbnb.Models.Reservation", "Reservation")
-                        .WithOne("Transaction")
-                        .HasForeignKey("Airbnb.Models.Transaction", "ReservationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Reservation");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1156,11 +1077,6 @@ namespace Airbnb.Migrations
             modelBuilder.Entity("Airbnb.Models.PropertySubModels.Space", b =>
                 {
                     b.Navigation("Properties");
-                });
-
-            modelBuilder.Entity("Airbnb.Models.Reservation", b =>
-                {
-                    b.Navigation("Transaction");
                 });
 #pragma warning restore 612, 618
         }
