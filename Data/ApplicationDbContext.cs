@@ -31,18 +31,7 @@ namespace Airbnb.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<PropertyGuestPlaceType>()
-                .HasKey(pg => new { pg.PropertyId, pg.GuestPlaceTypeId });
-
-            builder.Entity<PropertyGuestPlaceType>()
-                .HasOne(pg => pg.Property)
-                .WithMany(p => p.GuestPlaceTypes)
-                .HasForeignKey(pg => pg.PropertyId);
-
-            builder.Entity<PropertyGuestPlaceType>()
-                .HasOne(pg => pg.GuestPlaceType)
-                .WithMany(g => g.Properties)
-                .HasForeignKey(pg => pg.GuestPlaceTypeId);
+           
 
             builder.Entity<PropertyAmenity>()
                 .HasKey(pa => new { pa.PropertyId, pa.AmenityId });

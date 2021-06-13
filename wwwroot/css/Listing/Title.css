@@ -61,7 +61,6 @@ footer {
 }
 @media only screen and (min-width: 600px) {
    .TipsInFullScreen{
-       max-width:0 !important;
        margin-left:10px !important;
    }
 }
@@ -72,7 +71,7 @@ footer {
     padding: 20px;
     padding-bottom: 30px;
     display: table;
-    max-width: 330px;
+    max-width: 330px !important;
     min-width: 270px;
     margin-left: 30px;
     border: 1px solid lightgrey;

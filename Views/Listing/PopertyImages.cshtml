@@ -24,7 +24,9 @@
                     </div>
                 </div>
                 <div class="ContainInput">
-                        <input  type='file' class="file-upload"  multiple />                    
+                        <input name="Images" type='file' class="file-upload"  multiple />
+                    <div id="divImages">
+                        </div>
                     <!-- image slider ////////////////////////////////////////////////////////-->
                     <div id="demo" class="carousel slide">
                         <button class="edit">
@@ -145,14 +147,15 @@
 
                 reader.onload = function (e) {
                     if (numberOfImage == 1) {
-                        imageSrcs.push(file_upload.files[0].name)
+                        //imageSrcs.push(file_upload.files[0].name)
                         $('.Input').attr('style', 'display:none')
 
                         $('#demo').attr('style', 'display:block ')
 
                         $(".Image" + numberOfImage + "").attr('src', e.target.result);
-                    } else {
-                        $('._amkdao').append("<input type='file' class='file_upload'/>")
+                    } else if (numberOfImage == 1) {
+                        alert('hi')
+                        console.log('hhhhhh')
                         // $(".Image"+numberOfImage+"").attr('src',file_upload.files[0].name);
                         $('.carousel-inner').children().last().attr('class', 'carousel-item');
                         $('.carousel-inner').append("<div class='carousel-item active'><img class='Image" + numberOfImage + "' src='" + e.target.result + "'></div>")
@@ -164,6 +167,7 @@
                         $('.carousel-control-next').css('display', 'flex')
                         imageSrcs.push(file_upload.files[0].name)
                     }
+                    $('#divImages').append("<input name='Images' type='file' class='file-upload'/>")
                     numberOfImage++
                     console.log(imageSrcs.length)
                     
@@ -183,7 +187,9 @@
             $(".file-upload")[0].click();
         })
         $('._amkdao').click(function () {
-            $(".file-upload")[0].click();
+            console.log($(".file-upload"))
+            $(".file-upload")[$(".file-upload").length - 1].click();
+
         })
 
         $('.carousel').carousel({
