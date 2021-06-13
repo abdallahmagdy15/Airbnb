@@ -354,7 +354,15 @@
 
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img class="d-block w-100" src="@item.Photos[0].Url" alt="First slide">
+                                        @if (item.Photos.Count > 0)
+                                        {
+                                            <img class="d-block w-100" src="@item.Photos[0].Url" alt="First slide">
+
+                                        }
+                                        else
+                                        {
+                                            <img class="d-block w-100" src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg" alt="First slide">
+                                        }
                                     </div>
                                     @for (int i = 1; i < item.Photos.Count; i++)
                                     {
@@ -408,7 +416,7 @@
                             </button>
                             <div class="big-card-title">
                                 <div class="big-card-location">
-                                    @item.GuestPlaceType.Name in @item.City.Name
+                                    @item.GuestPlaceType?.Name in @item.City.Name
                                 </div>
                                 <div class="big-card-prop-title">
                                     @item.Title
@@ -663,7 +671,7 @@
                 @:createMarker(@(item.Coordinates.Coordinate.X), @(item.Coordinates.Coordinate.Y), map, '../images/mark.png', '@(item.Price.ToString("C0"))')
                     
                     @:.addListener("click", (e) => {
-                          @:const infoWind = createInfoWindow('@(item.Title)', '@(item.Photos[0].Url)', @(item.Id));
+                          @:const infoWind = createInfoWindow('@(item.Title)', '@(item.Photos.Count > 0 ? item.Photos[0].Url : "")', @(item.Id));
                           @:infoWind.setPosition(e.latLng);
                           @:infoWind.open(map);
                       @:});
@@ -725,7 +733,7 @@
             const content = `
                 <a href="../Property/Details/${id}" style=" display: block; text-decoration: none; color: gray; margin: 10px auto;">
                     <div style="width: 300px; overflow: hidden; margin: auto;">
-                        <img src="${img}" alt="imag" style="object-fit: cover; width: 100%; height: 100%; border-radius: 10px;" />
+                        <img src="${img || "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"}" alt="imag" style="object-fit: cover; width: 100%; height: 100%; border-radius: 10px;" />
                     </div>
                     
                     <h5 style="text-align: center; padding-top: 20px;">${title}</h5>

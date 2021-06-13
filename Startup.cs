@@ -31,8 +31,8 @@ namespace Airbnb
                     .UseSqlServer(
                         Configuration.GetConnectionString("DefaultConnection"),
                         x => x.UseNetTopologySuite()));
-
-
+            services.AddMemoryCache();
+            services.AddSession();
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -82,6 +82,8 @@ namespace Airbnb
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -89,6 +91,8 @@ namespace Airbnb
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
