@@ -44,19 +44,18 @@ namespace Airbnb.Services
                 .Where(p => pTypeIds.Contains(p.GuestPlaceType.Id));
         }
 
-        private static IEnumerable<DateTime> GetDays(DateTime start, DateTime end)
+        public static IEnumerable<DateTime> GetDays(DateTime start, DateTime end)
         {
-            do
+            while (start.Date < end.Date)
             {
                 yield return start;
                 start = start.AddDays(1);
             }
-            while (start.Date != end.Date);
 
             yield return end;
         }
 
-        private static bool CheckDates(IEnumerable<DateTime> unAvailableDays, IEnumerable<DateTime> stayDays)
+        public static bool CheckDates(IEnumerable<DateTime> unAvailableDays, IEnumerable<DateTime> stayDays)
         {
             foreach (var day in stayDays)
             {

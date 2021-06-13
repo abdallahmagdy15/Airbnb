@@ -48,5 +48,18 @@ namespace Airbnb.Services
 
             return properties;
         }
+
+        public bool IsPropertyAvailable(int propId, DateTime checkIn, DateTime checkOut)
+        {
+            var prop = _db.Properties.SingleOrDefault(p => p.Id == propId);
+
+            if (prop == null)
+                return false;
+
+            var rangeDays = PropertySearchService.GetDays(checkIn, checkOut);
+            var unAvailabledays = prop.UnavailableDays.Select(p => p.UnavailableDay);
+
+            return PropertySearchService.CheckDates(unAvailabledays, rangeDays);
+        }
     }
 }
