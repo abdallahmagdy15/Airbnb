@@ -23,9 +23,8 @@ namespace Airbnb.Controllers
         }
         public IActionResult CreateRole()
         {
-            return View();
+            return PartialView("Views/Shared/CreateRoleViewPartial.cshtml");
         }
-
         [HttpPost]
         public async Task<IActionResult> CreateRole(CreateRoleViewModel model)
         {
@@ -97,15 +96,15 @@ namespace Airbnb.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> EditUsersInRole(string roleId)
+        public async Task<IActionResult> EditUsersInRole(string id)
         {
-            ViewBag.roleId = roleId;
+            ViewBag.roleId = id;
 
-            var role = await roleManager.FindByIdAsync(roleId);
+            var role = await roleManager.FindByIdAsync(id);
 
             if (role == null)
             {
-                ViewBag.ErrorMessage = $"Role with Id = {roleId} cannot be found";
+                ViewBag.ErrorMessage = $"Role with Id = {id} cannot be found";
                 return NotFound();
             }
 

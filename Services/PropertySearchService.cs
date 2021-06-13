@@ -11,10 +11,10 @@ namespace Airbnb.Services
 {
     public class PropertySearchService : ISearchService
     {
-        public IEnumerable<Property> FilterByLocation(IEnumerable<Property> properties, City city)
+        public IEnumerable<Property> FilterByLocation(IEnumerable<Property> properties, int cityId)
         {
             return properties
-                .Where(p => p.City == city);
+                .Where(p => p.City.Id == cityId);
         }
 
         public IEnumerable<Property> FilterByDate(IEnumerable<Property> properties, DateTime checkin, DateTime checkout)
@@ -38,10 +38,10 @@ namespace Airbnb.Services
                 .Where(p => p.Price >= min && p.Price <= max);
         }
 
-        public IEnumerable<Property> FilterByPlaceTypes(IEnumerable<Property> properties, List<GuestPlaceType> pTypes)
+        public IEnumerable<Property> FilterByPlaceTypes(IEnumerable<Property> properties, List<int> pTypeIds)
         {
             return properties
-                .Where(p => pTypes.Contains(p.GuestPlaceType));
+                .Where(p => pTypeIds.Contains(p.GuestPlaceType.Id));
         }
 
         private static IEnumerable<DateTime> GetDays(DateTime start, DateTime end)

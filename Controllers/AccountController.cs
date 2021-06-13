@@ -149,6 +149,7 @@ namespace Airbnb.Controllers
                             LastName = info.Principal.FindFirstValue(ClaimTypes.Surname),
                             UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
                             PhoneNumber = info.Principal.FindFirstValue(ClaimTypes.MobilePhone),
+
                         };
                         if (info.Principal.FindFirstValue(ClaimTypes.Gender) == "Male" || info.Principal.FindFirstValue(ClaimTypes.Gender) == "male")
                         {

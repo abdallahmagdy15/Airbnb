@@ -1,0 +1,741 @@
+﻿@model IEnumerable<Property>
+@{
+    ViewData["Title"] = ViewBag.city;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/Buttons.css">
+    <link rel="stylesheet" href="~/css/Cards.css">
+    <link rel="stylesheet" href="~/css/locationgroup.css">
+    <link rel="stylesheet" href="~/css/left.css">
+    <link rel="stylesheet" href="~/css/map.css">
+    <style>
+        .container {
+            margin: 0;
+            padding: 0;
+        }
+
+        #main-wrapper {
+            display: flex;
+            padding-top: 80px;
+            transition-duration: 0.8s;
+        }
+
+        #btn-fold-map,
+        #btn-unfold-map {
+            display: none;
+        }
+
+        #main-content-left-header {
+            margin: 10px;
+        }
+
+            #main-content-left-header button:hover {
+                border-color: black;
+            }
+
+        #filters-wrapper {
+            display: none;
+        }
+
+            #filters-wrapper > div {
+                position: relative;
+                margin-right: 0.5em;
+            }
+
+        .filter-div {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: max-content;
+            min-width: 350px;
+            background-color: white;
+            z-index: 20;
+            border: 1px solid rgb(218, 218, 218);
+            border-radius: 20px;
+            padding: 2em 1.5em;
+            margin-top: 1em;
+        }
+
+        #cancel-main {
+            display: flex;
+            align-items: center;
+        }
+
+        .filter-div-main {
+            padding-bottom: 2em;
+            margin-bottom: 1em;
+            border-bottom: 0.5px solid lightgray;
+            overflow: hidden auto;
+            max-height: 40vh;
+        }
+
+        #cancel-main > span {
+            margin-right: 2em;
+        }
+
+        .filter-div-actions {
+            display: flex;
+        }
+
+        .btn-clear {
+            background: none;
+            border: none;
+            text-decoration: underline;
+            text-decoration-color: inherit;
+            font-weight: bold;
+            outline: none;
+            color: rgb(40, 40, 40);
+        }
+
+            .btn-clear:hover {
+                color: black;
+            }
+
+        .spacer {
+            flex: 1 1 auto;
+        }
+
+        .btn-clear:focus {
+            outline: none;
+        }
+
+        .btn-save {
+            padding: 6px 16px;
+            border: none;
+            background-color: rgb(40, 40, 40);
+            color: white;
+            border-radius: 8px;
+        }
+
+            .btn-save:hover {
+                background-color: black;
+            }
+
+        .switch {
+            width: 50px;
+            height: 34px;
+            background-color: #B0B0B0;
+            border-radius: 17px;
+            border: none;
+            outline: none;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 2px;
+        }
+
+            .switch:hover {
+                background-color: #6b6b6b;
+            }
+
+            .switch:focus {
+                outline: none;
+            }
+
+            .switch.checked {
+                background-color: black;
+            }
+
+        .switch-circle {
+            position: absolute;
+            left: 2px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: white;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition-duration: 0.25s;
+            transition-timing-function: ease-in-out;
+        }
+
+            .switch-circle.checked {
+                transform: translateX(16px);
+            }
+
+        #type-main > label {
+            margin-bottom: 1em;
+        }
+
+        .type-check-header {
+            font-size: larger;
+        }
+
+        #price-main {
+            display: flex;
+            align-items: center;
+        }
+
+        .price-div {
+            border: 0.5px solid rgb(150, 150, 150);
+            border-radius: 10px;
+            width: 150px;
+            padding: 10px;
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+            .price-div.active {
+                border: 1px solid black;
+            }
+
+        .price-header {
+            font-size: .8em;
+            color: rgb(100, 100, 100);
+        }
+
+        .price-body {
+            display: flex;
+        }
+
+        .price-input-div {
+            flex: 1 1 auto;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        .price-input {
+            width: 100% !important;
+            border: none !important;
+            outline: none !important;
+            padding: 0px !important;
+            min-height: 1px !important;
+            color: inherit !important;
+            background-color: transparent !important;
+            font-family: inherit !important;
+            font-size: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+            appearance: none !important;
+        }
+
+        #type-filter-div .checkbox {
+            margin-right: 1em;
+        }
+
+        @@media screen and (min-width: 768px) {
+            #filters-wrapper {
+                display: flex;
+            }
+
+            #all-filter {
+                display: none;
+            }
+        }
+
+        @@media screen and (min-width: 1200px) {
+
+            #btn-fold-map,
+            #btn-unfold-map {
+                display: flex;
+            }
+        }
+    </style>
+}
+
+<div id="main-wrapper">
+    <form id="main-content-left">
+        <input type="hidden" name="cityId" value="@((ViewBag.search as SearchQuery).CityId)" />
+        <input type="hidden" name="checkIn" value="@((ViewBag.search as SearchQuery).CheckIn)" />
+        <input type="hidden" name="checkout" value="@((ViewBag.search as SearchQuery).Checkout)" />
+        <input type="hidden" name="noOfGuests" value="@((ViewBag.search as SearchQuery).NoOfGuests)" />
+        <input type="hidden" id="page" name="page" value="@((ViewBag.search as SearchQuery).Page)" />
+        <div id="main-content-left-header" class="mb-4">
+            <h2 class="mb-4">Places to stay near you</h2>
+            <div id="filters-wrapper">
+                <div>
+                    <button class="btn-rounded btn-open-filter" id="type-filter" type="button">
+                        Type of Place
+                    </button>
+                    <div id="type-filter-div" class="filter-div d-none">
+                        <div id="type-main" class="filter-div-main">
+                            @foreach (var item in (ViewBag.PlaceTypes as IEnumerable<GuestPlaceType>))
+                            {
+                                <label for="@item.Id" class="btn-map-div-horizontal clickable">
+                                    <div class="checkbox checked">
+                                        @if ((ViewBag.search as SearchQuery).PlaceTypeIds != null 
+                                            && (ViewBag.search as SearchQuery).PlaceTypeIds.Contains(item.Id))
+                                        {
+                                            <input type="checkbox" id="@item.Id" name="PlaceTypeIds" value="@item.Id" class="checkbox-input" checked="checked">
+                                            <span class="checkbox-visual checkbox-visual-checked">
+                                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+                                                     aria-hidden="true" role="presentation" focusable="false"
+                                                     style="display: block; fill: none; height: 16px; width: 16px; stroke: white; stroke-width: 4; overflow: visible;">
+                                                    <path fill="none" d="m4 16.5 8 8 16-16"></path>
+                                                </svg>
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" id="@item.Id" name="PlaceTypeIds" value="@item.Id" class="checkbox-input">
+                                            <span class="checkbox-visual">
+                                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+                                                     aria-hidden="true" role="presentation" focusable="false"
+                                                     style="display: block; fill: none; height: 16px; width: 16px; stroke: white; stroke-width: 4; overflow: visible;">
+                                                    <path fill="none" d="m4 16.5 8 8 16-16"></path>
+                                                </svg>
+                                            </span>
+                                        }
+                                    </div>
+                                    <div>
+                                        <p class="m-0 type-check-header">@item.Name</p>
+                                    </div>
+                                </label>
+                            }
+                        </div>
+                        <div class="filter-div-actions">
+                            <button class="btn-save">Apply</button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn-rounded btn-open-filter" type="button" id="price-filter">
+                        Price
+                    </button>
+
+                    <div id="price-filter-div" class="d-none filter-div">
+                        <div id="price-main" class="filter-div-main">
+                            <label class="price-div" for="filter-min-price">
+                                <div class="price-header">min price</div>
+                                <div class="price-body">
+                                    <div class="mr-2">$</div>
+                                    <div class="price-input-div">
+                                        <input type="number" name="MinPrice" value="@(ViewBag.minPrice > 0 ? ViewBag.minPrice : "")" id="filter-min-price" class="price-input">
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="m-2">
+                                -
+                            </span>
+                            <label class="price-div" for="filter-max-price">
+                                <div class="price-header">max price</div>
+                                <div class="price-body">
+                                    <div class="mr-2">$</div>
+                                    <div class="price-input-div">
+                                        <input type="number" name="MaxPrice" value="@(ViewBag.maxPrice > 0 ? ViewBag.maxPrice : "")" id="filter-max-price" class="price-input">
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="filter-div-actions">
+                            <button class="btn-save" type="submit">Apply</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-rounded" type="button" id="all-filter">
+                Filters
+            </button>
+        </div>
+
+        <div id="Explore">
+            @foreach (var item in Model)
+            {
+                <div class="big-card-wrapper" data-lat="@item.Coordinates?.Coordinate.Y" data-long="@item.Coordinates?.Coordinate.X">
+                    <div class="big-card">
+                        <div class="big-card-images">
+                            <div id="card-carousel-@item.Id" class="carousel slide small-card-carousel" data-ride="carousel">
+
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src="@item.Photos[0].Url" alt="First slide">
+                                    </div>
+                                    @for (int i = 1; i < item.Photos.Count; i++)
+                                    {
+                                        <div class="carousel-item">
+                                            <img class="d-block w-100" src="@item.Photos[i].Url" alt="First slide">
+                                        </div>
+                                    }
+                                </div>
+
+                                <a class="carousel-control-prev ml-3 text-dark" href="#card-carousel-@item.Id" role="button"
+                                   data-slide="prev">
+                                    <span class="circle-direction-span">
+                                        <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true"
+                                             focusable="false"
+                                             style="height: 10px; width: 10px; display: block; fill: currentcolor;">
+                                            <path d="m10.8 16c-.4 0-.7-.1-.9-.4l-6.8-6.7c-.5-.5-.5-1.3 0-1.8l6.8-6.7c.5-.5 1.2-.5 1.7 0s .5 1.2 0 1.7l-5.8 5.9 5.8 5.9c.5.5.5 1.2 0 1.7-.2.3-.5.4-.8.4">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                </a>
+
+                                <a class="carousel-control-next text-dark mr-3" href="#card-carousel-@item.Id" role="button"
+                                   data-slide="next">
+                                    <span class="circle-direction-span">
+                                        <svg viewBox="0 0 16 16" role="presentation" aria-hidden="true"
+                                             focusable="false"
+                                             style="height: 10px; width: 10px; display: block; fill: currentcolor;">
+                                            <path d="m5.3 16c .3 0 .6-.1.8-.4l6.8-6.7c.5-.5.5-1.3 0-1.8l-6.8-6.7c-.5-.5-1.2-.5-1.7 0s-.5 1.2 0 1.7l5.8 5.9-5.8 5.9c-.5.5-.5 1.2 0 1.7.2.3.5.4.9.4">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="big-card-text">
+                            <button class="btn-big-like" type="button">
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                     role="presentation" focusable="false"
+                                     style="display: block; fill: transparent; height: 24px; width: 24px; stroke: rgb(34, 34, 34); stroke-width: 2; overflow: visible;">
+                                    <path d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z">
+                                    </path>
+                                </svg>
+                                <!-- <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation"
+                                    focusable="false"
+                                    style="display: block; fill: rgb(255, 56, 92); height: 24px; width: 24px; stroke: rgb(255, 56, 92); stroke-width: 2; overflow: visible;">
+                                    <path
+                                        d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z">
+                                    </path>
+                                </svg> -->
+                            </button>
+                            <div class="big-card-title">
+                                <div class="big-card-location">
+                                    @item.GuestPlaceType.Name in @item.City.Name
+                                </div>
+                                <div class="big-card-prop-title">
+                                    @item.Title
+                                </div>
+                            </div>
+
+                            <div class="big-card-spacer"></div>
+
+                            <div class="desc-top">
+                                <span>@item.Capacity guests</span>
+                                <span>&middot;</span>
+                                <span>@item.NumberOfBedRooms bedrooms</span>
+                                <span>&middot;</span>
+                                <span>@item.NumberOfBeds beds</span>
+                                <span>&middot;</span>
+                                <span>@item.NumberOfBathrooms bath</span>
+                            </div>
+
+                            <div class="desc-bot">
+                                <div class="big-card-rating">
+                                    <span class="star">
+                                        <svg viewBox="0 0 1000 1000" role="presentation" aria-hidden="true"
+                                             focusable="false" style="height: 14px; width: 14px; fill: #FF385C;">
+                                            <path d="M972 380c9 28 2 50-20 67L725 619l87 280c11 39-18 75-54 75-12 0-23-4-33-12L499 790 273 962a58 58 0 0 1-78-12 50 50 0 0 1-8-51l86-278L46 447c-21-17-28-39-19-67 8-24 29-40 52-40h280l87-279c7-23 28-39 52-39 25 0 47 17 54 41l87 277h280c24 0 45 16 53 40z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    @* TODO rating after integrating reviews *@
+                                    <span class="rating">4.95</span>
+                                    <span class="reviews-count">&nbsp;(4 reviews)</span>
+                                </div>
+                                <div class="big-card-price">
+                                    <span class="price"><b>@item.Price.ToString("C2")</b></span>
+                                    / night
+                                </div>
+                            </div>
+                        </div>
+
+                        <a asp-controller="Property" asp-action="Details" asp-route-id="@item.Id" class="carousel-link"></a>
+                    </div>
+
+                    <div class="divider">
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div id="pagination">
+            <div class="container mt-5">
+                <div id="paging">
+                    <nav>
+                        <div class="paging-links">
+                            <button class="paging-link btn-nostyle" id="prev-page" data-direction="prev">
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                     role="presentation" focusable="false"
+                                     style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
+                                    <g fill="none">
+                                        <path d="m20 28-11.29289322-11.2928932c-.39052429-.3905243-.39052429-1.0236893 0-1.4142136l11.29289322-11.2928932">
+                                        </path>
+                                    </g>
+                                </svg>
+                            </button>
+
+                            <button class="paging-link btn-nostyle" id="next-page" data-direction="next">
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                     role="presentation" focusable="false"
+                                     style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;">
+                                    <g fill="none">
+                                        <path d="m12 4 11.2928932 11.2928932c.3905243.3905243.3905243 1.0236893 0 1.4142136l-11.2928932 11.2928932">
+                                        </path>
+                                    </g>
+                                </svg>
+                            </button>
+                        </div>
+                    </nav>
+                    <div class="nav-text">
+                        <p>1 – @Model.Count() of @(ViewBag.Count)+ places to stay</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div id="map-wrapper">
+        <div>
+            <div id="map">
+            </div>
+            <div id="map-left">
+                <button class="btn-map btn-fixed-height btn-nostyle btn-transparent map-control"
+                        id="btn-unfold-map" type="button">
+                    <span class="direction-span" data-direction="left">
+                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                             role="presentation" focusable="false"
+                             style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 4; overflow: visible;">
+                            <g fill="none">
+                                <path d="m20 28-11.29289322-11.2928932c-.39052429-.3905243-.39052429-1.0236893 0-1.4142136l11.29289322-11.2928932">
+                                </path>
+                            </g>
+                        </svg>
+                    </span>
+                </button>
+                <button type="button" class="btn-map btn-fixed-height btn-nostyle btn-transparent map-control" id="btn-fold-map">
+                    <span class="direction-span" data-direction="right">
+                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                             role="presentation" focusable="false"
+                             style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 4; overflow: visible;">
+                            <g fill="none">
+                                <path d="m12 4 11.2928932 11.2928932c.3905243.3905243.3905243 1.0236893 0 1.4142136l-11.2928932 11.2928932">
+                                </path>
+                            </g>
+                        </svg>
+                    </span>
+                    <span class="btn-map-text">
+                        Show List
+                    </span>
+                </button>
+                <button class="btn-map btn-fixed-height btn-fixed-width p-0 btn-nostyle btn-transparent map-control"
+                        id="btn-close-map" type="button">
+                    <span class="direction-span">
+                        <svg viewBox="0 0 12 12" role="presentation" aria-hidden="true" focusable="false"
+                             style="height: 14px; width: 14px; display: block; fill: currentcolor;">
+                            <path d="m11.5 10.5c.3.3.3.8 0 1.1s-.8.3-1.1 0l-4.4-4.5-4.5 4.5c-.3.3-.8.3-1.1 0s-.3-.8 0-1.1l4.5-4.5-4.4-4.5c-.3-.3-.3-.8 0-1.1s.8-.3 1.1 0l4.4 4.5 4.5-4.5c.3-.3.8-.3 1.1 0s .3.8 0 1.1l-4.5 4.5z"
+                                  fill-rule="evenodd"></path>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+
+            <div id="map-right">
+                <button class="btn-map btn-fixed-height btn-fixed-width p-0 btn-nostyle btn-transparent map-control"
+                        id="btn-filter-map" type="button">
+                    <span class="direction-span">
+                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                             role="presentation" focusable="false"
+                             style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 4; overflow: visible;">
+                            <path d="M7 16H3m26 0H15M29 6h-4m-8 0H3m26 20h-4M7 16a4 4 0 1 0 8 0 4 4 0 0 0-8 0zM17 6a4 4 0 1 0 8 0 4 4 0 0 0-8 0zm0 20a4 4 0 1 0 8 0 4 4 0 0 0-8 0zm0 0H3"
+                                  fill="none"></path>
+                        </svg>
+                    </span>
+                </button>
+                <div class="btn-map btn-map-div-vertical btn-fixed-width map-control" id="btn-zoom">
+                    <button class="btn-nostyle btn-fixed-width btn-fixed-height btn-transparent top-round"
+                            id="btn-map-zoomin" type="button">
+                        <svg viewBox="0 0 16 16" height="16" width="16" fill="currentColor" focusable="false">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M7 1a1 1 0 0 1 2 0v14a1 1 0 1 1-2 0V1z">
+                            </path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M0 8a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H1a1 1 0 0 1-1-1z"></path>
+                        </svg>
+                    </button>
+                    <button class="btn-nostyle btn-fixed-width btn-fixed-height btn-transparent bot-round"
+                            id="btn-map-zoomout" type="button">
+                        <svg viewBox="0 0 16 16" height="16" width="16" fill="currentColor" focusable="false">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M0 8a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H1a1 1 0 0 1-1-1z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button id="btn-show-map" type="button">
+    <span>
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation"
+             focusable="false"
+             style="display: block; fill: none; height: 16px; width: 16px; stroke: rgb(255, 255, 255); stroke-width: 2; overflow: visible;">
+            <g fill="none">
+                <path d="m2.78306954 4.82598455 8.21693046-1.82598455 10 2 7.7830695-1.72957101c.5391333-.11980738 1.0733102.22012338 1.1931176.7592566.0158277.0712249.0238129.14396811.0238129.21693046v21.95121235c0 .4686986-.325532.874512-.7830695.9761871l-8.2169305 1.8259845-10-2-7.78306954 1.729571c-.53913323.1198074-1.07331014-.2201234-1.19311752-.7592566-.01582776-.0712249-.02381294-.1439681-.02381294-.2169305v-21.95121229c0-.46869865.32553199-.87451205.78306954-.97618706z">
+                </path>
+                <path d="m9 17h24z" transform="matrix(0 1 -1 0 38 -4)"></path>
+                <path d="m-1 15h24z" transform="matrix(0 1 -1 0 26 4)"></path>
+            </g>
+        </svg>
+    </span>
+    <span id="btn-show-map-text">Map</span>
+</button>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_BPkgYNWQNTrzfp-1tNW1A1tekxyNj1w&callback=initMap&libraries=&v=weekly"
+            async></script>
+    <script src="~/js/locationgroup.js"></script>
+    <script src="~/js/Map.js"></script>
+    <script>
+        $("#btn-show-map").click((e) => {
+            $(e.currentTarget).hide();
+            $("#map-wrapper").show();
+        });
+
+        $("#btn-close-map").click((e) => {
+            $("#map-wrapper").hide();
+            $("#btn-show-map").show();
+        });
+
+        $(".switch").click((e) => {
+            $(e.currentTarget).toggleClass("checked");
+            $(e.currentTarget).find(".switch-circle").toggleClass("checked");
+            $(e.currentTarget).find(".switch-circle").find("svg").toggleClass("d-none");
+        });
+
+        $(".btn-open-filter").click((e) => {
+            e.stopPropagation();
+            let targetDiv = $(e.currentTarget).siblings(".filter-div");
+            if (targetDiv.hasClass("d-none")) {
+                $(".filter-div").addClass("d-none");
+                targetDiv.removeClass("d-none");
+            } else {
+                targetDiv.addClass("d-none");
+            }
+        });
+
+        $(document.body).click(function () {
+            $('.filter-div').addClass("d-none");
+        });
+
+        $('.filter-div').click(function (e) {
+            e.stopPropagation();
+        });
+
+        $(".price-input").focus((e) => {
+            $(e.currentTarget).parents(".price-div").addClass("active");
+        });
+
+        $(".price-input").blur((e) => {
+            $(e.currentTarget).parents(".price-div").removeClass("active");
+        });
+
+        function initMap() {
+            let initialLocation;
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 10,
+                disableDefaultUI: true,
+            });
+
+            initialLocation = new google.maps.LatLng(@ViewBag.coordY, @ViewBag.coordX);
+            map.setCenter(initialLocation);
+
+            var homeControlDiv = document.createElement('div');
+            var homeControl = new HomeControl(homeControlDiv, map);
+
+            @foreach (var item in Model)
+            {
+                @:createMarker(@(item.Coordinates.Coordinate.X), @(item.Coordinates.Coordinate.Y), map, '../images/mark.png', '@(item.Price.ToString("C0"))')
+                    
+                    @:.addListener("click", (e) => {
+                          @:const infoWind = createInfoWindow('@(item.Title)', '@(item.Photos[0].Url)', @(item.Id));
+                          @:infoWind.setPosition(e.latLng);
+                          @:infoWind.open(map);
+                      @:});
+            }
+        }
+
+        function createMarker(long, lat, map, imageUrl, price) {
+            var mLoc = new google.maps.LatLng(lat, long);
+            const marker = new google.maps.Marker({
+                position: mLoc,
+                map: map,
+            });
+
+            if (imageUrl)
+                marker.setIcon(imageUrl);
+
+            if (price)
+                marker.setLabel(price);
+
+            return marker;
+        }
+
+        let marker;
+
+        $('.big-card-wrapper').mouseenter((e) => {
+            let card = $(e.currentTarget);
+            marker = createMarker(card.data('long'), card.data('lat'), map);
+        });
+
+        $('.big-card-wrapper').mouseleave((e) => {
+            marker.setMap(null);
+        });
+
+        if (!+$('#page').val()) {
+            $('#prev-page').addClass('disabled').attr('disabled', true);
+        } else {
+            $('#prev-page').removeClass('disabled').attr('disabled', false);
+        }
+
+        if (+$('#page').val() >= @(ViewBag.pages - 1)) {
+            $('#next-page').addClass('disabled').attr('disabled', true);
+        } else {
+            $('#next-page').removeClass('disabled').attr('disabled', false);
+        }
+
+        $('.paging-link').click((e) => {
+            let link = $(e.currentTarget);
+            switch (link.data('direction')) {
+                case 'prev':
+                    $('#page').val(+$('#page').val() - 1);
+                    break;
+                case 'next':
+                    $('#page').val(+$('#page').val() + 1);
+                    break;
+            }
+        });
+
+        function createInfoWindow(title, img, id) {
+            const content = `
+                <a href="../Property/Details/${id}" style=" display: block; text-decoration: none; color: gray; margin: 10px auto;">
+                    <div style="width: 300px; overflow: hidden; margin: auto;">
+                        <img src="${img}" alt="imag" style="object-fit: cover; width: 100%; height: 100%; border-radius: 10px;" />
+                    </div>
+                    
+                    <h5 style="text-align: center; padding-top: 20px;">${title}</h5>
+                </a>
+            `;
+            const infowindow = new google.maps.InfoWindow({
+                content: content,
+            });
+
+            return infowindow;
+        }
+    </script>
+}

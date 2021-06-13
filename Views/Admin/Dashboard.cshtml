@@ -1,0 +1,233 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Admin.css" />
+</head>
+<body>
+
+    <section class="admin-section">
+        <div class="admin-container">
+            <div class="left-admin-col col-xl-2 col-lg-3 col-md-4 ">
+                <div class="dashboard-header">
+                    <h3>Welcome, Admin</h3>
+                </div>
+                <div class="dashboard-buttons-container">
+                    <div class="button-container">
+                        <img src="~/SVG/dashboard.svg">
+                        <button onClick="window.location.reload();" class="dashboard-button">Dashboard</button>
+                    </div>
+                    <div class="button-container">
+                        <img src="~/SVG/design.svg">
+                        <button id="site-setting-show" onclick="show()" class="dashboard-button">Site setting</button>
+                        <img id="arrow-down" class="arrow-img" src="~/SVG/arrow-down-sign-to-navigate.svg" />
+                        <img id="arrow-up" style="display:none" class="arrow-img" src="~/SVG/arrow-down-sign-to-navigate.svg" />
+                    </div>
+                    <div id="site-setting" style="display:none;">
+                        <div class="button-container">
+                            <img src="~/SVG/airbnb-logo.svg">
+                            <button type="button" onclick="GetChangeLogoView()" class="dashboard-button">Site Logo</button>
+                        </div>
+                        <div class="button-container">
+                            <img src="~/SVG/home.svg">
+                            <button class="dashboard-button">Home Image</button>
+                        </div>
+                    </div>
+
+                    <div class="button-container">
+                        <img src="~/SVG/admin.svg">
+                        <button onclick="showAdmin()" class="dashboard-button">Mange Admins</button>
+                        <img id="arrow-down1" class="arrow-img" src="~/SVG/arrow-down-sign-to-navigate.svg" />
+                    </div>
+                    <div id="admin-setting" style="display:none;">
+                        <div class="button-container">
+                            <img src="~/SVG/rolesetting.svg" />
+                            <button type="button" onclick="getCreateRoleView()" class="dashboard-button">Add Role</button>
+                        </div>
+                        <div class="button-container">
+                            <img src="~/SVG/role2.svg">
+                            <button type="button" onclick="getAllRoles()" class="dashboard-button">All Roles</button>
+                        </div>
+                        <div class="button-container">
+                            <img src="~/SVG/role3.svg">
+                            <button type="button" onclick="GetChangeLogoView()" class="dashboard-button">Add Admin</button>
+                        </div>
+                        <div class="button-container">
+                            <img src="~/SVG/admin.svg">
+                            <button type="button" onclick="getAllAdmins()" class="dashboard-button">All Admins</button>
+                        </div>
+                    </div>
+
+                    <div class="button-container">
+                        <img src="~/SVG/user.svg">
+                        <button onclick="getAllUser()" class="dashboard-button">Mange Users</button>
+                    </div>
+                    <div class="button-container">
+                        <img src="~/SVG/building.svg">
+                        <button onclick="getAllProperties()" class="dashboard-button">Mange Properties</button>
+                    </div>
+                    <div class="button-container">
+                        <img src="~/SVG/travel.svg">
+                        <button class="dashboard-button">Mange Reservation</button>
+                    </div>
+                    <div class="button-container">
+                        <img src="~/SVG/debit-card.svg">
+                        <button class="dashboard-button">Mange payment</button>
+                    </div>
+                    <div class="button-container">
+                        <img src="~/SVG/review.svg">
+                        <button class="dashboard-button">Review Mangment</button>
+                    </div>
+
+                    <!--
+                        <div class="button-container">
+                        <img src="~/SVG/fee.svg">
+                        <button class="dashboard-button">Mange payout</button>
+                        </div>
+                    -->
+                    
+                        <div class="button-container" style="margin-bottom:95px;">
+                            <img src="~/SVG/password.svg">
+                            <button class="dashboard-button">Change password</button>
+                        </div>
+                    
+
+                </div>
+            </div>
+            <div  class="right-admin-col col-xl-10 col-lg-9 col-md-8 col-12">
+                <div class="d-xl-none d-lg-none d-md-none d-sm-block col-sm-1">
+                <img onclick=" ShowHideLeftCol()" id="show-left-col" style="max-width:35px;max-height:35px;border:1px dotted black;margin-bottom:10px;cursor:pointer;" src="~/SVG/arrow-down-sign-to-navigate.svg"  />
+                </div>
+                <div id="main-admin-page">
+                    <partial name="DashboardPartialView" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.1/dist/umd/popper.min.js"
+            integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
+            crossorigin="anonymous"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!--Logic for Glow Button-->
+    <script>
+        //show-hode items
+        function show() {
+            var homeSetting = document.getElementById("site-setting");
+            var downArrow = document.getElementById("arrow-down");
+            var upArrow = document.getElementById("arrow-up");
+
+            if (homeSetting.style.display === "none")
+            {
+                //downArrow.style.display = "none";
+                //upArrow.style.display = "block";
+                homeSetting.style.display = "block";
+            }
+            else
+            {
+                //downArrow.style.display = "block";
+                //upArrow.style.display = "none";
+                homeSetting.style.display = "none";
+            }
+        }
+        function showAdmin() {
+            var adminSetting = document.getElementById("admin-setting");
+            var downArrow = document.getElementById("arrow-down1");
+            var upArrow = document.getElementById("arrow-up");
+
+            if (adminSetting.style.display === "none") {
+                //downArrow.style.display = "none";
+                //upArrow.style.display = "block";
+                adminSetting.style.display = "block";
+            }
+            else {
+                //downArrow.style.display = "block";
+                //upArrow.style.display = "none";
+                adminSetting.style.display = "none";
+            }
+        }
+        function AjaxCall(dataObject,url,Method) {
+            $.ajax({
+                url: url,
+                data: dataObject,
+                method: Method,
+                success: renderAjaxCall,
+                error: console.log
+            })
+        }
+        function renderAjaxCall(result) {
+            $("#main-admin-page").html(result);
+        }
+        function getAllUser() {
+            var Url = `AllUsers`
+            console.log(Url)
+            AjaxCall(null, Url,"GET");
+        }
+        function getAllProperties() {
+            var Url = `AllProperties`
+            console.log(Url)
+            AjaxCall(null, Url,"GET");
+        }
+        function getAllAdmins() {
+            var Url = `AllAdmins`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+        function findUser() {
+            var name = $("#search_text").val();
+            var Url = `FindUser`;
+            console.log(name);
+            AjaxCall({ name }, Url, "POST");
+        }
+        function GetChangeLogoView() {
+            var Url = `ChangeLogo`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+        function ShowHideLeftCol() {
+            let LeftCol = document.querySelector('.left-admin-col');
+            let RightCol = document.querySelector('.right-admin-col');
+            if (!LeftCol.classList.contains('col-6')) {
+                console.log("Aaa");
+                LeftCol.classList.add('col-6');
+                RightCol.classList.add('col-6');
+                RightCol.classList.remove('col-12');
+
+               
+            } else {
+                console.log("bbb");
+                LeftCol.classList.remove('col-6');
+                RightCol.classList.remove('col-6');
+                RightCol.classList.add('col-12');
+
+               
+            }
+            
+        }
+
+        function getCreateRoleView() {
+            var Url = `CreateRole`
+            console.log(Url);
+            AjaxCall(null, Url, "GET");
+        }
+        function getAllRoles() {
+            var Url = `ListRoles`
+            console.log(Url);
+            AjaxCall(null, Url, "GET");
+        }
+
+    </script>
+</body>
+</html>

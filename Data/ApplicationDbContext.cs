@@ -13,7 +13,7 @@ namespace Airbnb.Data
         {
         }
 
-        //public DbSet<AppUser> AppUsers { get; set; }
+        //public virtual DbSet<AppUser> AppUsers { get; set; }
         public virtual DbSet<CreditCard> CreditCards { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
@@ -28,6 +28,9 @@ namespace Airbnb.Data
         public virtual DbSet<HouseRule> HouseRules { get; set; }
         public virtual DbSet<PropertyPhoto> PropertyPhoto { get; set; }
         public virtual DbSet<Space> Spaces { get; set; }
+        public virtual DbSet<Review> Reviews { get; set; }
+        public virtual DbSet<Reservation> Reservations { get; set; }
+        public virtual DbSet<Transaction> Transactions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

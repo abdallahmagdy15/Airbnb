@@ -7,35 +7,33 @@ namespace Airbnb.Models
 {
     public class CreditCard
     {
+        public long Value { get; set; }
         [Key]
+        [Required(ErrorMessage = "Credit Number is required")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [RegularExpression(@"^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$", ErrorMessage = "Credit Number must have 16 digit ")]
         public string Number { get; set; }
 
-        [Required]
-        [RegularExpression(@"^[a-zA-Z]{2,}$", ErrorMessage = "FirstName must be more than two character ")]
-        public string FirstName { get; set; }
+        [Required(ErrorMessage = "Name is required")]
+        [RegularExpression(@"^[a-zA-Z ]{6,}$", ErrorMessage = "Name must be more than six characters ")]
+        public string Name { get; set; }
+        [Required(ErrorMessage = "CVV Number is required")]
+        [RegularExpression(@"^[0-9]{3}$", ErrorMessage = "CVV must be 3 digits number")]
+        public string CVV { get; set; }
+        [Required(ErrorMessage = "Month is required")]
+        [Range(1, 12, ErrorMessage = "Month Must be between 1 to 12")]
+        public int Month { get; set; }
+        [Required(ErrorMessage = "Year is required")]
+        public int Year { get; set; }
 
-        [Required]
-        [RegularExpression(@"^[a-zA-Z]{2,}$", ErrorMessage = "LastName Number must be more than two character ")]
-        public string LastName { get; set; }
-
-        [RegularExpression(@"^[0-9]{3}$", ErrorMessage = "CVV must be numeric")]
-        public int CVV { get; set; }
-
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/yy}")]
-        public DateTime CreditExpire { get; set; }
-
-        // Address info
-        [Required, StringLength(20, MinimumLength = 1)]
-        public string BuildingNo { get; set; }
-
-        [Required, StringLength(100, MinimumLength = 2)]
-        public string Street { get; set; }
-
-        [Required, StringLength(20, MinimumLength = 5)]
+        [Required(ErrorMessage = "Zipcode is required")]
+        [StringLength(20, MinimumLength = 5)]
         public string Zipcode { get; set; }
+
+        
+        [StringLength(20, MinimumLength = 5)]
+        [Required(ErrorMessage = "City is required")]
+        public string usercity { get; set; }
 
         [ForeignKey(nameof(City))]
         public int? CityId { get; set; }

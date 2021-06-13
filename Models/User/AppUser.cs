@@ -1,6 +1,7 @@
 ﻿using Airbnb.Models.Location;
 using Microsoft.AspNetCore.Identity;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -41,8 +42,10 @@ namespace Airbnb.Models
 
         [ForeignKey(nameof(City))]
         public int? CityId { get; set; }
-
         public virtual City City { get; set; }
+
+        // Relations
+        public virtual List<Review> Reviews { get; set; }
     }
 
     public enum Gender
