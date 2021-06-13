@@ -13,6 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210520003523_NotRequired.cs" />
+    <Compile Remove="Migrations\20210520003523_NotRequired.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="bootstrap" Version="4.6.0" />
     <PackageReference Include="ClosedXML" Version="0.95.4" />
     <PackageReference Include="jQuery.Ajax.Unobtrusive" Version="2.0.20710" />
