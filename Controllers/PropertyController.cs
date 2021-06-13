@@ -26,5 +26,17 @@ namespace Airbnb.Controllers
 
             return View("/views/Guest/PropertyDetails.cshtml", model);
         }
+
+        public IActionResult CheckDate(int id, string checkIn, string checkOut)
+        {
+            var checkInSplitted = checkIn.Split('-');
+            var checkOutSplitted = checkOut.Split('-');
+            var checkInDate = new DateTime(int.Parse(checkInSplitted[0]), int.Parse(checkInSplitted[1]), int.Parse(checkInSplitted[2]));
+            var checkOutDate = new DateTime(int.Parse(checkOutSplitted[0]), int.Parse(checkOutSplitted[1]), int.Parse(checkOutSplitted[2]));
+            if (_propertyService.IsPropertyAvailable(id, checkInDate, checkOutDate))
+                return Ok();
+            else
+                return BadRequest();
+        }
     }
 }

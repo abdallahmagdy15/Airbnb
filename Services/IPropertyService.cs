@@ -10,5 +10,6 @@ namespace Airbnb.Services
     {
         public Property GetById(int id);
         public IEnumerable<Property> FilterBy(SearchQuery search);
+        public bool IsPropertyAvailable(int propId, DateTime checkIn, DateTime checkOut);
     }
 }

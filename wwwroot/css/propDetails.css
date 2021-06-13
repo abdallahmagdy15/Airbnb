@@ -360,6 +360,7 @@ h1 {
     border-radius: 10px;
     height: max-content;
     top: 10%;
+    width: 400px;
     z-index: 100;
 }
 
@@ -471,65 +472,14 @@ h1 {
         text-align: center;
     }
 
-    .check {
-        grid-area: check;
-        position: fixed;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        border-radius: 10px;
-        width: 90%;
-        top: 80%;
-        left: 5%;
-        padding: 10px;
-    }
-
-    .check-body {
-        display: none;
-    }
-
-    .check-title h1 {
-        top: 0;
-    }
-
-    .rightt {
-        position: absolute;
-        bottom: 22px;
-        left: 19px;
-        top: 38px;
-    }
-
-        .rightt .light-span {
-            font-size: 12px;
-            line-height: 16px;
-            font-weight: 400;
-        }
-
-    .check-title .dark-span {
-        font-size: 12px;
-        line-height: 16px;
-    }
-
-        .check-title .dark-span h1 {
-            font-size: 18px;
-            line-height: 16px;
-            font-weight: 400;
-        }
-
     #amountspan {
         top: 0;
     }
 
-    .rightt-btn {
-        position: absolute;
-        bottom: 0;
-        right: 0px;
-        display: block;
-        width: 50%;
-    }
-
-    .btn-glow {
+    .check {
         width: 100%;
-        right: 5px;
-        font-size: 13px;
+        border: none;
+
     }
 }
 

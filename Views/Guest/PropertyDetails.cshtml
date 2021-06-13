@@ -15,6 +15,7 @@
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/propDetails.css" />
     <link rel="stylesheet" href="~/css/Buttons.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 }
 
 <!--start pic-caursel-->
@@ -220,7 +221,7 @@
                 <div class="check-title">
 
                     <span class="dark-span" id="amountspan">
-                        <h1 style="display: inline;">&#36 35</h1>
+                        <h1 style="display: inline;" id="total-price">&#36 35</h1>
                         <span>/night</span>
                     </span>
                     <span class="rightt">
@@ -228,33 +229,18 @@
                         <a href="#"> <span class="dark-span">5.0</span> </a>
                         <span class="light-span">(23)</span>
                     </span>
-                    <span class="rightt-btn">
-                        <button class="btn-glow">
-                            <span class="glow">
-                                Check availability
-                            </span>
-                            Check availability
-                        </button>
-                    </span>
                 </div>
                 <div class="check-body">
                     <!--grid-->
                     <table class="card-table" cellspacing="10">
                         <thead>
                             <tr>
-                                <td>
+                                <td colspan="2">
                                     <div class="check-in ">
-                                        <div class="font-light-dark">CHECK-IN</div>
-                                        <div class="font-light-dark" id="check-in-date">
-                                            29/7/2021
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="check-out">
-                                        <div class="font-light-dark">CHECKOUT</div>
-                                        <div class="font-light">
-                                            Add date
+                                        <div class="font-light-dark">CHECK-IN <pre style="display: inline;">            </pre> CHECK-OUT</div>
+                                        <div>
+                                            <input class="font-light-dark" style="display: inline-block; width: 45%; margin-right: auto;" id="check-in" />
+                                            <input class="font-light-dark" style="display: inline-block; width: 45%;" id="check-out" />
                                         </div>
                                     </div>
                                 </td>
@@ -289,12 +275,19 @@
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <button class="btn-glow">
+                                <div class="text-center text-danger" id="check-error" style="display: none; margin: auto; width: 100%;">Not Available!</div>
+                                <button class="btn-glow" id="check-btn" onclick="checkAvailability()">
                                     <span class="glow">
                                         Check availability
                                     </span>
                                     Check availability
                                 </button>
+                                <a class="btn-glow text-white" style="display: none;" id="reserve-btn">
+                                    <span class="glow">
+                                        Reserve
+                                    </span>
+                                    Reserve
+                                </a>
                             </td>
                         </tr>
                     </table>
@@ -404,7 +397,6 @@
 
 @section Scripts {
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.1/dist/umd/popper.min.js"
             integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
             crossorigin="anonymous"></script>
@@ -413,10 +405,49 @@
             crossorigin="anonymous"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_BPkgYNWQNTrzfp-1tNW1A1tekxyNj1w&callback=initMap&libraries=&v=weekly"
             async></script>
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <!--logic.js-->
     <script src="~/js/glow.js" type="text/javascript"></script>
     <script>
+        var unavailableDays = [@foreach (var item in Model.Property.UnavailableDays)
+            {
+                @:'@item.UnavailableDay.ToShortDateString()',
+            }]
+
+        $('#check-in').daterangepicker({
+            opens: 'left',
+            autoUpdateInput: false,
+            isInvalidDate: (date) => {
+                    $('.cancelBtn').text('Clear');
+                return unavailableDays.indexOf(date._d.toLocaleDateString()) != -1
+                    || new Date() >= date._d;
+                },
+            },
+            function (start, end, label) {
+            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+        });
+
+        $('#check-in').on('apply.daterangepicker', function (ev, picker) {
+            $('#check-in').val(picker.startDate.format('YYYY-MM-DD'));
+            $('#check-out').val(picker.endDate.format('YYYY-MM-DD'));
+        });
+
+        $('#check-in').on('cancel.daterangepicker', function (ev, picker) {
+            $('#check-in, #check-out').val('');
+        });
+
+        $('#check-out').on('focus', () => {
+            $('#check-in').focus();
+        });
+
+        $('#check-in').focus(() => {
+            $('#check-btn').css({ display: 'flex', });
+            $('#reserve-btn').css({ display: 'none', });
+            $('#check-error').css({ display: 'none', });
+        });
+
         $('#show_all_Amenity').click(function () {
             $('#divAmenity').css("height", "fit-content");
             $('#show_all_Amenity').addClass('hide');
@@ -460,6 +491,23 @@
                 position: initialLocation,
                 map: map,
                 icon: '../../images/home.png',
+            });
+
+        }
+        function checkAvailability() {
+            var checkIn = $('#check-in').val();
+            var checkOut = $('#check-out').val();
+
+            $.ajax({
+                type: "GET",
+                url: `/Property/CheckDate/@Model.Property.Id?checkIn=${checkIn}&checkOut=${checkOut}`,
+                success: function (response) {
+                    $('#reserve-btn').css({ display: 'flex', });
+                    $('#check-btn').css({ display: 'none', });
+                },
+                error: function (error) {
+                    $('#check-error').css({ display: 'flex', });
+                }
             });
         }
     </script>
