@@ -36,7 +36,6 @@
             <td>@prop.MaxStay</td>
             <td>@prop.MinStay</td>
             <td>@prop.Date.ToString("dd/MM/yyyy")</td>
-            <td>@prop.EndBookingDate.Value.ToString("dd/MM/yyyy")</td>
             <td><button class="btn btn-info">View</button></td>
             <td><a asp-action="DeleteProperty" onclick="return confirm('Are you sure ?')" asp-controller="Admin" asp-route-id="@prop.Id" class="btn btn-danger">Delete</a></td>
         </tr>

@@ -47,9 +47,15 @@ namespace Airbnb.Controllers.Listing
         [HttpPost]
         public IActionResult KindOfPlace(ListingViewModel listingViewModel)
         {
-            var minNights = int.Parse(listingViewModel.MinNights.Split(' ')[0]);
-            var maxNights = int.Parse(listingViewModel.MaxNights.Split(' ')[0]);
+            var minNights = 0;
+            var maxNights = 0;
 
+            if (listingViewModel.MinNights != null)
+                minNights = int.Parse(listingViewModel.MinNights.Split(' ')[0]);
+            else minNights = 0;
+            if (listingViewModel.MaxNights != null)
+                maxNights = int.Parse(listingViewModel.MaxNights.Split(' ')[0]);
+            else maxNights = 0;
             var name = _applicationDbContext.Categories.FirstOrDefault(x => x.Name == listingViewModel.Categoryname);
             var id = name.Id;
             Property NewProperty = new Property();
