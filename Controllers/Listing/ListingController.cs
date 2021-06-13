@@ -58,8 +58,11 @@ namespace Airbnb.Controllers.Listing
             else maxNights = 0;
             var name = _applicationDbContext.Categories.FirstOrDefault(x => x.Name == listingViewModel.Categoryname);
             var id = name.Id;
+            var guestPlaceType = _applicationDbContext.GuestPlaceTypes.FirstOrDefault(x => x.Name == listingViewModel.GuestPlaceTypeName);
+            var PlaceTypeId = guestPlaceType.Id;
             Property NewProperty = new Property();
             NewProperty.CategoryId = id;
+            NewProperty.GuestPlaceTypeId = PlaceTypeId;
             NewProperty.NumberOfBedRooms = int.Parse(listingViewModel.NumOfBedrooms);
             NewProperty.NumberOfBeds = listingViewModel.NumOfBeds;
             NewProperty.Zipcode = listingViewModel.ZipCode;
@@ -71,6 +74,7 @@ namespace Airbnb.Controllers.Listing
             NewProperty.MinStay = minNights;
             NewProperty.MaxStay = maxNights;
             NewProperty.Price = listingViewModel.Price;
+            NewProperty.Capacity = listingViewModel.NumOfGuests;
             _applicationDbContext.Add(NewProperty);
             _applicationDbContext.SaveChanges();
             string UniqueFileName = null;
@@ -83,7 +87,7 @@ namespace Airbnb.Controllers.Listing
                     string FilePath = Path.Combine(uploadsFolder, UniqueFileName);
                     listingViewModel.Images[i].CopyTo(new FileStream(FilePath, FileMode.Create));
                     PropertyPhoto photo = new PropertyPhoto();
-                    photo.PropertyId = 1;
+                    photo.PropertyId = NewProperty.Id;
                     photo.Url = UniqueFileName;
                     _applicationDbContext.Add(photo);
                     _applicationDbContext.SaveChanges();
