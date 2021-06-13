@@ -19,7 +19,7 @@ namespace Airbnb.Models
 
         [Range(1, 50)]
         public int? NumberOfBeds { set; get; } = 0;
-     
+
 
         [Range(1, 50)]
         public int NumberOfBathrooms { set; get; } = 0;
@@ -37,12 +37,9 @@ namespace Airbnb.Models
         [Column(TypeName = "Money")]
         public decimal Price { set; get; } = 0;
 
-        public int? NumberOfDaysInAdvance { get; set; }
-        public int? NumberOfDaysNotice { set; get; } = 0;
+        
 
-        public DateTime? StartBookingDate { set; get; }
-
-        public DateTime? EndBookingDate { set; get; }
+        
 
         public int? MaxStay { set; get; } = 0;
 
@@ -51,7 +48,6 @@ namespace Airbnb.Models
 
         [Required]
         public DateTime Date { set; get; } = DateTime.Now;
-        public bool Complete { set; get; }
 
         // Address info
         public Point Coordinates { get; set; }

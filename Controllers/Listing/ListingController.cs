@@ -54,7 +54,6 @@ namespace Airbnb.Controllers.Listing
             var id = name.Id;
             Property NewProperty = new Property();
             NewProperty.CategoryId = id;
-            NewProperty.Complete = false;
             NewProperty.NumberOfBedRooms = int.Parse(listingViewModel.NumOfBedrooms);
             NewProperty.NumberOfBeds = listingViewModel.NumOfBeds;
             NewProperty.Zipcode = listingViewModel.ZipCode;
@@ -63,8 +62,6 @@ namespace Airbnb.Controllers.Listing
             NewProperty.Title = listingViewModel.Title;
             NewProperty.Description = listingViewModel.Description;
             NewProperty.NumberOfBathrooms = listingViewModel.NumberOfBathRooms;
-            NewProperty.NumberOfDaysInAdvance = listingViewModel.NumberOfMonthsInAdvance;
-            NewProperty.NumberOfDaysNotice = listingViewModel.NumberOfDaysNotice;
             NewProperty.MinStay = minNights;
             NewProperty.MaxStay = maxNights;
             NewProperty.Price = listingViewModel.Price;

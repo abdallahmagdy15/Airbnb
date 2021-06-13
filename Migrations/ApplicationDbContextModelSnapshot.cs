@@ -278,51 +278,36 @@ namespace Airbnb.Migrations
                     b.Property<int?>("CityId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Complete")
-                        .HasColumnType("bit");
-
                     b.Property<Point>("Coordinates")
                         .HasColumnType("geography");
 
-                    b.Property<DateTime?>("Date")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<DateTime?>("EndBookingDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("GuestPlaceTypeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MaxStay")
+                    b.Property<int?>("MaxStay")
                         .HasColumnType("int");
 
-                    b.Property<int?>("NumberOfBathrooms")
+                    b.Property<int>("MinStay")
                         .HasColumnType("int");
 
                     b.Property<int>("NumberOfBathrooms")
                         .HasColumnType("int");
 
-                    b.Property<int>("NumberOfBedRooms")
+                    b.Property<int?>("NumberOfBedRooms")
                         .HasColumnType("int");
 
                     b.Property<int?>("NumberOfBeds")
                         .HasColumnType("int");
 
-                    b.Property<int?>("NumberOfDaysInAdvance")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("NumberOfDaysNotice")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("Money");
-
-                    b.Property<DateTime?>("StartBookingDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Street")
                         .IsRequired()
@@ -357,13 +342,13 @@ namespace Airbnb.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Icon")
-                        .HasMaxLength(5000)
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Description")
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Icon")
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()

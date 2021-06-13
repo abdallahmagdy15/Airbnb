@@ -203,7 +203,7 @@ namespace Airbnb.Controllers
                     worksheet.Cell(currentRow, 5).Value = prop.MaxStay;
                     worksheet.Cell(currentRow, 6).Value = prop.MinStay;
                     worksheet.Cell(currentRow, 7).Value = prop.Date.ToString("MM/dd/yyyy");
-                    worksheet.Cell(currentRow, 8).Value = prop.EndBookingDate.ToString("MM/dd/yyyy");
+                    //worksheet.Cell(currentRow, 8).Value = prop.EndBookingDate.ToString("MM/dd/yyyy");
                 }
 
 
