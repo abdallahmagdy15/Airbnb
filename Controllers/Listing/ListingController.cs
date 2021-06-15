@@ -17,35 +17,35 @@ namespace Airbnb.Controllers.Listing
 
     public class ListingController : Controller
     {
-        private ApplicationDbContext _applicationDbContext;
-        private readonly IHostingEnvironment hostingEnvironment;
+        private ApplicationDbContext _db;
+        private readonly IWebHostEnvironment hostingEnvironment;
 
         public ListingController(ApplicationDbContext applicationDbContext,
-                                 IHostingEnvironment hostingEnvironment  )
+                                 IWebHostEnvironment hostingEnvironment)
         {
-            _applicationDbContext = applicationDbContext;
+            _db = applicationDbContext;
             this.hostingEnvironment = hostingEnvironment;
         }
-       public IActionResult mona()
-        {
-            return View();
-        }
-        public IActionResult KindOfPlace()
+       
+        public IActionResult New()
         {
             ListingViewModel listingViewModel = new ListingViewModel()
             {
-                amenty = _applicationDbContext.Amenities.ToList(),
-                Categories = _applicationDbContext.Categories.ToList(),
-                GuestPlaceTypes = _applicationDbContext.GuestPlaceTypes.ToList(),
-                Spaces=_applicationDbContext.Spaces.ToList(),
-                propertyPhotos=_applicationDbContext.PropertyPhoto.ToList(),
-                houseRoles = _applicationDbContext.HouseRules.ToList()
+                amenty = _db.Amenities.ToList(),
+                Categories = _db.Categories.ToList(),
+                GuestPlaceTypes = _db.GuestPlaceTypes.ToList(),
+                Spaces=_db.Spaces.ToList(),
+                propertyPhotos=_db.PropertyPhoto.ToList(),
+                houseRoles = _db.HouseRules.ToList()
 
             };
+
+            ViewData["Countries"] = _db.Countries;
+
             return View(listingViewModel);
         }
         [HttpPost]
-        public IActionResult KindOfPlace(ListingViewModel listingViewModel)
+        public IActionResult New(ListingViewModel listingViewModel)
         {
             var minNights = 0;
             var maxNights = 0;
@@ -56,9 +56,9 @@ namespace Airbnb.Controllers.Listing
             if (listingViewModel.MaxNights != null)
                 maxNights = int.Parse(listingViewModel.MaxNights.Split(' ')[0]);
             else maxNights = 0;
-            var name = _applicationDbContext.Categories.FirstOrDefault(x => x.Name == listingViewModel.Categoryname);
+            var name = _db.Categories.FirstOrDefault(x => x.Name == listingViewModel.Categoryname);
             var id = name.Id;
-            var guestPlaceType = _applicationDbContext.GuestPlaceTypes.FirstOrDefault(x => x.Name == listingViewModel.GuestPlaceTypeName);
+            var guestPlaceType = _db.GuestPlaceTypes.FirstOrDefault(x => x.Name == listingViewModel.GuestPlaceTypeName);
             var PlaceTypeId = guestPlaceType.Id;
             Property NewProperty = new Property();
             NewProperty.CategoryId = id;
@@ -75,8 +75,10 @@ namespace Airbnb.Controllers.Listing
             NewProperty.MaxStay = maxNights;
             NewProperty.Price = listingViewModel.Price;
             NewProperty.Capacity = listingViewModel.NumOfGuests;
-            _applicationDbContext.Add(NewProperty);
-            _applicationDbContext.SaveChanges();
+            NewProperty.CityId = listingViewModel.CityId;
+            NewProperty.Coordinates = new NetTopologySuite.Geometries.Point(listingViewModel.Lon, listingViewModel.Lat) { SRID = 4326 };
+            _db.Add(NewProperty);
+            _db.SaveChanges();
             string UniqueFileName = null;
             if (listingViewModel.Images != null)
             {
@@ -89,8 +91,8 @@ namespace Airbnb.Controllers.Listing
                     PropertyPhoto photo = new PropertyPhoto();
                     photo.PropertyId = NewProperty.Id;
                     photo.Url = UniqueFileName;
-                    _applicationDbContext.Add(photo);
-                    _applicationDbContext.SaveChanges();
+                    _db.Add(photo);
+                    _db.SaveChanges();
                 }
                
             }
@@ -102,8 +104,8 @@ namespace Airbnb.Controllers.Listing
                     PropertyAmenity amenity = new PropertyAmenity();
                     amenity.AmenityId = item;
                     amenity.PropertyId = NewProperty.Id;
-                    _applicationDbContext.Add(amenity);
-                    _applicationDbContext.SaveChanges();
+                    _db.Add(amenity);
+                    _db.SaveChanges();
                 }
             }
             //SpacesCanGuestUse
@@ -114,8 +116,8 @@ namespace Airbnb.Controllers.Listing
                     PropertySpace propertySpace = new PropertySpace();
                     propertySpace.PropertyId = NewProperty.Id;
                     propertySpace.SpaceId = item;
-                    _applicationDbContext.Add(propertySpace);
-                    _applicationDbContext.SaveChanges();
+                    _db.Add(propertySpace);
+                    _db.SaveChanges();
                 }
             }
             //HouseRoles
@@ -126,46 +128,34 @@ namespace Airbnb.Controllers.Listing
                     PropertyHouseRule propertyHouseRule = new PropertyHouseRule();
                     propertyHouseRule.PropertyId = NewProperty.Id;
                     propertyHouseRule.HouseRuleId = item;
-                    _applicationDbContext.Add(propertyHouseRule);
-                    _applicationDbContext.SaveChanges();
+                    _db.Add(propertyHouseRule);
+                    _db.SaveChanges();
                 }
             }
-            return RedirectToAction("mona");
+            return RedirectToAction(nameof(New));
         }
 
-        public IActionResult show()
+        public IActionResult States(int id)
         {
-            return View("NubmerOfGuests");
-        }
-        public IActionResult Bathrooms()
-        {
-            return View("NumberOfBathRooms");
-        }
-        public IActionResult Location()
-        {
-            return View();
-        }
-        public IActionResult Amenty()
-        {
-            return View(_applicationDbContext.Amenities.ToList());
-        }
-        public IActionResult placesCanGuestUse()
-        {
-            return View();
-        }
-        public IActionResult Description()
-        {
-            return View();
-        }
-        public IActionResult HouseRoles()
-        {
-            return View();
-        }
-        public IActionResult Image()
-        {
-            return View("PopertyImages");
+            return PartialView("/Views/Listing/Partial/StatesViewPartial.cshtml", _db.Countries.SingleOrDefault(c => c.Id == id).States);
         }
 
+        public IActionResult Cities(int id)
+        {
+            return PartialView("/Views/Listing/Partial/CitiesViewPartial.cshtml", _db.States.SingleOrDefault(c => c.Id == id).Cities);
+        }
 
+        public IActionResult CityLocation(int id)
+        {
+            var coordinates = _db.Cities.SingleOrDefault(c => c.Id == id).Coordinates;
+
+            var coords = new
+            {
+                lat = coordinates.Coordinate.Y,
+                lon = coordinates.Coordinate.X,
+            };
+
+            return Json(coords);
+        }
     }
 }

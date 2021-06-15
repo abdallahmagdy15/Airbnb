@@ -6,16 +6,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using Airbnb.ViewModels.Payment;
 using Airbnb.Services;
+using Microsoft.AspNetCore.Authorization;
+using Airbnb.Models;
+using Microsoft.AspNetCore.Identity;
+using Airbnb.Data;
 
 namespace Airbnb.Controllers
 {
+    [Authorize]
     public class PaymentController : Controller
     {
         IPropertyService propertyService;
+        private readonly UserManager<AppUser> _userManager;
+        ApplicationDbContext _db;
 
-        public PaymentController(IPropertyService service)
+        public PaymentController(IPropertyService service, UserManager<AppUser> userManager, ApplicationDbContext db)
         {
             propertyService = service;
+            _userManager = userManager;
+            _db = db;
         }
 
         public IActionResult Index()
@@ -65,9 +74,41 @@ namespace Airbnb.Controllers
             {
                 dynamic result = await Services.Payment.MakePayment.PayAsync(payData.Number, payData.Month, payData.Year, payData.CVV, payData.Value, payData.Name, payData.Zipcode, payData.usercity);
 
-                switch (result)
+                switch (result.state)
                 {
                     case "Success":
+                        Reservation reservation = new Reservation()
+                        {
+                            PropertyId = id,
+                            CheckIn = checkInDate,
+                            CheckOut = checkOutDate,
+                            UserId = _userManager.GetUserId(User),
+                        };
+                        _db.Add(reservation);
+                        _db.SaveChanges();
+
+                        Transaction transaction = new Transaction()
+                        {
+                            ReservationId = reservation.Id,
+                            Amount = result.amount,
+                            Id = result.transactionId,
+                        };
+                        _db.Add(transaction);
+                        _db.SaveChanges();
+
+                        foreach (var day in PropertySearchService.GetDays(checkInDate, checkOutDate))
+                        {
+                            var unAvailable = new PropertyUnavailableDay()
+                            {
+                                PropertyId = id,
+                                UnavailableDay = day,
+                            };
+
+                            _db.Add(unAvailable);
+                        }
+
+                        _db.SaveChanges();
+
                         return View("SucceessfulPayment");
                     case "Your card number is incorrect.":
                         ModelState.AddModelError("Number", "Your card number is incorrect");

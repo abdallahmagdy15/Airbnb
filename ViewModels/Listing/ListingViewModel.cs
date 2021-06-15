@@ -17,11 +17,9 @@ namespace Airbnb.ViewModels.Listing
         public string Categoryname { get; set; }
         public string GuestPlaceTypeName { get; set; }
         public int NumberOfBathRooms { get; set; }
-        public string country { get; set; }
         public string Street { get; set; }
         public string Apt_Suite { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
+        public int CityId { get; set; }
         public string ZipCode { get; set; }
         public string Description { set; get; }
         public string Title { set; get; }
@@ -31,6 +29,9 @@ namespace Airbnb.ViewModels.Listing
 
         public string MinNights { set; get; }
         public string MaxNights { set; get; }
+
+        public double Lat { get; set; }
+        public double Lon { get; set; }
 
         public int Price { set; get; }
 

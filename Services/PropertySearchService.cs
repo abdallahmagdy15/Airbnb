@@ -14,7 +14,7 @@ namespace Airbnb.Services
         public IEnumerable<Property> FilterByLocation(IEnumerable<Property> properties, int cityId)
         {
             return properties
-                .Where(p => p.City.Id == cityId);
+                .Where(p => p.CityId == cityId);
         }
 
         public IEnumerable<Property> FilterByDate(IEnumerable<Property> properties, DateTime checkin, DateTime checkout)

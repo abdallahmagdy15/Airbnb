@@ -3,12 +3,12 @@
 *@
 @{
     Layout = "~/Views/Shared/ListingLayout.cshtml";
-
 }
 @model ListingViewModel
+
 <div id="4">
     <div class="col col-12 col-md-7">
-        
+
         <div style="float: right;">
             <div class="ContainPropertyLocation col col-10">
                 <div class="ValidationBoxForDescription" style="margin-bottom:30px;margin-left:0">
@@ -56,24 +56,11 @@
                     reservation.
                 </div>
             </div>
-            <div class="ContainBtnUseCurrentLoction">
-                <button>
-                    <span>
-                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                             role="presentation" focusable="false"
-                             style="display: inline; height: 16px; width: 16px; fill: currentcolor;">
-                            <path d="M16 1C9.925 1 5 6 5 12s3.667 12.167 11 18.5C23.333 24.167 27 18 27 12c0-6.075-4.925-11-11-11zm0 15a4 4 0 1 1 0-8 4 4 0 0 1 0 8z">
-                            </path>
-                        </svg>
-                    </span>
-                    <span>Use current location</span>
-                </button>
-            </div>
 
             <div class="ConainSpanEnterYourAddress d-none">
                 <span>Or enter your address</span>
                 <span>
-                    <hr style="margin-left: 5%;margin-right: 5%;">
+                    <hr style="margin-left: 5%; margin-right: 5%;">
                 </span>
             </div>
 
@@ -83,18 +70,17 @@
                 </div>
                 <div class="ContainSelectLocation">
                     <div class="SelectLocation">
-                        <select asp-for="country" class="form-select" aria-label="Default select example">
-                            <option selected value="Cairo">Cairo</option>
-                            <option value="Alex">Alex</option>
-                            <option value="Gouna">Gouna</option>
-                            <option value="sahel">Sahel</option>
-                            <option value="Aharm">Sharm</option>
-                            <option value="Dahab">Dahab</option>
-                            <option value="+50">+50</option>
+                        <select class="form-select" id="countries" asp-items='new SelectList(ViewData["Countries"] as IEnumerable<Airbnb.Models.Location.Country>, "Id", "Name")' onchange="fetchStates()">
                         </select>
+                        <div id="states"></div>
+                        <div id="cities"></div>
+                        <div id="map" style="width: 90%; height: 30vw; margin: 20px auto"></div>
+                        <input type="hidden" asp-for="Lat" id="lat" />
+                        <input type="hidden" asp-for="Lon" id="lon" />
                     </div>
                 </div>
             </div>
+
             <div class="ContainLocation col col-11 ">
                 <label class="LocationInput">
                     Street
@@ -108,6 +94,7 @@
                     House name/number + street/road
                 </div>
             </div>
+
             <div class="ContainLocation col col-11 ">
                 <label class="LocationInput">
                     Apt, Suite. (optional)
@@ -121,27 +108,7 @@
                     Apt., suite, building access code
                 </div>
             </div>
-            <div class="ContainLocation col col-11 col-lg-5 d-block d-lg-inline-block"
-                 style="margin-right: -30px !important;">
-                <label class="LocationInput">
-                    City
-                </label>
-                <div class="ContainSelectLocation">
-                    <div class="SelectLocation">
-                        <input asp-for="City" class="SelectLocationInput">
-                    </div>
-                </div>
-            </div>
-            <div class="ContainLocation col col-11 col-lg-5 d-block d-lg-inline-block">
-                <label class="LocationInput">
-                    State
-                </label>
-                <div class="ContainSelectLocation">
-                    <div class="SelectLocation">
-                        <input asp-for="Street" class="SelectLocationInput">
-                    </div>
-                </div>
-            </div>
+
             <div class="ContainLocation col col-11" style="margin-bottom: 50px;">
                 <label class="LocationInput">
                     ZIP Code
@@ -159,6 +126,8 @@
     </div>
 </div>
 @section Scripts {
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_BPkgYNWQNTrzfp-1tNW1A1tekxyNj1w&callback=initMap&libraries=&v=weekly"
+            async></script>
     <script>
         var FormValidation4 = false
         var inputt = $('.SelectLocationInput')
@@ -172,8 +141,90 @@
                     FormValidation4 = true
                 }
             }
-                })
+        });
 
-              
+        function fetchStates() {
+            var id = $('#countries').val();
+
+            $.ajax({
+                type: "GET",
+                url: `/listing/states/${id}`,
+                success: function (response) {
+                    $('#states').html(response);
+                }
+            });
+        }
+
+        $('#map').hide();
+
+        function fetchCities() {
+            var id = $('#statesSelect').val();
+
+            $.ajax({
+                type: "GET",
+                url: `/listing/cities/${id}`,
+                success: function (response) {
+                    $('#cities').html(response);
+                    setMapCenter();
+                    $('#map').show();
+                }
+            });
+        }
+
+        function setMapCenter() {
+            var id = $('#citySelect').val();
+
+            $.ajax({
+                type: "GET",
+                url: `/listing/cityLocation/${id}`,
+                success: function (response) {
+                    console.log(response);
+                    map.setCenter(
+                        new google.maps.LatLng(response.lat, response.lon)
+                    );
+                }
+            });
+        }
+
+        var marker;
+        var map;
+
+        function initMap() {
+            let initialLocation;
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 14,
+                disableDefaultUI: false,
+            });
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    map.setCenter(initialLocation);
+                    marker = new google.maps.Marker({
+                        position: initialLocation,
+                        map: map,
+                    });
+                });
+            }
+            google.maps.event.addListener(map, 'click', function (event) {
+                console.log(event.latLng.lat(), event.latLng.lng());
+                marker.setMap(null);
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()),
+                    map: map,
+                });
+
+                setCoordinatesInputs(event.latLng.lat(), event.latLng.lng())
+            });
+        }
+
+        function setCoordinatesInputs(lat, lon) {
+            $('#lat').val(lat);
+            $('#lon').val(lon);
+
+            console.log($('#lat').val(), $('#lon').val())
+        }
+        
     </script>
 }
