@@ -49,7 +49,7 @@
                     <th>BEDS</th>
                     <th>BATHS</th>
                     <th>LOCATIONS</th>
-                    <th id="noSort">OPERATION</th>
+                    <th id="noSort">OPERATIONS</th>
                 </tr>
             </thead>
 
@@ -72,7 +72,7 @@
                         <td>@item.NumberOfBedRooms</td>
                         <td>@item.NumberOfBeds</td>
                         <td>@item.NumberOfBathrooms</td>
-                        <td>@item.City</td>
+                        <td>@item.City?.Name</td>
                         <td>
                             <a><i class="btn far fa-edit" style="font-size: 25px;"></i></a>
                             <a><i class="btn far fa-trash-alt" style="font-size: 25px; padding: 10px;"></i></a>
@@ -91,32 +91,34 @@
 
 
 
-<script>
-    $(document).ready(function () {
-        var table = $('#example').DataTable({
-            "dom": '<"top"i>rt<"bottom"><"clear">',
-            "paging": false,
-            "bInfo": false,
-            "columnDefs": [{
-                "targets": 6,
-                "orderable": false
-            }]
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var table = $('#example').DataTable({
+                "dom": '<"top"i>rt<"bottom"><"clear">',
+                "paging": false,
+                "bInfo": false,
+                "columnDefs": [{
+                    "targets": 6,
+                    "orderable": false
+                }]
+            });
+
+
+            $('#mySearchText').on('keyup click', function () {
+                table.search($('#mySearchText').val()).draw();
+            });
+
+            $(document).on('click', 'div.dropdown-menu', function (e) {
+                e.stopPropagation();
+            });
+
         });
-
-
-        $('#mySearchText').on('keyup click', function () {
-            table.search($('#mySearchText').val()).draw();
-        });
-
-        $(document).on('click', 'div.dropdown-menu', function (e) {
-            e.stopPropagation();
-        });
-
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+}

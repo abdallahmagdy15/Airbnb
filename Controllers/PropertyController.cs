@@ -1,6 +1,8 @@
 ﻿using Airbnb.Data;
+using Airbnb.Models;
 using Airbnb.Services;
 using Airbnb.ViewModels.Guest;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,10 +14,14 @@ namespace Airbnb.Controllers
     public class PropertyController : Controller
     {
         readonly IPropertyService _propertyService;
+        readonly UserManager<AppUser> _userManager;
+        readonly ApplicationDbContext _db;
 
-        public PropertyController(IPropertyService propertyService)
+        public PropertyController(IPropertyService propertyService, UserManager<AppUser> userManager, ApplicationDbContext db)
         {
             _propertyService = propertyService;
+            _userManager = userManager;
+            _db = db;
         }
         public IActionResult Details(int? id)
         {
@@ -24,7 +30,9 @@ namespace Airbnb.Controllers
 
             var model = new PropertyDetailsViewModel { Property = _propertyService.GetById(id.Value), };
 
-            return View("/views/Guest/PropertyDetails.cshtml", model);
+            ViewBag.userId = _userManager.GetUserId(User);
+
+            return View(model);
         }
 
         public IActionResult CheckDate(int id, string checkIn, string checkOut)
@@ -37,6 +45,21 @@ namespace Airbnb.Controllers
                 return Ok();
             else
                 return BadRequest();
+        }
+
+        public IActionResult Review(int id, string content, int rating)
+        {
+            var review = new Review();
+
+            review.Rating = rating;
+            review.Content = content;
+            review.PropertyId = id;
+            review.UserId = _userManager.GetUserId(User);
+
+            _db.Add(review);
+            _db.SaveChanges();
+
+            return Json(new { status = "OK", });
         }
     }
 }

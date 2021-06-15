@@ -6,16 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Views\Guest\Partial\**" />
     <Compile Remove="Views\Host\**" />
     <Compile Remove="wwwroot\Listing\**" />
-    <Content Remove="Views\Guest\Partial\**" />
     <Content Remove="Views\Host\**" />
     <Content Remove="wwwroot\Listing\**" />
-    <EmbeddedResource Remove="Views\Guest\Partial\**" />
     <EmbeddedResource Remove="Views\Host\**" />
     <EmbeddedResource Remove="wwwroot\Listing\**" />
-    <None Remove="Views\Guest\Partial\**" />
     <None Remove="Views\Host\**" />
     <None Remove="wwwroot\Listing\**" />
   </ItemGroup>
