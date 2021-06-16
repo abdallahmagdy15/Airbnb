@@ -10,20 +10,26 @@ namespace Airbnb.Controllers
 {
     public class HostingController : Controller
     {
-        readonly IPropertyService _propertyService;
-        private ApplicationDbContext _applicationDbContext;
-        public HostingController(IPropertyService propertyService,ApplicationDbContext applicationDbContext)
+        private ApplicationDbContext _db;
+        public HostingController(ApplicationDbContext applicationDbContext)
         {
-            _propertyService = propertyService;
-            _applicationDbContext = applicationDbContext;
+            _db = applicationDbContext;
         }
         public IActionResult Index()
         {
+            ViewBag.currentTab = "Home";
             return View("Home");
         }
         public IActionResult Listing()
         {
-            return View(_applicationDbContext.Properties.ToList());
+            ViewBag.currentTab = "Listing";
+            return View(_db.Properties.ToList());
+        }
+
+        public IActionResult Reservations()
+        {
+            ViewBag.currentTab = "Reservations";
+            return View(_db.Reservations);
         }
     }
 }

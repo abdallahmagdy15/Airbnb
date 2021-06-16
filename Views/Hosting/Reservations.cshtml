@@ -1,0 +1,104 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_Hosting.cshtml";
+}
+@model IEnumerable<Reservation>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+<script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+<!-- Number of list and creat -->
+<div class="col-12 mt-5">
+
+    <div class="row m-2">
+        <span role="heading" aria-level="2">
+            <h3>@Model.Count() Reservations </h3>
+        </span>
+    </div>
+    <!-- End of number of list and create -->
+    <!-- Div for search and filtering -->
+    <div class="row">
+        <!-- Search -->
+        <div class="col-3 m-1">
+            <input style="width: 80%;" type="text" id="mySearchText" placeholder="Search...">
+        </div>
+        <!-- Search -->
+        <!--End  Div for search and filtering -->
+    </div>
+    <!-- Div contain Data Table -->
+
+    <div class="col">
+
+        <table id="example" class="table hover border" width="100%" style="margin-top: 4%;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Check-In Date</th>
+                    <th>Check-Out Date</th>
+                    <th>LISTING</th>
+                    <th>LOCATION</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+
+                    <td>
+                        @item.Date
+                    </td>
+                    <td>@item.CheckIn</td>
+                    <td>@item.CheckOut</td>
+                    <td>@item.Property.Title</td>
+                    <td>@item.Property.City?.Name</td>
+
+                </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<!--End of Div contain Data Table -->
+
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var table = $('#example').DataTable({
+                "dom": '<"top"i>rt<"bottom"><"clear">',
+                "paging": false,
+                "bInfo": false
+            });
+
+
+            $('#mySearchText').on('keyup click', function () {
+                table.search($('#mySearchText').val()).draw();
+            });
+
+            $(document).on('click', 'div.dropdown-menu', function (e) {
+                e.stopPropagation();
+            });
+
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+}

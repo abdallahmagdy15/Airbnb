@@ -36,14 +36,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link active d-none d-lg-block home" asp-action="Index">
+                    <a class="nav-link @(ViewBag.currentTab == "Home" ? "active" : null) d-none d-lg-block home" asp-action="Index">
                         Home <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <div>
                         <div style="display: inline-flex;">
-                            <a class="nav-link inbox" href="#">Inbox</a>
+                            <a class="nav-link @(ViewBag.currentTab == "Inbox" ? "active" : null) inbox" href="#">Inbox</a>
                         </div>
                         <div class="d-inline-flex d-lg-none" style="float: right;">
                             <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
@@ -58,7 +58,7 @@
                 <li class="nav-item">
                     <div>
                         <div style="display: inline-flex;">
-                            <a class="nav-link reservation" href="#">Reservations</a>
+                            <a class="nav-link @(ViewBag.currentTab == "Reservations" ? "active" : null) reservation" asp-controller="Hosting" asp-action="Reservations">Reservations</a>
                         </div>
                         <div class="d-inline-flex d-lg-none"
                              style="float: right; padding-bottom:0px !important; margin-bottom: 0px !important;">
@@ -78,7 +78,7 @@
                 <li class="nav-item ">
                     <div>
                         <div style="display: inline-flex;">
-                            <a class="nav-link listing" asp-action="Listing">Listing</a>
+                            <a class="nav-link @(ViewBag.currentTab == "Listing" ? "active" : null) listing" asp-action="Listing">Listing</a>
                         </div>
                         <div class="d-inline-flex d-lg-none" style="float: right;">
                             <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
@@ -106,10 +106,6 @@
                 </li>
                 <li class="nav-item d-block d-lg-none">
                     <div>
-                        <div style="display: inline-flex;">
-                            <a class="nav-link" asp-controller="Listing" asp-action="New">Create new list</a>
-  
-                        </div>
                         <div class="d-inline-flex d-lg-none" style="float: right;">
                             <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
                                  style="height: 24px; width: 24px; display: inline-flex; fill: currentcolor;">
@@ -150,13 +146,7 @@
                     </div>
                 </li>
             </ul>
-            <div class=" my-2 my-lg-0 d-none d-lg-block">
-                <a  asp-controller="Listing" asp-action="New" class="btn create-btn"
-                   style=" border-bottom:none !important;color:white; background-color: teal;padding: auto;">
-                    Create
-                    new list
-                </a>
-            </div>
+            
             <a style="margin-left: 2%; padding: 5px;">
                 <img src="5.jpg" class="rounded-circle d-none d-lg-block"
                      style="width: 30px; height: 30px;">
