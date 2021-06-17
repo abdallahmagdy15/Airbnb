@@ -20,50 +20,55 @@ footer {
     .containFooter {
         left:0 !important
     }
-.containFooter{
-background-color: white;
-position: fixed;
-bottom: 0px;
-z-index: 1000;
-display: flex;
-padding-bottom: 15px;
-}
+    @media only screen and (max-width: 600px) {
+        .containFooter {
+            left: 0 !important
+        }
 
-.ContainRightDiv {
-    background-color: #f7f7f7;
-    min-height: 600px
-}
+        .containFooter {
+            background-color: white;
+            position: fixed;
+            bottom: 0px;
+            z-index: 1000;
+            display: flex;
+            padding-bottom: 15px;
+        }
 
-.ContainCheckBox input {
-    height: 23px;
-    width: 23px;
-    margin-top: 1px;
-    -webkit-appearance: inherit;
-    border: 1px solid rgb(192, 190, 190);
-    padding: 10px;
-    border-radius: 4px;
-}
+        .ContainRightDiv {
+            background-color: #f7f7f7;
+            min-height: 600px
+        }
 
-.AmentyName {
-    color: #222222 !important;
-    cursor: inherit !important;
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
-    font-size: 16px !important;
-    line-height: 20px !important;
-}
+        .ContainCheckBox input {
+            height: 23px;
+            width: 23px;
+            margin-top: 1px;
+            -webkit-appearance: inherit;
+            border: 1px solid rgb(192, 190, 190);
+            padding: 10px;
+            border-radius: 4px;
+        }
 
-.requirementName {
-    font-size: 20px;
-    color: #484848;
-    padding-left: 30px;
-}
+        .AmentyName {
+            color: #222222 !important;
+            cursor: inherit !important;
+            font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+            font-size: 16px !important;
+            line-height: 20px !important;
+        }
 
-.ContainAllRequirements {
-    float: right;
-}
+        .requirementName {
+            font-size: 20px;
+            color: #484848;
+            padding-left: 30px;
+        }
 
-.ContainOneRequirement {
-    padding: 2px 0px;
-    display: flex;
-    max-width: 500px;
-}
+        .ContainAllRequirements {
+            float: right;
+        }
+
+        .ContainOneRequirement {
+            padding: 2px 0px;
+            display: flex;
+            max-width: 500px;
+        }
