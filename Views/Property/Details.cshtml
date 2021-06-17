@@ -23,7 +23,14 @@
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="~/@Model.Property.Photos[0].Url" class="d-block w-100" alt="image-0">
+                @if (Model.Property.Photos.Count > 0)
+                {
+                    <img src="~/@Model.Property.Photos[0].Url" class="d-block w-100" alt="image-0">
+                }
+                else
+                {
+                    <img src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg" class="d-block w-100" alt="image-0">
+                }
             </div>
             @for (var i = 1; i < Model.Property.Photos.Count; i++)
             {
@@ -86,11 +93,25 @@
 <section class="pic-area">
     <div class="container">
         <div class="pic_content">
-            <img class="img1" src="~/@Model.Property.Photos[0].Url">
 
+            @if (Model.Property.Photos.Count > 0)
+            {
+                <img class="img1" src="~/@Model.Property.Photos[0].Url">
+            }
+            else
+            {
+                <img class="img1" src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg">
+            }
             @for (int i = 1; i < 5; i++)
             {
-                <img class="img@(i + 1)" src="~/@Model.Property.Photos[i].Url">
+                if (i < Model.Property.Photos.Count())
+                {
+                    <img class="img@(i + 1)" src="~/@Model.Property.Photos[i].Url">
+                }
+                else
+                {
+                    <img class="img@(i + 1)" src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg">
+                }
             }
         </div>
         <div class="morebtn-containter">
@@ -132,7 +153,7 @@
             <div class="houseData">
                 <!--basic info-->
                 <div class="data-plugin-in-point">
-                    <h1>@Model.Property.GuestPlaceType.Name hosted by Ahmed</h1>
+                    <h1>@Model.Property.GuestPlaceType?.Name hosted by Ahmed</h1>
                     <span>@Model.Property.Capacity guests</span>
                     <span>&middot;</span>
                     <span>@Model.Property.NumberOfBedRooms bedroom</span>
@@ -221,7 +242,7 @@
                 <div class="check-title">
 
                     <span class="dark-span" id="amountspan">
-                        <h1 style="display: inline;" id="total-price">&#36 35</h1>
+                        <h1 style="display: inline;" id="total-price">@Model.Property.Price.ToString("C0")</h1>
                         <span>/night</span>
                     </span>
                     <span class="rightt">
@@ -261,7 +282,7 @@
                                                     <span>-</span>
                                                 </button>
                                             </span>
-                                            <span class="value" id="Adult-value">1 </span>
+                                            <span class="value" id="nOfGuests">1</span>
                                             <span class="add">
                                                 <button class="add-btn"
                                                         id="add-btn-Adult">
@@ -282,12 +303,13 @@
                                     </span>
                                     Check availability
                                 </button>
-                                <a class="btn-glow text-white" style="display: none;" id="reserve-btn">
+                                <a class="btn-glow text-white" style="display: none;" id="reserve-btn" href="" target="_blank">
                                     <span class="glow">
                                         Reserve
                                     </span>
                                     Reserve
                                 </a>
+                                <small id="total"></small>
                             </td>
                         </tr>
                     </table>
@@ -300,86 +322,67 @@
     @*Reviews*@
     <div class="Reviews">
         <hr>
+        @if (Model.Property.Reviews.Count > 0)
+        {
 
-        <h1 class="mt-5">Reviews</h1>
+            <h1 class="mt-5">Reviews</h1>
 
-        <div class="total-review">
-            <i class="fas fa-star red_icon"></i>
-            <span class="dark-span">5.0 (30 Reviews)</span>
-        </div>
+            <div class="total-review">
+                <i class="fas fa-star red_icon"></i>
+                <span class="dark-span">@(Model.Property.Reviews.Select(r => r.Rating).Average().ToString("F2")) (@Model.Property.Reviews.Count Reviews)</span>
+            </div>
 
-        <div class="row mt-5 ">
-            <div class="review col-12 col-lg-6">
-                <div class="review-header">
-                    <div class="review-image">
-                        <img src="https://banner2.cleanpng.com/20180920/yko/kisspng-computer-icons-portable-network-graphics-avatar-ic-5ba3c66df14d32.3051789815374598219884.jpg" alt="imag" />
+            <div class="row mt-5 ">
+                @foreach (var r in Model.Property.Reviews)
+                {
+                    <div class="review col-12 col-lg-6">
+                        <div class="review-header">
+                            <div class="review-image">
+                                <img src="https://banner2.cleanpng.com/20180920/yko/kisspng-computer-icons-portable-network-graphics-avatar-ic-5ba3c66df14d32.3051789815374598219884.jpg" alt="imag" />
+                            </div>
+                            <div class="review-user">
+                                <h5>@r.User.FirstName @r.User.LastName</h5>
+                                <div>@r.Date.ToLongDateString()</div>
+                            </div>
+                            <div class="spacer"></div>
+                            <div>
+                                <i class="fas fa-star red_icon"></i>
+                                <span class="dark-span">@r.Rating</span>
+                            </div>
+                        </div>
+                        <div class="review-body">
+                            @r.Content
+                        </div>
                     </div>
-                    <div class="review-user">
-                        <h5>Ahmed</h5>
-                        <div>@DateTime.Now.ToLongDateString()</div>
-                    </div>
-                    <div class="spacer"></div>
-                    <div>
-                        <i class="fas fa-star red_icon"></i>
-                        <span class="dark-span">5.0</span>
-                    </div>
-                </div>
-                <div class="review-body">
-                    Review Body will be written here..........................................
-                    Review Body will be written here..........................................
-                    Review Body will be written here..........................................
-                    Review Body will be written here..........................................
-                    Review Body will be written here..........................................
-                </div>
+                }
             </div>
-            <div class="review col-12 col-lg-6">
-                <div class="review-header">
-                    <div class="review-image">
-                        <img src="https://banner2.cleanpng.com/20180920/yko/kisspng-computer-icons-portable-network-graphics-avatar-ic-5ba3c66df14d32.3051789815374598219884.jpg" alt="imag" />
-                    </div>
-                    <div class="review-user">
-                        <h5>Ahmed</h5>
-                        <div>@DateTime.Now.ToLongDateString()</div>
-                    </div>
-                    <div class="spacer"></div>
-                    <div>
-                        <i class="fas fa-star red_icon"></i>
-                        <span class="dark-span">5.0</span>
-                    </div>
-                </div>
-                <div class="review-body">
-                    Review Body will be written here..........................................
-                    Review Body will be written here..........................................
-                    Review Body will be written here..........................................
-                    Review Body will be written here..........................................
-                    Review Body will be written here..........................................
-                </div>
-            </div>
-            <div class="review col-12 col-lg-6">
-                <div class="review-header">
-                    <div class="review-image">
-                        <img src="https://banner2.cleanpng.com/20180920/yko/kisspng-computer-icons-portable-network-graphics-avatar-ic-5ba3c66df14d32.3051789815374598219884.jpg" alt="imag" />
-                    </div>
-                    <div class="review-user">
-                        <h5>Ahmed</h5>
-                        <div>@DateTime.Now.ToLongDateString()</div>
-                    </div>
-                    <div class="spacer"></div>
-                    <div>
-                        <i class="fas fa-star red_icon"></i>
-                        <span class="dark-span">5.0</span>
-                    </div>
-                </div>
-                <div class="review-body">
-                    Review Body will be written here..........................................
-                    Review Body will be written here..........................................
-                    Review Body will be written here..........................................
-                    Review Body will be written here..........................................
-                    Review Body will be written here..........................................
-                </div>
-            </div>
-        </div>
+        }
+        else
+        {
+            <h1>No Reviews Yet!</h1>
+        }
     </div>
+
+    @if (User.Identity.IsAuthenticated && !Model.Property.Reviews.Select(r => r.UserId).ToList().Contains(ViewBag.userId))
+    {
+        <div class="Reviews" id="review-form">
+            <hr />
+            <h1>Leave a review</h1>
+            <div>
+                <label for="rating" class="col-form-label">Rating</label>
+                <input id="rating" class="form-control w-25" value="1" type="number" step="1" min="1" max="5" />
+            </div>
+            <div class="mt-4">
+                <label for="review-content" class="col-form-label">Review</label>
+                <textarea id="review-content" class="form-control" required maxlength="500"></textarea>
+                <small id="remaining">500</small>
+            </div>
+            <div class="mt-4">
+                <input disabled type="button" class="btn btn-primary" value="Submit" id="submit-review" />
+            </div>
+        </div>
+    }
+
 
     <div class="Reviews">
         <hr />
@@ -430,8 +433,16 @@
         });
 
         $('#check-in').on('apply.daterangepicker', function (ev, picker) {
-            $('#check-in').val(picker.startDate.format('YYYY-MM-DD'));
-            $('#check-out').val(picker.endDate.format('YYYY-MM-DD'));
+            var checkin = picker.startDate.format('YYYY-MM-DD');
+            var checkout = picker.endDate.format('YYYY-MM-DD');
+
+            $('#check-in').val(checkin);
+            $('#check-out').val(checkout);
+
+            var days = getTimeSpanInDays(picker.startDate._d, picker.endDate._d);
+            var amount = +days * +'@Model.Property.Price';
+            $('#total').text('$' + amount);
+            $('#reserve-btn').attr('href', `/Payment/book/${@(Model.Property.Id)}?checkin=${checkin}&checkout=${checkout}&guests=${$('#nOfGuests').text()}`);
         });
 
         $('#check-in').on('cancel.daterangepicker', function (ev, picker) {
@@ -444,7 +455,7 @@
 
         $('#check-in').focus(() => {
             $('#check-btn').css({ display: 'flex', });
-            $('#reserve-btn').css({ display: 'none', });
+            $('#reserve-btn, #total').css({ display: 'none', });
             $('#check-error').css({ display: 'none', });
         });
 
@@ -461,22 +472,32 @@
         });
 
         $('#add-btn-Adult').click(function (event) {
-            var AdultValue = $('#Adult-value').html();
+            var AdultValue = $('#nOfGuests').text();
             if (AdultValue < @(Model.Property.Capacity)) {
                 AdultValue++;
-                $('#Adult-value').html(AdultValue);
+                $('#nOfGuests').text(AdultValue);
             }
             event.stopPropagation();
         });
 
         $('#sub-btn-Adult').click(function (event) {
-            var AdultValue = $('#Adult-value').html();
+            var AdultValue = $('#nOfGuests').text();
             if (AdultValue > 1) {
                 AdultValue--;
-                $('#Adult-value').html(AdultValue);
+                $('#nOfGuests').text(AdultValue);
             }
             event.stopPropagation();
         });
+
+        function getTimeSpanInDays(date1, date2) {
+            var d1 = new Date(date1);
+            var d2 = new Date(date2);
+            var diff = d2.getTime() - d1.getTime();
+
+            var diffInDays = Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
+
+            return diffInDays;
+        }
 
         function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
@@ -494,6 +515,7 @@
             });
 
         }
+
         function checkAvailability() {
             var checkIn = $('#check-in').val();
             var checkOut = $('#check-out').val();
@@ -502,7 +524,7 @@
                 type: "GET",
                 url: `/Property/CheckDate/@Model.Property.Id?checkIn=${checkIn}&checkOut=${checkOut}`,
                 success: function (response) {
-                    $('#reserve-btn').css({ display: 'flex', });
+                    $('#reserve-btn, #total').css({ display: 'flex', });
                     $('#check-btn').css({ display: 'none', });
                 },
                 error: function (error) {
@@ -510,5 +532,41 @@
                 }
             });
         }
+
+        $('#review-content').keydown((e) => {
+            var currentLength = $(e.currentTarget).val().length;
+
+            $('#remaining').text(500 - currentLength);
+        });
+
+        $('#review-content').keyup((e) => {
+            if ($(e.currentTarget).val().trim().length > 0) {
+                $('#submit-review').removeAttr('disabled');
+            } else {
+                $('#submit-review').attr('disabled', true);
+            }
+        });
+
+        $('#submit-review').click((e) => {
+            var rating = $('#rating').val()
+            var content = $('#review-content').val();
+
+            $.ajax({
+                type: "POST",
+                url: `/Property/Review/${@(Model.Property.Id)}`,
+                data: {
+                    Rating: rating,
+                    Content: content,
+                },
+                dataType: "json",
+                success: function (response) {
+                    location.reload();
+                    console.log(response);
+                },
+                error: function (err) {
+                    console.log(err);
+                },
+            });
+        });
     </script>
 }

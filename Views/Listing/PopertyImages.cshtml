@@ -3,16 +3,15 @@
 *@
 @{
     Layout = "~/Views/Shared/ListingLayout.cshtml";
-
 }
 @model ListingViewModel
+
+
 
 <div id="11" style="display:flex">
     <div class="col col-12 col-md-7" style="margin-bottom: 150px;">
 
         <div class="ContainPropertyType col col-11">
-
-
 
             <div class="ContainImage">
                 <div style="padding-bottom: 30px;">
@@ -23,50 +22,15 @@
                         You can always add or edit your photos later.
                     </div>
                 </div>
+                <div id="imgInputs">
+                    <input id="img0" name="Images" type='file' class="file-upload" />
+                </div>
                 <div class="ContainInput">
-                        <input name="Images" type='file' class="file-upload"  multiple />
-                    <div id="divImages">
-                        </div>
-                    <!-- image slider ////////////////////////////////////////////////////////-->
-                    <div id="demo" class="carousel slide">
-                        <button class="edit">
-                            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
-                                 aria-label="Delete" role="img" focusable="false"
-                                 style="display: block; height: 20px; width: 20px;">
-                                <path d="M19 2a1 1 0 0 1 .993.883L20 3v3h8v2h-2.001L26 28a2 2 0 0 1-1.85 1.995L24 30H8a2 2 0 0 1-1.995-1.85L6 28 5.999 8H4V6h8V3a1 1 0 0 1 .883-.993L13 2zm4.999 6h-16L8 28h16zM12 10v16h-2V10zm5 0v16h-2V10zm5 0v16h-2V10zm-4-6.001h-4v2h4z">
-                                </path>
-                            </svg>
-                        </button>
-                        <!-- Indicators -->
-                        <ul class="carousel-indicators">
-                            <li data-target="#demo" data-slide-to="0" class="active"></li>
-                        </ul>
 
-                        <!-- The slideshow -->
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img class="Image1">
-                            </div>
-
-                        </div>
-
-                        <!-- Left and right controls -->
-                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                            <span class="carousel-control-prev-icon"></span>
-                        </a>
-                        <a class="carousel-control-next" href="#demo" data-slide="next">
-                            <span class="carousel-control-next-icon"></span>
-                        </a>
-
-                    </div>
                     <!-- ///////////////////////////////////////////////////////////////////// -->
-
-
-
-
                     <div class="Input"
                          style="background-image: url(&quot;https://a0.muscache.com/airbnb/static/packages/upload-photos-ghosts.56fe723d.png&quot;);">
-                        <div class="_1x4d0b1">
+                        <div class="upload">
                             <div class="_36rlri" style="margin-left: 8px; margin-right: 8px;">
                                 <button type="button" class="_eoscb05">
                                     <div class="_1p3zm55">
@@ -82,17 +46,15 @@
                                     </div>
                                 </button>
                             </div>
-                            <div class="_1d5136v" role="button">
-                                <div class="_siasx51">or drag them in</div>
-                            </div>
                         </div>
                     </div>
-
-
                 </div>
-                <div aria-label="Add another" class="_amkdao">
-                    <input class="file-upload2" accept="image/*" multiple />
 
+                <div id="imagesDisplay">
+                    
+                </div>
+
+                <div aria-label="Add another" class="addImg">
                     <div class="_djxl322">
                         <div class="_ni9axhe">
                             <div class="_1sv27e6">
@@ -119,92 +81,62 @@
             </div>
         </div>
 
-        <!-- div will show after Select -->
-
-    </div>
-    <div class="col col-md-5 d-none d-md-block ContainRightDiv">
-
     </div>
 </div>
 @section Scripts {
 
     <script>
-        $(function () {
-            $('._amkdao').css('display', 'none')
-            $('#demo').css('display', 'none')
-            $('.carousel-control-prev').css('display', 'none')
-            $('.carousel-control-next').css('display', 'none')
+        var inputIncr = 0;
+        $('.addImg').css('display', 'none')
 
+        $('body').on('change', '.file-upload', function (e) {
+            alert();
+            var file = e.currentTarget.files[0];
 
-        })
-        var numberOfImage = 1
-        var imageSrcs = []
-        var file_upload = document.getElementsByClassName('file-upload')[0]
-        var readURL = function (input) {
-            if (input.files && input.files[0]) {
-
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    if (numberOfImage == 1) {
-                        //imageSrcs.push(file_upload.files[0].name)
-                        $('.Input').attr('style', 'display:none')
-
-                        $('#demo').attr('style', 'display:block ')
-
-                        $(".Image" + numberOfImage + "").attr('src', e.target.result);
-                    } else if (numberOfImage == 1) {
-                        alert('hi')
-                        console.log('hhhhhh')
-                        // $(".Image"+numberOfImage+"").attr('src',file_upload.files[0].name);
-                        $('.carousel-inner').children().last().attr('class', 'carousel-item');
-                        $('.carousel-inner').append("<div class='carousel-item active'><img class='Image" + numberOfImage + "' src='" + e.target.result + "'></div>")
-                        $('.carousel-indicators').children().last().removeAttr('class');
-                        $('.carousel-indicators').append(`<li data-target="#demo" data-slide-to="0"
-                         class="active"></li>
-                        `)
-                        $('.carousel-control-prev').css('display', 'flex')
-                        $('.carousel-control-next').css('display', 'flex')
-                        imageSrcs.push(file_upload.files[0].name)
-                    }
-                    $('#divImages').append("<input name='Images' type='file' class='file-upload'/>")
-                    numberOfImage++
-                    console.log(imageSrcs.length)
-                    
-                }
-
-                reader.readAsDataURL(input.files[0]);
+            if (file) {
+                $('#imagesDisplay').append(`
+                    <div class="image-div">
+                        <button type="button" class="removeImg edit" data-input="${e.currentTarget.id}">
+                            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+                                 aria-label="Delete" role="img" focusable="false"
+                                 style="display: block; height: 20px; width: 20px;">
+                                <path d="M19 2a1 1 0 0 1 .993.883L20 3v3h8v2h-2.001L26 28a2 2 0 0 1-1.85 1.995L24 30H8a2 2 0 0 1-1.995-1.85L6 28 5.999 8H4V6h8V3a1 1 0 0 1 .883-.993L13 2zm4.999 6h-16L8 28h16zM12 10v16h-2V10zm5 0v16h-2V10zm5 0v16h-2V10zm-4-6.001h-4v2h4z">
+                                </path>
+                            </svg>
+                        </button>
+                        <img src="${URL.createObjectURL(file)}" alt="imag" />
+                    </div>`
+                );
             }
-        }
-        $(".file-upload").on('change', function () {
-            readURL(this);
-            $('._1x4d0b1').css('display', 'none')
-            $('._amkdao').css('display', 'block')
 
+            $('#imgInputs').append(`
+                    <input id="img${++inputIncr}" name="Images" type='file' class="file-upload" />
+                `
+            );
 
+            $('.upload').css('display', 'none');
+            $('.ContainInput').remove();
+            $('.addImg').css('display', 'block');
         });
+
+        $('body').on('click', '.removeImg', (e) => {
+            var result = confirm("Do you want to delete permenantly?");
+            if (!result)
+                return;
+
+            var inputId = $(e.currentTarget).data('input');
+            $(`#${inputId}`).remove();
+            $(e.currentTarget).parent().remove();
+        });
+
         $('.Input').click(function () {
             $(".file-upload")[0].click();
-        })
-        $('._amkdao').click(function () {
-            console.log($(".file-upload"))
-            $(".file-upload")[$(".file-upload").length - 1].click();
-
-        })
-
-        $('.carousel').carousel({
-            interval: false
         });
-        $('.edit').click(function () {
-            numberOfImage--;
-            alert('lmmk')
-            $('.Input').attr('style', 'display:block !important')
-            $('#demo').attr('style', 'display:none !important')
-            $('.carousel-item.active').remove();
-            $('.carousel-inner').children().first().attr('class', 'carousel-item active');
-            $('.carousel-indicators').children().first().attr('class', 'active');
-            $('.carousel-indicators').children().last().remove();
 
-        })
+        $('.addImg').click(function () {
+            console.log($(".file-upload").length)
+            $(".file-upload")[$(".file-upload").length - 1].click();
+        });
+        
     </script>
 }

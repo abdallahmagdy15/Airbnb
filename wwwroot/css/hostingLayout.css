@@ -1,0 +1,223 @@
+﻿/* Style the navigation bar */
+.topnav {
+    background-color: white;
+    overflow: hidden;
+    padding-bottom: 0px !important;
+}
+
+    .topnav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+        .topnav a:hover {
+            border-bottom: 3px solid rgb(0, 132, 137) !important;
+        }
+
+        .topnav a.active {
+            border-bottom: 3px solid rgb(0, 132, 137) !important;
+        }
+
+.border-dark {
+    padding-bottom: 0px !important;
+    border-color: #e4e4e4 !important;
+}
+
+.nav-link {
+    font-weight: bold;
+    color: black !important;
+}
+
+.navbar-nav > li {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.my-2 > a {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+a.create-btn:active,
+a.create-btn:focus,
+a.create-btn:hover {
+    border: 2px solid black;
+    outline-style: solid;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+._7qp4lh {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border-bottom: 1px solid rgb(235, 235, 235) !important;
+}
+
+li:hover {
+    cursor: pointer !important;
+}
+
+@media (max-width: 992px) {
+    .navbar-nav > li {
+        padding-top: 15.5px;
+        padding-bottom: 15.5px;
+        line-height: 20px;
+    }
+
+}
+
+/*End Style the navigation bar */
+
+/* Home  style */
+._18hrqvin {
+    margin: 0px !important;
+    word-wrap: break-word !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 32px !important;
+    font-weight: 800 !important;
+    line-height: 1.125em !important;
+    color: black !important;
+    padding-top: 3%;
+    padding-left: 9%;
+}
+
+.card-title-custom {
+    word-wrap: break-word !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    line-height: 1.25em !important;
+    color: #484848 !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+}
+
+.card-body-text {
+    overflow-wrap: break-word !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 1.375em !important;
+    color: rgb(118, 118, 118) !important;
+}
+
+div.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+/*End  Home  style */
+/* Footer Style */
+div.FooterLi_UL ul {
+    list-style: none;
+}
+
+div.FooterLi_UL li {
+    display: inline-block;
+    margin-right: 25px;
+}
+
+div.FooterLi_UL ul li span {
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+div.FLanguage_label a:link,
+div.FLanguage_label a:visited,
+div.FLanguage_label a:active,
+div.FLanguage_label a:focus {
+    color: gainsboro;
+    text-decoration: none !important;
+    outline: none !important;
+    color: #000;
+    font-family: bold;
+    font-size: larger;
+}
+
+div.FLanguage_label a:hover {
+    color: gray;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.underLine {
+    text-decoration: underline;
+}
+
+.footer-header {
+    color: #222222 !important;
+    text-transform: uppercase !important;
+    font-size: 12px !important;
+    font-weight: bold;
+    margin-bottom: 0px !important;
+}
+
+.footer-links {
+    font-family: inherit !important;
+    font-weight: inherit !important;
+    font-style: inherit !important;
+    font-variant: inherit !important;
+    color: #222222 !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+}
+
+/* End Footer Style */
+
+
+/*DataTable style */
+tr {
+    background-color: white;
+}
+
+.finish-btn {
+    border-color: black;
+    background-color: white;
+}
+
+    .finish-btn:hover {
+        background-color: #f7f7f7;
+    }
+
+#mySearchText {
+    background-color: #f7f7f7;
+    border-radius: 12px;
+}
+
+    #mySearchText:focus,
+    .room-andBed .r-btn:focus {
+        outline: 3px solid transparent;
+    }
+
+.drop-btn {
+    background-color: white;
+    border-radius: 12px;
+}
+
+    .drop-btn:focus {
+        outline: 3px solid transparent;
+    }
+
+
+.dropdown-menu {
+    width: 300px !important;
+}
+
+
+
+
+div.btn-group .dropdown-toggle::after {
+    display: none;
+}
+
+i.btn:hover {
+    background-color: white;
+}
+/* End Data Table Style*/

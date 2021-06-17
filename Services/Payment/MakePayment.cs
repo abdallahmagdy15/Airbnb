@@ -38,24 +38,33 @@ namespace Airbnb.Services.Payment
                     Currency = "usd",
                     Description = "Booking Payment",
                     Source = stripeToken.Id,
-                  
-                  
                 };
-                
+
                 var chargeServices = new ChargeService();
                 Charge stripeCharge = await chargeServices.CreateAsync(optionsCharge);
                 if (stripeCharge.Paid)
                 {
                     string transactionId = stripeCharge.BalanceTransactionId;
-                    return "Success";
+                    return new
+                    {
+                        transactionId,
+                        amount = value,
+                        state = "Success",
+                    };
                 }
                 else
                 {
-                    return "Failed";
+                    return new
+                    {
+                        state = "Failed",
+                    }; 
                 }
             } catch (Exception e)
             {
-                return e.Message;
+                return new
+                {
+                    state = e.Message,
+                };
             }
 
          }
