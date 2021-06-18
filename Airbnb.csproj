@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Host\**" />
+    <Content Remove="Views\Host\**" />
+    <EmbeddedResource Remove="Views\Host\**" />
+    <None Remove="Views\Host\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="bootstrap" Version="4.6.0" />
     <PackageReference Include="jQuery.Ajax.Unobtrusive" Version="2.0.20710" />
     <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.4.2" />
@@ -32,7 +39,6 @@
 
   <ItemGroup>
     <Folder Include="Views\Guest\Partial\" />
-    <Folder Include="Views\Host\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 

@@ -95,6 +95,37 @@ namespace Airbnb.Services
                 await messageRepository.Save();
             }
         }
+
+        //get users I contacted them before in a chat
+        public List<string> GetConnectedContacts()
+        {
+            var currUser = userManager.Users.FirstOrDefault(x => x.Id == CurrentUserId);
+            List<string> contacts = new List<string>();
+            if (currUser != null)
+            {
+                currUser.Chats.ForEach( chat =>
+                {
+                    var user = chat.Users.Select(x=>x.Id).FirstOrDefault(Id => Id != CurrentUserId);
+                    if (user!= null)
+                    {
+                        contacts.Add(user);
+                    }
+                });
+                return contacts;
+            }
+            return null;
+        }
+
+        //get users I never contacted them before
+        public List<AppUser> GetSuggestedContacts()
+        {
+            var currUser = userManager.Users.FirstOrDefault(x => x.Id == CurrentUserId);
+            if(currUser!= null)
+            {
+                return userManager.Users.Where(x => GetConnectedContacts().Contains(x.Id)).ToList();
+            }
+            return null;
+        }
     }
 
 }

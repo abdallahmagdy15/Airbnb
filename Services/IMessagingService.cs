@@ -1,4 +1,5 @@
-﻿using Airbnb.Models.Messaging;
+﻿using Airbnb.Models;
+using Airbnb.Models.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Airbnb.Services
         public Task<List<Chat>> GetMyChats();
         public Task<Chat> GetChatById(int chatId);
         public Task<Chat> GetChatWith(string recieverUserId);
-
+        public List<AppUser> GetSuggestedContacts();
+        public List<string> GetConnectedContacts();
     }
 }

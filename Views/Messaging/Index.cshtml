@@ -2,72 +2,78 @@
 @using Airbnb.Models.Messaging;
 @model AppUser
 
-    <link href="~/css/Messaging.css" rel="stylesheet" />
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="row">
-                    <h2>All Messages</h2>
-                    <div>
-                        + Add Chat
-                    </div>
+<link href="~/css/Messaging.css" rel="stylesheet" />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row">
+                <h2>All Messages</h2>
+                <div>
+                    <a asp-action="Register" asp-controller="Account" class="btn btn-primary"
+                       data-ajax="true" data-ajax-update="#modal-render-body"
+                       data-ajax-success="$('#RegisterModal').modal('show');$('.modal-title').text('Sign Up');">
+                        <i class="fas fa-plus"></i> Start Chat
+                    </a>
                 </div>
-                <ul type=none class="chats-cr">
-                    @foreach (var chat in Model.Chats)
+            </div>
+            <ul type=none class="chats-cr">
+                @foreach (var chat in Model.Chats)
+                {
+                    var contact = chat.Users.FirstOrDefault(x => x.Id != Model.Id);
+                    Message lastMessage = null;
+                    @if (chat.Messages.Count() > 0)
                     {
-                        var contact = chat.Users.FirstOrDefault(x => x.Id != Model.Id);
-                        Message lastMessage = null;
-                        @if (chat.Messages.Count() > 0)
-                        {
-                            lastMessage = chat.Messages.ToList().Last();
-                        }
-                        <li class="chat-item">
-                            <div class="img-cr">
-                                <img src="@contact.PhotoUrl" class="rounded-circle" />
+                        lastMessage = chat.Messages.ToList().Last();
+                    }
+                    <li class="chat-item">
+                        <div class="img-cr">
+                            <img src="@contact.PhotoUrl" class="rounded-circle" />
+                        </div>
+                        <div class="chat-details">
+                            <div class="row">
+                                <span class="dimmed-sm-label">
+                                    status
+                                </span>
+                                <span class="dimmed-sm-label">
+                                    @lastMessage?.DateTime.ToShortTimeString();
+                                </span>
                             </div>
-                            <div class="chat-details">
-                                <div class="row">
-                                    <span class="dimmed-sm-label">
-                                        status
-                                    </span>
-                                    <span class="dimmed-sm-label">
-                                        @lastMessage?.DateTime.ToShortTimeString();
-                                    </span>
-                                </div>
-                                <div class="row">
-                                    <label class="name-sm-label">Name</label>
-                                    <span class="icon-cr"></span>
-                                </div>
-                                <div class="row">
-                                    @if (lastMessage != null)
+                            <div class="row">
+                                <label class="name-sm-label">Name</label>
+                                <span class="icon-cr"></span>
+                            </div>
+                            <div class="row">
+                                @if (lastMessage != null)
+                                {
+                                    if (lastMessage.User.Id == Model.Id)
                                     {
-                                        if (lastMessage.User.Id == Model.Id)
-                                        {
-                                            <p class="normal-text">@lastMessage.Text</p>
-                                        }
-                                        else
-                                        {
-                                            <p class="normal-text font-weight-bold">@lastMessage.User.FirstName : @lastMessage.Text</p>
-                                        }
+                                        <p class="normal-text">@lastMessage.Text</p>
                                     }
                                     else
                                     {
-                                        <p class="normal-text font-weight-bold">Start a converstaion with @contact.FirstName</p>
+                                        <p class="normal-text font-weight-bold">@lastMessage.User.FirstName : @lastMessage.Text</p>
                                     }
+                                }
+                                else
+                                {
+                                    <p class="normal-text font-weight-bold">Start a converstaion with @contact.FirstName</p>
+                                }
 
-                                </div>
-                                <div class="row">
-                                    <span class="dimmed-sm-label">
-                                        @lastMessage?.DateTime.ToShortDateString();
-                                    </span>
-                                    <span class="dimmed-sm-label">property name</span>
-                                </div>
                             </div>
-                        </li>
-                    }
-                </ul>
-            </div>
-            <div class="col-md-8 chat-cr">
-            </div>
+                            <div class="row">
+                                <span class="dimmed-sm-label">
+                                    @lastMessage?.DateTime.ToShortDateString();
+                                </span>
+                                <span class="dimmed-sm-label">property name</span>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="col-md-8 chat-cr">
         </div>
     </div>
+</div>
+
+<script src="https://kit.fontawesome.com/c975a9ad44.js" crossorigin="anonymous"></script>
