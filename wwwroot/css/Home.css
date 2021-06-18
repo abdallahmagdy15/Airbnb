@@ -176,7 +176,7 @@ body {
 #searchAreaSmall {
     height: 80px;
     padding-top: 30px;
-    width: 100%;
+    width: 85%;
     left: 0;
 }
 
@@ -334,6 +334,7 @@ ul li span {
     border-bottom-right-radius: 30px;
     padding-top: 10px;
     background-color: white;
+    min-width:400px
 }
 
 
@@ -666,7 +667,7 @@ ul li span {
 /* Small screen */
 .contain-Sm-scr {
     background-color: white;
-    height: 150%;
+    height: 75%;
     width: 100%;
     top: 0px;
     position: absolute;
@@ -911,8 +912,6 @@ button.btn.clear:disabled {
     min-height: 110px;
     border-radius: 30px;
     /* left: 18% !important; */
-    display: block !important;
-    z-index: 2000;
     position: absolute;
     padding: 0 !important;
 }
