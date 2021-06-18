@@ -42,10 +42,43 @@ namespace Airbnb.Repositories
             var _chat = await Get(chat.ChatId);
             db.Entry(_chat).CurrentValues.SetValues(chat);
         }
+        public async Task AddUser(string userId, int chatId)
+        {
+            if (userId != null)
+            {
+                var user = await db.Users.FirstOrDefaultAsync(x => x.Id == userId);
+                var chat = await Get(chatId);
+                if (!chat.Users.Contains(user))
+                {
+                    chat.Users.Add(user);
+                }
+            }
+        }
+        public async Task RemoveUser(string userId, int chatId)
+        {
+            if (userId != null)
+            {
+                var user = await db.Users.FirstOrDefaultAsync(x => x.Id == userId);
+                var chat = await Get(chatId);
+                if (chat.Users.Contains(user))
+                {
+                    chat.Users.Remove(user);
+                }
+            }
+        }
+        public async Task<Chat> GetChatWith(string CurrentUserId, string recieverUserId)
+        {
+            var currUser = db.Users.FirstOrDefault(x => x.Id == CurrentUserId);
+            var contact = db.Users.FirstOrDefault(x => x.Id == recieverUserId);
+            if (currUser != null && contact != null)
+                return await db.Chats.FirstOrDefaultAsync(x => x.Users.Contains(currUser) && x.Users.Contains(contact));
+            else
+                return null;
+        }
 
         public List<Chat> GetAll()
         {
-            return  db.Chats.ToList();
+            return db.Chats.ToList();
         }
         public List<Chat> Find(Expression<Func<Chat, bool>> expression)
         {

@@ -10,7 +10,7 @@ namespace Airbnb.Models.Messaging
     {
         public int ChatId { get; set; }
         public virtual List<Message> Messages{ get; set; }
-        public virtual List<UserChat> Users { get; set; }
+        public virtual List<AppUser> Users { get; set; }
 
     }
 }

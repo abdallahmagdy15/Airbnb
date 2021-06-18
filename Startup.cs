@@ -62,7 +62,6 @@ namespace Airbnb
             services.AddScoped<IPropertyService, PropertyService>();
             services.AddScoped<IMessagingService, MessagingService>();
             services.AddScoped<IChatRepository, ChatRepository>();
-            services.AddScoped<IUserChatRepository, UserChatRepository>();
             services.AddScoped<IMessageRepository, MessageRepository>();
 
         }

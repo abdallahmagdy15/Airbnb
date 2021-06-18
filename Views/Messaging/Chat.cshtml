@@ -1,7 +1,7 @@
 ﻿@using Airbnb.ViewModels.Messaging
 @model ChatViewModel
 @{
-    var contact = Model.Chat.Users.FirstOrDefault(x => x.UserId != Model.CurrentUser.Id).User;
+    var contact = Model.Chat.Users.FirstOrDefault(x => x.Id != Model.CurrentUser.Id);
     DateTime lastDate = new DateTime(2000, 1, 1);
 }
 <div class="row pinned-top">

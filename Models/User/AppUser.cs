@@ -47,7 +47,7 @@ namespace Airbnb.Models
         public virtual City City { get; set; }
 
         public virtual List<Message> Messages { get; set; }
-        public virtual List<UserChat> Chats { get; set; }
+        public virtual List<Chat> Chats { get; set; }
     }
 
     public enum Gender

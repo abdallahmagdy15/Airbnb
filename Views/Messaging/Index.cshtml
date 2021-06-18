@@ -13,10 +13,9 @@
                     </div>
                 </div>
                 <ul type=none class="chats-cr">
-                    @foreach (var userChat in Model.Chats)
+                    @foreach (var chat in Model.Chats)
                     {
-                        var chat = userChat.Chat;
-                        var contact = chat.Users.FirstOrDefault(x => x.UserId != Model.Id).User;
+                        var contact = chat.Users.FirstOrDefault(x => x.Id != Model.Id);
                         Message lastMessage = null;
                         @if (chat.Messages.Count() > 0)
                         {
