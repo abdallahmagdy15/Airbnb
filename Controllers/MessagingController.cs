@@ -1,5 +1,6 @@
 ﻿using Airbnb.Models;
 using Airbnb.Services;
+using Airbnb.ViewModels.Messaging;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -26,8 +27,9 @@ namespace Airbnb.Controllers
         }
         public async Task<IActionResult> GetChat(int chatid)
         {
-            await messagingService.RemoveChat(chatid);
-            return Ok();
+            var chat = await messagingService.GetChatById(chatid);
+            var currUser = await userManager.FindByIdAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            return View("Chat",new ChatViewModel() { Chat = chat,CurrentUser = currUser });
         }
         
         [HttpGet]

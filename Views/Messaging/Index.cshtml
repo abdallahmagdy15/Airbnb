@@ -77,7 +77,7 @@
 </div>
 
 <a hidden id="loadChat" asp-action="GetChat" asp-controller="Messaging" class="btn btn-default" 
-   asp-route-contactId="@Model.Chats.FirstOrDefault()" data-ajax="true" data-ajax-update="#chat-cr"></a>
+   asp-route-chatid="@Model.Chats.FirstOrDefault()" data-ajax="true" data-ajax-update="#chat-cr"></a>
 
 <script>
     //load first chat by ajax call
