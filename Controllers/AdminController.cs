@@ -1,4 +1,5 @@
 ﻿using Airbnb.Models;
+using Airbnb.Models.PropertySubModels;
 using Airbnb.Services;
 using Airbnb.ViewModels;
 using ClosedXML.Excel;
@@ -81,6 +82,225 @@ namespace Airbnb.Controllers
             return PartialView("Views/Shared/AllUserPartialView.cshtml", Admins);
         }
 
+        //Amenities
+        public IActionResult AllAmenities()
+        {
+            return PartialView("Views/Shared/AmenitiesPartialView.cshtml", _db.Amenities());
+        }
+        [HttpGet]
+        public IActionResult AddAmenity()
+        {
+            return View("Views/Shared/AddNewAmenityPartialView.cshtml");
+        }
+        [HttpPost]
+        public IActionResult AddAmenity(Amenity amenity)
+        {
+            if (ModelState.IsValid)
+            {
+                var Amenity = new Amenity
+                {
+                    Icon = amenity.Icon,
+                    Description = amenity.Description,
+                    Name = amenity.Name,
+                    Type = amenity.Type
+                };
+                _db.AddAmenity(Amenity);
+                return RedirectToAction("Dashboard", "Admin");
+            }
+            
+                return View("Views/Shared/AddNewAmenityPartialView.cshtml",amenity);
+        }
+        public IActionResult deleteAmenity(int id)
+        {
+            _db.DeleteAmenity(id);
+            return RedirectToAction("Dashboard", "Admin");
+        }
+        
+        //Categories
+        public IActionResult AllCategories()
+        {
+            return PartialView("Views/Shared/CategoriesPartialView.cshtml", _db.Categories());
+        }
+        [HttpGet]
+        public IActionResult AddCategory()
+        {
+            return View("Views/Shared/AddNewCategoryPartialView.cshtml");
+        }
+        [HttpPost]
+        public IActionResult AddCategory(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                var Category = new Category
+                {
+                   Name=category.Name,
+                   Description=category.Description,
+                };
+                _db.AddCategory(Category);
+                return RedirectToAction("Dashboard", "Admin");
+            }
+
+            return View("Views/Shared/AddNewCategoryPartialView.cshtml", category);
+        }
+        public IActionResult deleteCategory(int id)
+        {
+            _db.DeleteCategory(id);
+            return RedirectToAction("Dashboard", "Admin");
+        }
+
+        //house rules
+        public IActionResult AllHouseRules()
+        {
+            return PartialView("Views/Shared/HouseRulesPartialView.cshtml", _db.HouseRules());
+        }
+        [HttpGet]
+        public IActionResult AddHouseRule()
+        {
+            return View("Views/Shared/AddNewHouseRulePartialView.cshtml");
+        }
+        [HttpPost]
+        public IActionResult AddHouseRule(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                var HouseRule = new HouseRule
+                {
+                    Name = category.Name,
+                };
+                _db.AddHouseRules(HouseRule);
+                return RedirectToAction("Dashboard", "Admin");
+            }
+            return View("Views/Shared/AddNewHouseRulePartialView.cshtml", category);
+        }
+        public IActionResult deleteHouseRule(int id)
+        {
+            _db.DeleteHouseRules(id);
+            return RedirectToAction("Dashboard", "Admin");
+        }
+
+        //Guest Details
+        public IActionResult AllGuestDetails()
+        {
+            return PartialView("Views/Shared/GuestDetailsPartialView.cshtml", _db.GuestDetails());
+        }
+        [HttpGet]
+        public IActionResult AddGuestDetails()
+        {
+            return View("Views/Shared/AddNewGuestDetailsPartialView.cshtml");
+        }
+        [HttpPost]
+        public IActionResult AddGuestDetails(GuestDetail guestDetail)
+        {
+            if (ModelState.IsValid)
+            {
+                var GuestDetails = new GuestDetail
+                {
+                    Name = guestDetail.Name,
+                };
+                _db.AddGuestDetails(GuestDetails);
+                return RedirectToAction("Dashboard", "Admin");
+            }
+            return View("Views/Shared/AddNewGuestDetailsPartialView.cshtml",guestDetail);
+        }
+        public IActionResult deleteGuestDetails(int id)
+        {
+            _db.DeleteGuestDetails(id);
+            return RedirectToAction("Dashboard", "Admin");
+        }
+
+        //place type
+        public IActionResult AllPlaceTypes()
+        {
+            return PartialView("Views/Shared/PlaceTypePartialView.cshtml", _db.GuestPlaceTypes());
+        }
+        [HttpGet]
+        public IActionResult AddPlaceType()
+        {
+            return View("Views/Shared/AddNewPlaceTypePartialView.cshtml");
+        }
+        [HttpPost]
+        public IActionResult AddPlaceType(GuestPlaceType guestPlaceType)
+        {
+            if (ModelState.IsValid)
+            {
+                var GuestPlaceType = new GuestPlaceType
+                {
+                    Name = guestPlaceType.Name,
+                    Description = guestPlaceType.Description
+                };
+                _db.AddGuestPlaceType(GuestPlaceType);
+                return RedirectToAction("Dashboard", "Admin");
+            }
+            return View("Views/Shared/AddNewPlaceTypePartialView.cshtml", guestPlaceType);
+        }
+        public IActionResult deletePlaceType(int id)
+        {
+            _db.DeleteGuestPlaceType(id);
+            return RedirectToAction("Dashboard", "Admin");
+        }
+
+        //Guest Requirments
+        public IActionResult AllRequirments()
+        {
+            return PartialView("Views/Shared/GuestRequirmentsPartialView.cshtml", _db.GuestRequirements());
+        }
+        [HttpGet]
+        public IActionResult AddGuestRequirment()
+        {
+            return View("Views/Shared/AddNewGuestRequirmentPartialView.cshtml");
+        }
+        [HttpPost]
+        public IActionResult AddGuestRequirment(GuestRequirement guestRequirement)
+        {
+            if (ModelState.IsValid)
+            {
+                var GuestRequirment = new GuestRequirement
+                {
+                    Name = guestRequirement.Name,
+                };
+                _db.AddGuestRequirment(GuestRequirment);
+                return RedirectToAction("Dashboard", "Admin");
+            }
+            return View("Views/Shared/AddNewGuestRequirmentsPartialView.cshtml", guestRequirement);
+        }
+        public IActionResult deleteGuestRequirment(int id)
+        {
+            _db.DeleteGuestRequirment(id);
+            return RedirectToAction("Dashboard", "Admin");
+        }
+
+        //Guest Requirments
+        public IActionResult AllSpaces()
+        {
+            return PartialView("Views/Shared/SpacesPartialView.cshtml", _db.Spaces());
+        }
+        [HttpGet]
+        public IActionResult AddSpace()
+        {
+            return View("Views/Shared/AddNewSpacePartialView.cshtml");
+        }
+        [HttpPost]
+        public IActionResult AddSpace(Space space)
+        {
+            if (ModelState.IsValid)
+            {
+                var Space = new Space
+                {
+                    Name = space.Name,
+                };
+                _db.AddSpace(Space);
+                return RedirectToAction("Dashboard", "Admin");
+            }
+            return View("Views/Shared/AddNewSpacePartialView.cshtml", space);
+        }
+        public IActionResult deleteSpace(int id)
+        {
+            _db.DeleteSpace(id);
+            return RedirectToAction("Dashboard", "Admin");
+        }
+
+
+
 
         //[HttpGet]
         //public IActionResult ResetPassword()
@@ -115,6 +335,8 @@ namespace Airbnb.Controllers
         //    }
         //    return View(model);
         //}
+
+
 
 
 
@@ -233,6 +455,83 @@ namespace Airbnb.Controllers
             _db.DeleteProp(id);
             return RedirectToAction("Dashboard", "Admin");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> EditUserInRole(string id)
+        {
+            ViewBag.roleId = id;
+            var role = await roleManager.FindByIdAsync(id);
+            if(role == null)
+            {
+                ViewBag.ErrorMessage = $"Role with id = {id} cannot be found";
+                return View("NotFound");
+            }
+            var model = new List<UserRoleViewModel>();
+
+            foreach(var user in userManager.Users)
+            {
+                var userRoleViewModel = new UserRoleViewModel
+                {
+                    UserId = user.Id,
+                    UserName = user.UserName
+                };
+                if(await userManager.IsInRoleAsync(user, role.Name))
+                {
+                    userRoleViewModel.IsSelected = true;
+                }
+                else
+                {
+                    userRoleViewModel.IsSelected = false;
+                }
+                model.Add(userRoleViewModel);
+                var x = model;
+
+            }
+            return PartialView("Views/Shared/UsersRolePartialView.cshtml", model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditUserInRole(List<UserRoleViewModel> model,string id)
+        {
+            var role = await roleManager.FindByIdAsync(id);
+
+            if (role == null)
+            {
+                ViewBag.ErroeMessage = $"Role with id = {id} cannot be found";
+            }
+            foreach(var obj in model)
+            {
+                var user = await userManager.FindByIdAsync(obj.UserId);
+                IdentityResult result = null;
+                if(obj.IsSelected && !(await userManager.IsInRoleAsync(user, role.Name)))
+                {
+                    result = await userManager.AddToRoleAsync(user, role.Name);
+                }else if(!obj.IsSelected && (await userManager.IsInRoleAsync(user, role.Name)))
+                {
+                    result = await userManager.RemoveFromRoleAsync(user, role.Name);
+                }
+                else
+                {
+                    continue;
+                }
+                if (result.Succeeded)
+                {
+                    if (model.Last() == obj)
+                    {
+                        return RedirectToAction("Dashboard", "Admin");
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+               
+            }
+            return PartialView("Views/Shared/UsersRolePartialView.cshtml", model);
+        }
+
+
+
         [HttpGet]
         public IActionResult ChangeLogo()
         {
