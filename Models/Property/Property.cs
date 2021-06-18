@@ -36,13 +36,8 @@ namespace Airbnb.Models
 
         [Column(TypeName = "Money")]
         public decimal Price { set; get; } = 0;
-
-        
-
-        
-
+         
         public int? MaxStay { set; get; } = 0;
-
 
         public int MinStay { set; get; } = 0;
 
@@ -82,5 +77,8 @@ namespace Airbnb.Models
         public virtual List<PropertySpace> Spaces { get; set; }
         public virtual List<Review> Reviews { get; set; }
 
+        [ForeignKey(nameof(User))]
+        public string UserId { get; set; }
+        public virtual AppUser User { get; set; }
     }
 }

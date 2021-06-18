@@ -16,13 +16,14 @@ namespace Airbnb.Controllers
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         IWebHostEnvironment webHostEnvironment;
+        private ApplicationDbContext DbContext;
 
-
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IWebHostEnvironment hostEnvironment)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IWebHostEnvironment hostEnvironment,ApplicationDbContext applicationDb)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             webHostEnvironment = hostEnvironment;
+            DbContext = applicationDb;
         }
 
         [HttpPost]
@@ -34,11 +35,12 @@ namespace Airbnb.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    var url = Url.Action("Index", "Home");
+
+                    return Content($"<script language='javascript' type='text/javascript'>location.href='{url}'</script>");
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
-
             }
             return PartialView("~/Views/Shared/LoginPartialView.cshtml",user);
 
@@ -51,7 +53,12 @@ namespace Airbnb.Controllers
         public IActionResult Login()
         {
             return PartialView("~/Views/Shared/LoginPartialView.cshtml",new LoginViewModel());
+        }
 
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -197,6 +204,44 @@ namespace Airbnb.Controllers
             else
                 result = false;
             return Json(data:result);
+        }
+        [HttpGet]
+        public IActionResult editprofile()
+        {
+          
+            var userid = userManager.GetUserId(HttpContext.User);
+            if (userid==null)
+            {
+                return View("Login");
+            }
+            else
+            {
+                var user = DbContext.Users.FirstOrDefault(d=>d.Id==userid);
+                return View(user);
+            }
+            
+        }
+        [HttpPost]
+        public IActionResult editprofile(AppUser user)
+        {
+            var olduser = DbContext.Users.FirstOrDefault(d => d.Id == user.Id);
+            if (olduser.Id != null)
+            {
+                olduser.FirstName = user.FirstName;
+                olduser.LastName = user.LastName;
+                olduser.PhoneNumber = user.PhoneNumber;
+                olduser.Email = user.Email;
+                olduser.DateOfBirth = user.DateOfBirth;
+                olduser.Street = user.Street;
+                olduser.BuildingNo = user.BuildingNo;
+                DbContext.SaveChanges();
+                return RedirectToAction("Index","Home");
+            }
+            else
+            {
+                return View(user);
+            }
+
         }
     }
 }

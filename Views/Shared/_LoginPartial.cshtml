@@ -3,16 +3,17 @@
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
 
-<ul class="navbar-nav">
+<ul class="navbar-nav" style="flex-direction: row;padding-top: 0;">
     @if (SignInManager.IsSignedIn(User))
     {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+        <li>
+            <a asp-controller="Hosting" asp-action="Index" id="becomeahost" style="display: block !important; margin-top: 0;">be a host</a>
         </li>
         <li class="nav-item">
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-            </form>
+            <a asp-controller="Account" asp-action="Profile" class="nav-link btn btn-link text-light">Account</a>
+        </li>
+        <li class="nav-item">
+            <a asp-controller="Account" asp-action="Logout" class="nav-link btn btn-link text-light">Logout</a>
         </li>
     }
     else
@@ -26,10 +27,10 @@
         <li class="nav-item">
 
             <a asp-action="Login" asp-controller="Account" class="btn btn-primary"
+               id="login"
                data-ajax="true" data-ajax-update="#modal-render-body"
                data-ajax-success="$('#RegisterModal').modal('show');$('.modal-title').text('Log In');">Login</a>
         </li>
-
     }
 </ul>
 

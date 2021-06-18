@@ -36,14 +36,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link active d-none d-lg-block home" asp-action="Index">
+                    <a class="nav-link @(ViewBag.currentTab == "Home" ? "active" : null) d-none d-lg-block home" asp-action="Index">
                         Home <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <div>
                         <div style="display: inline-flex;">
-                            <a class="nav-link inbox" href="#">Inbox</a>
+                            <a class="nav-link @(ViewBag.currentTab == "Inbox" ? "active" : null) inbox" href="#">Inbox</a>
                         </div>
                         <div class="d-inline-flex d-lg-none" style="float: right;">
                             <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
@@ -58,7 +58,15 @@
                 <li class="nav-item">
                     <div>
                         <div style="display: inline-flex;">
-                            <a class="nav-link reservation" href="#">Reservations</a>
+                            <a class="nav-link @(ViewBag.currentTab == "Performance" ? "active" : null) inbox" asp-action="Performance">Performance</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <div>
+                        <div style="display: inline-flex;">
+                            <a class="nav-link @(ViewBag.currentTab == "Reservations" ? "active" : null) reservation" asp-controller="Hosting" asp-action="Reservations">Reservations</a>
                         </div>
                         <div class="d-inline-flex d-lg-none"
                              style="float: right; padding-bottom:0px !important; margin-bottom: 0px !important;">
@@ -78,7 +86,7 @@
                 <li class="nav-item ">
                     <div>
                         <div style="display: inline-flex;">
-                            <a class="nav-link listing" asp-action="Listing">Listing</a>
+                            <a class="nav-link @(ViewBag.currentTab == "Listing" ? "active" : null) listing" asp-action="Listing">Listing</a>
                         </div>
                         <div class="d-inline-flex d-lg-none" style="float: right;">
                             <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
@@ -106,10 +114,6 @@
                 </li>
                 <li class="nav-item d-block d-lg-none">
                     <div>
-                        <div style="display: inline-flex;">
-                            <a class="nav-link" asp-controller="Listing" asp-action="New">Create new list</a>
-  
-                        </div>
                         <div class="d-inline-flex d-lg-none" style="float: right;">
                             <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
                                  style="height: 24px; width: 24px; display: inline-flex; fill: currentcolor;">
@@ -140,23 +144,17 @@
                             <a class="nav-link" href="#">Log out</a>
                         </div>
                         <!-- <div class="d-inline-flex d-lg-none" style="float: right;">
-                            <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
-                                style="height: 24px; width: 24px; display: inline-flex; fill: currentcolor;">
-                                <path
-                                    d="m23.06 11.4-1.75-1.76-3.85-3.87-3.85-3.87-1.27-1.27-.36-.36-.09-.09c-.23-.23-.55-.23-.75-.02l-1.68 1.75-3.68 3.87-3.68 3.87-1.67 1.75a1.47 1.47 0 0 0 -.43 1.05v.02c.01.38.15.76.44 1.05l.55.55a1.49 1.49 0 0 0 2.01.08v8.4c0 .81.68 1.45 1.5 1.45h14c .82 0 1.5-.65 1.5-1.45v-8.86l.38.38a1.5 1.5 0 0 0 2.13-.01l.55-.55c.59-.59.59-1.54.01-2.13zm-4.06 11.15c0 .24-.22.45-.5.45h-14c-.28 0-.5-.21-.5-.45v-9.41l7.51-7.93 7.49 7.48v9.85zm3.35-9.74-.55.55c-.2.2-.52.2-.71.01l-9.24-9.22a.5.5 0 0 0 -.72.01l-8.73 9.22a.5.5 0 0 1 -.7-.02l-.55-.55a.5.5 0 0 1 -.01-.71l1.68-1.77 3.69-3.86 3.68-3.87 1.32-1.39c.03.03.07.07.12.12l1.27 1.27 3.85 3.87 3.85 3.87 1.75 1.76a.51.51 0 0 1 -.01.71zm-10.85-.81a.5.5 0 0 1 .5.5v3.5h3.5a.5.5 0 1 1 0 1h-3.5v3.5a.5.5 0 0 1 -1 0v-3.5h-3.5a.5.5 0 0 1 0-1h3.5v-3.5a.5.5 0 0 1 .5-.5z"
-                                    fill-rule="evenodd"></path>
-                            </svg>
-                        </div> -->
+                <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
+                    style="height: 24px; width: 24px; display: inline-flex; fill: currentcolor;">
+                    <path
+                        d="m23.06 11.4-1.75-1.76-3.85-3.87-3.85-3.87-1.27-1.27-.36-.36-.09-.09c-.23-.23-.55-.23-.75-.02l-1.68 1.75-3.68 3.87-3.68 3.87-1.67 1.75a1.47 1.47 0 0 0 -.43 1.05v.02c.01.38.15.76.44 1.05l.55.55a1.49 1.49 0 0 0 2.01.08v8.4c0 .81.68 1.45 1.5 1.45h14c .82 0 1.5-.65 1.5-1.45v-8.86l.38.38a1.5 1.5 0 0 0 2.13-.01l.55-.55c.59-.59.59-1.54.01-2.13zm-4.06 11.15c0 .24-.22.45-.5.45h-14c-.28 0-.5-.21-.5-.45v-9.41l7.51-7.93 7.49 7.48v9.85zm3.35-9.74-.55.55c-.2.2-.52.2-.71.01l-9.24-9.22a.5.5 0 0 0 -.72.01l-8.73 9.22a.5.5 0 0 1 -.7-.02l-.55-.55a.5.5 0 0 1 -.01-.71l1.68-1.77 3.69-3.86 3.68-3.87 1.32-1.39c.03.03.07.07.12.12l1.27 1.27 3.85 3.87 3.85 3.87 1.75 1.76a.51.51 0 0 1 -.01.71zm-10.85-.81a.5.5 0 0 1 .5.5v3.5h3.5a.5.5 0 1 1 0 1h-3.5v3.5a.5.5 0 0 1 -1 0v-3.5h-3.5a.5.5 0 0 1 0-1h3.5v-3.5a.5.5 0 0 1 .5-.5z"
+                        fill-rule="evenodd"></path>
+                </svg>
+            </div> -->
                     </div>
                 </li>
             </ul>
-            <div class=" my-2 my-lg-0 d-none d-lg-block">
-                <a  asp-controller="Listing" asp-action="New" class="btn create-btn"
-                   style=" border-bottom:none !important;color:white; background-color: teal;padding: auto;">
-                    Create
-                    new list
-                </a>
-            </div>
+            
             <a style="margin-left: 2%; padding: 5px;">
                 <img src="5.jpg" class="rounded-circle d-none d-lg-block"
                      style="width: 30px; height: 30px;">
@@ -362,5 +360,6 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    @await  RenderSectionAsync("Scripts", false)
 </body>
 </html>

@@ -1,4 +1,139 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@{
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
 
+
+<!-- End small screen search -->
+<div class="SecondContainer">
+    <div id="ExploreDiv">
+        <label>Explore nearby</label>
+    </div>
+    <div id="containTable">
+        <table>
+            <tr>
+                <td>
+                    <a href="#">
+                        <img src="https://a0.muscache.com/im/pictures/be4d3ba5-08d7-4afe-95a7-f2da6453886a.jpg?im_q=medq&im_w=240">
+                        <span>Giza</span>
+                    </a>
+                </td>
+                <td>
+                    <a href="#">
+                        <img src="https://a0.muscache.com/im/pictures/7253e011-7c22-48fd-b75d-d0da35372397.jpg?im_q=medq&im_w=240">
+                        <span>New Cairo City</span>
+                    </a>
+                </td>
+                <td>
+                    <a href="#">
+                        <img src="https://a0.muscache.com/im/pictures/52e8083e-2de2-446d-a860-534eab250541.jpg?im_q=medq&im_w=240">
+                        <span>6th of October city</span>
+                    </a>
+                </td>
+                <td>
+                    <a href="#">
+                        <img src="https://a0.muscache.com/im/pictures/20e74de0-0eb8-4fca-afb8-b111875acdf5.jpg?im_q=medq&im_w=240">
+                        <span>Madinaty</span>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#">
+                        <img src="https://a0.muscache.com/im/pictures/e639b7ab-aee3-48ee-9743-216684a51319.jpg?im_q=medq&im_w=240">
+                        <span>Marina El Alamein</span>
+                    </a>
+                </td>
+                <td>
+                    <a href="#">
+                        <img src="https://a0.muscache.com/im/pictures/585d1e53-e2e1-4baf-a34e-36301dd1e2da.jpg?im_q=medq&im_w=240">
+                        <span>Sheikh Zaid City</span>
+                    </a>
+                </td>
+                <td>
+                    <a href="#">
+                        <img src="https://a0.muscache.com/im/pictures/ca3737ef-0faf-46ba-b055-b4a2d99e2cea.jpg?im_q=medq&im_w=240">
+                        <span>Dahab</span>
+                    </a>
+                </td>
+                <td>
+                    <a href="#">
+                        <img src="https://a0.muscache.com/im/pictures/7c309a70-bc93-4603-8d3b-9d4cd9bf75b2.jpg?im_q=medq&im_w=240">
+                        <span>Siwa Oasis</span>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="containLiveAnyWhere">
+        <div style="padding-top: 45px;">
+            <label>Live anywhere</label>
+        </div>
+        <ul>
+            <li style="margin-left: -20px;">
+                <a href="#">
+                    <div>
+                        <img src="https://a0.muscache.com/im/pictures/7d82ca14-56e5-4465-8218-dcfa7d69b6ac.jpg?im_w=480">
+                    </div><span>Entire homes</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div>
+                        <img src="https://a0.muscache.com/im/pictures/36f53e61-db8d-403c-9122-5b761c0e4264.jpg?im_w=480">
+                    </div><span>Unique stays</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div>
+                        <img src="https://a0.muscache.com/im/pictures/7f254627-3922-4880-b8fa-545b8551117e.jpg?im_w=480">
+                    </div><span>Farm and nature</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div>
+                        <img src="https://a0.muscache.com/im/pictures/10a638e1-6aff-4313-8033-1275cec83987.jpg?im_w=480">
+                    </div><span>Pets allowed</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="containBecomeHostImg">
+        <div>
+            <div id="firstSentence">Your world is<br /> worth sharing</div>
+            <div id="secondSentence">Turn your extra space into your next<br /> opportunity.</div>
+            <div id="ContainBecomeHost">
+                <input type="button" value="Become a Host" class="btn btn-light">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- add location -->
+<div id="divLocation" class="location">
+    <div id="locationSmallDiv">
+        <ul >
+            <li>
+                <img class="LocationImg"
+                     src="https://a0.muscache.com/im/pictures/fc42dde0-36a7-460e-af89-10b5e44e48d8.jpg?im_w=240&im_q=lowq">
+                <div class="Place_name">Explore nearby destination</div>
+            </li>
+
+        </ul>
+    </div>
+
+</div>
+
+@section Scripts {
+<script>
+    @if(ViewData["ReturnUrl"] != null)
+    {
+        @:$(document).ready(function () {
+        @:$('#login')[0].click();
+    @:});
+    }
+</script>
+}
