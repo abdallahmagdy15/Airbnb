@@ -1,5 +1,5 @@
 ﻿@using Airbnb.ViewModels
-@model IEnumerable<UserRoleViewModel>
+@model List<UserRoleViewModel>
 @{
     var roleId = ViewBag.roleId;
 }
@@ -14,13 +14,14 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var user in Model)
+            @for (int i = 0; i<Model.Count();i++)
             {
+                <input type="text" value="@Model[i].UserId" asp-for="@Model[i].UserId" hidden />
                 <tr>
                     <td colspan="3">
-                        <label asp-for="@user.IsSelected" class="text-lg-center">@user.UserName</label>
+                        <label asp-for="@Model[i].IsSelected" class="text-lg-center">@Model[i].UserName</label>
                     </td>
-                    <td><input class="form-control" type="checkbox" asp-for="@user.IsSelected" /> </td>
+                    <td><input class="form-control" type="checkbox" asp-for="@Model[i].IsSelected" /> </td>
                 </tr>
             }
 

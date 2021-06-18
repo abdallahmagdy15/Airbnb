@@ -499,14 +499,14 @@ namespace Airbnb.Controllers
             {
                 ViewBag.ErroeMessage = $"Role with id = {id} cannot be found";
             }
-            foreach(var obj in model)
+            for(int i=0;i<model.Count;i++)
             {
-                var user = await userManager.FindByIdAsync(obj.UserId);
+                var user = await userManager.FindByIdAsync(model[i].UserId);
                 IdentityResult result = null;
-                if(obj.IsSelected && !(await userManager.IsInRoleAsync(user, role.Name)))
+                if(model[i].IsSelected && !(await userManager.IsInRoleAsync(user, role.Name)))
                 {
                     result = await userManager.AddToRoleAsync(user, role.Name);
-                }else if(!obj.IsSelected && (await userManager.IsInRoleAsync(user, role.Name)))
+                }else if(!model[i].IsSelected && (await userManager.IsInRoleAsync(user, role.Name)))
                 {
                     result = await userManager.RemoveFromRoleAsync(user, role.Name);
                 }
@@ -516,18 +516,18 @@ namespace Airbnb.Controllers
                 }
                 if (result.Succeeded)
                 {
-                    if (model.Last() == obj)
+                    if (i<(model.Count-1))
                     {
-                        return RedirectToAction("Dashboard", "Admin");
+                        continue;
                     }
                     else
                     {
-                        continue;
+                        return RedirectToAction("Dashboard", "Admin");
                     }
                 }
                
             }
-            return PartialView("Views/Shared/UsersRolePartialView.cshtml", model);
+            return RedirectToAction("Dashboard", "Admin");
         }
 
 
