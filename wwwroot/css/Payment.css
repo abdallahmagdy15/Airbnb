@@ -356,6 +356,7 @@ li {
     display: none;
 }
 
+
 .footerlinks a {
     text-decoration: none;
 }
@@ -471,6 +472,9 @@ li {
     .line1 {
         width: 50%;
         box-shadow: 0 2px 0px -1px #dddddd;
+    }
+    .editProfileBody {
+        margin-left:90px;
     }
 
     .row.mycardimage {
@@ -749,11 +753,9 @@ li {
         margin-left: 340px;
     }
 
-    #paypal-button {
-        margin-left: 230px;
-        margin-bottom: 20px;
+    .editProfileBody {
+        margin-left: 130px;
     }
-
     .agree {
         margin-top: 30px;
         margin-left: 10px;

@@ -43,6 +43,7 @@
         margin: 0 auto;
         width: calc((100% / 1) - 38px);
     }
+  
     @@media(min-width:768px) {
         .card{
             width: calc((100% / 2) - 38px);
@@ -55,5 +56,5 @@
     </div>
     <h1> Payment Successful</h1>
     <p>Your payment was successful, you can <br />now continue browsing!</p>
-    <a asp-action="book" asp-controller="Payment"><input type="button" class="btn btn-success" value="Go Home" /></a>
+    <a asp-action="book" asp-controller="Payment"><input type="button" class="btn" style="color: #88b04b;" value="Go Home" /></a>
 </div>

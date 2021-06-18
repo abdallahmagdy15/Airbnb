@@ -65,7 +65,7 @@ namespace Airbnb
                     options.AppSecret = "0a46289db8d433907f64d6516882ba94";
                 });
 
-
+            
             services.AddScoped<IPropertyService, PropertyService>();
             services.AddScoped<ISearchService, PropertySearchService>();
             services.AddScoped<IAdminServices, AdminServices>();
@@ -95,6 +95,7 @@ namespace Airbnb
 
             app.UseAuthentication();
             app.UseAuthorization();
+            
 
             app.UseSession();
 
