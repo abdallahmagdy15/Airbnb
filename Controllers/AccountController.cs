@@ -16,13 +16,14 @@ namespace Airbnb.Controllers
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         IWebHostEnvironment webHostEnvironment;
+        private ApplicationDbContext DbContext;
 
-
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IWebHostEnvironment hostEnvironment)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IWebHostEnvironment hostEnvironment,ApplicationDbContext applicationDb)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             webHostEnvironment = hostEnvironment;
+            DbContext = applicationDb;
         }
 
         [HttpPost]
@@ -197,6 +198,46 @@ namespace Airbnb.Controllers
             else
                 result = false;
             return Json(data:result);
+        }
+        [HttpGet]
+        public IActionResult editprofile()
+        {
+          
+            var userid = userManager.GetUserId(HttpContext.User);
+            if (userid==null)
+            {
+                return View("Login");
+            }
+            else
+            {
+                var user = DbContext.Users.FirstOrDefault(d=>d.Id==userid);
+                return View(user);
+            }
+            
+        }
+        [HttpPost]
+        public IActionResult editprofile(AppUser user)
+        {
+            var olduser = DbContext.Users.FirstOrDefault(d => d.Id == user.Id);
+            if (olduser.Id != null)
+            {
+                olduser.FirstName = user.FirstName;
+                olduser.LastName = user.LastName;
+                olduser.PhoneNumber = user.PhoneNumber;
+                olduser.Email = user.Email;
+                olduser.DateOfBirth = user.DateOfBirth;
+                olduser.City = user.City;
+                olduser.Street = user.Street;
+                olduser.BuildingNo = user.BuildingNo;
+                olduser.PhotoUrl = user.PhotoUrl;
+                DbContext.SaveChanges();
+                return View("Login");
+            }
+            else
+            {
+                return View(user);
+            }
+
         }
     }
 }
