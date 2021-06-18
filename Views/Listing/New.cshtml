@@ -1,0 +1,597 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/ListingLayout.cshtml";
+}
+@model ListingViewModel
+
+<div id="bgmodal">
+</div>
+<header>
+    <div class="col-md-12 header" style="display:flex">
+        <div class="ContainSVG">
+            <svg viewBox="0 0 1000 1000" role="img" aria-hidden="false" aria-label="Home" focusable="false"
+                 style="height:35px;width:35px;display:block;fill:currentColor">
+                <path d="m499.3 736.7c-51-64-81-120.1-91-168.1-10-39-6-70 11-93 18-27 45-40 80-40s62 13 80 40c17 23 21 54 11 93-11 49-41 105-91 168.1zm362.2 43c-7 47-39 86-83 105-85 37-169.1-22-241.1-102 119.1-149.1 141.1-265.1 90-340.2-30-43-73-64-128.1-64-111 0-172.1 94-148.1 203.1 14 59 51 126.1 110 201.1-37 41-72 70-103 88-24 13-47 21-69 23-101 15-180.1-83-144.1-184.1 5-13 15-37 32-74l1-2c55-120.1 122.1-256.1 199.1-407.2l2-5 22-42c17-31 24-45 51-62 13-8 29-12 47-12 36 0 64 21 76 38 6 9 13 21 22 36l21 41 3 6c77 151.1 144.1 287.1 199.1 407.2l1 1 20 46 12 29c9.2 23.1 11.2 46.1 8.2 70.1zm46-90.1c-7-22-19-48-34-79v-1c-71-151.1-137.1-287.1-200.1-409.2l-4-6c-45-92-77-147.1-170.1-147.1-92 0-131.1 64-171.1 147.1l-3 6c-63 122.1-129.1 258.1-200.1 409.2v2l-21 46c-8 19-12 29-13 32-51 140.1 54 263.1 181.1 263.1 1 0 5 0 10-1h14c66-8 134.1-50 203.1-125.1 69 75 137.1 117.1 203.1 125.1h14c5 1 9 1 10 1 127.1.1 232.1-123 181.1-263.1z">
+                </path>
+            </svg>
+        </div>
+        <div class="ContainTitle" style="padding-top:23px;padding-left:20px;font-size:22px;font-family:'Airbnb Cereal App'">
+        </div>
+    </div>
+</header>
+<div>
+    <progress id="file" value="10" max="100" style="width: 100%;"> </progress>
+</div>
+<form enctype="multipart/form-data" method="post">
+
+    <div id="1" style="display:flex ">
+        <div class="col col-12 col-md-7">
+
+            <div class="ContainListingType col col-11 col-xl-8">
+                <div class="listingType">What kind of place are you listing?</div>
+            </div>
+            <div class="ContainPropertyType col col-11 col-xl-8">
+                <div class="PropertyType">Choose a property type</div>
+                <div class="ContainSelect">
+                    <div class="SelectCategory">
+                        <input asp-for="Categoryname" value="Select one" class="SelectCategoryInput" readonly>
+                        <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false"
+                             style="height: 16px; width: 16px; display: inline; fill: currentcolor;">
+                            <path d="m16.29 4.3a1 1 0 1 1 1.41 1.42l-8 8a1 1 0 0 1 -1.41 0l-8-8a1 1 0 1 1 1.41-1.42l7.29 7.29z"
+                                  fill-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <div class="ContainOptions">
+                        @foreach (var item in Model.Categories)
+                        {
+                            <div class="ContainOneOption">
+                                <div class="OptionCategory">
+                                    @Html.DisplayFor(x => item.Name)
+                                </div>
+                                <div class="OptionDescription">
+                                    @Html.DisplayFor(x => item.Description)
+
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+                <!-- div will show after Select -->
+                <div class="DescriptionDivCategory">
+                </div>
+            </div>
+
+            <div class="ContainNumberOfRooms col col-11 col-xl-8">
+                <div class="NumberOfRooms">
+                    How many total rooms does your property have?
+                </div>
+                <div class="ContainSelectNumberOfRooms">
+                    <div class="SelectNumberOfRooms">
+                        <select asp-for="NumOfTotalRooms" class="form-select" aria-label="Default select example">
+                            <option selected value="2-5">2-5</option>
+                            <option value="6-10">6-10</option>
+                            <option value="11-20">11-20</option>
+                            <option value="21-30">21-30</option>
+                            <option value="31-40">31-40</option>
+                            <option value="41-50">41-50</option>
+                            <option value="+50">+50</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="ContainTypeOfPlace col col-11 col-xl-8">
+                <div class="TypeOfPlace">Confirm the type of place guests will have</div>
+                <div class="ContainSelectTypeOfPlace">
+                    <div class="SelectTypeOfPlace">
+                        <input asp-for="GuestPlaceTypeName" value="Select one" class="SelectTypeOfPlaceInput" readonly>
+                        <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false"
+                             style="height: 16px; width: 16px; display: inline; fill: currentcolor;">
+                            <path d="m16.29 4.3a1 1 0 1 1 1.41 1.42l-8 8a1 1 0 0 1 -1.41 0l-8-8a1 1 0 1 1 1.41-1.42l7.29 7.29z"
+                                  fill-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <div class="ContainOptionsTypeOfPlace">
+                        @foreach (var item in Model.GuestPlaceTypes)
+                        {
+                            <div class="ContainOneOptionTypeOfPlace">
+                                <div class="OptionTypeOfPlace">
+                                    @Html.DisplayFor(itemModel => item.Name)
+                                </div>
+                                <div class="OptionDescriptionTypeOfPlace">
+                                    @Html.DisplayFor(itemModel => item.Description)
+
+                                </div>
+                            </div>
+                        }
+
+
+
+                    </div>
+                </div>
+                <div class="DescriptionDivTypeOfPlace">
+                </div>
+            </div>
+           
+            <div class="ContainTipsInSmall">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                     role="presentation" focusable="false"
+                     style="display: block; height: 32px; width: 32px; fill: currentcolor;">
+                    <path d="M24.6666 11.1332V11.5332C24.5999 14.3332 22.9333 17.0665 19.5333 19.7998L19.3333 19.9998H12.6666L12.3999 19.7998C8.99994 17.0665 7.33327 14.3332 7.2666 11.5332V11.1332C7.4666 6.4665 11.2666 2.6665 15.9999 2.6665C20.7333 2.6665 24.5999 6.4665 24.6666 11.1332Z"
+                          fill="#64DEE2"></path>
+                    <path d="M27.3334 11.3333C27.3334 5.06667 22.2667 0 16.0001 0C9.73342 0 4.66675 5.06667 4.66675 11.3333C4.66675 15.2667 6.93341 18.9333 11.3334 22.3333V29.3333C11.3334 30.0667 11.9334 30.6667 12.6667 30.6667H15.3334V32H16.6667V30.6667H19.3334C20.0667 30.6667 20.6667 30.0667 20.6667 29.3333V22.3333C25.0667 18.9333 27.3334 15.2667 27.3334 11.3333ZM19.3334 29.3333H12.6667V26.6667H19.3334V29.3333ZM19.3334 25.3333H12.6667V22.6667H19.3334V25.3333ZM17.3334 21.3333H14.6667V11.3333C14.6667 10.6 15.2667 10 16.0001 10C16.7334 10 17.3334 10.6 17.3334 11.3333V21.3333ZM19.8001 21.3333H18.6667V11.3333C18.6667 9.86667 17.4667 8.66667 16.0001 8.66667C14.5334 8.66667 13.3334 9.86667 13.3334 11.3333V21.3333H12.2001C8.06675 18.2 6.00008 14.8 6.00008 11.3333C6.00008 5.8 10.4667 1.33333 16.0001 1.33333C21.5334 1.33333 26.0001 5.8 26.0001 11.3333C26.0001 14.8 23.9334 18.2 19.8001 21.3333Z"
+                          fill="#222222"></path>
+                </svg>
+            </div>
+            <div>
+                <div class="TipsInMobile" style="position: relative;z-index:2000;background-color: white;border-radius: 5px;padding: 20px;padding-bottom: 30px; display: table;width: 85%;bottom: 90px;right: 20px;position: fixed;">
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: table-cell;vertical-align: middle;">
+                            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                 role="presentation" focusable="false"
+                                 style="display: block; height: 32px; width: 32px; fill: currentcolor;">
+                                <path d="M24.6666 11.1332V11.5332C24.5999 14.3332 22.9333 17.0665 19.5333 19.7998L19.3333 19.9998H12.6666L12.3999 19.7998C8.99994 17.0665 7.33327 14.3332 7.2666 11.5332V11.1332C7.4666 6.4665 11.2666 2.6665 15.9999 2.6665C20.7333 2.6665 24.5999 6.4665 24.6666 11.1332Z"
+                                      fill="#64DEE2"></path>
+                                <path d="M27.3334 11.3333C27.3334 5.06667 22.2667 0 16.0001 0C9.73342 0 4.66675 5.06667 4.66675 11.3333C4.66675 15.2667 6.93341 18.9333 11.3334 22.3333V29.3333C11.3334 30.0667 11.9334 30.6667 12.6667 30.6667H15.3334V32H16.6667V30.6667H19.3334C20.0667 30.6667 20.6667 30.0667 20.6667 29.3333V22.3333C25.0667 18.9333 27.3334 15.2667 27.3334 11.3333ZM19.3334 29.3333H12.6667V26.6667H19.3334V29.3333ZM19.3334 25.3333H12.6667V22.6667H19.3334V25.3333ZM17.3334 21.3333H14.6667V11.3333C14.6667 10.6 15.2667 10 16.0001 10C16.7334 10 17.3334 10.6 17.3334 11.3333V21.3333ZM19.8001 21.3333H18.6667V11.3333C18.6667 9.86667 17.4667 8.66667 16.0001 8.66667C14.5334 8.66667 13.3334 9.86667 13.3334 11.3333V21.3333H12.2001C8.06675 18.2 6.00008 14.8 6.00008 11.3333C6.00008 5.8 10.4667 1.33333 16.0001 1.33333C21.5334 1.33333 26.0001 5.8 26.0001 11.3333C26.0001 14.8 23.9334 18.2 19.8001 21.3333Z"
+                                      fill="#222222"></path>
+                            </svg>
+                        </div>
+                        <div style="width:100%;display: table-cell; vertical-align: middle;"></div>
+
+                        <div style="display: table-cell;vertical-align: middle;">
+                            <button type="button" class="close" aria-label="Close" style="background: none;border: none;font-size: 35px;font-weight: lighter;color:gray;">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="TipTitle">Choosing listing categories</div>
+                        <div class="DescriptionTip">
+                            Selecting accurate categories helps guests know what to expect when it comes to the privacy,
+                            style, and level of service they'll receive during their stay at your place.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col col-md-5 d-none d-md-block ContainRightDiv">
+            <div class="TipsInFullScreen">
+                <div style="margin-bottom: 20px;">
+                    <div style="display: table-cell;vertical-align: middle;">
+                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                             role="presentation" focusable="false"
+                             style="display: block; height: 32px; width: 32px; fill: currentcolor;">
+                            <path d="M24.6666 11.1332V11.5332C24.5999 14.3332 22.9333 17.0665 19.5333 19.7998L19.3333 19.9998H12.6666L12.3999 19.7998C8.99994 17.0665 7.33327 14.3332 7.2666 11.5332V11.1332C7.4666 6.4665 11.2666 2.6665 15.9999 2.6665C20.7333 2.6665 24.5999 6.4665 24.6666 11.1332Z"
+                                  fill="#64DEE2"></path>
+                            <path d="M27.3334 11.3333C27.3334 5.06667 22.2667 0 16.0001 0C9.73342 0 4.66675 5.06667 4.66675 11.3333C4.66675 15.2667 6.93341 18.9333 11.3334 22.3333V29.3333C11.3334 30.0667 11.9334 30.6667 12.6667 30.6667H15.3334V32H16.6667V30.6667H19.3334C20.0667 30.6667 20.6667 30.0667 20.6667 29.3333V22.3333C25.0667 18.9333 27.3334 15.2667 27.3334 11.3333ZM19.3334 29.3333H12.6667V26.6667H19.3334V29.3333ZM19.3334 25.3333H12.6667V22.6667H19.3334V25.3333ZM17.3334 21.3333H14.6667V11.3333C14.6667 10.6 15.2667 10 16.0001 10C16.7334 10 17.3334 10.6 17.3334 11.3333V21.3333ZM19.8001 21.3333H18.6667V11.3333C18.6667 9.86667 17.4667 8.66667 16.0001 8.66667C14.5334 8.66667 13.3334 9.86667 13.3334 11.3333V21.3333H12.2001C8.06675 18.2 6.00008 14.8 6.00008 11.3333C6.00008 5.8 10.4667 1.33333 16.0001 1.33333C21.5334 1.33333 26.0001 5.8 26.0001 11.3333C26.0001 14.8 23.9334 18.2 19.8001 21.3333Z"
+                                  fill="#222222"></path>
+                        </svg>
+                    </div>
+                    <div style="width:100%;display: table-cell; vertical-align: middle;"></div>
+
+                </div>
+                <div>
+                    <div class="TipTitle">Choosing listing categories</div>
+                    <div class="DescriptionTip">
+                        Selecting accurate categories helps guests know what to expect when it comes to the privacy,
+                        style, and level of service they'll receive during their stay at your place.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer style=" position: fixed; bottom: 0; width: 100%;z-index:1000">
+        <div class="col col-12 col-md-7 ContainContainFooter" style="position:relative">
+            <div class="col col-11 col-xl-8 containFooter" style="left:55px;border-top:1px solid lightgray;padding-top:15px;margin-top:15px;position:absolute;height:90px;">
+
+                <div style="display:inline-block">
+                    <svg id="backsvg" viewBox="0 0 18 18" role="presentation" aria-hidden="true"
+                         focusable="false" style="height: 1em; width: 1em; fill: currentcolor;">
+                        <path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z"
+                              fill-rule="evenodd"></path>
+                    </svg>
+                    <input type="button" value="Back" id="prev" class="btn"
+                           style="height:52px;padding:10px 20px;margin-left: 0;background-color: white;color:#008489;font-size: 20px;font-weight: bold;">
+                </div>
+                <div style="position:absolute;right:50px">
+                    <input type="button" value="Next" id="next" class="btn"
+                           style="padding: 10px 20px;font-size: 20px; font-weight:bold;color: white;background-color: #008489;">
+                </div>
+            </div>
+        </div>
+
+
+    </footer>
+    <partial name="NumberOfGustsAndBeds.cshtml" />
+    @*<partial name="NubmerOfGuests.cshtml" />*@
+    <partial name="NumberOfBathRooms.cshtml" />
+    <partial name="Location.cshtml" />
+    <partial name="Amenty.cshtml">
+        <partial name="placesCanGuestUse.cshtml">
+            <partial name="Description.cshtml">
+                <partial name="Title.cshtml">
+                    <partial name="GuestsRequirement.cshtml">
+                        <partial name="HouseRoles.cshtml">
+                            <partial name="PopertyImages.cshtml">
+                                <partial name="HowGuestWillBook.cshtml">
+                                    @*<partial name="Tips.cshtml">*@
+                                    <partial name="successhosting.cshtml">
+                                        @*<partial name="QuestionToStart.cshtml">*@
+                                        <partial name="TwoQuestionToStart.cshtml">
+                                            <partial name="DayNotice.cshtml">
+                                                @*<partial name="howfar.cshtml">*@
+                                                <partial name="HowFarInAdvance.cshtml">
+                                                    @*<partial name="howlong.cshtml">*@
+                                                    <partial name="HowLongCanGuestStay">
+                                                        @*<partial name="price.cshtml">*@
+                                                        <partial name="PriceYourSpace">
+
+</form>
+
+        @section Scripts{
+            <script>
+                var PageNumber = 2
+                $(function () {
+                    $('.ContainTitle').html('Property and guests');
+                    $('.ContainOptions').css('display', 'none')
+                    $('.DescriptionDiv').css('display', 'none')
+                    $('.ContainTypeOfPlace').css('display', 'none')
+                    $('.ContainOptionsTypeOfPlace').css('display', 'none')
+                    $('.ContainNumberOfRooms').css('display', 'none')
+                    $('.TipsInMobile').css('display', 'none')
+                    $('#bgmodal').css('display', 'none')
+                    $('#2').css('display', 'none')
+                    $('#3').css('display', 'none')
+                    $('#4').css('display', 'none')
+                    $('#5').css('display', 'none')
+                    $('#6').css('display', 'none')
+                    $('#7').css('display', 'none')
+                    $('#8').css('display', 'none')
+                    $('#9').css('display', 'none')
+                    $('#10').css('display', 'none')
+                    $('#11').css('display', 'none')
+                    $('#12').css('display', 'none')
+                    $('#13').css('display', 'none')
+                    $('#14').css('display', 'none')
+                    $('#15').css('display', 'none')
+                    $('#16').css('display', 'none')
+                    $('#17').css('display', 'none')
+                    $('#18').css('display', 'none')
+                   // $('#next').prop('disabled', true)
+
+
+                })
+                $('.SelectCategory').click(function () {
+                    $('.ContainOptions').css('display', 'block')
+                })
+                $('.SelectTypeOfPlace').click(function () {
+                    $('.ContainOptionsTypeOfPlace').css('display', 'block')
+                })
+                $(document).mouseup(function (e) {
+                    var ContainOption = $('.ContainOptions')
+                    ContainOptionTypeOfPlace = $('.ContainOptionsTypeOfPlace')
+                    if (!ContainOption.is(e.target) && ContainOption.has(e.target).length === 0) {
+                        ContainOption.hide()
+
+                    } else {
+                        ContainOption.css('display', 'block !important')
+                    }
+                    if (!ContainOptionTypeOfPlace.is(e.target) && ContainOptionTypeOfPlace.has(e.target).length === 0) {
+                        ContainOptionTypeOfPlace.hide()
+
+                    } else {
+                        ContainOptionTypeOfPlace.css('display', 'block !important')
+                    }
+                })
+                $('.ContainOneOption').click(function () {
+                    var SelectedOption = $(this).find('.OptionCategory')[0].innerText
+                    var OptionDescription = $(this).find('.OptionDescription')[0].innerText
+                    if (SelectedOption == "Bed and breakfast" || SelectedOption == "Boutique hotel") {
+                        $('.ContainNumberOfRooms').css('display', 'block')
+
+                    }
+                    else {
+                        $('.ContainNumberOfRooms').css('display', 'none')
+
+                    }
+                    $('.SelectCategoryInput').val(SelectedOption)
+                    enableNext()
+                    $('.ContainOptions').css('display', 'none')
+                    $('.DescriptionDivCategory')[0].innerText = SelectedOption + ": " + OptionDescription
+                    $('.DescriptionDivCategory').css('display', 'block')
+                    $('.ContainTypeOfPlace').css('display', 'block')
+                })
+                $('.ContainOneOptionTypeOfPlace').click(function () {
+                    console.log(this)
+                    var SelectedOptionTypeOfPlace = $(this).find('.OptionTypeOfPlace')[0].innerText
+                    var OptionDescriptionTypeOfPlace = $(this).find('.OptionDescriptionTypeOfPlace')[0].innerText
+
+                    $('.SelectTypeOfPlaceInput').val(SelectedOptionTypeOfPlace)
+                    $('.ContainOptionsTypeOfPlace').css('display', 'none')
+                    $('.DescriptionDivTypeOfPlace')[0].innerText = SelectedOptionTypeOfPlace + ": " + OptionDescriptionTypeOfPlace
+                    $('.DescriptionDivTypeOfPlace').css('display', 'block')
+                    // $('.ContainTypeOfPlace').css('display','block')
+                    console.log($('.SelectCategoryInput').val())
+                })
+                $('.ContainTipsInSmall').click(function () {
+                    $('.TipsInMobile').css('display', 'block')
+                    $('#bgmodal').css('display', 'block')
+                })
+                $('.close').click(function () {
+                    $('.TipsInMobile').css('display', 'none')
+                    $('#bgmodal').css('display', 'none')
+
+                })
+               
+                function enableNext() {
+                    if ($('.SelectCategoryInput').val() != 'Select One') {
+                        $('#next').prop('disabled', false)
+                    }
+                    
+
+                }
+                $('#next').click(function () {
+                    //if ($('#3').is(":visible")){
+                    //    $('#next').prop('disabled', true)
+                    //}
+                    if (PageNumber == 18) {
+                        $('#next').val('finsh')
+                    }
+                    if (PageNumber == 19 && (FormValidation18) == true) {
+                        $('#next').prop('type', 'submit')
+
+                    }
+                    if (PageNumber < 20) {
+                        if ((FormValidation7) == false && $('#7').is(":visible") ||
+                            (FormValidation4) == false && $('#4').is(":visible") ||
+                            (FormValidation8) == false && $('#8').is(":visible") ||
+                            (FormValidation18) == false && $('#18').is(":visible"))
+                            {
+                            console.log('cantdothis')
+                            $('.ValidationBoxForDescription').css('display', 'table')
+                        }
+                        else {
+                        if (PageNumber == 12) {
+                            $('.ContainContainFooter').addClass('col col-md-11')
+                            $('.containFooter').addClass('col col-xl-7 ')
+                            $('.containFooter').css('left', '5%')
+                        }
+                        else {
+                            $('.ContainContainFooter').removeClass('col col-md-11')
+                            $('.containFooter').removeClass('col col-xl-12')
+                            $('.containFooter').css('left', '55px')
+                        }
+                       
+                            $('.ValidationBoxForDescription').css('display', 'none')
+                            $("#" + (PageNumber - 1)).css('display', 'none')
+                            if(PageNumber==12 ||PageNumber==13){
+                 $("#" + PageNumber).css('display', 'block')
+                }else{
+                            $("#" + PageNumber).css('display', 'flex')
+                }
+                            $('#file').val(function (i, oldval) {
+                                return parseInt(oldval, 10) + (100/18)
+                            })
+                            PageNumber++
+                        }
+                    }
+                    switch (PageNumber) {
+                        case 3:
+                        case 4:
+                            $('.ContainTitle').html('Property and guests');
+                            break;
+                        case 5:
+                            $('.ContainTitle').html('Location');
+
+                            break;
+                        case 6:
+                        case 7:
+                            $('.ContainTitle').html('Amenity');
+                            break;
+                        case 8:
+                        case 9:
+                            $('.ContainTitle').html('Description and title');
+
+                            break;
+                        case 10:
+                        case 11:
+                        case 12:
+                        case 13:
+                            $('.ContainTitle').html('Booking settings');
+                            break;
+                        case 15:
+                        case 16:
+                        case 17:
+                            $('.ContainTitle').html('Calendar and availability');
+                            break;
+                        case 18:
+                            $('.ContainTitle').html('Pricing');
+                            break;
+
+                        default:
+                            $('.ContainTitle').html('none');
+                            break;
+                    }
+                })
+                $('#prev').click(function () {
+                    $('.ValidationBoxForDescription').css('display', 'none')
+
+                    if (PageNumber > 2) {
+                        if (PageNumber == 14) {
+                            $('.containFooter').addClass('col col-xl-12')
+                            $('.containFooter').css('left', '15%')
+                        }
+                        else {
+                            $('.containFooter').removeClass('col col-xl-12')
+                            $('.containFooter').css('left', '55px')
+                        }
+                        $("#" + (PageNumber - 1)).css('display', 'none')
+                        if (PageNumber == 14 || PageNumber == 15) {
+                            $("#" + (PageNumber - 2)).css('display', 'block')
+                        } else {
+                            $("#" + (PageNumber - 2)).css('display', 'flex')
+                        }
+                        $('#file').val(function (i, oldval) {
+                            return parseInt(oldval, 10) - (100 / 18)
+                        })
+                        PageNumber--
+                        console.log(PageNumber)
+                    }
+                    switch (PageNumber) {
+                        case 2:
+                        case 3:
+                        case 4:
+                            $('.ContainTitle').html('Property and guests');
+                            break;
+                        case 5:
+                            $('.ContainTitle').html('Location');
+                            break;
+                        case 6:
+                        case 7:
+                            $('.ContainTitle').html('Amenity');
+                            break;
+                        case 8:
+                        case 9:
+                            $('.ContainTitle').html('Description and title');
+                            break;
+                        case 10:
+                        case 11:
+                        case 12:
+                        case 13:
+                            $('.ContainTitle').html('Booking settings');
+                            break;
+                        case 15:
+                        case 16:
+                        case 17:
+                            $('.ContainTitle').html('Calendar and availability');
+                            break;
+                        case 18:
+                            $('.ContainTitle').html('Pricing');
+                            break;
+
+                        default:
+                            $('.ContainTitle').html('none');
+                            break;
+                    }
+                })
+
+
+                 var minNiights = 0
+    var maxNights = 0
+    $("#minnightsminus").click(function (event) {
+        if (minNiights > 0) {
+            minNiights--;
+            if (minNiights == 0) {
+                $('#min').val("Min");
+            } else {
+                $('#min').val("" + minNiights + "  " + "min Nights");
+            }
+        }
+    });
+    $("#minnightsplus").click(function (event) {
+        if (minNiights < maxNights) {
+            minNiights++;
+            $('#min').val("" + minNiights + "  " + "min Nights");
+        }
+    });
+    $("#maxnightsminus").click(function (event) {
+        if (maxNights > minNiights) {
+            if (maxNights > 0) {
+                maxNights--;
+                if (maxNights == 0) {
+                    $('#max').val("Max");
+                } else {
+                    $('#max').val("" + maxNights + "  " + "max Nights");
+                }
+
+            }
+        }
+    });
+    $("#maxnightsplus").click(function (event) {
+        maxNights++;
+        $('#max').val("" + maxNights + "  " + "max Nights");
+    });
+       
+                  function smartprice() {
+        var x = document.getElementById("myDIV");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+        var elem = document.getElementById("smartpricebtn");
+        if (elem.value == "Use base price only") elem.value = "Set up Smart Pricing";
+                      else elem.value = "Use base price only";
+
+
+                }
+                ///Pricing
+                var FormValidation18 = false
+                $('#Price').keyup(function () {
+                    if ($('#Price').val() != '') {
+                        $('.ValidationBoxForDescription').css('display', 'none')
+                        FormValidation18 = true
+                    }
+                    else {
+                        $('.ValidationBoxForDescription').css('display', 'table')
+                        FormValidation18 = false
+                    }
+                })
+                ///NumberOfGuestsAndBeds
+                var NumberOfGuest = 0
+                var NumberOfBeds = 0
+                $(function () {
+                    $('#number_Guests').val(NumberOfGuest)
+                    //$('#number_Beds').val(NumberOfBeds)
+                    $('#subtract_Guests').prop("disabled", true)
+                    $('#subtract_Beds').prop("disabled", true)
+
+
+                })
+                $('#add_Guests').click(function () {
+                    NumberOfGuest += 1;
+                    $('#subtract_Guests').prop("disabled", false)
+                    $('#number_Guests').val(NumberOfGuest)
+                })
+                $('#subtract_Guests').click(function () {
+                    if (NumberOfGuest <= 0) {
+                        $('#subtract_Guests').prop("disabled", true)
+
+                    } else {
+                        NumberOfGuest -= 1;
+                        $('#number_Guests').val(NumberOfGuest)
+                    }
+                })
+                $('#add_Beds').click(function () {
+                    NumberOfBeds += 1;
+                    $('#number_Beds').val(NumberOfBeds)
+                    $('#subtract_Beds').prop("disabled", false)
+
+                })
+                $('#subtract_Beds').click(function () {
+                    if (NumberOfBeds <= 0) {
+                        $('#subtract_Beds').prop("disabled", true)
+
+                    } else {
+                        NumberOfBeds -= 1;
+                        $('#number_Beds').val(NumberOfBeds)
+                    }
+                })
+            </script>
+        }
+        
+
+
+
+
+
+
+
+
+

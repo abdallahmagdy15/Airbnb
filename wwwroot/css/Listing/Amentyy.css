@@ -1,0 +1,170 @@
+﻿
+
+@media only screen and (min-width: 600px) {
+    .ContainAmenties {
+        margin-left: 0px !important;
+    }
+
+    .QuestionDescription {
+        max-width: 350px;
+    }
+}
+
+.ContainAmenties {
+    margin-left: 35px;
+    margin-top: 65px;
+    margin-right: 5%;
+}
+
+.ContainQuestion {
+    margin: 0px !important;
+    word-wrap: break-word !important;
+    font-family: Airbnb Cereal App;
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    line-height: 1.25em !important;
+    color: #484848 !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+}
+
+.QuestionDescription {
+    font-family: Airbnb Cereal App;
+    font-size: 18px !important;
+    line-height: 1.375em !important;
+    color: #615f5f !important;
+    margin-top: 10px;
+    max-width: 550px;
+}
+
+
+
+footer {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.containFooter {
+    background-color: white;
+    position: fixed;
+    bottom: 0px;
+    z-index: 1000;
+    display: flex;
+    padding-bottom: 15px;
+}
+
+
+
+
+
+
+.ContainRightDiv {
+    background-color: #f7f7f7;
+    min-height: 600px
+}
+
+.ContainCheckBox input {
+    height: 23px;
+    width: 23px;
+    margin-top: 1px;
+    border: 1px solid rgb(192, 190, 190);
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.AmentyName {
+    color: #222222 !important;
+    cursor: inherit !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 16px !important;
+    line-height: 20px !important;
+}
+
+.AmentyDecription {
+    color: #717171 !important;
+    margin-top: 4px !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+    display: block;
+}
+
+.ContainAllAmenty {
+    margin-top: 30px;
+    float: right;
+}
+
+.ContainOneAmenty {
+    padding: 8px 0px;
+    display: flex;
+    max-width: 500px;
+}
+
+.Amentycontainer {
+    display: block;
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+    /* Hide the browser's default checkbox */
+.Amentycontainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.Amentycheckmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: white;
+    border: 1px solid rgb(192, 190, 190);
+    border-radius: 4px;
+}
+
+/* On mouse-over, add a grey background color */
+.Amentycontainer:hover input ~ .Amentycheckmark {
+    border: 1px solid black;
+}
+
+/* When the checkbox is checked, add a blue background */
+.Amentycontainer input:checked ~ .Amentycheckmark {
+    background-color: black;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.Amentycheckmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.Amentycontainer input:checked ~ .Amentycheckmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.Amentycontainer .Amentycheckmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(50deg);
+    -ms-transform: rotate(50deg);
+    transform: rotate(50deg);
+}

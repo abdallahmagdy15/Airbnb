@@ -1,0 +1,78 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model ListingViewModel
+<div id="16" style="display:flex">
+    <div class="col col-12 col-md-7">
+
+        <div class="ContainPropertyType col col-11">
+            <div>
+
+                <div class="ContainDescription" style="margin-right: 5%;">
+                    <div style="padding-bottom: 20px;">
+                        <div class="ContainQuestion">How far in advance can guests book?</div>
+
+                    </div>
+
+                    <div class="questionanswers">
+                        <label class="QuestionContainer">
+                            Any time
+                            <input type="radio"  asp-for="NumberOfMonthsInAdvance" value="0">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="QuestionContainer">
+                            3 months in advance
+                            <input asp-for="NumberOfMonthsInAdvance" value="3" type="radio">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="QuestionContainer">
+                            6 months in advance
+                            <input asp-for="NumberOfMonthsInAdvance" value="6" type="radio"  >
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="QuestionContainer">
+                            9 months in advance
+                            <input asp-for="NumberOfMonthsInAdvance" value="9" type="radio" >
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="QuestionContainer">
+                            1 year                                    
+                            <input asp-for="NumberOfMonthsInAdvance" value="12" type="radio" >
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="QuestionContainer">
+                            Dates unavailable by default
+                            <div style="max-width: 520px;font-size: 15px;font-weight: 300;margin-top: 8px;">
+                                Your entire calendar will be blocked by default, which means you’ll have to manually unblock dates to get booked.
+                            </div>
+                            <input  asp-for="NumberOfMonthsInAdvance" value="0" type="radio" >
+                            <span class="checkmark"></span>
+                        </label>
+                        <div style="max-width: 300px;margin-top: 25px;font-weight: 600;color: gray;">
+                            <span style="color: #008489;">Tip:</span> Most hosts can keep their calendars updated up to 3 months out.<span>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- div will show after Select -->
+
+
+
+
+
+    </div>
+    <div class="col col-md-5 d-none d-md-block ContainRightDiv">
+
+    </div>
+</div>

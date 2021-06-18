@@ -1,0 +1,357 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Airbnb</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/hostingLayout.css" />
+
+    @await RenderSectionAsync("Styles", false)
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light border border-dark topnav ">
+        <a style="color: teal;  border-bottom:none !important ;padding-right: 5%;" asp-action="Index">
+            <svg viewBox="0 0 1000 1000" role="presentation" aria-hidden="true" focusable="false"
+                 style="height: 32px; width: 32px; display:inline-flex; fill: currentcolor;">
+                <path d="m499.3 736.7c-51-64-81-120.1-91-168.1-10-39-6-70 11-93 18-27 45-40 80-40s62 13 80 40c17 23 21 54 11 93-11 49-41 105-91 168.1zm362.2 43c-7 47-39 86-83 105-85 37-169.1-22-241.1-102 119.1-149.1 141.1-265.1 90-340.2-30-43-73-64-128.1-64-111 0-172.1 94-148.1 203.1 14 59 51 126.1 110 201.1-37 41-72 70-103 88-24 13-47 21-69 23-101 15-180.1-83-144.1-184.1 5-13 15-37 32-74l1-2c55-120.1 122.1-256.1 199.1-407.2l2-5 22-42c17-31 24-45 51-62 13-8 29-12 47-12 36 0 64 21 76 38 6 9 13 21 22 36l21 41 3 6c77 151.1 144.1 287.1 199.1 407.2l1 1 20 46 12 29c9.2 23.1 11.2 46.1 8.2 70.1zm46-90.1c-7-22-19-48-34-79v-1c-71-151.1-137.1-287.1-200.1-409.2l-4-6c-45-92-77-147.1-170.1-147.1-92 0-131.1 64-171.1 147.1l-3 6c-63 122.1-129.1 258.1-200.1 409.2v2l-21 46c-8 19-12 29-13 32-51 140.1 54 263.1 181.1 263.1 1 0 5 0 10-1h14c66-8 134.1-50 203.1-125.1 69 75 137.1 117.1 203.1 125.1h14c5 1 9 1 10 1 127.1.1 232.1-123 181.1-263.1z">
+                </path>
+            </svg>
+        </a>
+        <button class="navbar-toggler m-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" style="color: teal !important;"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link @(ViewBag.currentTab == "Home" ? "active" : null) d-none d-lg-block home" asp-action="Index">
+                        Home <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <div>
+                        <div style="display: inline-flex;">
+                            <a class="nav-link @(ViewBag.currentTab == "Inbox" ? "active" : null) inbox" href="#">Inbox</a>
+                        </div>
+                        <div class="d-inline-flex d-lg-none" style="float: right;">
+                            <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
+                                 style="height: 24px; width: 24px; display: inline-flex; fill: currentcolor;">
+                                <path d="m5.49 0c-3.02 0-5.49 2.46-5.49 5.49v9.02c0 3.03 2.46 5.49 5.5 5.49h3.23l2.87 3.8c.2.27.6.27.8 0l2.87-3.8h3.23c3.03 0 5.5-2.46 5.5-5.49v-9.02c0-3.03-2.46-5.49-5.49-5.49zm13.01 19h-3.47c-.16 0-.31.07-.4.2l-2.63 3.47-2.63-3.47c-.09-.13-.24-.2-.4-.2h-3.47c-2.48 0-4.5-2.01-4.5-4.49v-9.02c0-2.47 2.02-4.49 4.49-4.49h13.02c2.48 0 4.49 2.01 4.49 4.49v9.02c0 2.48-2.02 4.49-4.5 4.49z"
+                                      fill-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <div>
+                        <div style="display: inline-flex;">
+                            <a class="nav-link @(ViewBag.currentTab == "Reservations" ? "active" : null) reservation" asp-controller="Hosting" asp-action="Reservations">Reservations</a>
+                        </div>
+                        <div class="d-inline-flex d-lg-none"
+                             style="float: right; padding-bottom:0px !important; margin-bottom: 0px !important;">
+                            <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
+                                 style="height: 24px; width: 24px; display: inline-flex; fill: currentcolor;">
+                                {`{`}/* If
+                                you
+                                update
+                                this, update list-ul-mirror.svg too */{`}`}
+                                <path fill-rule="evenodd"
+                                      d="M3.49 1H1.51C.67 1 0 1.673 0 2.51v1.98C0 5.33.673 6 1.51 6h1.98C4.33 6 5 5.327 5 4.49V2.51C5 1.67 4.327 1 3.49 1zM4 4.49c0 .286-.223.51-.51.51H1.51A.504.504 0 0 1 1 4.49V2.51c0-.286.223-.51.51-.51h1.98c.286 0 .51.223.51.51v1.98zm2-.99a.5.5 0 0 1 .5-.5h17a.5.5 0 1 1 0 1h-17a.5.5 0 0 1-.5-.5zM3.49 7H1.51C.67 7 0 7.673 0 8.51v1.98C0 11.33.673 12 1.51 12h1.98C4.33 12 5 11.327 5 10.49V8.51C5 7.67 4.327 7 3.49 7zM4 10.49c0 .286-.223.51-.51.51H1.51a.504.504 0 0 1-.51-.51V8.51c0-.286.223-.51.51-.51h1.98c.286 0 .51.223.51.51v1.98zm20-.99a.5.5 0 0 1-.5.5h-17a.5.5 0 0 1 0-1h17a.5.5 0 0 1 .5.5zM3.49 13H1.51C.67 13 0 13.673 0 14.51v1.98C0 17.33.673 18 1.51 18h1.98C4.33 18 5 17.327 5 16.49v-1.98C5 13.67 4.327 13 3.49 13zM4 16.49c0 .286-.223.51-.51.51H1.51a.504.504 0 0 1-.51-.51v-1.98c0-.286.223-.51.51-.51h1.98c.286 0 .51.223.51.51v1.98zm20-.99a.5.5 0 0 1-.5.5h-17a.5.5 0 0 1 0-1h17a.5.5 0 0 1 .5.5zM3.49 19H1.51C.67 19 0 19.673 0 20.51v1.98C0 23.33.673 24 1.51 24h1.98C4.33 24 5 23.327 5 22.49v-1.98C5 19.67 4.327 19 3.49 19zM4 22.49c0 .286-.223.51-.51.51H1.51a.504.504 0 0 1-.51-.51v-1.98c0-.286.223-.51.51-.51h1.98c.286 0 .51.223.51.51v1.98zm20-.99a.5.5 0 0 1-.5.5h-17a.5.5 0 0 1 0-1h17a.5.5 0 0 1 .5.5z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item ">
+                    <div>
+                        <div style="display: inline-flex;">
+                            <a class="nav-link @(ViewBag.currentTab == "Listing" ? "active" : null) listing" asp-action="Listing">Listing</a>
+                        </div>
+                        <div class="d-inline-flex d-lg-none" style="float: right;">
+                            <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
+                                 style="height: 24px; width: 24px; display: inline-flex; fill: currentcolor;">
+                                <path d="m18 3v-2c0-.28-.22-.5-.5-.5s-.5.22-.5.5v2h-10v-2c0-.28-.22-.5-.5-.5s-.5.22-.5.5v2h-4c-.55 0-1 .45-1 1.01v6.49 11.49c0 .56.44 1.01 1 1.01h20c .55 0 1-.45 1-1.01v-11.49-6.49c0-.56-.44-1.01-1-1.01zm-1 1v1c0 .28.22.5.5.5s.5-.22.5-.5v-1h4v4h-20v-4h4v1c0 .28.22.5.5.5s.5-.22.5-.5v-1h6zm5 5v13h-20v-13z"
+                                      fill-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </li>
+                <div class="_7qp4lh"></div>
+                <li class="nav-item d-block d-lg-none">
+                    <div>
+                        <div style="display: inline-flex;">
+                            <a class="nav-link" href="#">Profile</a>
+                        </div>
+                        <div class="d-inline-flex d-lg-none" style="float: right;">
+                            <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
+                                 style="height: 24px; width: 24px; display: inline-flex; fill: currentcolor;">
+                                <path d="m19 23c1.37 0 1.85-.08 2.32-.28.03-.01.03-.01.06-.03.07-.03.1-.04.14-.06 1.35-.56 1.92-2.47.97-3.87-.29-.43-.91-.98-1.79-1.59-.58-.4-1.26-.83-2.01-1.27-.91-.53-1.89-1.06-2.88-1.55-.34-.17-.66-.33-.95-.47-.17-.08-.29-.14-.36-.17-.35-.16-.39-.65-.07-.87 1.15-.78 1.81-1.87 2.12-3.27.19-.88.23-1.63.21-3.03 0-.31 0-.4 0-.54 0-3.02-2.02-5-4.75-5s-4.75 1.98-4.75 5v .54c-.02 1.4.02 2.15.21 3.03.31 1.4.97 2.49 2.12 3.27.32.22.28.7-.07.87-.06.03-.19.09-.36.17-.29.14-.6.29-.95.47-.98.49-1.96 1.02-2.88 1.55-.76.44-1.44.87-2.01 1.27-.88.62-1.5 1.16-1.79 1.59-.95 1.4-.38 3.31.97 3.87.04.02.07.03.14.06.03.01.03.01.06.03.46.2.95.28 2.32.28zm-2.75-9.55c1 .5 2 1.04 2.93 1.58.78.45 1.48.89 2.08 1.32.97.68 1.67 1.29 2.04 1.85 1.31 1.92.52 4.55-1.41 5.35-.03.01-.06.02-.12.05-.67.3-1.28.4-2.78.4h-14c-1.5 0-2.11-.1-2.72-.37-.12-.05-.15-.06-.18-.08-1.93-.8-2.72-3.43-1.41-5.35.38-.56 1.07-1.17 2.05-1.85.6-.42 1.3-.86 2.08-1.32.93-.54 1.93-1.08 2.93-1.58.21-.11.41-.21.6-.3-.98-.88-1.58-2.02-1.87-3.37-.21-.97-.25-1.79-.23-3.26 0-.3 0-.39 0-.53 0-3.58 2.47-6 5.75-6s5.75 2.42 5.75 6v .53c.02 1.47-.02 2.28-.23 3.26-.3 1.36-.89 2.49-1.87 3.37.19.09.39.19.6.3z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item d-block d-lg-none">
+                    <div>
+                        <div class="d-inline-flex d-lg-none" style="float: right;">
+                            <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
+                                 style="height: 24px; width: 24px; display: inline-flex; fill: currentcolor;">
+                                <path d="m23.06 11.4-1.75-1.76-3.85-3.87-3.85-3.87-1.27-1.27-.36-.36-.09-.09c-.23-.23-.55-.23-.75-.02l-1.68 1.75-3.68 3.87-3.68 3.87-1.67 1.75a1.47 1.47 0 0 0 -.43 1.05v.02c.01.38.15.76.44 1.05l.55.55a1.49 1.49 0 0 0 2.01.08v8.4c0 .81.68 1.45 1.5 1.45h14c .82 0 1.5-.65 1.5-1.45v-8.86l.38.38a1.5 1.5 0 0 0 2.13-.01l.55-.55c.59-.59.59-1.54.01-2.13zm-4.06 11.15c0 .24-.22.45-.5.45h-14c-.28 0-.5-.21-.5-.45v-9.41l7.51-7.93 7.49 7.48v9.85zm3.35-9.74-.55.55c-.2.2-.52.2-.71.01l-9.24-9.22a.5.5 0 0 0 -.72.01l-8.73 9.22a.5.5 0 0 1 -.7-.02l-.55-.55a.5.5 0 0 1 -.01-.71l1.68-1.77 3.69-3.86 3.68-3.87 1.32-1.39c.03.03.07.07.12.12l1.27 1.27 3.85 3.87 3.85 3.87 1.75 1.76a.51.51 0 0 1 -.01.71zm-10.85-.81a.5.5 0 0 1 .5.5v3.5h3.5a.5.5 0 1 1 0 1h-3.5v3.5a.5.5 0 0 1 -1 0v-3.5h-3.5a.5.5 0 0 1 0-1h3.5v-3.5a.5.5 0 0 1 .5-.5z"
+                                      fill-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </li>
+                <div class="_7qp4lh"></div>
+                <li class="nav-item d-block d-lg-none">
+                    <div>
+                        <div style="display: inline-flex;">
+                            <a class="nav-link" href="#">Switch to traveling</a>
+                        </div>
+                        <div class="d-inline-flex d-lg-none" style="float: right;">
+                            <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
+                                 style="height: 24px; width: 24px; display:inline-flex; fill: currentcolor;">
+                                <path d="m23.85 14.85a.5.5 0 0 1 -.71 0l-3.14-3.14v7.56c0 2.65-1.75 4.73-4 4.73-2.26 0-4-2.08-4-4.74v-14.52c0-2.14-1.34-3.74-3-3.74s-3 1.6-3 3.74v8.56l3.15-3.15a.5.5 0 0 1 .71.71l-4 4a .5.5 0 0 1 -.71 0l-4-4a .5.5 0 0 1 .71-.71l3.14 3.14v-8.55c0-2.66 1.75-4.74 4-4.74 2.26 0 4 2.08 4 4.74v14.53c0 2.14 1.34 3.73 3 3.73s3-1.6 3-3.74v-7.56l-3.15 3.15a.5.5 0 0 1 -.71-.71l4-4a .5.5 0 0 1 .71 0l4 4a .5.5 0 0 1 0 .71"
+                                      fill-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item d-block d-lg-none">
+                    <div>
+                        <div style="display: inline-flex;">
+                            <a class="nav-link" href="#">Log out</a>
+                        </div>
+                        <!-- <div class="d-inline-flex d-lg-none" style="float: right;">
+                            <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
+                                style="height: 24px; width: 24px; display: inline-flex; fill: currentcolor;">
+                                <path
+                                    d="m23.06 11.4-1.75-1.76-3.85-3.87-3.85-3.87-1.27-1.27-.36-.36-.09-.09c-.23-.23-.55-.23-.75-.02l-1.68 1.75-3.68 3.87-3.68 3.87-1.67 1.75a1.47 1.47 0 0 0 -.43 1.05v.02c.01.38.15.76.44 1.05l.55.55a1.49 1.49 0 0 0 2.01.08v8.4c0 .81.68 1.45 1.5 1.45h14c .82 0 1.5-.65 1.5-1.45v-8.86l.38.38a1.5 1.5 0 0 0 2.13-.01l.55-.55c.59-.59.59-1.54.01-2.13zm-4.06 11.15c0 .24-.22.45-.5.45h-14c-.28 0-.5-.21-.5-.45v-9.41l7.51-7.93 7.49 7.48v9.85zm3.35-9.74-.55.55c-.2.2-.52.2-.71.01l-9.24-9.22a.5.5 0 0 0 -.72.01l-8.73 9.22a.5.5 0 0 1 -.7-.02l-.55-.55a.5.5 0 0 1 -.01-.71l1.68-1.77 3.69-3.86 3.68-3.87 1.32-1.39c.03.03.07.07.12.12l1.27 1.27 3.85 3.87 3.85 3.87 1.75 1.76a.51.51 0 0 1 -.01.71zm-10.85-.81a.5.5 0 0 1 .5.5v3.5h3.5a.5.5 0 1 1 0 1h-3.5v3.5a.5.5 0 0 1 -1 0v-3.5h-3.5a.5.5 0 0 1 0-1h3.5v-3.5a.5.5 0 0 1 .5-.5z"
+                                    fill-rule="evenodd"></path>
+                            </svg>
+                        </div> -->
+                    </div>
+                </li>
+            </ul>
+            
+            <a style="margin-left: 2%; padding: 5px;">
+                <img src="5.jpg" class="rounded-circle d-none d-lg-block"
+                     style="width: 30px; height: 30px;">
+            </a>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <div>
+        @RenderBody()
+    </div>
+    <!-- Footer -->
+    <footer class="text-center text-lg-start" style="margin-top:7%; background-color:#F7F7F7;">
+        <!-- Grid container -->
+        <div class="container-fluid p-4">
+            <!--Grid row-->
+            <div class="row" style="text-align: left; padding-left: 10%;">
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-12 mb-4 mb-md-0">
+                    <h4 class="text-uppercase footer-header">ABOUT</h4>
+
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <a href="#!" class="text-dark footer-links">Link 1</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-dark footer-links">Link 2</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-dark footer-links">Link 3</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-dark footer-links">Link 4</a>
+                        </li>
+                    </ul>
+                    <hr class="d-block d-lg-none">
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-12 mb-4 mb-md-0">
+                    <h4 class="text-uppercase mb-0 footer-header">COMMUNITY</h4>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!" class="text-dark footer-links">Link 1</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-dark footer-links">Link 2</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-dark footer-links">Link 3</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-dark footer-links">Link 4</a>
+                        </li>
+                    </ul>
+                    <hr class="d-block d-lg-none">
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-12 mb-4 mb-md-0">
+                    <h4 class="text-uppercase footer-header">HOST</h4>
+
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <a href="#!" class="text-dark footer-links">Link 1</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-dark footer-links">Link 2</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-dark footer-links">Link 3</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-dark footer-links">Link 4</a>
+                        </li>
+                    </ul>
+                    <hr class="d-block d-lg-none">
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-12 mb-4 mb-md-0">
+                    <h4 class="text-uppercase mb-0 footer-header">SUPPORT</h4>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!" class="text-dark footer-links">Link 1</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-dark footer-links">Link 2</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-dark footer-links">Link 3</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-dark footer-links">Link 4</a>
+                        </li>
+                    </ul>
+                    <hr class="d-block d-lg-none">
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+            <hr class="d-none d-lg-block">
+        </div>
+        <!-- Grid container -->
+
+        <section class="FLanguage_label">
+            <div>
+                <div class="d-lg-inline">
+                    <div class="FLanguage_label d-inline">
+                        <a data-no-client-routing="true" href="/account-settings/language" class="_1kejnocv">
+                            <span>
+                                <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                     role="presentation" focusable="false"
+                                     style="display:inline; height: 16px; width: 16px; fill: currentcolor;">
+                                    <path d="m8.002.25a7.77 7.77 0 0 1 7.748 7.776 7.75 7.75 0 0 1 -7.521 7.72l-.246.004a7.75 7.75 0 0 1 -7.73-7.513l-.003-.245a7.75 7.75 0 0 1 7.752-7.742zm1.949 8.5h-3.903c.155 2.897 1.176 5.343 1.886 5.493l.068.007c.68-.002 1.72-2.365 1.932-5.23zm4.255 0h-2.752c-.091 1.96-.53 3.783-1.188 5.076a6.257 6.257 0 0 0 3.905-4.829zm-9.661 0h-2.75a6.257 6.257 0 0 0 3.934 5.075c-.615-1.208-1.036-2.875-1.162-4.686l-.022-.39zm1.188-6.576-.115.046a6.257 6.257 0 0 0 -3.823 5.03h2.75c.085-1.83.471-3.54 1.059-4.81zm2.262-.424c-.702.002-1.784 2.512-1.947 5.5h3.904c-.156-2.903-1.178-5.343-1.892-5.494l-.065-.007zm2.28.432.023.05c.643 1.288 1.069 3.084 1.157 5.018h2.748a6.275 6.275 0 0 0 -3.929-5.068z">
+                                    </path>
+                                </svg>
+                            </span><span class="underLine">English (AE)</span>
+                        </a>
+                        <span>
+                            <a data-no-client-routing="true" href="/account-settings/currency"
+                               class="_1kejnocv"><span>ﺩ.ﺇ</span><span class="underLine">AED</span></a>
+                        </span>
+                    </div>
+                    <!-- social media container  -->
+                    <div class="FooterLi_UL FLanguage_label d-none d-md-inline-flex">
+                        <ul>
+                            <li>
+                                <a rel="noopener noreferrer" target="_blank" href="https://www.facebook.com/airbnb">
+                                    <svg viewBox="0 0 32 32" role="img" aria-hidden="false"
+                                         aria-label="Navigate to Facebook" focusable="false"
+                                         style="height: 18px; width: 18px; display: block; fill: currentcolor;">
+                                        <path d="m8 14.41v-4.17c0-.42.35-.81.77-.81h2.52v-2.08c0-4.84 2.48-7.31 7.42-7.35 1.65 0 3.22.21 4.69.64.46.14.63.42.6.88l-.56 4.06c-.04.18-.14.35-.32.53-.21.11-.42.18-.63.14-.88-.25-1.78-.35-2.8-.35-1.4 0-1.61.28-1.61 1.73v1.8h4.52c.42 0 .81.42.81.88l-.35 4.17c0 .42-.35.71-.77.71h-4.21v16c0 .42-.35.81-.77.81h-5.21c-.42 0-.8-.39-.8-.81v-16h-2.52a.78.78 0 0 1 -.78-.78"
+                                              fill-rule="evenodd"></path>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/airbnb">
+                                    <svg viewBox="0 0 32 32" role="img" aria-hidden="false"
+                                         aria-label="Navigate to Twitter" focusable="false"
+                                         style="height: 18px; width: 18px; display: block; fill: currentcolor;">
+                                        <path d="m31 6.36c-1.16.49-2.32.82-3.55.95 1.29-.76 2.22-1.87 2.72-3.38a13.05 13.05 0 0 1 -3.91 1.51c-1.23-1.28-2.75-1.94-4.51-1.94-3.41 0-6.17 2.73-6.17 6.12 0 .49.07.95.17 1.38-4.94-.23-9.51-2.6-12.66-6.38-.56.95-.86 1.97-.86 3.09 0 2.07 1.03 3.91 2.75 5.06-1-.03-1.92-.3-2.82-.76v.07c0 2.89 2.12 5.42 4.94 5.98-.63.17-1.16.23-1.62.23-.3 0-.7-.03-1.13-.13a6.07 6.07 0 0 0 5.74 4.24c-2.22 1.74-4.78 2.63-7.66 2.63-.56 0-1.06-.03-1.43-.1 2.85 1.84 6 2.76 9.41 2.76 7.29 0 12.83-4.01 15.51-9.3 1.36-2.66 2.02-5.36 2.02-8.09v-.46c-.03-.17-.03-.3-.03-.33a12.66 12.66 0 0 0 3.09-3.16"
+                                              fill-rule="evenodd"></path>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a rel="noopener noreferrer" target="_blank" href="https://instagram.com/airbnb">
+                                    <svg viewBox="0 0 24 24" role="img" aria-hidden="false"
+                                         aria-label="Navigate to Instagram" focusable="false"
+                                         style="height: 18px; width: 18px; display: block; fill: currentcolor;">
+                                        <path d="m23.09.91c-.61-.61-1.33-.91-2.17-.91h-17.84c-.85 0-1.57.3-2.17.91s-.91 1.33-.91 2.17v17.84c0 .85.3 1.57.91 2.17s1.33.91 2.17.91h17.84c.85 0 1.57-.3 2.17-.91s.91-1.33.91-2.17v-17.84c0-.85-.3-1.57-.91-2.17zm-14.48 7.74c.94-.91 2.08-1.37 3.4-1.37 1.33 0 2.47.46 3.41 1.37s1.41 2.01 1.41 3.3-.47 2.39-1.41 3.3-2.08 1.37-3.41 1.37c-1.32 0-2.46-.46-3.4-1.37s-1.41-2.01-1.41-3.3.47-2.39 1.41-3.3zm12.66 11.63c0 .27-.09.5-.28.68a.92.92 0 0 1 -.67.28h-16.7a.93.93 0 0 1 -.68-.28.92.92 0 0 1 -.27-.68v-10.13h2.2a6.74 6.74 0 0 0 -.31 2.05c0 2 .73 3.71 2.19 5.12s3.21 2.12 5.27 2.12a7.5 7.5 0 0 0 3.75-.97 7.29 7.29 0 0 0 2.72-2.63 6.93 6.93 0 0 0 1-3.63c0-.71-.11-1.39-.31-2.05h2.11v10.12zm0-13.95c0 .3-.11.56-.31.77a1.05 1.05 0 0 1 -.77.31h-2.72c-.3 0-.56-.11-.77-.31a1.05 1.05 0 0 1 -.31-.77v-2.58c0-.29.11-.54.31-.76s.47-.32.77-.32h2.72c.3 0 .56.11.77.32s.31.47.31.76z"
+                                              fill-rule="evenodd"></path>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- coppy rights -->
+
+                <div class="d-md-inline-flex">
+                    <div class="d-md-inline-flex">
+                        <div class="FLanguage_label">
+                            <div class="d-md-block d-lg-inline" dir="ltr">© 2021 Airbnb, Inc.</div>
+                            <div class="d-md-block d-lg-inline">
+                                <span aria-hidden="true">·</span><a href="/terms/privacy_policy">Privacy</a>
+                                <span aria-hidden="true">·</span><a href="/terms">Terms</a>
+                                <span aria-hidden="true">·</span><a href="/sitemaps/v2" class="_o06542u">Sitemap</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- Copyright -->
+
+
+    </footer>
+    <!-- End Footer -->
+
+
+    <script>
+        $(document).ready(function () {
+        });
+        $(window).resize(function () {
+            if (window.innerWidth < 992) {
+                $('.home').removeClass('active');
+                $('nav').removeClass('topnav');
+            } 
+        });
+
+       
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await  RenderSectionAsync("Scripts", false)
+</body>
+</html>

@@ -1,0 +1,230 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/ListingLayout.cshtml";
+}
+@model ListingViewModel
+
+<div id="4">
+    <div class="col col-12 col-md-7">
+
+        <div style="float: right;">
+            <div class="ContainPropertyLocation col col-10">
+                <div class="ValidationBoxForDescription" style="margin-bottom:30px;margin-left:0">
+                    <div class="ContainWarningSign">
+                        <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true"
+                             focusable="false"
+                             style="height: 24px; width: 24px; display: block; fill: rgb(255, 255, 255);">
+                            <path d="m23.49 20.79c.39.73.12 1.64-.61 2.03-.22.12-.46.18-.71.18h-20.33c-.83 0-1.5-.67-1.5-1.5 0-.25.06-.49.18-.71l10.16-18.94c.39-.73 1.3-1 2.03-.61.26.14.47.35.61.61zm-11.05-18.47c-.05-.09-.12-.16-.2-.2-.24-.13-.55-.04-.68.2l-10.16 18.94c-.04.07-.06.15-.06.24 0 .28.22.5.5.5h20.33c.08 0 .16-.02.24-.06.24-.13.33-.43.2-.68zm-.48 4.68c-.58.02-1.04.51-1.02 1.1l.29 7.42c.01.27.23.48.5.48h.54c.27 0 .49-.21.5-.48l.29-7.42c0-.01 0-.03 0-.04 0-.58-.47-1.06-1.06-1.06-.01 0-.03 0-.04 0zm-.96 12c0 .55.45 1 1 1s1-.45 1-1-.45-1-1-1-1 .45-1 1z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="ContainValidationMessage">
+                        <div class="ContainMessageAndCloseButton">
+                            <div class="MessageAndCloseButton">
+                                <div class="Message">
+                                    <span>
+                                        You need to complete the fields to progress
+                                        forward
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ContainCloseButton">
+                                <div class="CloseButton">
+                                    <button aria-label="Close" type="button"
+                                            class="ContainCLoseSpan">
+                                        <span class="_3hmsj">
+                                            <svg viewBox="0 0 12 12"
+                                                 role="presentation" aria-hidden="true" focusable="false"
+                                                 style="height: 12px; width: 12px; display: block; fill: rgb(118, 118, 118);">
+                                                <path d="m11.5 10.5c.3.3.3.8 0 1.1s-.8.3-1.1 0l-4.4-4.5-4.5 4.5c-.3.3-.8.3-1.1 0s-.3-.8 0-1.1l4.5-4.5-4.4-4.5c-.3-.3-.3-.8 0-1.1s.8-.3 1.1 0l4.4 4.5 4.5-4.5c.3-.3.8-.3 1.1 0s .3.8 0 1.1l-4.5 4.5z"
+                                                      fill-rule="evenodd"></path>
+                                            </svg>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ContainQuestionLocation">
+                    Where’s your place located?
+                </div>
+                <div class="QuestionDescriptionLocation">
+                    Guests will only get your exact address once they’ve booked a
+                    reservation.
+                </div>
+            </div>
+
+            <div class="ConainSpanEnterYourAddress d-none">
+                <span>Or enter your address</span>
+                <span>
+                    <hr style="margin-left: 5%; margin-right: 5%;">
+                </span>
+            </div>
+
+            <div class="ContainLocation col col-11">
+                <div class="NumberOfRooms">
+                    Country/Region
+                </div>
+                <div class="ContainSelectLocation">
+                    <div class="SelectLocation">
+                        <select class="form-select" id="countries" asp-items='new SelectList(ViewData["Countries"] as IEnumerable<Airbnb.Models.Location.Country>, "Id", "Name")' onchange="fetchStates()">
+                        </select>
+                        <div id="states"></div>
+                        <div id="cities"></div>
+                        <div id="map" style="width: 90%; height: 30vw; margin: 20px auto"></div>
+                        <input type="hidden" asp-for="Lat" id="lat" />
+                        <input type="hidden" asp-for="Lon" id="lon" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="ContainLocation col col-11 ">
+                <label class="LocationInput">
+                    Street
+                </label>
+                <div class="ContainSelectLocation">
+                    <div class="SelectLocation">
+                        <input asp-for="Street" value="mohamed" class="SelectLocationInput">
+                    </div>
+                </div>
+                <div class="DescriptionUnderInput">
+                    House name/number + street/road
+                </div>
+            </div>
+
+            <div class="ContainLocation col col-11 ">
+                <label class="LocationInput">
+                    Apt, Suite. (optional)
+                </label>
+                <div class="ContainSelectLocation">
+                    <div class="SelectLocation">
+                        <input asp-for="Apt_Suite" class="SelectLocationInput">
+                    </div>
+                </div>
+                <div class="DescriptionUnderInput">
+                    Apt., suite, building access code
+                </div>
+            </div>
+
+            <div class="ContainLocation col col-11" style="margin-bottom: 50px;">
+                <label class="LocationInput">
+                    ZIP Code
+                </label>
+                <div class="ContainSelectLocation">
+                    <div class="SelectLocation">
+                        <input asp-for="ZipCode" class="SelectLocationInput" style="margin-bottom: 120px;">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col col-md-5 d-none d-md-block ContainRightDiv">
+    </div>
+</div>
+@section Scripts {
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_BPkgYNWQNTrzfp-1tNW1A1tekxyNj1w&callback=initMap&libraries=&v=weekly"
+            async></script>
+    <script>
+        var FormValidation4 = false
+        var inputt = $('.SelectLocationInput')
+        $('.SelectLocationInput').keyup(function () {
+            for (var i = 0; i < $('.SelectLocationInput').length; i++) {
+                console.log($(inputt[i]).val())
+                if ($(inputt[i]).val() == '') {
+                    FormValidation4 = false
+                }
+                else {
+                    FormValidation4 = true
+                }
+            }
+        });
+
+        function fetchStates() {
+            var id = $('#countries').val();
+
+            $.ajax({
+                type: "GET",
+                url: `/listing/states/${id}`,
+                success: function (response) {
+                    $('#states').html(response);
+                }
+            });
+        }
+
+        $('#map').hide();
+
+        function fetchCities() {
+            var id = $('#statesSelect').val();
+
+            $.ajax({
+                type: "GET",
+                url: `/listing/cities/${id}`,
+                success: function (response) {
+                    $('#cities').html(response);
+                    setMapCenter();
+                    $('#map').show();
+                }
+            });
+        }
+
+        function setMapCenter() {
+            var id = $('#citySelect').val();
+
+            $.ajax({
+                type: "GET",
+                url: `/listing/cityLocation/${id}`,
+                success: function (response) {
+                    console.log(response);
+                    map.setCenter(
+                        new google.maps.LatLng(response.lat, response.lon)
+                    );
+                }
+            });
+        }
+
+        var marker;
+        var map;
+
+        function initMap() {
+            let initialLocation;
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 14,
+                disableDefaultUI: false,
+            });
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    map.setCenter(initialLocation);
+                    marker = new google.maps.Marker({
+                        position: initialLocation,
+                        map: map,
+                    });
+                });
+            }
+            google.maps.event.addListener(map, 'click', function (event) {
+                console.log(event.latLng.lat(), event.latLng.lng());
+                marker.setMap(null);
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()),
+                    map: map,
+                });
+
+                setCoordinatesInputs(event.latLng.lat(), event.latLng.lng())
+            });
+        }
+
+        function setCoordinatesInputs(lat, lon) {
+            $('#lat').val(lat);
+            $('#lon').val(lon);
+
+            console.log($('#lat').val(), $('#lon').val())
+        }
+        
+    </script>
+}

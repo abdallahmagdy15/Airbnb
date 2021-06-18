@@ -1,0 +1,190 @@
+﻿.ContainTextArea {
+    margin-top: 10px !important;
+}
+
+textarea {
+    height: 200px;
+    padding: 10px;
+    color: #484848;
+    font-size: 16px;
+    line-height: 24px;
+    border: 1px solid #dfdfda;
+    border-radius: 4px;
+    display:block
+}
+
+.ContainDescription {
+    margin-top: 20px;
+    margin-right: 5%;
+}
+
+
+
+.ContainTypeOfPlace {
+    margin-bottom: 400px;
+}
+
+
+.ContainRightDiv {
+    background-color: #f7f7f7;
+    min-height: 600px
+}
+
+.ContainDescription {
+    float: right;
+}
+
+.Questionwithtoggle {
+    -webkit-box-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+
+
+
+
+.lineInTip {
+    width: 100% !important;
+    border-bottom-color: var(--color-divider, #EBEBEB) !important;
+    border-bottom: 1px solid rgb(235, 235, 235) !important;
+}
+
+.ContainImgInTip {
+    display: inline-block;
+    vertical-align: bottom;
+    height: 57px;
+    width: 57px;
+    min-height: 1px;
+    border-radius: 4px;
+}
+
+    .ContainImgInTip img {
+        width: 57px !important;
+        height: 57px;
+    }
+
+.DescriptionTip {
+    padding-top: 12px !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+    color: gray;
+}
+
+.PlaceLocationTip {
+    height: 100%;
+    align-self: center !important;
+    line-height: 18px !important;
+    font-size: 12px !important;
+    margin-left: 15px;
+}
+
+    .PlaceLocationTip span {
+        font-size: 12px;
+    }
+
+.ContainTipsInSmall {
+    border-radius: 50%;
+    bottom: 90px;
+    border: 1px solid lightgray;
+    padding: 10px;
+    position: fixed;
+    z-index: 1000;
+    background-color: white;
+    left: 80%;
+}
+
+#bgmodal {
+    margin: 0 !important;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    position: absolute;
+    opacity: 0.2;
+    top: 0;
+    overflow: scroll;
+    z-index: 2000;
+}
+.ValidationBoxForDescription {
+    position: relative !important;
+    display: table;
+    table-layout: fixed !important;
+    float: right;
+    margin-right: 5%;
+    margin-top: 50px;
+}
+
+.ContainWarningSign {
+    height: 100% !important;
+    display: table-cell !important;
+    vertical-align: top !important;
+    border-style: solid !important;
+    border-width: 2px 0px 2px 2px !important;
+    border-radius: 8px 0px 0px 8px !important;
+    padding: 16px 0px 16px 12px !important;
+    width: 58px !important;
+    background-color: rgb(252, 100, 45) !important;
+    border-color: rgb(252, 100, 45) !important;
+}
+
+.ContainValidationMessage {
+    display: table-cell !important;
+    vertical-align: top !important;
+    width: 90% !important;
+    background-color: rgb(255, 255, 255) !important;
+    border-color: rgb(235, 235, 235) !important;
+    border-style: solid !important;
+    border-width: 2px 2px 2px 0px !important;
+    border-radius: 0px 8px 8px 0px !important;
+    padding: 20px 8px !important;
+}
+
+.ContainMessageAndCloseButton {
+    display: table !important;
+    width: 100% !important;
+    border-spacing: 0px !important;
+}
+
+.MessageAndCloseButton {
+    display: table-cell !important;
+    width: 100% !important;
+    vertical-align: top !important;
+}
+
+.Message {
+    margin: 0px !important;
+    overflow-wrap: break-word !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    line-height: 1.28571em !important;
+    color: rgb(72, 72, 72) !important;
+}
+
+.ContainCloseButton {
+    display: table-cell !important;
+    vertical-align: top !important;
+}
+
+.CloseButton {
+    padding-left: 4px !important;
+    padding-right: 8px !important;
+    padding-top: 2px !important;
+}
+
+.ContainCLoseSpan {
+    appearance: none !important;
+    display: inline-block !important;
+    border-radius: 50% !important;
+    border: 0px !important;
+    outline: 0px !important;
+    margin: -7px !important;
+    padding: 7px !important;
+    color: buttontext !important;
+    background-color: transparent !important;
+    cursor: pointer !important;
+    touch-action: manipulation !important;
+}
+
+

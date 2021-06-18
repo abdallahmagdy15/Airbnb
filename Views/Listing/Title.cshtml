@@ -1,0 +1,154 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/ListingLayout.cshtml";
+
+}
+@model ListingViewModel
+<div id="8" style="display:flex">
+    <div class="col col-12 col-md-7">
+
+        <div class="ContainPropertyType col col-11">
+            <div>
+                <div class="ValidationBoxForDescription" style="max-width:550px">
+                    <div class="ContainWarningSign">
+                        <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true"
+                             focusable="false"
+                             style="height: 24px; width: 24px; display: block; fill: rgb(255, 255, 255);">
+                            <path d="m23.49 20.79c.39.73.12 1.64-.61 2.03-.22.12-.46.18-.71.18h-20.33c-.83 0-1.5-.67-1.5-1.5 0-.25.06-.49.18-.71l10.16-18.94c.39-.73 1.3-1 2.03-.61.26.14.47.35.61.61zm-11.05-18.47c-.05-.09-.12-.16-.2-.2-.24-.13-.55-.04-.68.2l-10.16 18.94c-.04.07-.06.15-.06.24 0 .28.22.5.5.5h20.33c.08 0 .16-.02.24-.06.24-.13.33-.43.2-.68zm-.48 4.68c-.58.02-1.04.51-1.02 1.1l.29 7.42c.01.27.23.48.5.48h.54c.27 0 .49-.21.5-.48l.29-7.42c0-.01 0-.03 0-.04 0-.58-.47-1.06-1.06-1.06-.01 0-.03 0-.04 0zm-.96 12c0 .55.45 1 1 1s1-.45 1-1-.45-1-1-1-1 .45-1 1z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="ContainValidationMessage">
+                        <div class="ContainMessageAndCloseButton">
+                            <div class="MessageAndCloseButton">
+                                <div class="Message">
+                                    <span>
+                                        You need to complete the fields to progress
+                                        forward
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="ContainCloseButton">
+                                <div class="CloseButton">
+                                    <button aria-label="Close" type="button"
+                                            class="ContainCLoseSpan">
+                                        <span class="_3hmsj">
+                                            <svg viewBox="0 0 12 12"
+                                                 role="presentation" aria-hidden="true" focusable="false"
+                                                 style="height: 12px; width: 12px; display: block; fill: rgb(118, 118, 118);">
+                                                <path d="m11.5 10.5c.3.3.3.8 0 1.1s-.8.3-1.1 0l-4.4-4.5-4.5 4.5c-.3.3-.8.3-1.1 0s-.3-.8 0-1.1l4.5-4.5-4.4-4.5c-.3-.3-.3-.8 0-1.1s.8-.3 1.1 0l4.4 4.5 4.5-4.5c.3-.3.8-.3 1.1 0s .3.8 0 1.1l-4.5 4.5z"
+                                                      fill-rule="evenodd"></path>
+                                            </svg>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ContainAllAmenty" style="margin-right: 5%;">
+                    <div style="padding-bottom: 30px;">
+                        <div class="ContainQuestion" style="max-width:500px">Create a title for your listing</div>
+                        <div class="QuestionDescription" style="max-width:550px">
+                            Catch guests’ attention with a listing title that
+                            highlights
+                            what makes your place special.
+                        </div>
+                    </div>
+                    <div class="ContainTextArea m-1">
+                        <input asp-for="Title" class="InputTitle" style= "width:100%">
+                    </div>
+
+                    <div class="ContainTipsInSmall d-block d-md-none">
+                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                             role="presentation" focusable="false"
+                             style="display: block; height: 32px; width: 32px; fill: currentcolor;">
+                            <path d="M24.6666 11.1332V11.5332C24.5999 14.3332 22.9333 17.0665 19.5333 19.7998L19.3333 19.9998H12.6666L12.3999 19.7998C8.99994 17.0665 7.33327 14.3332 7.2666 11.5332V11.1332C7.4666 6.4665 11.2666 2.6665 15.9999 2.6665C20.7333 2.6665 24.5999 6.4665 24.6666 11.1332Z"
+                                  fill="#64DEE2"></path>
+                            <path d="M27.3334 11.3333C27.3334 5.06667 22.2667 0 16.0001 0C9.73342 0 4.66675 5.06667 4.66675 11.3333C4.66675 15.2667 6.93341 18.9333 11.3334 22.3333V29.3333C11.3334 30.0667 11.9334 30.6667 12.6667 30.6667H15.3334V32H16.6667V30.6667H19.3334C20.0667 30.6667 20.6667 30.0667 20.6667 29.3333V22.3333C25.0667 18.9333 27.3334 15.2667 27.3334 11.3333ZM19.3334 29.3333H12.6667V26.6667H19.3334V29.3333ZM19.3334 25.3333H12.6667V22.6667H19.3334V25.3333ZM17.3334 21.3333H14.6667V11.3333C14.6667 10.6 15.2667 10 16.0001 10C16.7334 10 17.3334 10.6 17.3334 11.3333V21.3333ZM19.8001 21.3333H18.6667V11.3333C18.6667 9.86667 17.4667 8.66667 16.0001 8.66667C14.5334 8.66667 13.3334 9.86667 13.3334 11.3333V21.3333H12.2001C8.06675 18.2 6.00008 14.8 6.00008 11.3333C6.00008 5.8 10.4667 1.33333 16.0001 1.33333C21.5334 1.33333 26.0001 5.8 26.0001 11.3333C26.0001 14.8 23.9334 18.2 19.8001 21.3333Z"
+                                  fill="#222222"></path>
+                        </svg>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- div will show after Select -->
+        <div>
+            <div class="TipsInMobile"
+                 style="position: relative;z-index:2000;background-color: white;border-radius: 5px;padding: 20px;padding-bottom: 30px; display: table;width: 85%;bottom: 90px;right: 20px;position: fixed;">
+                <div style="margin-bottom: 20px;">
+                    <div style="display: table-cell;vertical-align: middle;">
+                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                             role="presentation" focusable="false"
+                             style="display: block; height: 32px; width: 32px; fill: currentcolor;">
+                            <path d="M24.6666 11.1332V11.5332C24.5999 14.3332 22.9333 17.0665 19.5333 19.7998L19.3333 19.9998H12.6666L12.3999 19.7998C8.99994 17.0665 7.33327 14.3332 7.2666 11.5332V11.1332C7.4666 6.4665 11.2666 2.6665 15.9999 2.6665C20.7333 2.6665 24.5999 6.4665 24.6666 11.1332Z"
+                                  fill="#64DEE2"></path>
+                            <path d="M27.3334 11.3333C27.3334 5.06667 22.2667 0 16.0001 0C9.73342 0 4.66675 5.06667 4.66675 11.3333C4.66675 15.2667 6.93341 18.9333 11.3334 22.3333V29.3333C11.3334 30.0667 11.9334 30.6667 12.6667 30.6667H15.3334V32H16.6667V30.6667H19.3334C20.0667 30.6667 20.6667 30.0667 20.6667 29.3333V22.3333C25.0667 18.9333 27.3334 15.2667 27.3334 11.3333ZM19.3334 29.3333H12.6667V26.6667H19.3334V29.3333ZM19.3334 25.3333H12.6667V22.6667H19.3334V25.3333ZM17.3334 21.3333H14.6667V11.3333C14.6667 10.6 15.2667 10 16.0001 10C16.7334 10 17.3334 10.6 17.3334 11.3333V21.3333ZM19.8001 21.3333H18.6667V11.3333C18.6667 9.86667 17.4667 8.66667 16.0001 8.66667C14.5334 8.66667 13.3334 9.86667 13.3334 11.3333V21.3333H12.2001C8.06675 18.2 6.00008 14.8 6.00008 11.3333C6.00008 5.8 10.4667 1.33333 16.0001 1.33333C21.5334 1.33333 26.0001 5.8 26.0001 11.3333C26.0001 14.8 23.9334 18.2 19.8001 21.3333Z"
+                                  fill="#222222"></path>
+                        </svg>
+                    </div>
+                    <div style="width:100%;display: table-cell; vertical-align: middle;"></div>
+
+                    <div style="display: table-cell;vertical-align: middle;">
+                        <button type="button" class="close" aria-label="Close"
+                                style="background: none;border: none;font-size: 35px;font-weight: lighter;color:gray;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <div class="TipTitle">Ezbet Saad Home with a View</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col col-md-5 d-none d-md-block ContainRightDiv">
+        <div class="TipsInFullScreen">
+            <div style="margin-bottom: 20px;">
+                <div style="display: table-cell;vertical-align: middle;">
+                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                         role="presentation" focusable="false"
+                         style="display: block; height: 32px; width: 32px; fill: currentcolor;">
+                        <path d="M24.6666 11.1332V11.5332C24.5999 14.3332 22.9333 17.0665 19.5333 19.7998L19.3333 19.9998H12.6666L12.3999 19.7998C8.99994 17.0665 7.33327 14.3332 7.2666 11.5332V11.1332C7.4666 6.4665 11.2666 2.6665 15.9999 2.6665C20.7333 2.6665 24.5999 6.4665 24.6666 11.1332Z"
+                              fill="#64DEE2"></path>
+                        <path d="M27.3334 11.3333C27.3334 5.06667 22.2667 0 16.0001 0C9.73342 0 4.66675 5.06667 4.66675 11.3333C4.66675 15.2667 6.93341 18.9333 11.3334 22.3333V29.3333C11.3334 30.0667 11.9334 30.6667 12.6667 30.6667H15.3334V32H16.6667V30.6667H19.3334C20.0667 30.6667 20.6667 30.0667 20.6667 29.3333V22.3333C25.0667 18.9333 27.3334 15.2667 27.3334 11.3333ZM19.3334 29.3333H12.6667V26.6667H19.3334V29.3333ZM19.3334 25.3333H12.6667V22.6667H19.3334V25.3333ZM17.3334 21.3333H14.6667V11.3333C14.6667 10.6 15.2667 10 16.0001 10C16.7334 10 17.3334 10.6 17.3334 11.3333V21.3333ZM19.8001 21.3333H18.6667V11.3333C18.6667 9.86667 17.4667 8.66667 16.0001 8.66667C14.5334 8.66667 13.3334 9.86667 13.3334 11.3333V21.3333H12.2001C8.06675 18.2 6.00008 14.8 6.00008 11.3333C6.00008 5.8 10.4667 1.33333 16.0001 1.33333C21.5334 1.33333 26.0001 5.8 26.0001 11.3333C26.0001 14.8 23.9334 18.2 19.8001 21.3333Z"
+                              fill="#222222"></path>
+                    </svg>
+                </div>
+                <div style="width:100%;display: table-cell; vertical-align: middle;"></div>
+
+
+            </div>
+            <div>
+                <div class="TipTitle">Ezbet Saad Home with a View</div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+@section Scripts {
+        <script>
+            FormValidation8 = false
+            $('.InputTitle').keyup(function () {
+                if ($('textarea').val() != '') {
+                    $('.ValidationBoxForDescription').css('display', 'none')
+                    FormValidation8 = true
+                }
+                else {
+                    $('.ValidationBoxForDescription').css('display', 'table')
+                    FormValidation8 = false
+                }
+            })
+        </script>
+
+}

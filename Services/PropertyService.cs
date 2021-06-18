@@ -28,7 +28,7 @@ namespace Airbnb.Services
                 throw new ArgumentNullException();
 
             IEnumerable<Property> properties =
-                _searchService.FilterByLocation(_db.Properties, search.City);
+                _searchService.FilterByLocation(_db.Properties, search.CityId);
 
             if (search.CheckIn != null)
                 properties =
@@ -42,11 +42,24 @@ namespace Airbnb.Services
                 properties =
                     _searchService.FilterByNoOfGuests(properties, search.NoOfGuests.Value);
 
-            if (search.PlaceTypes != null && search.PlaceTypes.Count > 0)
+            if (search.PlaceTypeIds != null && search.PlaceTypeIds.Count > 0)
                 properties =
-                    _searchService.FilterByPlaceTypes(properties, search.PlaceTypes);
+                    _searchService.FilterByPlaceTypes(properties, search.PlaceTypeIds);
 
             return properties;
+        }
+
+        public bool IsPropertyAvailable(int propId, DateTime checkIn, DateTime checkOut)
+        {
+            var prop = _db.Properties.SingleOrDefault(p => p.Id == propId);
+
+            if (prop == null)
+                return false;
+
+            var rangeDays = PropertySearchService.GetDays(checkIn, checkOut);
+            var unAvailabledays = prop.UnavailableDays.Select(p => p.UnavailableDay);
+
+            return PropertySearchService.CheckDates(unAvailabledays, rangeDays);
         }
     }
 }

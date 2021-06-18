@@ -1,0 +1,34 @@
+﻿.PriceNotice > div:first-child {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.PriceNotice > div:nth-child(2) {
+    max-width: 550px;
+    color: #484848 !important;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.375em !important;
+}
+
+.PriceNotice input {
+    width: 95%;
+    padding: 15px;
+    border: 1px solid rgb(156, 156, 156);
+    border-radius: 7px;
+    margin-top: 7px;
+}
+
+.PriceNotice > div:nth-child(4) {
+    color: #008489;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 7px;
+}
+
+.pricebtn input {
+    color: #008489;
+    font-size: 24px;
+    font-weight: 400;
+    padding: 0;
+}

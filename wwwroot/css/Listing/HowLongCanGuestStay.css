@@ -1,0 +1,23 @@
+﻿
+.minNights, .maxNights {
+    width: 320px;
+    border: 1px solid rgb(200, 198, 198);
+    border-radius: 5px;
+    padding: 5px 0px;
+    margin-top: 15px;
+}
+
+#min, #max {
+    border: none;
+    font-size: 17px;
+    padding-left: 25px;
+}
+
+#minnightsplus, #minnightsminus, #maxnightsminus, #maxnightsplus {
+    border-left: 1px solid #dce0e0;
+    border-radius: 0px;
+}
+
+    #minnightsplus svg, #minnightsminus svg, #maxnightsminus svg, #maxnightsplus svg {
+        color: gray;
+    }

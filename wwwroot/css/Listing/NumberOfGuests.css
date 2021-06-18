@@ -1,0 +1,415 @@
+﻿* {
+    box-sizing: border-box;
+    font-family: Airbnb Cereal App Medium;
+}
+
+.header {
+    width: 100% !important;
+    margin-top: 0px !important;
+    padding: 0px !important;
+    position: relative !important;
+    z-index: 2 !important;
+    box-shadow: 0 1px 0 rgb(0 0 0 / 5%) !important;
+    height: 90px;
+}
+
+    .header svg {
+        color: #008489 !important
+    }
+
+.ContainSVG {
+    padding-left: 16px;
+    padding-top: 18px;
+}
+
+progress[value]::-webkit-progress-bar {
+    background-color: #eee;
+}
+
+progress {
+    border-radius: 0px;
+    width: 80%;
+    height: 13px;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+    progress::-webkit-progress-bar {
+        background-color: darkcyan;
+        border-radius: 0px 7px 7px 0px;
+    }
+
+    progress::-webkit-progress-value {
+        background-color: darkcyan;
+        border-radius: 0px 7px 7px 0px;
+    }
+
+.HMGuestsNumbers {
+    margin-left: 25px !important;
+    margin-right: 25px !important;
+    word-wrap: break-word !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 23px;
+    font-weight: 600;
+    line-height: 1.25em !important;
+    color: #484848 !important;
+}
+
+.ContainNumberGuests {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.BedsNote {
+    margin: 0px !important;
+    overflow-wrap: break-word !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    font-size: 16px;
+    font-weight: 400 !important;
+    color: rgb(113, 113, 113)
+}
+
+.GuestsNumber {
+    margin-top: 40px;
+}
+
+.BedsNumber {
+    margin-top: 10px;
+}
+
+.GuestsNumber span {
+    margin: 0px !important;
+    overflow-wrap: break-word !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.375em !important;
+    color: rgb(72, 72, 72) !important;
+}
+
+.BedsNumber span {
+    margin: 0px !important;
+    overflow-wrap: break-word !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    font-size: 16px;
+    font-weight: 600 !important;
+    line-height: 1.375em !important;
+    color: rgb(72, 72, 72) !important;
+}
+
+.SvgMinus {
+    height: 2em;
+    width: 2em;
+    display: inline;
+    color: #008489;
+    border: 1px solid #008489;
+    border-radius: 50%;
+    fill: currentcolor;
+    margin-left: 50px;
+}
+
+.SvgPlus {
+    height: 2em;
+    width: 2em;
+    display: inline;
+    color: #008489;
+    border: 1px solid #008489;
+    border-radius: 50%;
+    fill: currentcolor;
+    margin-left: 30px;
+}
+
+.ContainBedrooms {
+    margin-top: 35px;
+}
+
+.ContainBedsNote {
+    margin-top: 10px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.ContainOptionsList {
+    margin-left: -8px !important;
+    margin-right: -8px !important;
+}
+
+.BedroomsList {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    min-height: 1px !important;
+    position: relative !important;
+    width: 66.6667% !important;
+    float: left !important;
+}
+
+.HMBedrooms {
+    color: #767676;
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+
+.HMBeds {
+    color: #767676;
+    font-size: 19px;
+    margin-top: 30px;
+}
+
+._h {
+    position: relative !important;
+    display: flex !important;
+    width: 100% !important;
+    margin: 0px !important;
+    border: none !important;
+    color: rgb(34, 34, 34) !important;
+    background-color: rgb(255, 255, 255) !important;
+    border-radius: 8px !important;
+    box-shadow: rgb(176 176 176) 0px 0px 0px 1px inset !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    font-size: 16px !important;
+    line-height: 20px !important;
+    font-weight: 400 !important;
+}
+
+._v {
+    -webkit-box-pack: center !important;
+    -webkit-box-align: center !important;
+    position: absolute !important;
+    right: 0px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 100% !important;
+    max-width: 90% !important;
+    padding-right: 12px !important;
+    pointer-events: none !important;
+    color: rgb(34, 34, 34) !important;
+}
+
+._13 {
+    position: relative !important;
+    flex: 1 1 auto !important;
+    padding: 0px !important;
+}
+
+._3 {
+    box-sizing: border-box;
+}
+
+._1 {
+    height: 56px !important;
+    width: 100% !important;
+    border: none !important;
+    outline: none !important;
+    margin: 0px !important;
+    padding: 10px 36px 10px 12px !important;
+    background-color: transparent !important;
+    color: inherit !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+    appearance: none !important;
+}
+
+.Sleeping {
+    margin-left: 20px;
+    margin-right: 20px;
+    box-shadow: 0 2px 0px -1px #dddddd;
+}
+
+._c {
+    margin: 0px;
+    word-wrap: break-word !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 16px;
+    font-weight: 400 !important;
+    line-height: 1.375em !important;
+    color: #484848 !important;
+}
+
+.beddetail-item-container-last {
+    border-bottom: 1px solid #dce0e0;
+}
+
+.beddetail-item-container {
+    border-top: 1px solid #dce0e0;
+    padding-top: 28px;
+}
+
+.ContainOneOption:hover,
+.ContainOneOptionTypeOfPlace:hover {
+    background-color: #f7f7f7;
+}
+
+.addbeds {
+    margin-top: 30px;
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.bedsbtn {
+    margin-left: 120px;
+}
+
+    .bedsbtn button {
+        font-size: 15px;
+        font-weight: bold;
+        color: #767676;
+        background-color: white;
+        border: 1px solid lightgrey;
+    }
+
+.spacesbeds {
+    font-size: 20px;
+    color: #767676;
+}
+
+
+.DescriptionDivCategory,
+.DescriptionDivTypeOfPlace {
+    font-size: 14px !important;
+    line-height: 16px !important;
+    color: rgb(113, 113, 113) !important;
+    margin-top: 16px !important;
+    max-width: 90%;
+}
+
+
+.containFooter {
+    background-color: white;
+    position: fixed;
+    bottom: 0px;
+    z-index: 1000;
+    display: flex;
+    padding-bottom: 15px;
+}
+
+.ContainTipsInSmall {
+    border-radius: 50%;
+    bottom: 90px;
+    border: 1px solid lightgray;
+    padding: 10px;
+    position: fixed;
+    left: 80%;
+    z-index: 1000;
+    background-color: white;
+}
+
+.containleft {
+    background-color: rgb(250, 250, 250) !important;
+    height: 1000px;
+}
+
+
+@media (min-width: 1330px) {
+    footer {
+        margin-left: 13.5% !important
+    }
+}
+@media (min-width: 1400px) {
+
+    .ContainNumberGuests {
+        margin-left: 330px;
+    }
+
+    .HMGuestsNumbers {
+        font-size: 30px;
+    }
+
+    .ContainBedrooms {
+        font-size: 20px;
+    }
+
+    .BedsNote {
+        font-size: 25px;
+    }
+
+    .GuestsNumber span {
+        font-size: 25px;
+    }
+
+    .ContainBedsNote {
+        margin-left: 360px;
+    }
+
+    .GuestsNumber {
+        font-size: 20px;
+    }
+
+    .HMBeds {
+        margin-top: 52px;
+        margin-left: 340px;
+        font-size: 25px;
+    }
+
+    .HMBedrooms {
+        font-size: 25px;
+    }
+
+    .BedsNumber {
+        margin-left: 340px;
+        font-size: 20px;
+    }
+
+        .BedsNumber span {
+            font-size: 25px;
+        }
+
+    ._13 {
+        font-size: 23px;
+    }
+
+    .Sleeping {
+        margin-left: 360px;
+    }
+
+        .Sleeping h3 {
+            font-size: 35px;
+        }
+
+    ._c {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+
+    .addbeds {
+        margin-left: 200px;
+    }
+
+    .spaces {
+        font-size: 20px;
+        margin-left: 160px;
+    }
+
+    .beds {
+        margin-left: 160px;
+        font-size: 20px;
+    }
+
+    .bedsbtn {
+        margin-left: 220px;
+    }
+
+        .bedsbtn button {
+            font-size: 25px;
+        }
+
+    .btn-large {
+        width: 140px;
+        height: 50px;
+    }
+
+
+    .containFooter {
+        height: 90px;
+    }
+
+    .d-md-block {
+        font-size: 30px;
+        margin-bottom: 40px;
+    }
+
+ 
+}

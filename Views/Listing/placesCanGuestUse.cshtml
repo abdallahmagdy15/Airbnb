@@ -1,0 +1,161 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/ListingLayout.cshtml";
+
+}
+@model ListingViewModel
+<div id="6" style="display:flex">
+    <div class="col col-12 col-md-7">
+
+        <div class="ContainPropertyType col col-11">
+
+            <div class="ContainAllAmenty" style="margin-right: 5%;">
+                <div style="padding-bottom: 30px;">
+                    <div class="ContainQuestion">What spaces can guests use?</div>
+                    <div class="QuestionDescription">
+                        Include common areas, but don’t add spaces
+                        that aren’t on your property.
+                    </div>
+                </div>
+
+                @for (var item = 0; item < Model.Spaces.Count; item++)
+                {
+
+                        <div class="ContainOneAmenty" style="display: flex;">
+
+                            <label class="Amentycontainer">
+
+                                @Html.DisplayFor(x => Model.Spaces[item].Name)
+                                <input name="IsSpacesChecked" type="checkbox" value="@Model.Spaces[item].Id">
+                                <span class="Amentycheckmark"></span>
+                            </label>
+
+                        </div>
+                }
+
+
+
+
+
+
+
+
+
+                    <div style="padding-bottom: 30px;margin-bottom: 80px;">
+                        <div class="ContainQuestion" style="max-width:500px">Does your space have accessibility features?</div>
+                        <div class="QuestionDescription" style="max-width:400px">
+                            Every month, thousands of guests search for listings
+                            with accessibility features. Adding these features can help your listing get
+                            more attention and makes travel possible for more people.
+                            <br><br>
+                            You’ll have the chance to tell guests which accessibility features you have once you’ve finished listing your space. We can remind you to add these features and show you how to take good photos of them.
+                        </div>
+                    </div>
+                    <div class="Questionwithtoggle" style="margin-bottom:100px">
+                        <div style="font-weight: 600;">Email me about adding accessibility features later</div>
+                        <div style="width: 20%;"></div>
+                        <div style="margin-right: 5%;">
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="ContainTipsInSmall d-block d-md-none">
+                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                             role="presentation" focusable="false"
+                             style="display: block; height: 32px; width: 32px; fill: currentcolor;">
+                            <path d="M24.6666 11.1332V11.5332C24.5999 14.3332 22.9333 17.0665 19.5333 19.7998L19.3333 19.9998H12.6666L12.3999 19.7998C8.99994 17.0665 7.33327 14.3332 7.2666 11.5332V11.1332C7.4666 6.4665 11.2666 2.6665 15.9999 2.6665C20.7333 2.6665 24.5999 6.4665 24.6666 11.1332Z"
+                                  fill="#64DEE2"></path>
+                            <path d="M27.3334 11.3333C27.3334 5.06667 22.2667 0 16.0001 0C9.73342 0 4.66675 5.06667 4.66675 11.3333C4.66675 15.2667 6.93341 18.9333 11.3334 22.3333V29.3333C11.3334 30.0667 11.9334 30.6667 12.6667 30.6667H15.3334V32H16.6667V30.6667H19.3334C20.0667 30.6667 20.6667 30.0667 20.6667 29.3333V22.3333C25.0667 18.9333 27.3334 15.2667 27.3334 11.3333ZM19.3334 29.3333H12.6667V26.6667H19.3334V29.3333ZM19.3334 25.3333H12.6667V22.6667H19.3334V25.3333ZM17.3334 21.3333H14.6667V11.3333C14.6667 10.6 15.2667 10 16.0001 10C16.7334 10 17.3334 10.6 17.3334 11.3333V21.3333ZM19.8001 21.3333H18.6667V11.3333C18.6667 9.86667 17.4667 8.66667 16.0001 8.66667C14.5334 8.66667 13.3334 9.86667 13.3334 11.3333V21.3333H12.2001C8.06675 18.2 6.00008 14.8 6.00008 11.3333C6.00008 5.8 10.4667 1.33333 16.0001 1.33333C21.5334 1.33333 26.0001 5.8 26.0001 11.3333C26.0001 14.8 23.9334 18.2 19.8001 21.3333Z"
+                                  fill="#222222"></path>
+                        </svg>
+                    </div>
+
+
+                </div>
+        </div>
+
+        <!-- div will show after Select -->
+        <div>
+            <div class="TipsInMobile" style="position: relative;z-index:2000;background-color: white;border-radius: 5px;padding: 20px;padding-bottom: 30px; display: table;width: 85%;bottom: 90px;right: 20px;position: fixed;">
+                <div style="margin-bottom: 20px;">
+                    <div style="display: table-cell;vertical-align: middle;">
+                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                             role="presentation" focusable="false"
+                             style="display: block; height: 32px; width: 32px; fill: currentcolor;">
+                            <path d="M24.6666 11.1332V11.5332C24.5999 14.3332 22.9333 17.0665 19.5333 19.7998L19.3333 19.9998H12.6666L12.3999 19.7998C8.99994 17.0665 7.33327 14.3332 7.2666 11.5332V11.1332C7.4666 6.4665 11.2666 2.6665 15.9999 2.6665C20.7333 2.6665 24.5999 6.4665 24.6666 11.1332Z"
+                                  fill="#64DEE2"></path>
+                            <path d="M27.3334 11.3333C27.3334 5.06667 22.2667 0 16.0001 0C9.73342 0 4.66675 5.06667 4.66675 11.3333C4.66675 15.2667 6.93341 18.9333 11.3334 22.3333V29.3333C11.3334 30.0667 11.9334 30.6667 12.6667 30.6667H15.3334V32H16.6667V30.6667H19.3334C20.0667 30.6667 20.6667 30.0667 20.6667 29.3333V22.3333C25.0667 18.9333 27.3334 15.2667 27.3334 11.3333ZM19.3334 29.3333H12.6667V26.6667H19.3334V29.3333ZM19.3334 25.3333H12.6667V22.6667H19.3334V25.3333ZM17.3334 21.3333H14.6667V11.3333C14.6667 10.6 15.2667 10 16.0001 10C16.7334 10 17.3334 10.6 17.3334 11.3333V21.3333ZM19.8001 21.3333H18.6667V11.3333C18.6667 9.86667 17.4667 8.66667 16.0001 8.66667C14.5334 8.66667 13.3334 9.86667 13.3334 11.3333V21.3333H12.2001C8.06675 18.2 6.00008 14.8 6.00008 11.3333C6.00008 5.8 10.4667 1.33333 16.0001 1.33333C21.5334 1.33333 26.0001 5.8 26.0001 11.3333C26.0001 14.8 23.9334 18.2 19.8001 21.3333Z"
+                                  fill="#222222"></path>
+                        </svg>
+                    </div>
+                    <div style="width:100%;display: table-cell; vertical-align: middle;"></div>
+
+                    <div style="display: table-cell;vertical-align: middle;">
+                        <button type="button" class="close" aria-label="Close" style="background: none;border: none;font-size: 35px;font-weight: lighter;color:gray;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <div class="TipTitle">Choosing listing categories</div>
+                    <div class="DescriptionTip">
+                        Selecting accurate categories helps guests know what to expect when it comes to the privacy,
+                        style, and level of service they'll receive during their stay at your place.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col col-md-5 d-none d-md-block ContainRightDiv">
+        <div class="TipsInFullScreen">
+            <div style="margin-bottom: 20px;">
+                <div style="display: table-cell;vertical-align: middle;">
+                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                         role="presentation" focusable="false"
+                         style="display: block; height: 32px; width: 32px; fill: currentcolor;">
+                        <path d="M24.6666 11.1332V11.5332C24.5999 14.3332 22.9333 17.0665 19.5333 19.7998L19.3333 19.9998H12.6666L12.3999 19.7998C8.99994 17.0665 7.33327 14.3332 7.2666 11.5332V11.1332C7.4666 6.4665 11.2666 2.6665 15.9999 2.6665C20.7333 2.6665 24.5999 6.4665 24.6666 11.1332Z"
+                              fill="#64DEE2"></path>
+                        <path d="M27.3334 11.3333C27.3334 5.06667 22.2667 0 16.0001 0C9.73342 0 4.66675 5.06667 4.66675 11.3333C4.66675 15.2667 6.93341 18.9333 11.3334 22.3333V29.3333C11.3334 30.0667 11.9334 30.6667 12.6667 30.6667H15.3334V32H16.6667V30.6667H19.3334C20.0667 30.6667 20.6667 30.0667 20.6667 29.3333V22.3333C25.0667 18.9333 27.3334 15.2667 27.3334 11.3333ZM19.3334 29.3333H12.6667V26.6667H19.3334V29.3333ZM19.3334 25.3333H12.6667V22.6667H19.3334V25.3333ZM17.3334 21.3333H14.6667V11.3333C14.6667 10.6 15.2667 10 16.0001 10C16.7334 10 17.3334 10.6 17.3334 11.3333V21.3333ZM19.8001 21.3333H18.6667V11.3333C18.6667 9.86667 17.4667 8.66667 16.0001 8.66667C14.5334 8.66667 13.3334 9.86667 13.3334 11.3333V21.3333H12.2001C8.06675 18.2 6.00008 14.8 6.00008 11.3333C6.00008 5.8 10.4667 1.33333 16.0001 1.33333C21.5334 1.33333 26.0001 5.8 26.0001 11.3333C26.0001 14.8 23.9334 18.2 19.8001 21.3333Z"
+                              fill="#222222"></path>
+                    </svg>
+                </div>
+                <div style="width:100%;display: table-cell; vertical-align: middle;"></div>
+
+
+            </div>
+            <div>
+                <div class="TipTitle">Highlight any free parking</div>
+                <div class="DescriptionTip">
+                    1300% more guests are looking for places with free parking. If you offer parking at your place, call it out.
+                    Based on recent booking trends in your area
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+@section Scripts {
+    <script>
+        var NumberOfBathrooms = 0
+        $(function () {
+            $('.TipsInMobile').css('display', 'none')
+            $('#bgmodal').css('display', 'none')
+
+        })
+        $('.ContainTipsInSmall').click(function () {
+            $('.TipsInMobile').css('display', 'block')
+            $('#bgmodal').css('display', 'block')
+        })
+        $('.close').click(function () {
+            $('.TipsInMobile').css('display', 'none')
+            $('#bgmodal').css('display', 'none')
+
+        })
+
+    </script>
+    }

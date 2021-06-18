@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Airbnb</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/Listing/Tips.css">
+    <link rel="stylesheet" href="~/css/Listing/successhosting.css">
+    <link rel="stylesheet" href="~/css/Listing/TwoQuestionToStart.css">
+    <link rel="stylesheet" href="~/css/Listing/notice.css">
+    <link rel="stylesheet" href="~/css/Listing/howfar.css">
+    <link rel="stylesheet" href="~/css/Listing/HowLongCanGuestStay.css">
+    @*<link rel="stylesheet" href="~/css/Listing/howlong.css">*@
+    <link rel="stylesheet" href="~/css/Listing/PriceYourStay.css">
+
+    @*<link rel="stylesheet" href="~/css/Listing/price.css">*@
+    <link rel="stylesheet" href="~/css/Listing/CheckMark.css">
+
+    <link rel="stylesheet" href="~/css/Listing/HouseRole.css">
+    <link rel="stylesheet" href="~/css/Listing/KindOfPlace.css">
+    <link rel="stylesheet" href="~/css/Listing/NumberofGuests.css">
+    <link rel="stylesheet" href="~/css/Listing/NumberBathRoom.css">
+    <link rel="stylesheet" href="~/css/Listing/Locationn.css">
+    <link rel="stylesheet" href="~/css/Listing/Amentyy.css">
+    <link rel="stylesheet" href="~/css/Listing/Descriptionn.css">
+    <link rel="stylesheet" href="~/css/Listing/PlacesCanGuestUse.css">
+    <link rel="stylesheet" href="~/css/Listing/Title.css">
+    <link rel="stylesheet" href="~/css/Listing/GuestRequirements.css">
+    <link rel="stylesheet" href="~/css/Listing/PropertyImage.css">
+
+
+    <style>
+        select {
+            margin-top: 20px;
+        }
+
+        #imagesDisplay {
+            width: 40vw;
+            margin: auto;
+        }
+
+        .image-div {
+            position: relative;
+            width: 100%;
+            height: fit-content;
+            overflow: hidden;
+            margin: 20px auto;
+            padding: 10px;
+            border: 2px dashed rgba(0, 0, 0, 0.2);
+        }
+
+        .image-div img {
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .removeImg {
+            outline: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    @RenderBody()
+
+    @*<footer>
+        <div>
+            <div class="col col-12 col-md-7 containFooter" style="display: table;border-spacing:0px ;">
+                <div style=" display: table-cell;vertical-align: middle;">
+                    <svg id="backsvg" viewBox="0 0 18 18" role="presentation" aria-hidden="true"
+                         focusable="false" style="height: 1em; width: 1em; fill: currentcolor;">
+                        <path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z"
+                              fill-rule="evenodd"></path>
+                    </svg>
+                    <input type="button" value="Back" id="prev" class="btn"
+                           style="margin-left: 0;background-color: white;color:#008489;font-size: 20px;font-weight: bold;">
+                </div>
+                <div style="display: table-cell;vertical-align: middle;">
+                    <input type="button" value="Next" id="next" class="btn"
+                           style="padding: 10px 30px;font-size: 20px; font-weight:bold;color: white;background-color: #008489;">
+                </div>
+            </div>
+
+        </div>
+    </footer>*@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

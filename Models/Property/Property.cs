@@ -15,10 +15,11 @@ namespace Airbnb.Models
         public int Id { set; get; }
 
         [Range(1, 50)]
-        public int NumberOfBedRooms { set; get; } = 0;
+        public int? NumberOfBedRooms { set; get; } = 0;
 
         [Range(1, 50)]
-        public int NumberOfBeds { set; get; } = 0;
+        public int? NumberOfBeds { set; get; } = 0;
+
 
         [Range(1, 50)]
         public int NumberOfBathrooms { set; get; } = 0;
@@ -36,17 +37,12 @@ namespace Airbnb.Models
         [Column(TypeName = "Money")]
         public decimal Price { set; get; } = 0;
 
-        public int NumberOfDaysInAdvance { set; get; } = 0;
+        
 
-        public int NumberOfDaysNotice { set; get; } = 0;
+        
 
-        [Required]
-        public DateTime StartBookingDate { set; get; }
+        public int? MaxStay { set; get; } = 0;
 
-        [Required]
-        public DateTime EndBookingDate { set; get; }
-
-        public int MaxStay { set; get; } = 0;
 
         public int MinStay { set; get; } = 0;
 
@@ -84,5 +80,7 @@ namespace Airbnb.Models
         public virtual List<PropertyHouseRule> HouseRules { get; set; }
         public virtual List<PropertyPhoto> Photos { get; set; }
         public virtual List<PropertySpace> Spaces { get; set; }
+        public virtual List<Review> Reviews { get; set; }
+
     }
 }

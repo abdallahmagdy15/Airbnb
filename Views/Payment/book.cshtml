@@ -3,10 +3,12 @@
 *@
 @{
     Layout = "~/Views/Shared/PaymentLayout.cshtml";
+    var total = ((ViewBag.property as Property).Price * ViewBag.days);
+    var fees = ((ViewBag.property as Property).Price * ViewBag.days * 0.05m);
 }
 @model Airbnb.Models.CreditCard
 
-<form asp-action="charge" asp-controller="Payment" method="post" id="payment-form">
+<form method="post" id="payment-form">
     <div class="container-fluid">
         <div class="row mynavbar">
             <nav class="navbar navbar-expand-lg navbar-white bg-white">
@@ -29,13 +31,13 @@
             </div>
             <div class="col col-8">
                 <div class="cardheader">
-                    Campsite in Siwa oasis
+                    @((ViewBag.property as Property).GuestPlaceType.Name) in @((ViewBag.property as Property).City.Name)
                 </div>
                 <div class="cardheader" style="margin-top: 5px; font-size: medium;">
-                    Tent & Breakfast in Forest Camp in Siwaكامب الغابة
+                    @((ViewBag.property as Property).Title)
                 </div>
                 <div class="cardheader bedsandpaths">
-                    0 beds · 2 baths
+                    @((ViewBag.property as Property).NumberOfBedRooms) · @((ViewBag.property as Property).NumberOfBeds) beds · @((ViewBag.property as Property).NumberOfBathrooms) baths
                 </div>
                 <div class="cardheader" style="margin-top: 8px;">
                     <i class="fa fa-star" aria-hidden="true" style="color: #ff385c;"></i>
@@ -47,16 +49,16 @@
                     <h4>Price Details</h4>
                 </div>
                 <div style="margin-top: 5px;">
-                    <span class="date" style="display: inline-flex;"> $14.41 x 1 night</span>
-                    <span class="price"> $14.41</span>
+                    <span class="date" style="display: inline-flex;"> @((ViewBag.property as Property).Price.ToString("C0")) x @ViewBag.days night</span>
+                    <span class="price"> @(total.ToString("C0"))</span>
                 </div>
                 <div style="margin-top: 5px;">
                     <span class="date" style="display: inline-flex;"> Service fee</span>
-                    <span class="servicefeemd"> $2.03</span>
+                    <span class="servicefeemd"> @(fees.ToString("C0"))</span>
                 </div>
                 <div style="margin-top: 5px; margin-bottom: 20px;">
-                    <h6 style="display: inline; margin-left: 10px;">Total<a href="#" style="color: black;">(AUD)</a></h6>
-                    <span class="total">$16.44</span>
+                    <h6 style="display: inline; margin-left: 10px;">Total<a href="#" style="color: black;">(USD)</a></h6>
+                    <span class="total">@((total + fees).ToString("C0"))</span>
                 </div>
             </div>
 
@@ -76,13 +78,13 @@
 
             </div>
             <div class="date" style="margin-top: 8px;">
-                Apr 28 – 29
+                @ViewBag.checkIn.ToShortDateString() – @ViewBag.checkOut.ToShortDateString()
             </div>
             <div class="gustes">
                 <h6>Guests</h6>
             </div>
             <div class="date" style="margin-top: 8px; margin-bottom: 20px;">
-                1 guest
+                @ViewBag.guests guest
             </div>
         </div>
         <div class="row myPriceDetailssm" style="box-shadow: 0 8px 0px -1px #dddddd;">
@@ -161,8 +163,7 @@
                 </div>
             </div>
             <div class="form-group col col-10 col-md-12" style="margin-left:20px  ">
-                <label for="card-exp">Value</label>
-                <input id="card-exp" class="form-control" asp-for="Value" /><br />
+                <input id="card-exp" class="form-control" asp-for="Value" type="hidden" value="@((long)Math.Ceiling(total + fees))" /><br />
                 <span asp-validation-for="Value" class="text-danger"></span>
             </div>
 
@@ -262,7 +263,7 @@
                     <a href="#" style="color: black; text-decoration: underline;">English(US)</a>
                     <span class="money">
                         <i class="fas fa-dollar-sign"></i>
-                        <a href="#" style="color: black; text-decoration: underline;">AUD</a>
+                        <a href="#" style="color: black; text-decoration: underline;">USD</a>
                     </span>
                     <span class="socialmedia">
                         <ul style="display: inline-flex;">

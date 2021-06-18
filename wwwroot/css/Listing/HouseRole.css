@@ -1,0 +1,62 @@
+﻿@media only screen and (min-width: 992px) {
+    .RuleName {
+        width: 500px !important;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .RuleName {
+        max-width: 100px;
+    }
+}
+.RuleName {
+    color: rgb(116, 115, 115) !important;
+    cursor: inherit !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 20px !important;
+    line-height: 20px !important;
+    min-width: 190px;
+}
+input[type="radio"]{
+    display:none;
+}
+
+.ContainAllRules {
+    float: right;
+    margin-bottom: 150px;
+}
+
+.ContainOneRole {
+    padding: 25px 0px;
+    padding-right: 20px;
+    display: flex;
+    max-width: 500px;
+}
+
+    .ContainOneRole label {
+        -webkit-box-align: center !important;
+        -webkit-box-pack: center !important;
+        display: flex !important;
+        cursor: pointer !important;
+        color: rgb(113, 113, 113) !important;
+        border-width: 1px !important;
+        border-style: solid !important;
+        border-color: rgb(176, 176, 176) !important;
+        height: 32px !important;
+        width: 32px !important;
+        contain: layout !important;
+        justify-content: center !important;
+        align-items: center !important;
+        border-radius: 50% !important;
+    }
+
+.ContainTrueFalse {
+    padding-left: 26%;
+    display: flex;
+    margin-right: 10px !important;
+}
+
+.SelectedLabel {
+    background-color: black;
+    color: white;
+}

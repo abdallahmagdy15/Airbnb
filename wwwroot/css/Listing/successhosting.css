@@ -1,0 +1,195 @@
+﻿* {
+    box-sizing: border-box;
+    font-family: Airbnb Cereal App Medium;
+}
+
+.header {
+    width: 100% !important;
+    margin-top: 0px !important;
+    padding: 0px !important;
+    position: relative !important;
+    z-index: 2 !important;
+    box-shadow: 0 1px 0 rgb(0 0 0 / 5%) !important;
+    height: 90px;
+}
+
+    .header svg {
+        color: #008489 !important
+    }
+
+.ContainSVG {
+    padding-left: 16px;
+    padding-top: 18px;
+}
+
+progress[value]::-webkit-progress-bar {
+    background-color: #eee;
+}
+
+progress {
+    border-radius: 0px;
+    width: 80%;
+    height: 13px;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+    progress::-webkit-progress-bar {
+        background-color: darkcyan;
+        border-radius: 0px 7px 7px 0px;
+    }
+
+    progress::-webkit-progress-value {
+        background-color: darkcyan;
+        border-radius: 0px 7px 7px 0px;
+    }
+
+.tipheader {
+    margin-top: 50px;
+    margin-left: 30px;
+    margin-right: 30px;
+    word-wrap: break-word;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25em;
+    color: #484848 !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important
+}
+
+.tipbodyy {
+    line-height: 1.43;
+    color: rgb(118 118 118);
+    font-size: 18px;
+    font-weight: normal;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.confirm {
+    margin-top: 60px;
+    margin-left: 30px;
+}
+
+.containcheckbox {
+    margin-right: 10px;
+    font-size: 19px;
+}
+
+.containcheckboxspan {
+    position: relative !important;
+    display: inline-block !important;
+    cursor: pointer !important;
+    padding: 0px !important;
+}
+
+
+.ContainSVG {
+    font-size: 30px;
+    font-weight: normal;
+    color: rgb(118 118 118);
+}
+
+.confirmbody {
+    color: rgb(118 118 118);
+    cursor: inherit;
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 35px;
+}
+
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+    .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+
+.container input:checked ~ .checkmark {
+    background-color: #080808;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+
+.container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 8px;
+    height: 15px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(50deg);
+    -ms-transform: rotate(50deg);
+    transform: rotate(50deg);
+}
+
+@media(min-width:1800px) {
+    .tipheader {
+        font-size: 40px;
+        margin-top: 100px;
+        margin-left: 300px;
+        margin-right: 800px;
+    }
+
+    .tipbodyy {
+        margin-left: 300px;
+        margin-right: 1100px;
+        font-size: 25px;
+        min-width:900px;
+    }
+
+    .confirm {
+        margin-left: 300px;
+    }
+
+    .confirmbody {
+        margin-top: 35px;
+        font-size: 25px;
+    }
+
+    input[type="checkbox"] {
+        height: 30px;
+        width: 30px;
+    }
+}

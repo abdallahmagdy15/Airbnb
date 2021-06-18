@@ -1,0 +1,66 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/ListingLayout.cshtml";
+}
+@model ListingViewModel
+
+<div id="5" style="display:flex">
+    <div class="col col-12 col-md-7">
+
+        <div class="ContainAmenties col col-11" style="margin-left:0px">
+
+            <div class="ContainAllAmenty">
+                <div style="padding-bottom: 30px;">
+                    <div class="ContainQuestion">What amenities do you offer?</div>
+                    <div class="QuestionDescription" style="max-width:550px">
+                        These are just the amenities guests usually expect,
+                        but you can add even more after you publish
+                    </div>
+                </div>
+                @for(var item=0;item<Model.amenty.Count;item++)
+                {
+                    if (Model.amenty[item].Type != "Safety")
+                    {
+                    <div class="ContainOneAmenty" style="display: flex;">
+
+                        <label class="Amentycontainer">
+                            
+                            @Html.DisplayFor(x => Model.amenty[item].Name)
+                            <span class="AmentyDecription">@Html.DisplayFor(modelItem => Model.amenty[item].Description)</span>
+                            <input name="IsChecked" type="checkbox" value="@Model.amenty[item].Id">
+                            <span class="Amentycheckmark"></span>
+                        </label>
+
+                    </div>
+                    }
+                }
+                
+                <div style="padding-bottom: 30px;">
+                    <div class="ContainQuestion">Safety amenities</div>
+                </div>
+                @foreach (var item in Model.amenty)
+                {
+                    if (item.Type=="Safety")
+                    {
+                    <div class="ContainOneAmenty" style="display: flex;">
+                        <label class="Amentycontainer">
+                            @Html.DisplayFor(it=>item.Name)
+                            <span style="display: block;" class="AmentyDecription">
+                                @Html.DisplayFor(i=>item.Description)
+                            </span>
+                            <input type="checkbox" value="Cooking basics">
+                            <span class="Amentycheckmark"></span>
+                        </label>
+
+                    </div>
+                    }
+                }
+                </div>
+        </div>
+    </div>
+    <div class="col col-md-5 d-none d-md-block ContainRightDiv">
+
+    </div>
+</div>

@@ -1,0 +1,85 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model ListingViewModel
+<div id="17" style="display:flex">
+    <div class="col col-12 col-md-7">
+
+        <div class="ContainPropertyType col col-11">
+            <div>
+
+                <div class="ContainDescription" style="margin-right: 5%;">
+                    <div style="padding-bottom: 20px;">
+                        <div class="ContainQuestion">How long can guests stay?</div>
+                        <div class="QuestionDescription" style="max-width:550px">Shorter trips can mean more reservations, but you'll turn over your space more often.</div>
+                    </div>
+                    <div class="minNights">
+                        <div class="input-group">
+                            <input asp-for="MinNights" type="text"   id="min" placeholder="min nights"
+                                   aria-label="Recipient's username" aria-describedby="basic-addon2"  readonly
+                                   style="background-color: white;">
+                            <div class="input-group-append">
+                                <span class="v2"></span>
+                                <button class="btn" type="button" id="minnightsminus">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                                         class="bi bi-dash-lg" viewBox="0 0 16 16">
+                                        <path d="M0 8a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H1a1 1 0 0 1-1-1z" />
+                                    </svg>
+                                </button>
+                                <span class="vl"></span>
+                                <button class="btn" type="button" id="minnightsplus">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                                         class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                        <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="maxNights">
+                        <div class="input-group">
+                            <input asp-for="MaxNights" type="text" class="form-control" id="max" placeholder="max nights"
+                                   aria-label="Recipient's username" aria-describedby="basic-addon2" readonly
+                                   style="background-color: white;">
+                            <div class="input-group-append">
+                                <span class="v2"></span>
+                                <button class="btn" type="button" id="maxnightsminus">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                                         class="bi bi-dash-lg" viewBox="0 0 16 16">
+                                        <path d="M0 8a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H1a1 1 0 0 1-1-1z" />
+                                    </svg>
+                                </button>
+                                <span class="vl"></span>
+                                <button class="btn btn" type="button" id="maxnightsplus">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                                         class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                        <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- div will show after Select -->
+
+
+
+
+
+    </div>
+    <div class="col col-md-5 d-none d-md-block ContainRightDiv">
+
+    </div>
+</div>

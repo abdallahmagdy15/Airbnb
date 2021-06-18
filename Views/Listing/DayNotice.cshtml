@@ -1,0 +1,66 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model ListingViewModel
+<div id="15" style="display:flex">
+    <div class="col col-12 col-md-7">
+
+        <div class="ContainPropertyType col col-11">
+            <div>
+
+                <div class="ContainDescription" style="margin-right: 5%;">
+                    <div style="padding-bottom: 20px;">
+                        <div class="ContainQuestion" style="max-width:550px">How much notice do you need before a guest arrives?</div>
+                    </div>
+
+                    <div class="questionanswers">
+                        <label class="QuestionContainer">
+                            Same day
+                            <input asp-for="NumberOfDaysNotice" value="0" type="radio">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="QuestionContainer">
+                            1 day
+                            <input asp-for="NumberOfDaysNotice" value="1" type="radio" >
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="QuestionContainer">
+                            2 days
+                            <input asp-for="NumberOfDaysNotice" value="2" type="radio" >
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="QuestionContainer">
+                            3 days
+                            <input asp-for="NumberOfDaysNotice" value="3" type="radio">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="QuestionContainer">
+                            4 days                                    
+                            <input asp-for="NumberOfDaysNotice" value="4" type="radio">
+                            <span class="checkmark"></span>
+                        </label>
+
+
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- div will show after Select -->
+
+
+
+
+
+    </div>
+    <div class="col col-md-5 d-none d-md-block ContainRightDiv">
+
+    </div>
+</div>

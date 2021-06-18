@@ -1,0 +1,142 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/ListingLayout.cshtml";
+}
+@model ListingViewModel
+
+
+
+<div id="11" style="display:flex">
+    <div class="col col-12 col-md-7" style="margin-bottom: 150px;">
+
+        <div class="ContainPropertyType col col-11">
+
+            <div class="ContainImage">
+                <div style="padding-bottom: 30px;">
+                    <div class="ContainQuestion" style="max-width:500px">Liven up your listing with photos</div>
+                    <div class="QuestionDescription" style="max-width:500px">
+                        Take photos using a phone or camera.
+                        Upload at least one photo to publish your listing and drag to reorder however you like.
+                        You can always add or edit your photos later.
+                    </div>
+                </div>
+                <div id="imgInputs">
+                    <input id="img0" name="Images" type='file' class="file-upload" />
+                </div>
+                <div class="ContainInput">
+
+                    <!-- ///////////////////////////////////////////////////////////////////// -->
+                    <div class="Input"
+                         style="background-image: url(&quot;https://a0.muscache.com/airbnb/static/packages/upload-photos-ghosts.56fe723d.png&quot;);">
+                        <div class="upload">
+                            <div class="_36rlri" style="margin-left: 8px; margin-right: 8px;">
+                                <button type="button" class="_eoscb05">
+                                    <div class="_1p3zm55">
+                                        <div style="margin-right: 16px;">
+                                            <svg viewBox="0 0 24 24"
+                                                 role="presentation" aria-hidden="true" focusable="false"
+                                                 style="height: 18px; width: 18px; fill: currentcolor;">
+                                                <path d="m24 14.5c0 3.12-2.55 5.5-5.5 5.5h-4a .5.5 0 0 1 0-1h4c2.41 0 4.5-1.95 4.5-4.5 0-1.17-.41-2.08-1.1-2.77a3.98 3.98 0 0 0 -.76-.6 2.54 2.54 0 0 0 -.32-.17l-.31-.13v-.33c0-3.95-2.96-6.5-7-6.5-1.62 0-3.01.61-4.17 1.63-.41.36-.76.75-1.06 1.13-.17.23-.29.4-.34.49l-.28.49-.46-.34a2.83 2.83 0 0 0 -.5-.28c-.96-.43-1.95-.43-2.9.28-.45.34-.74.74-.9 1.21-.2.59-.19 1.24-.04 1.86.04.17.08.29.1.35l.17.43-.41.21c-.2.1-.52.33-.85.7-.54.6-.87 1.38-.87 2.34 0 2.83 1.91 4.5 5.5 4.5h2a .5.5 0 1 1 0 1h-2c-4.12 0-6.5-2.08-6.5-5.5 0-1.22.42-2.23 1.13-3.02.27-.31.54-.53.78-.7-.01-.03-.01-.05-.02-.08-.19-.79-.21-1.62.06-2.42a3.5 3.5 0 0 1 1.25-1.68c1.28-.96 2.65-.96 3.91-.39.09.04.16.08.23.12.04-.06.08-.11.13-.18.33-.44.73-.87 1.19-1.28 1.35-1.16 2.96-1.87 4.84-1.87 4.45 0 7.82 2.83 7.98 7.18.33.18.73.45 1.12.85.87.87 1.4 2.03 1.4 3.48zm-9.15-.65a.5.5 0 0 0 0-.71l-2.96-2.96a.56.56 0 0 0 -.79 0l-2.96 2.96a.5.5 0 1 0 .71.71l2.15-2.14v11.79a.5.5 0 0 0 1 0v-11.79l2.15 2.15a.5.5 0 0 0 .71 0z"
+                                                      fill-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="_15o3ptx2">Upload Photos</div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="imagesDisplay">
+                    
+                </div>
+
+                <div aria-label="Add another" class="addImg">
+                    <div class="_djxl322">
+                        <div class="_ni9axhe">
+                            <div class="_1sv27e6">
+                                <div class="_1h6n1zu"
+                                     style="display: inline-block; vertical-align: bottom; height: 28px; width: 28px; min-height: 1px;">
+                                    <img class="_9ofhsl" aria-hidden="true" alt=""
+                                         src="https://a0.muscache.com/airbnb/static/packages/plus-large-l-grey.719e8562.png"
+                                         data-original-uri="https://a0.muscache.com/airbnb/static/packages/plus-large-l-grey.719e8562.png"
+                                         style="object-fit: cover; vertical-align: bottom;">
+                                    <div class="_15p4g025"
+                                         style="background-image: url(&quot;https://a0.muscache.com/airbnb/static/packages/plus-large-l-grey.719e8562.png&quot;); background-size: cover;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 12px;">
+                                <div class="_kicpfv">
+                                    <div class="_tnyfwl2">Add another</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+@section Scripts {
+
+    <script>
+        var inputIncr = 0;
+        $('.addImg').css('display', 'none')
+
+        $('body').on('change', '.file-upload', function (e) {
+            alert();
+            var file = e.currentTarget.files[0];
+
+            if (file) {
+                $('#imagesDisplay').append(`
+                    <div class="image-div">
+                        <button type="button" class="removeImg edit" data-input="${e.currentTarget.id}">
+                            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+                                 aria-label="Delete" role="img" focusable="false"
+                                 style="display: block; height: 20px; width: 20px;">
+                                <path d="M19 2a1 1 0 0 1 .993.883L20 3v3h8v2h-2.001L26 28a2 2 0 0 1-1.85 1.995L24 30H8a2 2 0 0 1-1.995-1.85L6 28 5.999 8H4V6h8V3a1 1 0 0 1 .883-.993L13 2zm4.999 6h-16L8 28h16zM12 10v16h-2V10zm5 0v16h-2V10zm5 0v16h-2V10zm-4-6.001h-4v2h4z">
+                                </path>
+                            </svg>
+                        </button>
+                        <img src="${URL.createObjectURL(file)}" alt="imag" />
+                    </div>`
+                );
+            }
+
+            $('#imgInputs').append(`
+                    <input id="img${++inputIncr}" name="Images" type='file' class="file-upload" />
+                `
+            );
+
+            $('.upload').css('display', 'none');
+            $('.ContainInput').remove();
+            $('.addImg').css('display', 'block');
+        });
+
+        $('body').on('click', '.removeImg', (e) => {
+            var result = confirm("Do you want to delete permenantly?");
+            if (!result)
+                return;
+
+            var inputId = $(e.currentTarget).data('input');
+            $(`#${inputId}`).remove();
+            $(e.currentTarget).parent().remove();
+        });
+
+        $('.Input').click(function () {
+            $(".file-upload")[0].click();
+        });
+
+        $('.addImg').click(function () {
+            console.log($(".file-upload").length)
+            $(".file-upload")[$(".file-upload").length - 1].click();
+        });
+        
+    </script>
+}

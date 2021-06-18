@@ -1,0 +1,169 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model ListingViewModel
+<div id="2" style="display:flex">
+    <div class="col col-12 col-md-7">
+        <div class="ContainNumberOfBathRooms col col-11 col-xl-8" style="float: right;">
+            <div>
+                <div class="ContainQuestion">How many guests can your place accommodate?</div>
+                <div class="QuestionDescription">
+                    Check that you have enough beds to accommodate all your guests
+                    comfortably.
+                </div>
+            </div>
+            <div class="col col-12 col-xl-9">
+                <div class="contain_Guests" style="display:flex">
+                    <div style="display: inline-block;width: 25%;">
+                        <div class="first_line">Guests</div>
+                    </div>
+                    <div style="display: inline-block;width: 80%;margin-top: -15px;">
+                        <div style="float: right;">
+                            <button id="subtract_Guests" type="button">
+                                <span>
+                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                         role="presentation" focusable="false"
+                                         style="fill: none;color: #008489; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;">
+                                        <path d="m2 16h28"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                            <input asp-for="NumOfGuests" style="display: inline;font-size: 18px;width: 25px;border: none;text-align: center;"
+                                   id="number_Guests" readonly />
+                            <button id="add_Guests" type="button">
+                                <span>
+                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                         role="presentation" focusable="false"
+                                         style="fill: none;color: #008489; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;">
+                                        <path d="m2 16h28m-14-14v28"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 35px; width: 100%;">
+                    <label style="font-size: 21px;color: #767676;margin-bottom: 10px;">
+                        How many bedrooms can guests
+                        Use?
+                    </label>
+                    <div>
+                        <select asp-for="NumOfBedrooms" class="GuetsSelect" style="width: 90%;" aria-label="Select one"
+                               >
+                            <option value="0">Studio</option>
+                            <option value="1">1 bedroom</option>
+                            <option value="2">2 bedrooms</option>
+                            <option value="3">3 bedrooms</option>
+                            <option value="4">4 bedrooms</option>
+                            <option value="5">5 bedrooms</option>
+                            <option value="6">6 bedrooms</option>
+                            <option value="7">7 bedrooms</option>
+                            <option value="8">8 bedrooms</option>
+                            <option value="9">9 bedrooms</option>
+                            <option value="10">10 bedrooms</option>
+                            <option value="11">11 bedrooms</option>
+                            <option value="12">12 bedrooms</option>
+                            <option value="13">13 bedrooms</option>
+                            <option value="14">14 bedrooms</option>
+                            <option value="15">15 bedrooms</option>
+                            <option value="16">16 bedrooms</option>
+                            <option value="17">17 bedrooms</option>
+                            <option value="18">18 bedrooms</option>
+                            <option value="19">19 bedrooms</option>
+                            <option value="20">20 bedrooms</option>
+                            <option value="21">21 bedrooms</option>
+                            <option value="22">22 bedrooms</option>
+                            <option value="23">23 bedrooms</option>
+                            <option value="24">24 bedrooms</option>
+                            <option value="25">25 bedrooms</option>
+                            <option value="26">26 bedrooms</option>
+                            <option value="27">27 bedrooms</option>
+                            <option value="28">28 bedrooms</option>
+                            <option value="29">29 bedrooms</option>
+                            <option value="30">30 bedrooms</option>
+                            <option value="31">31 bedrooms</option>
+                            <option value="32">32 bedrooms</option>
+                            <option value="33">33 bedrooms</option>
+                            <option value="34">34 bedrooms</option>
+                            <option value="35">35 bedrooms</option>
+                            <option value="36">36 bedrooms</option>
+                            <option value="37">37 bedrooms</option>
+                            <option value="38">38 bedrooms</option>
+                            <option value="39">39 bedrooms</option>
+                            <option value="40">40 bedrooms</option>
+                            <option value="41">41 bedrooms</option>
+                            <option value="42">42 bedrooms</option>
+                            <option value="43">43 bedrooms</option>
+                            <option value="44">44 bedrooms</option>
+                            <option value="45">45 bedrooms</option>
+                            <option value="46">46 bedrooms</option>
+                            <option value="47">47 bedrooms</option>
+                            <option value="48">48 bedrooms</option>
+                            <option value="49">49 bedrooms</option>
+                            <option value="50">50 bedrooms</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="margin-top: 35px; width: 100%;">
+                    <label style="font-size: 21px;color: #767676;margin-bottom: 10px;">
+                        How many beds can guests use?
+                    </label>
+                    <div class="contain_Guests" style="display:flex">
+                        <div style="display: inline-block;width: 25%;">
+                            <div class="first_line">Beds</div>
+                        </div>
+                        <div style="display: inline-block;width: 80%;margin-top: -15px;">
+                            <div style="float: right;">
+                                <button id="subtract_Beds" type="button">
+                                    <span>
+                                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+                                             aria-hidden="true" role="presentation" focusable="false"
+                                             style="fill: none;color: #008489; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;">
+                                            <path d="m2 16h28"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                                
+                                <input asp-for="NumOfBeds" style="display: inline;font-size: 18px;width: 25px;border: none;text-align: center;"
+                                       id="number_Beds" readonly />
+                                <button id="add_Beds" type="button">
+                                    <span>
+                                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+                                             aria-hidden="true" role="presentation" focusable="false"
+                                             style="fill: none;color: #008489; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;">
+                                            <path d="m2 16h28m-14-14v28"></path>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div style="margin-top: 40px;margin-bottom: 200px;">
+                <h4 style="color: rgb(98, 97, 97);">
+                    Sleeping arrangements
+                    </h3>
+                    <div class="_czm8crp">
+                        Sharing the types of beds in each room can help people understand the sleeping arrangements.
+                    </div>
+            </div>
+
+        </div>
+
+        <!-- div will show after Select -->
+
+    </div>
+    <div class="col col-md-5 d-none d-md-block ContainRightDiv">
+
+    </div>
+</div>
+@section  Scripts{
+
+<script>
+
+</script>
+    }
