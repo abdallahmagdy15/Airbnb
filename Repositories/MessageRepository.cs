@@ -1,5 +1,5 @@
 ﻿using Airbnb.Data;
-using Airbnb.Models.Messaging;
+using Airbnb.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

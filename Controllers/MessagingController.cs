@@ -1,16 +1,15 @@
 ﻿using Airbnb.Models;
-using Airbnb.Models.Messaging;
 using Airbnb.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Airbnb.Controllers
 {
+    [Authorize(Roles = "User")]
     public class MessagingController : Controller
     {
         private readonly IMessagingService messagingService;
@@ -25,7 +24,7 @@ namespace Airbnb.Controllers
         {
             return View(await userManager.FindByIdAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value));
         }
-        public async Task<IActionResult> GetChatById(int chatid)
+        public async Task<IActionResult> GetChat(int chatid)
         {
             await messagingService.RemoveChat(chatid);
             return Ok();
@@ -34,13 +33,13 @@ namespace Airbnb.Controllers
         [HttpGet]
         public ActionResult<List<AppUser>> CreateChat()
         {
-            return messagingService.GetSuggestedContacts();
+            return View(messagingService.GetSuggestedContacts());
         }
 
         [HttpPost]
-        public IActionResult CreateChat(string contactId)
+        public async Task<IActionResult> CreateChat(string contactId)
         {
-            messagingService.CreateChat(contactId);
+            await messagingService.CreateChat(contactId);
             return RedirectToAction("Index");
         }
         public async Task<ActionResult<Chat>> GetChatWith(string recieverid)

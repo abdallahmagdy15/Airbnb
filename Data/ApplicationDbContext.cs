@@ -1,6 +1,5 @@
 ﻿using Airbnb.Models;
 using Airbnb.Models.Location;
-using Airbnb.Models.Messaging;
 using Airbnb.Models.PropertySubModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

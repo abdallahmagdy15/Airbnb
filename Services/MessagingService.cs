@@ -1,13 +1,11 @@
 ﻿using Airbnb.Models;
-using Airbnb.Models.Messaging;
 using Airbnb.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using System.Web;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Airbnb.Services
 {
@@ -34,13 +32,18 @@ namespace Airbnb.Services
                 return chat;
             //if not created 
             chat = new Chat();
+            chat.Users = new List<AppUser>();
             var sender = await userManager.FindByIdAsync(CurrentUserId);
             var reciever = await userManager.FindByIdAsync(recieverUserId);
-            chat.Users.Add(sender);
-            chat.Users.Add(reciever);
-            await chatRepository.Add(chat);
-            await chatRepository.Save();
-            return chat;
+            if (sender != null && reciever != null)
+            {
+                chat.Users.Add(sender);
+                chat.Users.Add(reciever);
+                await chatRepository.Add(chat);
+                await chatRepository.Save();
+                return chat;
+            }
+            return null;
         }
         public async Task<Chat> GetChatById(int chatId)
         {
@@ -103,14 +106,15 @@ namespace Airbnb.Services
             List<string> contacts = new List<string>();
             if (currUser != null)
             {
-                currUser.Chats.ForEach( chat =>
-                {
-                    var user = chat.Users.Select(x=>x.Id).FirstOrDefault(Id => Id != CurrentUserId);
-                    if (user!= null)
-                    {
-                        contacts.Add(user);
-                    }
-                });
+                if (currUser.Chats != null)
+                    currUser.Chats.ForEach(chat =>
+                   {
+                       var user = chat.Users.Select(x => x.Id).FirstOrDefault(Id => Id != CurrentUserId);
+                       if (user != null)
+                       {
+                           contacts.Add(user);
+                       }
+                   });
                 return contacts;
             }
             return null;
@@ -120,9 +124,12 @@ namespace Airbnb.Services
         public List<AppUser> GetSuggestedContacts()
         {
             var currUser = userManager.Users.FirstOrDefault(x => x.Id == CurrentUserId);
-            if(currUser!= null)
+            if (currUser != null)
             {
-                return userManager.Users.Where(x => GetConnectedContacts().Contains(x.Id)).ToList();
+                //**
+                var x = GetConnectedContacts();
+                //**
+                return userManager.Users.Where(x => !GetConnectedContacts().Contains(x.Id)).ToList();
             }
             return null;
         }

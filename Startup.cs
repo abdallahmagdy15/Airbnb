@@ -36,7 +36,6 @@ namespace Airbnb
 
             services.AddIdentity<AppUser, IdentityRole>(options =>
            {
-               options.SignIn.RequireConfirmedAccount = true;
                options.Password.RequiredLength = 8;
                options.Password.RequireLowercase = false;
                options.Password.RequireUppercase = false;

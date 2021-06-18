@@ -1,4 +1,4 @@
-﻿using Airbnb.Models.Messaging;
+﻿using Airbnb.Models;
 using Airbnb.Services;
 using Microsoft.AspNet.SignalR.Hubs;
 using Microsoft.AspNetCore.SignalR;

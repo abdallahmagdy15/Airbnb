@@ -1,5 +1,5 @@
 ﻿using Airbnb.Models.Location;
-using Airbnb.Models.Messaging;
+using Airbnb.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
