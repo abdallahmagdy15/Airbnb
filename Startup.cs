@@ -36,7 +36,7 @@ namespace Airbnb
 
             services.AddIdentity<AppUser, IdentityRole>(options =>
            {
-               options.SignIn.RequireConfirmedAccount = true;
+               options.SignIn.RequireConfirmedAccount = false;
                options.Password.RequiredLength = 8;
                options.Password.RequireLowercase = false;
                options.Password.RequireUppercase = false;
@@ -58,7 +58,7 @@ namespace Airbnb
                     options.AppSecret = "0a46289db8d433907f64d6516882ba94";
                 });
 
-
+            
             services.AddScoped<IPropertyService, PropertyService>();
             services.AddScoped<ISearchService, PropertySearchService>();
            
@@ -85,6 +85,7 @@ namespace Airbnb
 
             app.UseAuthentication();
             app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {
