@@ -44,6 +44,10 @@ namespace Airbnb
                options.Password.RequireUppercase = false;
            }).AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Home/Index";
+            });
 
             services.AddControllersWithViews();
             services.AddRazorPages();

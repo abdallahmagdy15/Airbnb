@@ -35,11 +35,12 @@ namespace Airbnb.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    var url = Url.Action("Index", "Home");
+
+                    return Content($"<script language='javascript' type='text/javascript'>location.href='{url}'</script>");
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
-
             }
             return PartialView("~/Views/Shared/LoginPartialView.cshtml",user);
 
@@ -52,7 +53,12 @@ namespace Airbnb.Controllers
         public IActionResult Login()
         {
             return PartialView("~/Views/Shared/LoginPartialView.cshtml",new LoginViewModel());
+        }
 
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]

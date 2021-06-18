@@ -26,6 +26,8 @@ namespace Airbnb.Controllers
                 return BadRequest();
             }
 
+            ViewData["Countries"] = _db.Countries;
+
             // For google map API to use
             var city = _db.Cities.SingleOrDefault(c => c.Id == search.CityId);
             ViewBag.coordX = city.Coordinates.Coordinate.X;
