@@ -238,6 +238,12 @@
             console.log(name);
             AjaxCall({ name }, Url, "POST");
         }
+        function findProperty() {
+            var Title = $("#search_text").val();
+            var Url = `FindProp`;
+            console.log(Title);
+            AjaxCall({ Title }, Url, "POST");
+        }
         function GetChangeLogoView() {
             var Url = `ChangeLogo`
             console.log(Url)
@@ -331,6 +337,20 @@
             console.log(Url)
             AjaxCall(null, Url, "GET");
         }
+        function getAllSpaces() {
+            var Url = `AllSpaces`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+        function AddSpace() {
+            var Url = `AddSpace`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+
+
+
+
         function MangeAdminRole(target) {
             var id = target.id;
             var Url = `EditUserInRole/${id}`

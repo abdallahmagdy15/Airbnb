@@ -26,6 +26,8 @@ namespace Airbnb.Services
         public List<Property> PropertiesInLast30Days();
         public Property GetProperity(int PropId);
         public void DeleteProp(int PropId);
+        public List<Property> FindPeopByTitle(string Title);
+
 
         //Amenity
         public List<Amenity> Amenities();
@@ -126,6 +128,11 @@ namespace Airbnb.Services
             _db.Properties.Remove(Property);
             _db.SaveChanges();
         }
+        public List<Property> FindPeopByTitle(string Title)
+        {
+            return Allproperties().Where(p=>p.Title.Contains(Title)).ToList();
+        }
+
 
         //Amenity
         public List<Amenity> Amenities()

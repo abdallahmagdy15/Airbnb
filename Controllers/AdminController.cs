@@ -445,6 +445,11 @@ namespace Airbnb.Controllers
         {
             return PartialView("Views/Shared/AllUserPartialView.cshtml", _db.FindUserByName(name));
         }
+        [HttpPost]
+        public IActionResult FindProp(string Title)
+        {
+            return PartialView("Views/Shared/AllPropertiesPartialView.cshtml", _db.FindPeopByTitle(Title));
+        }
         public IActionResult DeleteUser(string id)
         {
             _db.DeleteUser(id);
