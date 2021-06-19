@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Airbnb.Repositories;
+using Airbnb.Hubs;
 
 namespace Airbnb
 {
@@ -43,7 +44,7 @@ namespace Airbnb
 
             services.AddControllersWithViews();
             services.AddRazorPages();
-
+            services.AddSignalR();
 
             services.AddAuthentication()
                 .AddGoogle(options =>
@@ -86,13 +87,16 @@ namespace Airbnb
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
                 endpoints.MapRazorPages();
+
+                endpoints.MapHub<ChatHub>("/chathub");
             });
         }
     }

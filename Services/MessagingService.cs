@@ -93,7 +93,6 @@ namespace Airbnb.Services
             var chat = currUser.Chats.Where(x => x.ChatId == message.ChatId).FirstOrDefault();
             if (chat != null)
             {
-                message.UserId = CurrentUserId;
                 await messageRepository.Add(message);
                 await messageRepository.Save();
             }

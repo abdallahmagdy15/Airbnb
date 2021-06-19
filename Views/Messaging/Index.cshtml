@@ -25,9 +25,9 @@
                     {
                         lastMessage = chat.Messages.ToList().Last();
                     }
-                    <li class="chat-item">
+                    <li class="chat-item" onclick="loadChat(@chat.ChatId)">
                         <div class="img-cr">
-                            <img src="@contact.PhotoUrl" class="rounded-circle" />
+                            @*<img src="~/images/@contact.PhotoUrl" class="rounded-circle" />*@
                         </div>
                         <div class="chat-details">
                             <div class="row">
@@ -35,7 +35,7 @@
                                     status
                                 </span>
                                 <span class="dimmed-sm-label">
-                                    @lastMessage?.DateTime.ToShortTimeString();
+                                    @lastMessage?.DateTime.ToShortTimeString()
                                 </span>
                             </div>
                             <div class="row">
@@ -62,7 +62,7 @@
                             </div>
                             <div class="row">
                                 <span class="dimmed-sm-label">
-                                    @lastMessage?.DateTime.ToShortDateString();
+                                    @lastMessage?.DateTime.ToShortDateString()
                                 </span>
                                 <span class="dimmed-sm-label">property name</span>
                             </div>
@@ -76,11 +76,15 @@
     </div>
 </div>
 
-<a hidden id="loadChat" asp-action="GetChat" asp-controller="Messaging" class="btn btn-default" 
-   asp-route-chatid="@Model.Chats.FirstOrDefault()" data-ajax="true" data-ajax-update="#chat-cr"></a>
-
-<script>
-    //load first chat by ajax call
-    document.getElementById("loadChat").click();
-</script>
-<script src="https://kit.fontawesome.com/c975a9ad44.js" crossorigin="anonymous"></script>
+@section Scripts{
+    <script>
+        function loadChat(chatId) {
+            $.get("/Messaging/GetChat?chatid=" + chatId, function (data) {
+                $("#chat-cr").html(data);
+            });
+        }
+        //load first chat by ajax call
+        loadChat("");
+    </script>
+    <script src="https://kit.fontawesome.com/c975a9ad44.js" crossorigin="anonymous"></script>
+}

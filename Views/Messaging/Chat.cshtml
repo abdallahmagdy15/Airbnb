@@ -1,14 +1,21 @@
 ﻿@using Airbnb.ViewModels.Messaging
 @model ChatViewModel
 @{
+    Layout = "_Layout_Modal";
     var contact = Model.Chat.Users.FirstOrDefault(x => x.Id != Model.CurrentUser.Id);
     DateTime lastDate = new DateTime(2000, 1, 1);
 }
+<style>
+    .msg-item{
+        display:flex;
+    }
+</style>
+
 <div class="row pinned-top">
     <h2>@contact.FirstName @contact.LastName</h2>
     <span>icons</span>
 </div>
-<ul type=none class="chat-cr pinned-center">
+<ul type=none id="chatCr" class="chat-cr pinned-center">
     @if (Model.Chat.Messages != null)
         foreach (var msg in Model.Chat.Messages.TakeLast(20))
         {
@@ -18,8 +25,7 @@
                     <span class="dimmed-sm-label">@msg.DateTime.ToString()</span>
                 }
                 <div class="img-cr">
-
-                    <img src="@msg.User.PhotoUrl" class="rounded-circle" />
+                    <img src="~/images/@msg.User.PhotoUrl" class="rounded-circle" />
                 </div>
                 <div class="msg-details">
                     <div class="row">
@@ -40,10 +46,22 @@
         </li>
     }
 </ul>
-<div class="row">
-    <label for="ImageInput">
-        <img class="input-icon" src="~/assets/images/imageinput.png" />
-        <input id="ImageInput" name="Image" type="file" accept="image/*" />
-    </label>
-    <input class="form-control" name="Text" type="text" />
+<div>
+    <div class="sendmsg-cr">
+        <label for="ImageInput">
+            <img class="input-icon" src="~/assets/images/imageinput.png" />
+            <input hidden id="ImageInput" name="Image" type="file" accept="image/*" />
+        </label>
+        <input class="form-control" id="text" name="Text" type="text" />
+        <button class="form-control send-btn" id="send-btn">
+            <i class="fas fa-paper-plane"></i>
+        </button>
+    </div>
 </div>
+
+
+@section Scripts{
+    <script src="~/lib/signalr/signalr.min.js"></script>
+    <script src="~/lib/time-ago/javascript-time-ago.min.js"></script>
+    <script src="~/js/chat.js"></script>
+}

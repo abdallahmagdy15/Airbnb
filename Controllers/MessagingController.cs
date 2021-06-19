@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -25,10 +26,17 @@ namespace Airbnb.Controllers
         {
             return View(await userManager.FindByIdAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value));
         }
-        public async Task<IActionResult> GetChat(int chatid)
+        public async Task<IActionResult> GetChat(string chatid)
         {
-            var chat = await messagingService.GetChatById(chatid);
             var currUser = await userManager.FindByIdAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            Chat chat ; int _chatId;
+            if (chatid == null || !int.TryParse(chatid,out _chatId))
+            {
+                chat = currUser.Chats.FirstOrDefault();
+            }
+            else 
+                chat = await messagingService.GetChatById(_chatId);
+
             return View("Chat",new ChatViewModel() { Chat = chat,CurrentUser = currUser });
         }
         
@@ -54,6 +62,7 @@ namespace Airbnb.Controllers
             await messagingService.RemoveChat(chatId);
             return Ok();
         }
+
     }
     public class JavaScriptResult : ContentResult
     {

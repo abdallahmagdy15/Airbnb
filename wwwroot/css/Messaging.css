@@ -7,6 +7,7 @@
     border-bottom: 1px solid rgb(182, 182, 182);
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .chat-item:hover {
@@ -37,4 +38,22 @@
 }
 .input-icon{
     width: 1rem;
+}
+.sendmsg-cr{
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+}
+.sendmsg-cr > * {
+    height: 2.5rem !important;
+}
+.sendmsg-cr .send-btn{
+    width: fit-content !important;
+}
+.sendmsg-cr .input-icon {
+    height: 2.3rem;
+    padding: .1rem;
+    width: auto;
+    margin: 0 1rem;
+    cursor: pointer;
 }
