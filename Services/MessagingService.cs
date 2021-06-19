@@ -128,7 +128,7 @@ namespace Airbnb.Services
                 //**
                 var x = GetConnectedContacts();
                 //**
-                return userManager.Users.Where(x => !GetConnectedContacts().Contains(x.Id)).ToList();
+                return userManager.Users.Where(x => !GetConnectedContacts().Contains(x.Id) && x.Id != CurrentUserId).ToList();
             }
             return null;
         }

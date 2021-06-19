@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Airbnb.Repositories;
 using Airbnb.Hubs;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Airbnb
 {
@@ -82,7 +83,6 @@ namespace Airbnb
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseAuthentication();

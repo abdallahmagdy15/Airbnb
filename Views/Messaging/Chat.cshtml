@@ -6,8 +6,8 @@
     DateTime lastDate = new DateTime(2000, 1, 1);
 }
 <style>
-    .msg-item{
-        display:flex;
+    .msg-item {
+        display: flex;
     }
 </style>
 
@@ -62,6 +62,45 @@
 
 @section Scripts{
     <script src="~/lib/signalr/signalr.min.js"></script>
-    <script src="~/lib/time-ago/javascript-time-ago.min.js"></script>
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/chathub")
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
+
+        async function start() {
+            try {
+                await connection.start();
+                console.log("chat hub Connected.");
+                try {
+                    await connection.invoke("join_chat", "@Model.Chat.ChatId");
+                } catch (err) {
+                    console.error(err);
+                }
+            } catch (err) {
+                console.log(err);
+                setTimeout(start, 5000);
+            }
+        };
+
+        connection.onclose(start);
+
+        // Start the connection.
+        start();
+
+        connection.on("new_message", function (msg) {
+            console.log("New Message : ", msg);
+                addMsgToList(msg);
+        });
+
+        connection.on("removed_message", function (_messageId) {
+            console.log(_messageId);
+        });
+
+    $('#send-btn').click(function () {
+        console.log("clicked");
+        connection.invoke("send_message", '@Model.Chat.ChatId', $('#text').val());
+    });
+    </script>
     <script src="~/js/chat.js"></script>
 }

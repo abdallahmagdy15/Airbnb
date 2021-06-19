@@ -83,8 +83,16 @@
                 $("#chat-cr").html(data);
             });
         }
-        //load first chat by ajax call
-        loadChat("");
     </script>
-    <script src="https://kit.fontawesome.com/c975a9ad44.js" crossorigin="anonymous"></script>
+
+    @*load first chat by ajax call*@
+    @if (Model.Chats != null)
+        @if (Model.Chats.Count() > 0)
+        {
+            <script>
+                loadChat("");
+            </script>
+        }
+
+        <script src="https://kit.fontawesome.com/c975a9ad44.js" crossorigin="anonymous"></script>
 }
