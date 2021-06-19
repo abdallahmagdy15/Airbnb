@@ -29,7 +29,7 @@ namespace Airbnb.Controllers
         public IActionResult Listing()
         {
             ViewBag.currentTab = "Listing";
-            return View(_db.Properties.ToList());
+            return View(_db.Properties.Where(p => p.UserId == _manager.GetUserId(User)).ToList());
         }
 
         public IActionResult Reservations()

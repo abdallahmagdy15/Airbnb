@@ -205,6 +205,7 @@ namespace Airbnb.Controllers
                 result = false;
             return Json(data:result);
         }
+
         [HttpGet]
         public IActionResult editprofile()
         {
