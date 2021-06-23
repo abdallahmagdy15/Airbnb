@@ -16,7 +16,6 @@ using System.Threading.Tasks;
 
 namespace Airbnb.Controllers.Listing
 {
-    [Authorize]
     public class ListingController : Controller
     {
         private ApplicationDbContext _db;
@@ -31,7 +30,8 @@ namespace Airbnb.Controllers.Listing
             _hostingEnvironment = hostingEnvironment;
             _manager = manager;
         }
-       
+
+        [Authorize]
         public IActionResult New()
         {
             ListingViewModel listingViewModel = new ListingViewModel()
@@ -49,6 +49,8 @@ namespace Airbnb.Controllers.Listing
 
             return View(listingViewModel);
         }
+
+        [Authorize]
         [HttpPost]
         public IActionResult New(ListingViewModel listingViewModel)
         {

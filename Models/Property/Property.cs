@@ -76,6 +76,7 @@ namespace Airbnb.Models
         public virtual List<PropertyPhoto> Photos { get; set; }
         public virtual List<PropertySpace> Spaces { get; set; }
         public virtual List<Review> Reviews { get; set; }
+        public virtual List<Reservation> Reservations { get; set; }
 
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
