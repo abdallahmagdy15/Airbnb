@@ -3,6 +3,7 @@ using Airbnb.Models.PropertySubModels;
 using Airbnb.Services;
 using Airbnb.ViewModels;
 using ClosedXML.Excel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace Airbnb.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         readonly IAdminServices _db;
