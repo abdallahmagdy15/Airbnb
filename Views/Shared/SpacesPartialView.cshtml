@@ -1,0 +1,33 @@
+﻿@using Airbnb.Models.PropertySubModels
+@model IEnumerable<Space>
+    <h2>All Spaces</h2>
+
+    <table class="table table-responsive table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Category ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Delete</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Space in Model)
+            {
+                <tr>
+                    <th scope="row"> @Space.Id</th>
+                    <td> @Space.Name</td>
+                    <td><a asp-action="deleteSpace" onclick="return confirm('Are you sure ?')" asp-controller="Admin" asp-route-id=" @Space.Id" class="btn btn-danger">Delete</a></td>
+                </tr>
+            }
+
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>
+                    <button onclick="AddSpace()" class="btn btn-success" id="add-new-amenity">Add new one</button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>

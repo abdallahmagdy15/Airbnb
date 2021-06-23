@@ -233,12 +233,10 @@ namespace Airbnb.Controllers
                 olduser.PhoneNumber = user.PhoneNumber;
                 olduser.Email = user.Email;
                 olduser.DateOfBirth = user.DateOfBirth;
-                olduser.City = user.City;
                 olduser.Street = user.Street;
                 olduser.BuildingNo = user.BuildingNo;
-                olduser.PhotoUrl = user.PhotoUrl;
                 DbContext.SaveChanges();
-                return View("Login");
+                return RedirectToAction("Index","Home");
             }
             else
             {

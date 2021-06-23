@@ -1,0 +1,36 @@
+﻿@using Airbnb.Models.PropertySubModels
+@model IEnumerable<Category>
+
+
+    <h2>All Category</h2>
+
+    <table class="table table-responsive table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Category ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Category in Model)
+            {
+                <tr>
+                    <th scope="row"> @Category.Id</th>
+                    <td> @Category.Name</td>
+                    <td> @Category.Description</td>
+                    <td><a asp-action="deleteCategory" onclick="return confirm('Are you sure ?')" asp-controller="Admin" asp-route-id=" @Category.Id" class="btn btn-danger">Delete</a></td>
+                </tr>
+            }
+
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>
+                    <button onclick="AddCategory()" class="btn btn-success" id="add-new-amenity">Add new one</button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>

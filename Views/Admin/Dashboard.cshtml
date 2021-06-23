@@ -57,12 +57,44 @@
                             <button type="button" onclick="getAllRoles()" class="dashboard-button">All Roles</button>
                         </div>
                         <div class="button-container">
-                            <img src="~/SVG/role3.svg">
-                            <button type="button" onclick="GetChangeLogoView()" class="dashboard-button">Add Admin</button>
-                        </div>
-                        <div class="button-container">
                             <img src="~/SVG/admin.svg">
                             <button type="button" onclick="getAllAdmins()" class="dashboard-button">All Admins</button>
+                        </div>
+                    </div>
+
+                    <div class="button-container">
+                        <img src="~/SVG/propSetting.svg">
+                        <button onclick="shopPropSetting()" class="dashboard-button"> Property Roles</button>
+                        <img id="arrow-down2" class="arrow-img" src="~/SVG/arrow-down-sign-to-navigate.svg" />
+                    </div>
+                    <div id="propAction-setting" style="display:none;">
+                        <div class="button-container">
+                            <img src="~/SVG/amenity.svg" />
+                            <button type="button" onclick="getAllAmenities()" class="dashboard-button">Amenities</button>
+                        </div>
+                        <div class="button-container">
+                            <img src="~/SVG/categories.svg">
+                            <button type="button" onclick="getAllCategories()" class="dashboard-button">Categories</button>
+                        </div>
+                        <div class="button-container">
+                            <img src="~/SVG/HomeRules.svg">
+                            <button type="button" onclick="getAllHomeRules()" class="dashboard-button">Home Rules</button>
+                        </div>
+                        <div class="button-container">
+                            <img src="~/SVG/guestDetails.svg">
+                            <button type="button" onclick="getAllGuestDetails()" class="dashboard-button">Guest</button>
+                        </div>
+                        <div class="button-container">
+                            <img src="~/SVG/placetype.svg">
+                            <button type="button" onclick="getAllGuestPlaceType()" class="dashboard-button">Place type</button>
+                        </div>
+                        <div class="button-container">
+                            <img src="~/SVG/requirments.svg">
+                            <button type="button" onclick="getAllGuestRequirment()" class="dashboard-button">Requirments</button>
+                        </div>
+                        <div class="button-container">
+                            <img src="~/SVG/space.svg">
+                            <button type="button" onclick="getAllSpaces()" class="dashboard-button">Space</button>
                         </div>
                     </div>
 
@@ -88,17 +120,17 @@
                     </div>
 
                     <!--
-                        <div class="button-container">
-                        <img src="~/SVG/fee.svg">
-                        <button class="dashboard-button">Mange payout</button>
-                        </div>
-                    -->
-                    
-                        <div class="button-container" style="margin-bottom:95px;">
-                            <img src="~/SVG/password.svg">
-                            <button class="dashboard-button">Change password</button>
-                        </div>
-                    
+        <div class="button-container">
+        <img src="~/SVG/fee.svg">
+        <button class="dashboard-button">Mange payout</button>
+        </div>
+    -->
+
+                    <div class="button-container" style="margin-bottom:95px;">
+                        <img src="~/SVG/password.svg">
+                        <button class="dashboard-button">Change password</button>
+                    </div>
+
 
                 </div>
             </div>
@@ -106,7 +138,7 @@
                 <div class="d-xl-none d-lg-none d-md-none d-sm-block col-sm-1">
                 <img onclick=" ShowHideLeftCol()" id="show-left-col" style="max-width:35px;max-height:35px;border:1px dotted black;margin-bottom:10px;cursor:pointer;" src="~/SVG/arrow-down-sign-to-navigate.svg"  />
                 </div>
-                <div id="main-admin-page">
+                <div id="main-admin-page" style="justify-content:center;margin:auto">
                     <partial name="DashboardPartialView" />
                 </div>
             </div>
@@ -123,7 +155,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <!--Logic for Glow Button-->
     <script>
-        //show-hode items
+        //show-hide items
         function show() {
             var homeSetting = document.getElementById("site-setting");
             var downArrow = document.getElementById("arrow-down");
@@ -156,6 +188,21 @@
                 //downArrow.style.display = "block";
                 //upArrow.style.display = "none";
                 adminSetting.style.display = "none";
+            }
+        }
+        function shopPropSetting() {
+            var propsetting = document.getElementById("propAction-setting");
+           
+
+            if (propsetting.style.display === "none") {
+                //downArrow.style.display = "none";
+                //upArrow.style.display = "block";
+                propsetting.style.display = "block";
+            }
+            else {
+                //downArrow.style.display = "block";
+                //upArrow.style.display = "none";
+                propsetting.style.display = "none";
             }
         }
         function AjaxCall(dataObject,url,Method) {
@@ -191,6 +238,12 @@
             console.log(name);
             AjaxCall({ name }, Url, "POST");
         }
+        function findProperty() {
+            var Title = $("#search_text").val();
+            var Url = `FindProp`;
+            console.log(Title);
+            AjaxCall({ Title }, Url, "POST");
+        }
         function GetChangeLogoView() {
             var Url = `ChangeLogo`
             console.log(Url)
@@ -211,12 +264,9 @@
                 LeftCol.classList.remove('col-6');
                 RightCol.classList.remove('col-6');
                 RightCol.classList.add('col-12');
-
-               
             }
             
         }
-
         function getCreateRoleView() {
             var Url = `CreateRole`
             console.log(Url);
@@ -227,6 +277,89 @@
             console.log(Url);
             AjaxCall(null, Url, "GET");
         }
+        function getAllAmenities() {
+            var Url = `AllAmenities`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+        function AddAmenities() {
+            var Url = `AddAmenity`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+        function getAllCategories() {
+            var Url = `AllCategories`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+        function AddCategory() {
+            var Url = `AddCategory`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+        function getAllHomeRules() {
+            var Url = `AllHouseRules`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+        function AddHomeRule() {
+            var Url = `AddHouseRule`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+        function getAllGuestDetails() {
+            var Url = `AllGuestDetails`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+        function AddGuestDetail() {
+            var Url = `AddGuestDetails`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+        function getAllGuestRequirment() {
+            var Url = `AllRequirments`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+        function AddGuestRequirment() {
+            var Url = `AddGuestRequirment`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+        function getAllGuestPlaceType() {
+            var Url = `AllPlaceTypes`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+        function AddGuestPlaceType() {
+            var Url = `AddPlaceType`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+        function getAllSpaces() {
+            var Url = `AllSpaces`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+        function AddSpace() {
+            var Url = `AddSpace`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+
+
+
+
+        function MangeAdminRole(target) {
+            var id = target.id;
+            var Url = `EditUserInRole/${id}`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+        
+        
+
 
     </script>
 </body>

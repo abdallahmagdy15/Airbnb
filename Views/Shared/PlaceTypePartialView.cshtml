@@ -1,0 +1,32 @@
+﻿@using Airbnb.Models.PropertySubModels
+@model IEnumerable<GuestPlaceType>
+    <h2>All Place Types</h2>
+
+    <table class="table table-responsive table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var type in Model)
+            {
+                <tr>
+                    <th scope="row"> @type.Id</th>
+                    <td> @type.Name</td>
+                    <td> @type.Description</td>
+                    <td><a asp-action="deletePlaceType" onclick="return confirm('Are you sure ?')" asp-controller="Admin" asp-route-id=" @type.Id" class="btn btn-danger">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>
+                    <button onclick="AddGuestPlaceType()" class="btn btn-success" id="add-new-amenity">Add new one</button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
