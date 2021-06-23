@@ -308,7 +308,7 @@ ul li span {
     animation: transitionIn 2s;
 }
 
-#ContainBecomeHost input {
+#ContainBecomeHost > a {
     color: rgb(73, 71, 71);
     padding: 10px;
     font-size: 20px;

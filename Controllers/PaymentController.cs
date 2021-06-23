@@ -43,6 +43,11 @@ namespace Airbnb.Controllers
             var diff = (checkOutDate - checkInDate).Days + 1;
             var property = propertyService.GetById(id);
 
+            if (!propertyService.IsPropertyAvailable(id, checkInDate, checkOutDate))
+            {
+                return BadRequest();
+            }
+
             ViewBag.checkIn = checkInDate;
             ViewBag.checkOut = checkOutDate;
             ViewBag.days = diff;
@@ -63,6 +68,11 @@ namespace Airbnb.Controllers
 
             var diff = (checkOutDate - checkInDate).Days + 1;
             var property = propertyService.GetById(id);
+
+            if (!propertyService.IsPropertyAvailable(id, checkInDate, checkOutDate))
+            {
+                return BadRequest();
+            }
 
             ViewBag.checkIn = checkInDate;
             ViewBag.checkOut = checkOutDate;

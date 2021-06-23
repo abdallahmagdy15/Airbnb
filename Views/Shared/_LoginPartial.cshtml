@@ -26,7 +26,9 @@
         </li>
         <li class="nav-item">
 
-            <a asp-action="Login" asp-controller="Account" class="btn btn-primary"
+            <a asp-action="Login" asp-controller="Account" 
+               asp-route-ReturnUrl="@ViewData["ReturnUrl"]?.ToString()"
+               class="btn btn-primary"
                id="login"
                data-ajax="true" data-ajax-update="#modal-render-body"
                data-ajax-success="$('#RegisterModal').modal('show');$('.modal-title').text('Log In');">Login</a>

@@ -27,7 +27,7 @@ namespace Airbnb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel user)
+        public async Task<IActionResult> Login(LoginViewModel user, string ReturnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -35,9 +35,16 @@ namespace Airbnb.Controllers
 
                 if (result.Succeeded)
                 {
-                    var url = Url.Action("Index", "Home");
+                    if (ReturnUrl != null) 
+                    {
+                        return Content($"<script language='javascript' type='text/javascript'>location.href='{ReturnUrl}'</script>");
+                    }
+                    else
+                    {
+                        var url = Url.Action("Index", "Home");
 
-                    return Content($"<script language='javascript' type='text/javascript'>location.href='{url}'</script>");
+                        return Content($"<script language='javascript' type='text/javascript'>location.href='{url}'</script>");
+                    }
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
@@ -50,8 +57,9 @@ namespace Airbnb.Controllers
             return PartialView("~/Views/Shared/RegisterPartialView.cshtml",new RegisterViewModel());
 
         }
-        public IActionResult Login()
+        public IActionResult Login(string ReturnUrl)
         {
+            ViewData["ReturnUrl"] = ReturnUrl;
             return PartialView("~/Views/Shared/LoginPartialView.cshtml",new LoginViewModel());
         }
 

@@ -35,7 +35,17 @@ namespace Airbnb.Controllers
         public IActionResult Reservations()
         {
             ViewBag.currentTab = "Reservations";
-            return View(_db.Reservations);
+            var userId = _manager.GetUserId(User);
+
+            return View(_db.Reservations.Where(r => r.UserId == userId));
+        }
+
+        public IActionResult Requests()
+        {
+            ViewBag.currentTab = "Requests";
+            var userId = _manager.GetUserId(User);
+
+            return View(_db.Reservations.Where(r => r.Property.UserId == userId));
         }
 
         public IActionResult Performance()

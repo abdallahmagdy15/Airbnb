@@ -139,7 +139,7 @@ namespace Airbnb.Controllers.Listing
                     _db.SaveChanges();
                 }
             }
-            return RedirectToAction(nameof(New));
+            return RedirectToAction("Listing", "Hosting");
         }
 
         public IActionResult States(int id)

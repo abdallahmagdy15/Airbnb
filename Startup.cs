@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authentication;
 using Stripe;
-
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace Airbnb
 {
@@ -87,6 +87,11 @@ namespace Airbnb
                 app.UseHsts();
             }
 
+            app.UseForwardedHeaders(new ForwardedHeadersOptions()
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor |
+                    ForwardedHeaders.XForwardedProto,
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
