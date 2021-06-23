@@ -25,7 +25,7 @@
             <div class="carousel-item active">
                 @if (Model.Property.Photos.Count > 0)
                 {
-                    <img src="~/@Model.Property.Photos[0].Url" class="d-block w-100" alt="image-0">
+                    <img src="~/images/@Model.Property.Photos[0].Url" class="d-block w-100" alt="image-0">
                 }
                 else
                 {
@@ -35,7 +35,7 @@
             @for (var i = 1; i < Model.Property.Photos.Count; i++)
             {
                 <div class="carousel-item">
-                    <img src="~/@Model.Property.Photos[i].Url" class="d-block w-100" alt="prop-image-@i">
+                    <img src="~/images/@Model.Property.Photos[i].Url" class="d-block w-100" alt="prop-image-@i">
                 </div>
             }
         </div>
@@ -96,7 +96,7 @@
 
             @if (Model.Property.Photos.Count > 0)
             {
-                <img class="img1" src="~/@Model.Property.Photos[0].Url">
+                <img class="img1" src="~/images/@Model.Property.Photos[0].Url">
             }
             else
             {
@@ -106,7 +106,7 @@
             {
                 if (i < Model.Property.Photos.Count())
                 {
-                    <img class="img@(i + 1)" src="~/@Model.Property.Photos[i].Url">
+                    <img class="img@(i + 1)" src="~/images/@Model.Property.Photos[i].Url">
                 }
                 else
                 {
@@ -135,7 +135,7 @@
                     <div class="container">
                         @foreach (var image in Model.Property.Photos)
                         {
-                            <img src="~/@image.Url" />
+                            <img src="~/images/@image.Url" />
                         }
                     </div>
                 </div>
