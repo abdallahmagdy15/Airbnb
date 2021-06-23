@@ -35,6 +35,18 @@ namespace Airbnb.Controllers
 
                 if (result.Succeeded)
                 {
+
+                    //var logedUser =await  userManager.FindByEmailAsync(user.Email);
+                    //var roles = await userManager.GetRolesAsync(logedUser);
+                    //foreach(var role in roles)
+                    //{
+                    //    if(role == "Admin")
+                    //    {
+                    //        var url1 = Url.Action("Dashboard", "Admin");
+                    //        return Content($"<script language='javascript' type='text/javascript'>location.href='{url1}'</script>");
+                    //    }
+                    //}
+
                     var url = Url.Action("Index", "Home");
 
                     return Content($"<script language='javascript' type='text/javascript'>location.href='{url}'</script>");

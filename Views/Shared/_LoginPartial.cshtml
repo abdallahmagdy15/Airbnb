@@ -4,13 +4,28 @@
 @inject UserManager<AppUser> UserManager
 
 <ul class="navbar-nav" style="flex-direction: row;padding-top: 0;">
-    @if (SignInManager.IsSignedIn(User))
+    @if (SignInManager.IsSignedIn(User) && !User.IsInRole("Admin"))
     {
         <li>
             <a asp-controller="Hosting" asp-action="Index" id="becomeahost" style="display: block !important; margin-top: 0;">be a host</a>
         </li>
         <li class="nav-item">
             <a asp-controller="Account" asp-action="Profile" class="nav-link btn btn-link text-light">Account</a>
+        </li>
+        <li class="nav-item">
+            <a asp-controller="Account" asp-action="Logout" class="nav-link btn btn-link text-light">Logout</a>
+        </li>
+    }
+    else if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+    {
+        <li>
+            <a asp-controller="Hosting" asp-action="Index" id="becomeahost" style="display: block !important; margin-top: 0;">be a host</a>
+        </li>
+        <li class="nav-item">
+            <a asp-controller="Account" asp-action="Profile" class="nav-link btn btn-link text-light">Account</a>
+        </li>
+        <li class="nav-item">
+            <a asp-controller="Admin" asp-action="Dashboard" class="nav-link btn btn-link text-light">Admin</a>
         </li>
         <li class="nav-item">
             <a asp-controller="Account" asp-action="Logout" class="nav-link btn btn-link text-light">Logout</a>

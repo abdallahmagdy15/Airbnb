@@ -71,9 +71,20 @@ body {
     font-size: 1rem;
     line-height: 21px;
     margin-left: 10px;
+    text-decoration:none;
 }
-
-.dashboard-buttons-container .button-container img {
+.dashboard-buttons-container .button-container a {
+    
+    line-height: 39px;
+    
+}
+    .dashboard-buttons-container .button-container a:hover {
+        background-color: #56598d;
+        cursor: pointer;
+        color:#fff;
+        text-decoration:none;
+    }
+    .dashboard-buttons-container .button-container img {
     max-width: 50px;
     max-height: 50px;
     padding-left: 10px;

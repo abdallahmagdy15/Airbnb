@@ -118,6 +118,14 @@
                         <img src="~/SVG/review.svg">
                         <button class="dashboard-button">Review Mangment</button>
                     </div>
+                    <div class="button-container">
+                        <img src="~/SVG/user.svg">
+                        <a asp-action="Index" asp-controller="Home" class="dashboard-button">Home</a>
+                    </div>
+                    <div class="button-container">
+                        <img src="~/SVG/logout.svg">
+                        <a asp-action="Logout" asp-controller="Account" class="dashboard-button">Logout</a>
+                    </div>
 
                     <!--
         <div class="button-container">
@@ -136,7 +144,7 @@
             </div>
             <div  class="right-admin-col col-xl-10 col-lg-9 col-md-8 col-12">
                 <div class="d-xl-none d-lg-none d-md-none d-sm-block col-sm-1">
-                <img onclick=" ShowHideLeftCol()" id="show-left-col" style="max-width:35px;max-height:35px;border:1px dotted black;margin-bottom:10px;cursor:pointer;" src="~/SVG/arrow-down-sign-to-navigate.svg"  />
+                <img onclick=" ShowHideLeftCol()" id="show-left-col" style="max-width:35px;max-height:35px;border:1px dotted black;margin-bottom:10px;cursor:pointer;" src="~/SVG/more.svg"  />
                 </div>
                 <div id="main-admin-page" style="justify-content:center;margin:auto">
                     <partial name="DashboardPartialView" />
