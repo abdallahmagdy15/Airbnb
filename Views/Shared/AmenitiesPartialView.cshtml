@@ -1,0 +1,40 @@
+﻿@using Airbnb.Models.PropertySubModels
+@model IEnumerable<Amenity>
+
+
+    <h2>All Amenities</h2>
+
+    <table class="table table-responsive table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Amenity ID</th>
+                <th scope="col">Icon</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Type</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Amenity in Model)
+            {
+                <tr>
+                    <th scope="row"> @Amenity.Id</th>
+                    <td> <img style="max-width: 50px; max-height: 50px;" src="~/SVG/amenity.svg" /></td>
+                    <td> @Amenity.Name</td>
+                    <td> @Amenity.Description</td>
+                    <td> @Amenity.Type</td>
+                    <td><a asp-action="deleteAmenity" onclick="return confirm('Are you sure ?')" asp-controller="Admin" asp-route-id=" @Amenity.Id" class="btn btn-danger">Delete</a></td>
+                </tr>
+            }
+
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>
+                    <button onclick="AddAmenities()" class="btn btn-success" id="add-new-amenity">Add new one</button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>

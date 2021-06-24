@@ -2,6 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Payment Successful";
     Layout = "~/Views/Shared/PaymentLayout.cshtml";
 }
 <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
@@ -43,6 +44,7 @@
         margin: 0 auto;
         width: calc((100% / 1) - 38px);
     }
+  
     @@media(min-width:768px) {
         .card{
             width: calc((100% / 2) - 38px);
@@ -55,5 +57,5 @@
     </div>
     <h1> Payment Successful</h1>
     <p>Your payment was successful, you can <br />now continue browsing!</p>
-    <a asp-action="book" asp-controller="Payment"><input type="button" class="btn btn-success" value="Go Home" /></a>
+    <a asp-action="reservations" asp-controller="hosting"><input type="button" class="btn" style="color: #88b04b;" value="Go Home" /></a>
 </div>

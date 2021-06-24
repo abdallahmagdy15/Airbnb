@@ -1,0 +1,173 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Account/_profileLayout.cshtml";
+    ViewData["Title"] = "Profile";
+}
+@model Airbnb.Models.AppUser;
+<form form asp-action="editprofile" asp-controller="account" method="post">
+    <div class="container-fluid">
+        <div class="row mynavbar">
+            <nav class="navbar navbar-expand-lg navbar-white bg-white">
+                <ul class="nav">
+                    <li class="navbar-brand">
+                        <a class="fab fa-airbnb" style="font-weight: bold ; font-size:xx-large;" asp-controller="home" asp-action="index"><span id="logo"> airbnb</span></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="header col col-12 col-md-6" id="myHeader" style="background-color: white;">
+                <i class="fas fa-chevron-left"></i>
+                <span>Edit Personal info</span><br><br>
+            </div>
+        </div>
+        <div class="editProfileBody">
+            <input asp-for="Id" type="hidden" />
+            <div class="form-row">
+                <div class="form-group form-group col col-6 col-md-4">
+                    <label asp-for="FirstName">FirstName</label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group form-group col col-6 col-md-4">
+                    <label asp-for="LastName">LastName</label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group form-group col col-6 col-md-4">
+                    <label asp-for="DateOfBirth">DateOfBirth</label>
+                    <input asp-for="DateOfBirth" class="form-control" />
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+                <div class="form-group form-group col col-6 col-md-4">
+                    <label asp-for="PhoneNumber">PhoneNumber</label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group form-group col col-6 col-md-4">
+                    <label asp-for="Email">Email</label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group form-group col col-6 col-md-4">
+                    <label asp-for="City">City</label>
+                    <input asp-for="City" class="form-control" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group form-group col col-6 col-md-4">
+                    <label asp-for="Street">Street</label>
+                    <input asp-for="Street" class="form-control" />
+                    <span asp-validation-for="Street" class="text-danger"></span>
+                </div>
+                <div class="form-group form-group col col-6 col-md-4">
+                    <label asp-for="BuildingNo">Building Number</label>
+                    <input asp-for="BuildingNo" class="form-control" />
+                    <span asp-validation-for="BuildingNo" class="text-danger"></span>
+                </div>
+            </div>
+            <div>
+                <button class="btn-glow" style="width:200px; margin-top:10px">
+                    <span class="glow">
+                        Save
+                    </span>
+                    Save
+                </button>
+            </div>
+        </div>
+        <div class="row footersm">
+            <div class="footer">
+                <div class="about" style="box-shadow: 0 2px 0px -1px #dddddd;">
+                    <h4>about</h4>
+                    <ul>
+                        <li><a href="#">How Airbnb works</a></li>
+                        <li><a href="#">Newsroom</a></li>
+                        <li><a href="#">Investors</a></li>
+                        <li><a href="#">Airbnb Plus</a></li>
+                        <li><a href="#">Airbnb Luxe</a></li>
+                        <li><a href="#">HotelTonight</a></li>
+                        <li><a href="#">Airbnb for Work</a></li>
+                        <li><a href="#">Made possible by Hosts</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Founders'Letter</a></li>
+                        <br />
+                    </ul>
+                </div>
+                <div class="community" style="box-shadow: 0 2px 0px -1px #dddddd;">
+                    <h4>community</h4>
+                    <ul>
+                        <li><a href="#">Diversity & Belonging</a></li>
+                        <li><a href="#">Against Discrimination</a></li>
+                        <li><a href="#">Accessibility</a></li>
+                        <li><a href="#">Airbnb Associates</a></li>
+                        <li><a href="#">Frontline Stays</a></li>
+                        <li><a href="#">Guest Referrals</a></li>
+                        <li><a href="#">Gift cards</a></li>
+                        <li><a href="#">Airbnb.org</a></li>
+                        <br>
+                    </ul>
+                </div>
+                <div class="host" style="box-shadow: 0 2px 0px -1px #dddddd;">
+                    <h4>host</h4>
+                    <ul>
+                        <li><a href="#">Host your home</a></li>
+                        <li><a href="#">Host an Online Experience</a></li>
+                        <li><a href="#">Host an Experience</a></li>
+                        <li><a href="#">Responsible hosting</a></li>
+                        <li><a href="#">Resource Center</a></li>
+                        <li><a href="#">Community Center</a></li>
+                        <br>
+                    </ul>
+                </div>
+                <div class="support" style="box-shadow: 0 2px 0px -1px #dddddd;">
+                    <h4>support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Cancellation options</a></li>
+                        <li><a href="#">Neighborhood Support</a></li>
+                        <li><a href="#">Responsible hosting</a></li>
+                        <li><a href="#">Trust & Safety</a></li>
+                        <br>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="footermd">
+                <div class="socialandlan">
+                    <span class="glope" style="display:inline-flex;">
+                        <i class="fas fa-globe"></i>
+                    </span>
+                    <a href="#" style="color: black; text-decoration: underline;">English(US)</a>
+                    <span class="money">
+                        <i class="fas fa-dollar-sign"></i>
+                        <a href="#" style="color: black; text-decoration: underline;">AUD</a>
+                    </span>
+                    <span class="socialmedia">
+                        <ul style="display: inline-flex;">
+                            <il style="padding-right: 20px;"><a href="#"><i class="fab fa-facebook-f fa-lg" style="color: black;"></i></a></il>
+                            <il style="padding-right: 20px;"><a href="#"><i class="fab fa-twitter fa-lg" style="color: black;"></i></a></il>
+                            <il style="padding-right: 20px;"><a href="#"><i class="fab fa-instagram fa-lg" style="color: black;"></i></a></il>
+                        </ul>
+                    </span>
+                </div>
+                <div class="copyrights">
+                    ©2021 Airbnb, Inc.
+                </div>
+                <span class="footerlinks">
+                    <ul>
+                        <il><a href="#" style="color: #222222">Privacy</a></il>
+                        <il><a href="#" style="color: #222222">Terms</a></il>
+                        <il><a href="#" style="color: #222222">Sitemap</a></il>
+                    </ul>
+                </span>
+            </div>
+        </div>
+</form>

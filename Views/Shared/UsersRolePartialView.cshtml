@@ -1,0 +1,38 @@
+﻿@using Airbnb.ViewModels
+@model List<UserRoleViewModel>
+@{
+    var roleId = ViewBag.roleId;
+}
+<h2>Add or remove User From Admin Role</h2>
+<form asp-controller="Admin" asp-action="EditUserInRole">
+
+    <table class="table table-responsive table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th style="min-width:max-content;" colspan="3" scope="col">UserName</th>
+                <th scope="col">Is Selected </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i<Model.Count();i++)
+            {
+                <input type="text" value="@Model[i].UserId" asp-for="@Model[i].UserId" hidden />
+                <tr>
+                    <td colspan="3">
+                        <label asp-for="@Model[i].IsSelected" class="text-lg-center">@Model[i].UserName</label>
+                    </td>
+                    <td><input class="form-control" type="checkbox" asp-for="@Model[i].IsSelected" /> </td>
+                </tr>
+            }
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="1"><input style="width:100%" type="submit" class="btn btn-success" value="Update"></td>
+                <td>
+                    <button style="width:100%" type="button" colspan="1" onclick="getAllRoles()" class="btn btn-danger">Cancel</button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</form>

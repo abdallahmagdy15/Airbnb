@@ -21,7 +21,7 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light border border-dark topnav ">
-        <a style="color: teal;  border-bottom:none !important ;padding-right: 5%;" asp-action="Index">
+        <a style="color: teal;  border-bottom:none !important ;padding-right: 5%;" asp-controller="home" asp-action="Index">
             <svg viewBox="0 0 1000 1000" role="presentation" aria-hidden="true" focusable="false"
                  style="height: 32px; width: 32px; display:inline-flex; fill: currentcolor;">
                 <path d="m499.3 736.7c-51-64-81-120.1-91-168.1-10-39-6-70 11-93 18-27 45-40 80-40s62 13 80 40c17 23 21 54 11 93-11 49-41 105-91 168.1zm362.2 43c-7 47-39 86-83 105-85 37-169.1-22-241.1-102 119.1-149.1 141.1-265.1 90-340.2-30-43-73-64-128.1-64-111 0-172.1 94-148.1 203.1 14 59 51 126.1 110 201.1-37 41-72 70-103 88-24 13-47 21-69 23-101 15-180.1-83-144.1-184.1 5-13 15-37 32-74l1-2c55-120.1 122.1-256.1 199.1-407.2l2-5 22-42c17-31 24-45 51-62 13-8 29-12 47-12 36 0 64 21 76 38 6 9 13 21 22 36l21 41 3 6c77 151.1 144.1 287.1 199.1 407.2l1 1 20 46 12 29c9.2 23.1 11.2 46.1 8.2 70.1zm46-90.1c-7-22-19-48-34-79v-1c-71-151.1-137.1-287.1-200.1-409.2l-4-6c-45-92-77-147.1-170.1-147.1-92 0-131.1 64-171.1 147.1l-3 6c-63 122.1-129.1 258.1-200.1 409.2v2l-21 46c-8 19-12 29-13 32-51 140.1 54 263.1 181.1 263.1 1 0 5 0 10-1h14c66-8 134.1-50 203.1-125.1 69 75 137.1 117.1 203.1 125.1h14c5 1 9 1 10 1 127.1.1 232.1-123 181.1-263.1z">
@@ -58,6 +58,14 @@
                 <li class="nav-item">
                     <div>
                         <div style="display: inline-flex;">
+                            <a class="nav-link @(ViewBag.currentTab == "Performance" ? "active" : null) inbox" asp-action="Performance">Performance</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <div>
+                        <div style="display: inline-flex;">
                             <a class="nav-link @(ViewBag.currentTab == "Reservations" ? "active" : null) reservation" asp-controller="Hosting" asp-action="Reservations">Reservations</a>
                         </div>
                         <div class="d-inline-flex d-lg-none"
@@ -71,6 +79,20 @@
                                 <path fill-rule="evenodd"
                                       d="M3.49 1H1.51C.67 1 0 1.673 0 2.51v1.98C0 5.33.673 6 1.51 6h1.98C4.33 6 5 5.327 5 4.49V2.51C5 1.67 4.327 1 3.49 1zM4 4.49c0 .286-.223.51-.51.51H1.51A.504.504 0 0 1 1 4.49V2.51c0-.286.223-.51.51-.51h1.98c.286 0 .51.223.51.51v1.98zm2-.99a.5.5 0 0 1 .5-.5h17a.5.5 0 1 1 0 1h-17a.5.5 0 0 1-.5-.5zM3.49 7H1.51C.67 7 0 7.673 0 8.51v1.98C0 11.33.673 12 1.51 12h1.98C4.33 12 5 11.327 5 10.49V8.51C5 7.67 4.327 7 3.49 7zM4 10.49c0 .286-.223.51-.51.51H1.51a.504.504 0 0 1-.51-.51V8.51c0-.286.223-.51.51-.51h1.98c.286 0 .51.223.51.51v1.98zm20-.99a.5.5 0 0 1-.5.5h-17a.5.5 0 0 1 0-1h17a.5.5 0 0 1 .5.5zM3.49 13H1.51C.67 13 0 13.673 0 14.51v1.98C0 17.33.673 18 1.51 18h1.98C4.33 18 5 17.327 5 16.49v-1.98C5 13.67 4.327 13 3.49 13zM4 16.49c0 .286-.223.51-.51.51H1.51a.504.504 0 0 1-.51-.51v-1.98c0-.286.223-.51.51-.51h1.98c.286 0 .51.223.51.51v1.98zm20-.99a.5.5 0 0 1-.5.5h-17a.5.5 0 0 1 0-1h17a.5.5 0 0 1 .5.5zM3.49 19H1.51C.67 19 0 19.673 0 20.51v1.98C0 23.33.673 24 1.51 24h1.98C4.33 24 5 23.327 5 22.49v-1.98C5 19.67 4.327 19 3.49 19zM4 22.49c0 .286-.223.51-.51.51H1.51a.504.504 0 0 1-.51-.51v-1.98c0-.286.223-.51.51-.51h1.98c.286 0 .51.223.51.51v1.98zm20-.99a.5.5 0 0 1-.5.5h-17a.5.5 0 0 1 0-1h17a.5.5 0 0 1 .5.5z">
                                 </path>
+                            </svg>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item ">
+                    <div>
+                        <div style="display: inline-flex;">
+                            <a class="nav-link @(ViewBag.currentTab == "Requests" ? "active" : null) listing" asp-action="Requests">Requests</a>
+                        </div>
+                        <div class="d-inline-flex d-lg-none" style="float: right;">
+                            <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
+                                 style="height: 24px; width: 24px; display: inline-flex; fill: currentcolor;">
+                                <path d="m18 3v-2c0-.28-.22-.5-.5-.5s-.5.22-.5.5v2h-10v-2c0-.28-.22-.5-.5-.5s-.5.22-.5.5v2h-4c-.55 0-1 .45-1 1.01v6.49 11.49c0 .56.44 1.01 1 1.01h20c .55 0 1-.45 1-1.01v-11.49-6.49c0-.56-.44-1.01-1-1.01zm-1 1v1c0 .28.22.5.5.5s.5-.22.5-.5v-1h4v4h-20v-4h4v1c0 .28.22.5.5.5s.5-.22.5-.5v-1h6zm5 5v13h-20v-13z"
+                                      fill-rule="evenodd"></path>
                             </svg>
                         </div>
                     </div>
@@ -136,18 +158,18 @@
                             <a class="nav-link" href="#">Log out</a>
                         </div>
                         <!-- <div class="d-inline-flex d-lg-none" style="float: right;">
-                            <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
-                                style="height: 24px; width: 24px; display: inline-flex; fill: currentcolor;">
-                                <path
-                                    d="m23.06 11.4-1.75-1.76-3.85-3.87-3.85-3.87-1.27-1.27-.36-.36-.09-.09c-.23-.23-.55-.23-.75-.02l-1.68 1.75-3.68 3.87-3.68 3.87-1.67 1.75a1.47 1.47 0 0 0 -.43 1.05v.02c.01.38.15.76.44 1.05l.55.55a1.49 1.49 0 0 0 2.01.08v8.4c0 .81.68 1.45 1.5 1.45h14c .82 0 1.5-.65 1.5-1.45v-8.86l.38.38a1.5 1.5 0 0 0 2.13-.01l.55-.55c.59-.59.59-1.54.01-2.13zm-4.06 11.15c0 .24-.22.45-.5.45h-14c-.28 0-.5-.21-.5-.45v-9.41l7.51-7.93 7.49 7.48v9.85zm3.35-9.74-.55.55c-.2.2-.52.2-.71.01l-9.24-9.22a.5.5 0 0 0 -.72.01l-8.73 9.22a.5.5 0 0 1 -.7-.02l-.55-.55a.5.5 0 0 1 -.01-.71l1.68-1.77 3.69-3.86 3.68-3.87 1.32-1.39c.03.03.07.07.12.12l1.27 1.27 3.85 3.87 3.85 3.87 1.75 1.76a.51.51 0 0 1 -.01.71zm-10.85-.81a.5.5 0 0 1 .5.5v3.5h3.5a.5.5 0 1 1 0 1h-3.5v3.5a.5.5 0 0 1 -1 0v-3.5h-3.5a.5.5 0 0 1 0-1h3.5v-3.5a.5.5 0 0 1 .5-.5z"
-                                    fill-rule="evenodd"></path>
-                            </svg>
-                        </div> -->
+                <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
+                    style="height: 24px; width: 24px; display: inline-flex; fill: currentcolor;">
+                    <path
+                        d="m23.06 11.4-1.75-1.76-3.85-3.87-3.85-3.87-1.27-1.27-.36-.36-.09-.09c-.23-.23-.55-.23-.75-.02l-1.68 1.75-3.68 3.87-3.68 3.87-1.67 1.75a1.47 1.47 0 0 0 -.43 1.05v.02c.01.38.15.76.44 1.05l.55.55a1.49 1.49 0 0 0 2.01.08v8.4c0 .81.68 1.45 1.5 1.45h14c .82 0 1.5-.65 1.5-1.45v-8.86l.38.38a1.5 1.5 0 0 0 2.13-.01l.55-.55c.59-.59.59-1.54.01-2.13zm-4.06 11.15c0 .24-.22.45-.5.45h-14c-.28 0-.5-.21-.5-.45v-9.41l7.51-7.93 7.49 7.48v9.85zm3.35-9.74-.55.55c-.2.2-.52.2-.71.01l-9.24-9.22a.5.5 0 0 0 -.72.01l-8.73 9.22a.5.5 0 0 1 -.7-.02l-.55-.55a.5.5 0 0 1 -.01-.71l1.68-1.77 3.69-3.86 3.68-3.87 1.32-1.39c.03.03.07.07.12.12l1.27 1.27 3.85 3.87 3.85 3.87 1.75 1.76a.51.51 0 0 1 -.01.71zm-10.85-.81a.5.5 0 0 1 .5.5v3.5h3.5a.5.5 0 1 1 0 1h-3.5v3.5a.5.5 0 0 1 -1 0v-3.5h-3.5a.5.5 0 0 1 0-1h3.5v-3.5a.5.5 0 0 1 .5-.5z"
+                        fill-rule="evenodd"></path>
+                </svg>
+            </div> -->
                     </div>
                 </li>
             </ul>
             
-            <a style="margin-left: 2%; padding: 5px;">
+            <a style="margin-left: 2%; padding: 5px;" asp-controller="Account" asp-action="editprofile">
                 <img src="5.jpg" class="rounded-circle d-none d-lg-block"
                      style="width: 30px; height: 30px;">
             </a>

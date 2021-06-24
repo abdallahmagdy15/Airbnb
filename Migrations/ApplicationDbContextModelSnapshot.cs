@@ -197,6 +197,8 @@ namespace Airbnb.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name");
+
                     b.HasIndex("StateId");
 
                     b.ToTable("Cities");
@@ -319,6 +321,9 @@ namespace Airbnb.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Zipcode")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -331,6 +336,8 @@ namespace Airbnb.Migrations
                     b.HasIndex("CityId");
 
                     b.HasIndex("GuestPlaceTypeId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Properties");
                 });
@@ -865,11 +872,17 @@ namespace Airbnb.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Airbnb.Models.AppUser", "User")
+                        .WithMany("Properties")
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Category");
 
                     b.Navigation("City");
 
                     b.Navigation("GuestPlaceType");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Airbnb.Models.PropertySubModels.PropertyAmenity", b =>
@@ -1089,6 +1102,8 @@ namespace Airbnb.Migrations
 
             modelBuilder.Entity("Airbnb.Models.AppUser", b =>
                 {
+                    b.Navigation("Properties");
+
                     b.Navigation("Reviews");
                 });
 

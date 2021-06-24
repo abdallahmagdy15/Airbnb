@@ -2,6 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Listing";
     Layout = "~/Views/Shared/_Hosting.cshtml";
 }
 @model IEnumerable<Property>
@@ -58,7 +59,9 @@
                 {
                     <tr>
                         <td>
-                            <i class="fas fa-home-lg-alt"></i>&nbsp;@item.Title
+                            <a asp-controller="Property" asp-action="Details" asp-route-id="@item.Id" style="color: inherit; text-decoration: none;">
+                                <i class="fas fa-home-lg-alt"></i>&nbsp;@item.Title
+                            </a>
                         </td>
 
                         <td>
@@ -75,7 +78,13 @@
                         <td>@item.City?.Name</td>
                         <td>
                             <a><i class="btn far fa-edit" style="font-size: 25px;"></i></a>
-                            <a><i class="btn far fa-trash-alt" style="font-size: 25px; padding: 10px;"></i></a>
+                            <a onclick="return confirm('Are you sure?')" 
+                               asp-controller="Property" 
+                               asp-action="Delete" 
+                               asp-route-id="@item.Id"
+                               style="color: red;">
+                                <i class="btn far fa-trash-alt" style="font-size: 25px; padding: 10px;"></i>
+                            </a>
                         </td>
 
                     </tr>

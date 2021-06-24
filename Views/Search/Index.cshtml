@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Property>
 @{
     ViewData["Title"] = ViewBag.city;
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
 }
 
 @section Styles {
@@ -19,7 +20,6 @@
 
         #main-wrapper {
             display: flex;
-            padding-top: 80px;
             transition-duration: 0.8s;
         }
 
@@ -256,7 +256,7 @@
         <input type="hidden" name="noOfGuests" value="@((ViewBag.search as SearchQuery).NoOfGuests)" />
         <input type="hidden" id="page" name="page" value="@((ViewBag.search as SearchQuery).Page)" />
         <div id="main-content-left-header" class="mb-4">
-            <h2 class="mb-4">Places to stay near you</h2>
+            <h2 class="mb-4">Places to stay in @ViewBag.city</h2>
             <div id="filters-wrapper">
                 <div>
                     <button class="btn-rounded btn-open-filter" id="type-filter" type="button">
@@ -356,7 +356,7 @@
                                     <div class="carousel-item active">
                                         @if (item.Photos.Count > 0)
                                         {
-                                            <img class="d-block w-100" src="@item.Photos[0].Url" alt="First slide">
+                                            <img class="d-block w-100" src="images/@item.Photos[0].Url" alt="First slide">
 
                                         }
                                         else
@@ -367,7 +367,7 @@
                                     @for (int i = 1; i < item.Photos.Count; i++)
                                     {
                                         <div class="carousel-item">
-                                            <img class="d-block w-100" src="@item.Photos[i].Url" alt="First slide">
+                                            <img class="d-block w-100" src="images/@item.Photos[i].Url" alt="First slide">
                                         </div>
                                     }
                                 </div>
@@ -733,7 +733,7 @@
             const content = `
                 <a href="../Property/Details/${id}" style=" display: block; text-decoration: none; color: gray; margin: 10px auto;">
                     <div style="width: 300px; overflow: hidden; margin: auto;">
-                        <img src="${img || "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"}" alt="imag" style="object-fit: cover; width: 100%; height: 100%; border-radius: 10px;" />
+                        <img src="${(img && ('images/' + img)) || "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"}" alt="imag" style="object-fit: cover; width: 100%; height: 100%; border-radius: 10px;" />
                     </div>
                     
                     <h5 style="text-align: center; padding-top: 20px;">${title}</h5>

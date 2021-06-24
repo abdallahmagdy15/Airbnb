@@ -1,0 +1,31 @@
+﻿@using Airbnb.Models.PropertySubModels
+@model IEnumerable<HouseRule>
+
+    <h2>All House Rules</h2>
+
+    <table class="table table-responsive table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Amenity ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var rule in Model)
+            {
+                <tr>
+                    <th scope="row"> @rule.Id</th>
+                    <td> @rule.Name</td>
+                    <td><a asp-action="deleteHouseRule" onclick="return confirm('Are you sure ?')" asp-controller="Admin" asp-route-id=" @rule.Id" class="btn btn-danger">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>
+                    <button onclick="AddHomeRule()" class="btn btn-success" id="add-new-amenity">Add new one</button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>

@@ -61,5 +61,19 @@ namespace Airbnb.Services
 
             return PropertySearchService.CheckDates(unAvailabledays, rangeDays);
         }
+
+        public bool DeleteById(int id)
+        {
+            try
+            {
+                _db.Properties.Remove(_db.Properties.SingleOrDefault(p => p.Id == id));
+                _db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Airbnb.Data;
 using Airbnb.Models;
 using Airbnb.Services;
-using Airbnb.ViewModels.Guest;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -28,9 +27,25 @@ namespace Airbnb.Controllers
             if (id == null)
                 return BadRequest();
 
-            var model = new PropertyDetailsViewModel { Property = _propertyService.GetById(id.Value), };
+            var model = _propertyService.GetById(id.Value);
 
-            ViewBag.userId = _userManager.GetUserId(User);
+            var userId = _userManager.GetUserId(User);
+
+            ViewBag.userId = userId;
+
+            ViewData["Countries"] = _db.Countries;
+
+            var userReservations = _db.Reservations
+                .Where(r => r.PropertyId == model.Id && r.UserId == userId)
+                .Count();
+
+            var userReviews = _db.Reviews
+                .Where(r => r.PropertyId == model.Id && r.UserId == userId)
+                .Count();
+
+            ViewBag.userCanReview = userReservations > userReviews;
+
+            ViewBag.Owned = model.UserId == userId;
 
             return View(model);
         }
@@ -60,6 +75,19 @@ namespace Airbnb.Controllers
             _db.SaveChanges();
 
             return Json(new { status = "OK", });
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var propertyOwnerId = _propertyService.GetById(id).UserId;
+            var clientId = _userManager.GetUserId(User);
+
+            if (propertyOwnerId != clientId)
+                return Unauthorized();
+
+            if (_propertyService.DeleteById(id))
+                return RedirectToAction("Listing", "Hosting");
+            return BadRequest();
         }
     }
 }

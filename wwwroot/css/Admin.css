@@ -71,22 +71,35 @@ body {
     font-size: 1rem;
     line-height: 21px;
     margin-left: 10px;
+    text-decoration:none;
 }
-
-.dashboard-buttons-container .button-container img {
+.dashboard-buttons-container .button-container a {
+    
+    line-height: 39px;
+    
+}
+    .dashboard-buttons-container .button-container a:hover {
+        background-color: #56598d;
+        cursor: pointer;
+        color:#fff;
+        text-decoration:none;
+    }
+    .dashboard-buttons-container .button-container img {
     max-width: 50px;
     max-height: 50px;
     padding-left: 10px;
 }
 #arrow-down,
 #arrow-down1,
+#arrow-down2,
 #arrow-up {
     max-width: 25px;
     max-height: 10px;
     align-self: center;
 }
 #site-setting .button-container img,
-#admin-setting .button-container img {
+#admin-setting .button-container img,
+#propAction-setting .button-container img {
     min-width: 20px;
     max-height: 20px;
     padding-left: 30px;
@@ -287,3 +300,6 @@ body {
 
 /*end right col*/
 
+table{
+    margin:0 auto ;
+}

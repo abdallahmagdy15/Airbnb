@@ -2,6 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Book";
     Layout = "~/Views/Shared/PaymentLayout.cshtml";
     var total = ((ViewBag.property as Property).Price * ViewBag.days);
     var fees = ((ViewBag.property as Property).Price * ViewBag.days * 0.05m);
@@ -168,39 +169,6 @@
             </div>
 
         </div>
-        @*<div class="row required">
-                <div style="margin-top: 30px; margin-left: 10px;">
-                    <h4>Required for your trip</h4>
-                </div>
-                <div style="margin-top: 5px;">
-                    <h6 style="display: inline-flex; margin-left: 10px;">Message the host</h6>
-                    <button class="btn-add-msg">Add</button>
-                    <div style="margin-bottom: 10px;margin-left: 10px;" class="date">
-                        Let the host know why you're traveling
-                        and when you'll check in.
-                    </div>
-                </div>
-                <div style="margin-top: 25px; margin-bottom: 20px;">
-                    <h6 style="display: inline-flex; margin-left: 10px;">Phone number</h6>
-                    <button class="btn-add-phone">Add</button>
-                    <div style="margin-bottom: 10px;margin-left: 10px;" class="date">
-                        Add and confirm your phone number to
-                        get trip updates.
-                    </div>
-                </div>
-            </div>
-            <div class="line1">&nbsp;</div>
-            <div class="row Cancellation">
-                <div style="border-left: 6px solid rgb(255, 175, 15,1); height: 200px; margin-top: 20px; margin-bottom: 20px;">
-                    <div style="margin-top: 30px; margin-left: 10px;">
-                        <h4>Cancellation policy</h4>
-                    </div>
-                    <div style="margin-top: 5px; margin-left: 10px;  color: rgb(176, 176, 176,1); margin-bottom: 10px;">
-                        Free cancellation until 10:00 AM on Apr 27. After that, cancel before 10:00 AM on Apr 28 and get a
-                        full refund, minus the first night and service fee.
-                    </div>
-                </div>
-            </div>*@
         <div class="row Cancellation">
             <div style="margin-top: 30px; margin-left: 10px; margin-bottom: 10px;">
                 <i class="fas fa-calendar-check fa-lg" style="color: rgb(227, 28, 95,1);"></i>

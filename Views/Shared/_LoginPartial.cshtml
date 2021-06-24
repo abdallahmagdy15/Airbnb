@@ -3,33 +3,53 @@
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
 
-<ul class="navbar-nav">
-    @if (SignInManager.IsSignedIn(User))
+<ul class="navbar-nav" style="flex-direction: row;padding-top: 0;">
+    @if (SignInManager.IsSignedIn(User) && !User.IsInRole("Admin"))
     {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+        <li>
+            <a asp-controller="Hosting" asp-action="Index" id="becomeahost" style="display: block !important; margin-top: 5px;">be a host</a>
         </li>
-        <li class="nav-item">
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-            </form>
+        <li class="nav-item ">
+            <a asp-controller="Account" asp-action="editprofile" class="nav-link btn btn-link text-warning">Account</a>
+        </li>
+        <li class="nav-item ">
+            <a asp-controller="Account" asp-action="Logout" class="nav-link btn btn-link text-warning">Logout</a>
+        </li>
+    }
+    else if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+    {
+        <li>
+            <a asp-controller="Hosting" asp-action="Index" id="becomeahost" style="display: block !important; margin-top: 5px;">be a host</a>
+        </li>
+        <li class="nav-item ">
+            <a asp-controller="Account" asp-action="Profile" class="nav-link btn btn-link text-warning">Account</a>
+        </li>
+        <li class="nav-item ">
+            <a asp-controller="Admin" asp-action="Dashboard" class="nav-link btn btn-link text-warning">Admin</a>
+        </li>
+        <li class="nav-item ">
+            <a asp-controller="Account" asp-action="Logout" class="nav-link btn btn-link text-warning">Logout</a>
         </li>
     }
     else
     {
         <li class="nav-item">
             <a asp-action="Register" asp-controller="Account" class="btn btn-primary"
+               style="background-color: white; color: black; border: none; font-weight: bold;"
                data-ajax="true" data-ajax-update="#modal-render-body"
                data-ajax-success="$('#RegisterModal').modal('show');$('.modal-title').text('Sign Up');">Register</a>
 
         </li>
         <li class="nav-item">
 
-            <a asp-action="Login" asp-controller="Account" class="btn btn-primary"
+            <a asp-action="Login" asp-controller="Account" 
+               asp-route-ReturnUrl="@ViewData["ReturnUrl"]?.ToString()"
+               class="btn btn-primary"
+               style="background-color: white; color: black; border: none; font-weight: bold;"
+               id="login"
                data-ajax="true" data-ajax-update="#modal-render-body"
                data-ajax-success="$('#RegisterModal').modal('show');$('.modal-title').text('Log In');">Login</a>
         </li>
-
     }
 </ul>
 

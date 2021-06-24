@@ -1,0 +1,30 @@
+﻿@using Airbnb.Models.PropertySubModels
+@model GuestDetail
+@{
+    Layout = null;
+}
+<h2>Add new Guest Details</h2>
+
+<form asp-controller="Admin" asp-action="AddGuestDetails" >
+
+    <table class="table table-responsive table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input class="form-control" type="text" asp-for="Name" /> </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="1"><button style="width:100%" type="submit" class="btn btn-success">Add</button></td>
+                <td colspan="1">
+                    <button style="width:100%" type="button" onclick="getAllHomeRules()" class="btn btn-danger">Cancel</button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</form>

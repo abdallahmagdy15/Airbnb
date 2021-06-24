@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authentication;
 using Stripe;
-
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace Airbnb
 {
@@ -44,6 +44,10 @@ namespace Airbnb
                options.Password.RequireUppercase = false;
            }).AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Home/Index";
+            });
 
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -61,7 +65,7 @@ namespace Airbnb
                     options.AppSecret = "0a46289db8d433907f64d6516882ba94";
                 });
 
-
+            
             services.AddScoped<IPropertyService, PropertyService>();
             services.AddScoped<ISearchService, PropertySearchService>();
             services.AddScoped<IAdminServices, AdminServices>();
@@ -83,6 +87,11 @@ namespace Airbnb
                 app.UseHsts();
             }
 
+            app.UseForwardedHeaders(new ForwardedHeadersOptions()
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor |
+                    ForwardedHeaders.XForwardedProto,
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -91,6 +100,7 @@ namespace Airbnb
 
             app.UseAuthentication();
             app.UseAuthorization();
+            
 
             app.UseSession();
 

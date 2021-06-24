@@ -1,0 +1,32 @@
+﻿@using Airbnb.Models.PropertySubModels
+@model Category
+@{
+    Layout = null;
+}
+<h2>Add new Category</h2>
+
+<form asp-controller="Admin" asp-action="AddCategory">
+
+    <table class="table table-responsive table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input class="form-control" type="text" asp-for="Name" /> </td>
+                <td><input class="form-control" type="text" asp-for="Description" /> </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="1"><button style="width:100%" type="submit" class="btn btn-success">Add</button></td>
+                <td>
+                    <button style="width:100%" type="button" colspan="1" onclick="getAllCategories()" class="btn btn-danger">Cancel</button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</form>

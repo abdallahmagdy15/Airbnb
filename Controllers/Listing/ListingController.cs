@@ -3,7 +3,9 @@ using Airbnb.Models;
 using Airbnb.Models.PropertySubModels;
 using Airbnb.ViewModels;
 using Airbnb.ViewModels.Listing;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,19 +16,22 @@ using System.Threading.Tasks;
 
 namespace Airbnb.Controllers.Listing
 {
-
     public class ListingController : Controller
     {
         private ApplicationDbContext _db;
-        private readonly IWebHostEnvironment hostingEnvironment;
+        private readonly IWebHostEnvironment _hostingEnvironment;
+        readonly UserManager<AppUser> _manager;
 
         public ListingController(ApplicationDbContext applicationDbContext,
-                                 IWebHostEnvironment hostingEnvironment)
+                                 IWebHostEnvironment hostingEnvironment,
+                                 UserManager<AppUser> manager)
         {
             _db = applicationDbContext;
-            this.hostingEnvironment = hostingEnvironment;
+            _hostingEnvironment = hostingEnvironment;
+            _manager = manager;
         }
-       
+
+        [Authorize]
         public IActionResult New()
         {
             ListingViewModel listingViewModel = new ListingViewModel()
@@ -44,6 +49,8 @@ namespace Airbnb.Controllers.Listing
 
             return View(listingViewModel);
         }
+
+        [Authorize]
         [HttpPost]
         public IActionResult New(ListingViewModel listingViewModel)
         {
@@ -77,6 +84,7 @@ namespace Airbnb.Controllers.Listing
             NewProperty.Capacity = listingViewModel.NumOfGuests;
             NewProperty.CityId = listingViewModel.CityId;
             NewProperty.Coordinates = new NetTopologySuite.Geometries.Point(listingViewModel.Lon, listingViewModel.Lat) { SRID = 4326 };
+            NewProperty.UserId = _manager.GetUserId(User);
             _db.Add(NewProperty);
             _db.SaveChanges();
             string UniqueFileName = null;
@@ -84,7 +92,7 @@ namespace Airbnb.Controllers.Listing
             {
                 for(var i = 0; i < listingViewModel.Images.Count; i++)
                 {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "Images");
+                    string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "Images");
                     UniqueFileName = Guid.NewGuid().ToString() + "_" + listingViewModel.Images[i].FileName;
                     string FilePath = Path.Combine(uploadsFolder, UniqueFileName);
                     listingViewModel.Images[i].CopyTo(new FileStream(FilePath, FileMode.Create));
@@ -94,7 +102,6 @@ namespace Airbnb.Controllers.Listing
                     _db.Add(photo);
                     _db.SaveChanges();
                 }
-               
             }
             //amenty
             if (listingViewModel.IsChecked != null)
@@ -132,7 +139,7 @@ namespace Airbnb.Controllers.Listing
                     _db.SaveChanges();
                 }
             }
-            return RedirectToAction(nameof(New));
+            return RedirectToAction("Listing", "Hosting");
         }
 
         public IActionResult States(int id)
