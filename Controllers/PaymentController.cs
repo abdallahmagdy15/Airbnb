@@ -34,6 +34,12 @@ namespace Airbnb.Controllers
 
         public IActionResult book(int id, string checkIn, string checkOut, int guests)
         {
+            var UserId = _userManager.GetUserId(User);
+            var property = propertyService.GetById(id);
+
+            if (UserId == property.UserId)
+                return RedirectToAction("Listing", "Hosting");
+
             var checkInSplitted = checkIn.Split('-');
             var checkOutSplitted = checkOut.Split('-');
             
@@ -41,7 +47,7 @@ namespace Airbnb.Controllers
             var checkOutDate = new DateTime(int.Parse(checkOutSplitted[0]), int.Parse(checkOutSplitted[1]), int.Parse(checkOutSplitted[2]));
             
             var diff = (checkOutDate - checkInDate).Days + 1;
-            var property = propertyService.GetById(id);
+
 
             if (!propertyService.IsPropertyAvailable(id, checkInDate, checkOutDate))
             {

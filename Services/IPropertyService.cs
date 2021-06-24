@@ -9,6 +9,8 @@ namespace Airbnb.Services
     public interface IPropertyService
     {
         public Property GetById(int id);
+        public bool DeleteById(int id);
+
         public IEnumerable<Property> FilterBy(SearchQuery search);
         public bool IsPropertyAvailable(int propId, DateTime checkIn, DateTime checkOut);
     }

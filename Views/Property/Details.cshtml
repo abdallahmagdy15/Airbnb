@@ -3,6 +3,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
     ViewData["Title"] = "Details";
 }
 
@@ -153,7 +154,7 @@
             <div class="houseData">
                 <!--basic info-->
                 <div class="data-plugin-in-point">
-                    <h1>@Model.GuestPlaceType?.Name hosted by Ahmed</h1>
+                    <h1>@Model.GuestPlaceType?.Name hosted by @(Model.User?.FirstName + " " + Model.User?.LastName)</h1>
                     <span>@Model.Capacity guests</span>
                     <span>&middot;</span>
                     <span>@Model.NumberOfBedRooms bedroom</span>
@@ -237,86 +238,90 @@
             <!--start check-card-->
         </div>
 
-        <div class="card check">
-            <div class="check-container">
-                <div class="check-title">
+        @if (!ViewBag.Owned)
+        {
+            <div class="card check" style="top: 30%;">
+                <div class="check-container">
+                    <div class="check-title">
 
-                    <span class="dark-span" id="amountspan">
-                        <h1 style="display: inline;" id="total-price">@Model.Price.ToString("C0")</h1>
-                        <span>/night</span>
-                    </span>
-                    <span class="rightt">
-                        <i class="fas fa-star red_icon"></i>
-                        <a href="#"> <span class="dark-span">5.0</span> </a>
-                        <span class="light-span">(23)</span>
-                    </span>
-                </div>
-                <div class="check-body">
-                    <!--grid-->
-                    <table class="card-table" cellspacing="10">
-                        <thead>
+                        <span class="dark-span" id="amountspan">
+                            <h1 style="display: inline;" id="total-price">@Model.Price.ToString("C0")</h1>
+                            <span>/night</span>
+                        </span>
+                        <span class="rightt">
+                            <i class="fas fa-star red_icon"></i>
+                             
+                            <a href="#"> <span class="dark-span">@(Model.Reviews?.Select(r => r.Rating).Average().ToString("F2"))</span> </a>
+                            <span class="light-span">(@Model.Reviews?.Count)</span>
+                        </span>
+                    </div>
+                    <div class="check-body">
+                        <!--grid-->
+                        <table class="card-table" cellspacing="10">
+                            <thead>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="check-in">
+                                            <div class="font-light-dark">CHECK-INN <pre style="display: inline;">            </pre> CHECK-OoUT</div>
+                                            <div>
+                                                <input class="font-light-dark" style="display: inline-block; width: 45%; margin-right: auto;" id="check-in-date" />
+                                                <input class="font-light-dark" style="display: inline-block; width: 45%;" id="check-out-date" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </thead>
                             <tr>
                                 <td colspan="2">
-                                    <div class="check-in ">
-                                        <div class="font-light-dark">CHECK-IN <pre style="display: inline;">            </pre> CHECK-OUT</div>
-                                        <div>
-                                            <input class="font-light-dark" style="display: inline-block; width: 45%; margin-right: auto;" id="check-in" />
-                                            <input class="font-light-dark" style="display: inline-block; width: 45%;" id="check-out" />
+                                    <div class="guest-no">
+                                        <div class="Adult">
+                                            <span class="dark-span">Guests</span>
+                                        </div>
+                                        <div class="spacer"></div>
+                                        <div class="add-sub">
+                                            <div>
+                                                <span class="sub">
+                                                    <button class="sub-btn"
+                                                            id="sub-btn-Adult">
+                                                        <span>-</span>
+                                                    </button>
+                                                </span>
+                                                <span class="value" id="nOfGuests">1</span>
+                                                <span class="add">
+                                                    <button class="add-btn"
+                                                            id="add-btn-Adult">
+                                                        <span>+</span>
+                                                    </button>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
-                        </thead>
-                        <tr>
-                            <td colspan="2">
-                                <div class="guest-no">
-                                    <div class="Adult">
-                                        <span class="dark-span">Guests</span>
-                                    </div>
-                                    <div class="spacer"></div>
-                                    <div class="add-sub">
-                                        <div>
-                                            <span class="sub">
-                                                <button class="sub-btn"
-                                                        id="sub-btn-Adult">
-                                                    <span>-</span>
-                                                </button>
-                                            </span>
-                                            <span class="value" id="nOfGuests">1</span>
-                                            <span class="add">
-                                                <button class="add-btn"
-                                                        id="add-btn-Adult">
-                                                    <span>+</span>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <div class="text-center text-danger" id="check-error" style="display: none; margin: auto; width: 100%;">Not Available!</div>
-                                <button class="btn-glow" id="check-btn" onclick="checkAvailability()">
-                                    <span class="glow">
+                            <tr>
+                                <td colspan="2">
+                                    <div class="text-center text-danger" id="check-error" style="display: none; margin: auto; width: 100%;">Not Available!</div>
+                                    <button class="btn-glow" id="check-btn" onclick="checkAvailability()">
+                                        <span class="glow">
+                                            Check availability
+                                        </span>
                                         Check availability
-                                    </span>
-                                    Check availability
-                                </button>
-                                <a class="btn-glow text-white" style="display: none;" id="reserve-btn" href="" target="_blank">
-                                    <span class="glow">
+                                    </button>
+                                    <a class="btn-glow text-white" style="display: none;" id="reserve-btn" href="" target="_blank">
+                                        <span class="glow">
+                                            Reserve
+                                        </span>
                                         Reserve
-                                    </span>
-                                    Reserve
-                                </a>
-                                <small id="total"></small>
-                            </td>
-                        </tr>
-                    </table>
+                                    </a>
+                                    <small id="total"></small>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
+                <!--end check-card-->
             </div>
-            <!--end check-card-->
-        </div>
+        }
     </div>
 
     @*Reviews*@
@@ -419,7 +424,7 @@
                 @:'@item.UnavailableDay.ToShortDateString()',
             }]
 
-        $('#check-in').daterangepicker({
+        $('#check-in-date').daterangepicker({
             opens: 'left',
             autoUpdateInput: false,
             isInvalidDate: (date) => {
@@ -432,12 +437,12 @@
             console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
         });
 
-        $('#check-in').on('apply.daterangepicker', function (ev, picker) {
+        $('#check-in-date').on('apply.daterangepicker', function (ev, picker) {
             var checkin = picker.startDate.format('YYYY-MM-DD');
             var checkout = picker.endDate.format('YYYY-MM-DD');
 
-            $('#check-in').val(checkin);
-            $('#check-out').val(checkout);
+            $('#check-in-date').val(checkin);
+            $('#check-out-date').val(checkout);
 
             var days = getTimeSpanInDays(picker.startDate._d, picker.endDate._d);
             var amount = +days * +'@Model.Price';
@@ -445,15 +450,15 @@
             $('#reserve-btn').attr('href', `/Payment/book/${@(Model.Id)}?checkin=${checkin}&checkout=${checkout}&guests=${$('#nOfGuests').text()}`);
         });
 
-        $('#check-in').on('cancel.daterangepicker', function (ev, picker) {
-            $('#check-in, #check-out').val('');
+        $('#check-in-date').on('cancel.daterangepicker', function (ev, picker) {
+            $('#check-in-date, #check-out-date').val('');
         });
 
-        $('#check-out').on('focus', () => {
-            $('#check-in').focus();
+        $('#check-out-date').on('focus', () => {
+            $('#check-in-date').focus();
         });
 
-        $('#check-in').focus(() => {
+        $('#check-in-date').focus(() => {
             $('#check-btn').css({ display: 'flex', });
             $('#reserve-btn, #total').css({ display: 'none', });
             $('#check-error').css({ display: 'none', });
@@ -517,8 +522,8 @@
         }
 
         function checkAvailability() {
-            var checkIn = $('#check-in').val();
-            var checkOut = $('#check-out').val();
+            var checkIn = $('#check-in-date').val();
+            var checkOut = $('#check-out-date').val();
 
             $.ajax({
                 type: "GET",

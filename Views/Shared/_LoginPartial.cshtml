@@ -7,34 +7,35 @@
     @if (SignInManager.IsSignedIn(User) && !User.IsInRole("Admin"))
     {
         <li>
-            <a asp-controller="Hosting" asp-action="Index" id="becomeahost" style="display: block !important; margin-top: 0;">be a host</a>
+            <a asp-controller="Hosting" asp-action="Index" id="becomeahost" style="display: block !important; margin-top: 5px;">be a host</a>
         </li>
-        <li class="nav-item">
-            <a asp-controller="Account" asp-action="editprofile" class="nav-link btn btn-link text-light">Account</a>
+        <li class="nav-item ">
+            <a asp-controller="Account" asp-action="editprofile" class="nav-link btn btn-link text-warning">Account</a>
         </li>
-        <li class="nav-item">
-            <a asp-controller="Account" asp-action="Logout" class="nav-link btn btn-link text-light">Logout</a>
+        <li class="nav-item ">
+            <a asp-controller="Account" asp-action="Logout" class="nav-link btn btn-link text-warning">Logout</a>
         </li>
     }
     else if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
     {
         <li>
-            <a asp-controller="Hosting" asp-action="Index" id="becomeahost" style="display: block !important; margin-top: 0;">be a host</a>
+            <a asp-controller="Hosting" asp-action="Index" id="becomeahost" style="display: block !important; margin-top: 5px;">be a host</a>
         </li>
-        <li class="nav-item">
-            <a asp-controller="Account" asp-action="Profile" class="nav-link btn btn-link text-light">Account</a>
+        <li class="nav-item ">
+            <a asp-controller="Account" asp-action="Profile" class="nav-link btn btn-link text-warning">Account</a>
         </li>
-        <li class="nav-item">
-            <a asp-controller="Admin" asp-action="Dashboard" class="nav-link btn btn-link text-light">Admin</a>
+        <li class="nav-item ">
+            <a asp-controller="Admin" asp-action="Dashboard" class="nav-link btn btn-link text-warning">Admin</a>
         </li>
-        <li class="nav-item">
-            <a asp-controller="Account" asp-action="Logout" class="nav-link btn btn-link text-light">Logout</a>
+        <li class="nav-item ">
+            <a asp-controller="Account" asp-action="Logout" class="nav-link btn btn-link text-warning">Logout</a>
         </li>
     }
     else
     {
         <li class="nav-item">
             <a asp-action="Register" asp-controller="Account" class="btn btn-primary"
+               style="background-color: white; color: black; border: none; font-weight: bold;"
                data-ajax="true" data-ajax-update="#modal-render-body"
                data-ajax-success="$('#RegisterModal').modal('show');$('.modal-title').text('Sign Up');">Register</a>
 
@@ -44,6 +45,7 @@
             <a asp-action="Login" asp-controller="Account" 
                asp-route-ReturnUrl="@ViewData["ReturnUrl"]?.ToString()"
                class="btn btn-primary"
+               style="background-color: white; color: black; border: none; font-weight: bold;"
                id="login"
                data-ajax="true" data-ajax-update="#modal-render-body"
                data-ajax-success="$('#RegisterModal').modal('show');$('.modal-title').text('Log In');">Login</a>
