@@ -219,15 +219,6 @@
                     <partial name="GuestsRequirement.cshtml">
                         <partial name="HouseRoles.cshtml">
                             <partial name="PopertyImages.cshtml">
-                                <partial name="HowGuestWillBook.cshtml">
-                                    @*<partial name="Tips.cshtml">*@
-                                    <partial name="successhosting.cshtml">
-                                        @*<partial name="QuestionToStart.cshtml">*@
-                                        <partial name="TwoQuestionToStart.cshtml">
-                                            <partial name="DayNotice.cshtml">
-                                                @*<partial name="howfar.cshtml">*@
-                                                <partial name="HowFarInAdvance.cshtml">
-                                                    @*<partial name="howlong.cshtml">*@
                                                     <partial name="HowLongCanGuestStay">
                                                         @*<partial name="price.cshtml">*@
                                                         <partial name="PriceYourSpace">
@@ -340,10 +331,10 @@
                     //if ($('#3').is(":visible")){
                     //    $('#next').prop('disabled', true)
                     //}
-                    if (PageNumber == 18) {
+                    if (PageNumber == 13) {
                         $('#next').val('finsh')
                     }
-                    if (PageNumber == 19 && (FormValidation18) == true) {
+                    if (PageNumber == 14 && (FormValidation13) == true) {
                         $('#next').prop('type', 'submit')
 
                     }
@@ -351,23 +342,15 @@
                         if ((FormValidation7) == false && $('#7').is(":visible") ||
                             (FormValidation4) == false && $('#4').is(":visible") ||
                             (FormValidation8) == false && $('#8').is(":visible") ||
-                            (FormValidation18) == false && $('#18').is(":visible"))
+                            (FormValidation13) == false && $('#13').is(":visible"))
                             {
                             console.log('cantdothis')
                             $('.ValidationBoxForDescription').css('display', 'table')
                         }
                         else {
-                        if (PageNumber == 12) {
-                            $('.ContainContainFooter').addClass('col col-md-11')
-                            $('.containFooter').addClass('col col-xl-7 ')
-                            $('.containFooter').css('left', '5%')
-                        }
-                        else {
                             $('.ContainContainFooter').removeClass('col col-md-11')
                             $('.containFooter').removeClass('col col-xl-12')
                             $('.containFooter').css('left', '55px')
-                        }
-                       
                             $('.ValidationBoxForDescription').css('display', 'none')
                             $("#" + (PageNumber - 1)).css('display', 'none')
                             if(PageNumber==12 ||PageNumber==13){
@@ -532,15 +515,15 @@
 
                 }
                 ///Pricing
-                var FormValidation18 = false
+                var FormValidation13 = false
                 $('#Price').keyup(function () {
                     if ($('#Price').val() != '') {
                         $('.ValidationBoxForDescription').css('display', 'none')
-                        FormValidation18 = true
+                        FormValidation13 = true
                     }
                     else {
                         $('.ValidationBoxForDescription').css('display', 'table')
-                        FormValidation18 = false
+                        FormValidation13 = false
                     }
                 })
                 ///NumberOfGuestsAndBeds

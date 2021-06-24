@@ -2,9 +2,10 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    Layout = "~/Views/Shared/ListingLayout.cshtml";
 }
 @model ListingViewModel
-<div id="17" style="display:flex">
+<div id="12" style="display:flex">
     <div class="col col-12 col-md-7">
 
         <div class="ContainPropertyType col col-11">
@@ -17,8 +18,8 @@
                     </div>
                     <div class="minNights">
                         <div class="input-group">
-                            <input asp-for="MinNights" type="text"   id="min" placeholder="min nights"
-                                   aria-label="Recipient's username" aria-describedby="basic-addon2"  readonly
+                            <input asp-for="MinNights" type="text" id="min" placeholder="min nights"
+                                   aria-label="Recipient's username" aria-describedby="basic-addon2" readonly
                                    style="background-color: white;">
                             <div class="input-group-append">
                                 <span class="v2"></span>
@@ -79,7 +80,7 @@
 
 
     </div>
-    <div class="col col-md-5 d-none d-md-block ContainRightDiv">
+    <div class="col col-md-5 d-none d-md-block ContainRightDiv" style="display:none !important">
 
     </div>
 </div>
