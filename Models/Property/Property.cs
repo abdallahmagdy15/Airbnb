@@ -27,6 +27,8 @@ namespace Airbnb.Models
         [Range(1, 50)]
         public int Capacity { set; get; } = 0;
 
+        public bool Accepted { get; set; } = false;
+
         [Required]
         [StringLength(500, MinimumLength = 3)]
         public string Title { set; get; }

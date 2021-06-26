@@ -16,7 +16,9 @@ namespace Airbnb.Models
 
         public DateTime Date { get; set; } = DateTime.Now;
 
-        
+        public bool Accepted { get; set; } = false;
+
+
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
         public virtual AppUser User { get; set; }
