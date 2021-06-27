@@ -248,7 +248,8 @@ body {
 /*End dashboard page*/
 
 /*start user mangment*/
-.search_container {
+
+    .search_container {
     margin-top: 25px;
     margin-bottom: 25px;
 }
@@ -259,7 +260,7 @@ body {
     border-radius: 10px;
     padding: 10px;
     border: 0px solid transparent;
-    margin-left: 10%;
+    margin-left: 2%;
     font-size: 18px;
     font-weight: 300;
     color: #565656;
@@ -272,9 +273,8 @@ body {
     }
 
 #search_btn,
-#download-data 
-{
-    min-width: 10%;
+#download-data {
+    min-width: 5%;
     min-height: 50px;
     border-radius: 10px;
     padding: 10px;
@@ -283,6 +283,7 @@ body {
     font-size: 17px;
     font-weight: 200;
     letter-spacing: 1px;
+    margin-right: 10px;
 }
 /*logo page*/
 .Logo-container {

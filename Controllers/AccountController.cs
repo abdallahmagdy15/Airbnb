@@ -215,7 +215,7 @@ namespace Airbnb.Controllers
         }
 
         [HttpGet]
-        public IActionResult editprofile()
+        public IActionResult Editprofile()
         {
           
             var userid = userManager.GetUserId(HttpContext.User);
@@ -231,7 +231,7 @@ namespace Airbnb.Controllers
             
         }
         [HttpPost]
-        public IActionResult editprofile(AppUser user)
+        public IActionResult Editprofile(AppUser user)
         {
             var olduser = DbContext.Users.FirstOrDefault(d => d.Id == user.Id);
             if (olduser.Id != null)
