@@ -22,10 +22,10 @@
             <li class="msg-item">
                 @if ((msg.DateTime - lastDate).TotalDays != 0) // if msg is in earlier day than the prev msg then print curr msg date
                 {
-                <span class="dimmed-sm-label">@msg.DateTime.Ticks</span>
+                <span class="dimmed-sm-label">@msg.DateTime</span>
                 }
                 <div class="img-cr">
-                    <img src="~/images/@msg.User.PhotoUrl" class="rounded-circle" />
+                    <img src="~/images/@(msg.User.PhotoUrl!= null?msg.User.PhotoUrl:"default_dp.jpg")" class="rounded-circle" />
                 </div>
                 <div class="msg-details">
                     <div class="row">

@@ -63,8 +63,7 @@ namespace Airbnb.Hubs
                         photoUrl = currUser.PhotoUrl,
                         firstName = currUser.FirstName,
                         DateTime = DateTime.Now
-                    }
-                    );
+                    });
                 await messagingService.SendMessage(message);
             }
         }

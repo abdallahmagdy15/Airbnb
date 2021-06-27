@@ -6,11 +6,10 @@ for (const x of msgsDates) {
 }
 
 function addMsgToList(msg) {
-    var ticks = (((new Date(msg.dateTime)).getTime() * 10000) + 621355968000000000);
     var newMsg = `<li class="msg-item">
-                    <span class="dimmed-sm-label">${moment(ticks, "YYYYMMDD").fromNow()}</span>
+                    <span class="dimmed-sm-label">${moment(new Date(msg.dateTime), "YYYYMMDD").fromNow()}</span>
                 <div class="img-cr">
-                    <img src="~/images/${msg.photoUrl}" class="rounded-circle" />
+                    <img src="~/images/${msg.photoUrl ? msg.photoUrl :'default_dp.jpg'}" class="rounded-circle" />
                 </div>
                 <div class="msg-details">
                     <div class="row">
