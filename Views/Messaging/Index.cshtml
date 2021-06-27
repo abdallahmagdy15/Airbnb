@@ -4,7 +4,7 @@
 <link href="~/css/Messaging.css" rel="stylesheet" />
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="row">
                 <h2>All Messages</h2>
                 <div>
@@ -27,15 +27,15 @@
                     }
                     <li class="chat-item" onclick="loadChat(@chat.ChatId)">
                         <div class="img-cr">
-                            @*<img src="~/images/@contact.PhotoUrl" class="rounded-circle" />*@
+                           <img src="~/images/@(lastMessage.User.PhotoUrl!= null?lastMessage.User.PhotoUrl:"default_dp.jpg")" class="rounded-circle" />
                         </div>
                         <div class="chat-details">
                             <div class="row">
                                 <span class="dimmed-sm-label">
                                     status
                                 </span>
-                                <span class="dimmed-sm-label">
-                                    @lastMessage?.DateTime.ToShortTimeString()
+                                <span class="dimmed-sm-label datetime">
+                                    @lastMessage?.DateTime
                                 </span>
                             </div>
                             <div class="row">
@@ -71,7 +71,7 @@
                 }
             </ul>
         </div>
-        <div class="col-md-9 chat-cr" id="chat-cr">
+        <div class="col-md-8 chat-cr" id="chat-cr">
         </div>
     </div>
 </div>

@@ -1,11 +1,12 @@
-﻿var msgsDates = $('.msg-item span:first-child')
+﻿var msgsDates = $('.datetime')
 for (const x of msgsDates) {
     console.log($(x).text());
-    console.log(moment($(x).text(), "YYYYMMDD").fromNow());
-    $(x).text(moment($(x).text(), "YYYYMMDD").fromNow())
+    console.log(moment(new Date($(x).text()), "YYYYMMDD").fromNow());
+    $(x).text(moment(new Date($(x).text()), "YYYYMMDD").fromNow())
 }
 
 function addMsgToList(msg) {
+    console.log(msg.dateTime);
     var newMsg = `<li class="msg-item">
                     <span class="dimmed-sm-label">${moment(new Date(msg.dateTime), "YYYYMMDD").fromNow()}</span>
                 <div class="img-cr">
@@ -21,5 +22,4 @@ function addMsgToList(msg) {
                 </div>
             </li>`;
     $('#chatCr').append(newMsg);
-
 }

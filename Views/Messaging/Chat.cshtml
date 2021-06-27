@@ -1,4 +1,5 @@
 ﻿@using Airbnb.ViewModels.Messaging
+@using System.Globalization 
 @model ChatViewModel
 @{
     Layout = "_Layout_Modal";
@@ -22,7 +23,7 @@
             <li class="msg-item">
                 @if ((msg.DateTime - lastDate).TotalDays != 0) // if msg is in earlier day than the prev msg then print curr msg date
                 {
-                <span class="dimmed-sm-label">@msg.DateTime</span>
+                <span class="dimmed-sm-label datetime">@msg.DateTime.ToString(new CultureInfo("en-US"));</span>
                 }
                 <div class="img-cr">
                     <img src="~/images/@(msg.User.PhotoUrl!= null?msg.User.PhotoUrl:"default_dp.jpg")" class="rounded-circle" />
