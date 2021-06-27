@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Airbnb.Models.Reservation>
+
+<h2>Reservations</h2>
+
+<table class="table table-responsive table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Reservation ID</th>
+            <th scope="col">Check-In Date</th>
+            <th scope="col">Check-Out Date</th>
+            <th scope="col">Listing</th>
+            <th scope="col">Location</th>
+            <th scope="col">Is Accepted</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservation in Model)
+        {
+        <tr>
+            <th scope="row">@reservation.Id</th>
+            <td>@reservation.CheckIn</td>
+            <td>@reservation.CheckOut</td>
+            <td>@reservation.Property.Title</td>
+            <td>@reservation.Property.City.Name</td>
+            <td>@reservation.Accepted</td>
+        </tr>
+        }
+
+
+    </tbody>
+</table>

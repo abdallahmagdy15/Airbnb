@@ -22,12 +22,20 @@ namespace Airbnb.Services
 
         //property
         public List<Property> Allproperties();
-        public List<Property> PropertiesInLast24Hours();
+        public List<Property> Newproperties();
         public List<Property> PropertiesInLast30Days();
         public Property GetProperity(int PropId);
         public void DeleteProp(int PropId);
         public List<Property> FindPeopByTitle(string Title);
+        public void AcceptNewProperty(int id);
 
+        // reservation
+        public List<Reservation> Allreservations();
+        public List<Reservation> AcceptedReservations();
+        public List<Reservation> WaitingReservations();
+        public List<Reservation> ReservationsInLast30Days();
+        public void DeleteReservation(int ResId);
+        public Reservation GetReservation(int ResId);
 
         //Amenity
         public List<Amenity> Amenities();
@@ -107,12 +115,13 @@ namespace Airbnb.Services
         //operations on properties
         public List<Property> Allproperties()
         {
-            var p = _db.Properties.ToList();
+            var p = _db.Properties.Where(p=>p.Accepted==true).ToList();
             return p;
         }
-        public List<Property> PropertiesInLast24Hours()
+        public List<Property> Newproperties()
         {
-            return _db.Properties.Where(P => P.Date >= DateTime.Now.AddHours(-24)).ToList();
+            var p = _db.Properties.Where(p => p.Accepted == false).ToList();
+            return p;
         }
         public List<Property> PropertiesInLast30Days()
         {
@@ -120,7 +129,13 @@ namespace Airbnb.Services
         }
         public Property GetProperity(int PropId)
         {
-            return Allproperties().SingleOrDefault(p=>p.Id == PropId);
+            return _db.Properties.ToList().SingleOrDefault(p=>p.Id == PropId);
+        }
+        public void AcceptNewProperty(int id)
+        {
+           var property =  GetProperity(id);
+           property.Accepted = true;
+           _db.SaveChanges();
         }
         public void DeleteProp (int PropId)
         {
@@ -130,9 +145,40 @@ namespace Airbnb.Services
         }
         public List<Property> FindPeopByTitle(string Title)
         {
-            return Allproperties().Where(p=>p.Title.Contains(Title)).ToList();
+            return _db.Properties.Where(p=>p.Title.Contains(Title)).ToList();
         }
 
+        //operations on reservation
+        public List<Reservation> Allreservations()
+        {
+            var r = _db.Reservations.ToList();
+            return r;
+        }
+        public List<Reservation> AcceptedReservations()
+        {
+            var r = _db.Reservations.Where(p => p.Accepted == true).ToList();
+            return r;
+        }
+        public List<Reservation> WaitingReservations()
+        {
+            var r = _db.Reservations.Where(p => p.Accepted == false).ToList();
+            return r;
+        }
+        public List<Reservation> ReservationsInLast30Days()
+        {
+            return _db.Reservations.Where(P => P.Date >= DateTime.Now.AddDays(-30)).ToList();
+        }
+        public Reservation GetReservation(int ResId)
+        {
+            return _db.Reservations.ToList().SingleOrDefault(r => r.Id == ResId);
+        }
+        public void DeleteReservation(int ResId)
+        {
+            var Reservation = GetReservation(ResId);
+            _db.Reservations.Remove(Reservation);
+            _db.SaveChanges();
+        }
+        
 
         //Amenity
         public List<Amenity> Amenities()

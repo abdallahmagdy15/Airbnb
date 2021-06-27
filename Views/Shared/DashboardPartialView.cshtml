@@ -54,7 +54,7 @@
                 <img src="~/SVG/greenlist.svg">
                 <div class="card-data" style="text-align: center;">
                     <h3>
-                        All Properties
+                        Accepted Properties
                     </h3>
                     <h6>
                         @ViewBag.allProperty
@@ -63,6 +63,23 @@
             </div>
         </div>
     </div>
+
+    <div class="col-xl-4 col-md-12">
+        <div class="white-card">
+            <div class="top-row row">
+                <img src="~/SVG/bbluelist.svg">
+                <div class="card-data" style="text-align: center;">
+                    <h3>
+                        Waiting Properties
+                    </h3>
+                    <h6>
+                        @ViewBag.PropertyLastDay
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="col-xl-4 col-md-12">
         <div class="white-card">
             <div class="top-row row">
@@ -78,21 +95,6 @@
             </div>
         </div>
     </div>
-    <div class="col-xl-4 col-md-12">
-        <div class="white-card">
-            <div class="top-row row">
-                <img src="~/SVG/bbluelist.svg">
-                <div class="card-data" style="text-align: center;">
-                    <h3>
-                        Last 24 hours Properties
-                    </h3>
-                    <h6>
-                        @ViewBag.PropertyLastDay
-                    </h6>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <div class="row">
     <div class="col-xl-4 col-md-12">
@@ -102,11 +104,11 @@
                     <div class="reservation-data">
                         <img src="~/SVG/bluereservation.svg">
                         <h3>
-                            Last 30 days Listings
+                            Accepted Reservations
                         </h3>
                     </div>
                     <div class="blue-reservation">
-                        3
+                        @ViewBag.AcceptedReservations
                         <div class="blue-circle"></div>
                     </div>
                 </div>
@@ -120,11 +122,11 @@
                     <div class="reservation-data">
                         <img src="~/SVG/redreservation.svg">
                         <h3>
-                            Last 30 days Listings
+                            Waiting Reservations
                         </h3>
                     </div>
                     <div class="red-reservation">
-                        3
+                        @ViewBag.WaitingReservations
                         <div class="red-circle"></div>
                     </div>
                 </div>
@@ -138,11 +140,11 @@
                     <div class="reservation-data">
                         <img src="~/SVG/orangereservation.svg">
                         <h3>
-                            Last 30 days Listings
+                            Last 30 days Reservations
                         </h3>
                     </div>
                     <div class="orange-reservation">
-                        3
+                        @ViewBag.ReservationsLastMonth
                         <div class="orange-circle"></div>
                     </div>
                 </div>
