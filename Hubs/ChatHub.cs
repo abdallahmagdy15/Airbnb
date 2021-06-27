@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Security.Claims;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Airbnb.Hubs
@@ -28,14 +29,14 @@ namespace Airbnb.Hubs
 
         public async Task join_chat(string chatId)
         {
-            if (!string.IsNullOrEmpty( chatId))
+            if (!string.IsNullOrEmpty(chatId))
                 await Groups.AddToGroupAsync(Context.ConnectionId, "chat" + chatId);
         }
 
         public async Task leave_chat(string chatId)
         {
             if (chatId != null)
-                await Groups .RemoveFromGroupAsync(Context.ConnectionId, "chat" + chatId);
+                await Groups.RemoveFromGroupAsync(Context.ConnectionId, "chat" + chatId);
         }
         public async Task send_message(string chatId, string text)
         {
@@ -43,13 +44,27 @@ namespace Airbnb.Hubs
             int _chatId;
             var currUser = await userManager.FindByIdAsync(CurrentUserId) as AppUser;
 
-            if (int.TryParse(chatId , out _chatId) && !string.IsNullOrEmpty(text))
+            if (int.TryParse(chatId, out _chatId) && !string.IsNullOrEmpty(text))
             {
-                Message message = new Message() { ChatId = _chatId, Text = text , 
-                    User = currUser,
-                    DateTime = DateTime.Now};
+                Message message = new Message()
+                {
+                    ChatId = _chatId,
+                    Text = text,
+                    User = null,
+                    UserId = currUser.Id,
+                    DateTime = DateTime.Now
+                };
                 //send to chat clients
-                await Clients.Group("chat" + chatId).SendAsync("new_message", message);
+                await Clients.Group("chat" + chatId).SendAsync("new_message",
+                    new
+                    {
+                        chatId = _chatId,
+                        text = text,
+                        photoUrl = currUser.PhotoUrl,
+                        firstName = currUser.FirstName,
+                        DateTime = DateTime.Now
+                    }
+                    );
                 await messagingService.SendMessage(message);
             }
         }
@@ -61,7 +76,7 @@ namespace Airbnb.Hubs
             if (int.TryParse(chatId, out _chatId) && int.TryParse(messageId, out _messageId))
             {
                 //send to chat clients
-                await Clients .Group("chat" + _chatId).SendAsync("removed_message", _messageId);
+                await Clients.Group("chat" + _chatId).SendAsync("removed_message", _messageId);
 
                 await messagingService.RemoveMessage(_messageId);
             }

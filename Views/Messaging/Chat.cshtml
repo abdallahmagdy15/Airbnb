@@ -22,7 +22,7 @@
             <li class="msg-item">
                 @if ((msg.DateTime - lastDate).TotalDays != 0) // if msg is in earlier day than the prev msg then print curr msg date
                 {
-                    <span class="dimmed-sm-label">@msg.DateTime.ToString()</span>
+                <span class="dimmed-sm-label">@msg.DateTime.Ticks</span>
                 }
                 <div class="img-cr">
                     <img src="~/images/@msg.User.PhotoUrl" class="rounded-circle" />
@@ -62,6 +62,7 @@
 
 @section Scripts{
     <script src="~/lib/signalr/signalr.min.js"></script>
+    <script src="~/js/moment.js"></script>
     <script>
         const connection = new signalR.HubConnectionBuilder()
         .withUrl("/chathub")

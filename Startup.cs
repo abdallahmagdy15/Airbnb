@@ -45,7 +45,9 @@ namespace Airbnb
 
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddSignalR();
+            services.AddSignalR(e => {
+                e.MaximumReceiveMessageSize = 102400000;
+            });
 
             services.AddAuthentication()
                 .AddGoogle(options =>
