@@ -49,6 +49,35 @@ namespace Airbnb.Controllers.Listing
 
             return View(listingViewModel);
         }
+        public IActionResult Edit()
+        {
+            ListingViewModel listingViewModel = new ListingViewModel()
+            {
+                amenty = _db.Amenities.ToList(),
+                Categories = _db.Categories.ToList(),
+                GuestPlaceTypes = _db.GuestPlaceTypes.ToList(),
+                Spaces = _db.Spaces.ToList(),
+                propertyPhotos = _db.PropertyPhoto.ToList(),
+                houseRoles = _db.HouseRules.ToList()
+
+            };
+            var prop = _db.Properties.FirstOrDefault(x => x.Id == 5);
+
+            ViewData["Countries"] = _db.Countries;
+            listingViewModel.Title = prop.Title;
+            listingViewModel.Description = prop.Description;
+            listingViewModel.Price = prop.Price;
+            listingViewModel.MinNights = prop.MinStay.ToString();
+            listingViewModel.MaxNights = prop.MaxStay.ToString();
+            listingViewModel.ZipCode = prop.Zipcode;
+            listingViewModel.Apt_Suite = prop.BuildingNo;
+            listingViewModel.Street = prop.Street;
+            listingViewModel.NumberOfBathRooms = prop.NumberOfBathrooms;
+            listingViewModel.NumOfGuests = prop.Capacity;
+            var id = _db.Categories.FirstOrDefault(x => x.Id == prop.CategoryId);
+            listingViewModel.Categoryname = id.Name;
+            return View(listingViewModel);
+        }
 
         [Authorize]
         [HttpPost]
