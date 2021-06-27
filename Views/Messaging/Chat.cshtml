@@ -1,64 +1,66 @@
 ﻿@using Airbnb.ViewModels.Messaging
-@using System.Globalization 
+@using System.Globalization
 @model ChatViewModel
 @{
     Layout = "_Layout_Modal";
     var contact = Model.Chat.Users.FirstOrDefault(x => x.Id != Model.CurrentUser.Id);
     DateTime lastDate = new DateTime(2000, 1, 1);
 }
-<style>
-    .msg-item {
-        display: flex;
-    }
-</style>
 
-<div class="row pinned-top">
-    <h2>@contact.FirstName @contact.LastName</h2>
-    <span>icons</span>
-</div>
-<ul type=none id="chatCr" class="chat-cr pinned-center">
-    @if (Model.Chat.Messages != null)
-        foreach (var msg in Model.Chat.Messages.TakeLast(20))
+<div class="chat-header clearfix">
+    <img src="~/images/@(contact.PhotoUrl!=null?contact.PhotoUrl:"default_dp.jpg")" alt="avatar" />
+    <div class="chat-about">
+        <div class="chat-with">@contact.FirstName @contact.LastName</div>
+    </div>
+    <i class="fa fa-star"></i>
+</div> <!-- end chat-header -->
+
+<div class="chat-history">
+    <ul id="chatCr">
+        @if (Model.Chat.Messages != null)
+            foreach (var msg in Model.Chat.Messages.TakeLast(20))
+            {
+
+                <li class="clearfix">
+                    <div class="message-data align-right">
+                        @if ((msg.DateTime - lastDate).TotalDays != 0) // if msg is in earlier day than the prev msg then print curr msg date
+                        {
+                            <span class="dimmed-sm-label datetime">@msg.DateTime.ToString(new CultureInfo("en-US"));</span>
+                        }
+                        &nbsp; &nbsp;
+                        <span class="message-data-name">@msg.User.FirstName</span> <i class="fa fa-circle me"></i>
+
+                    </div>
+                    <div class="message other-message float-right">
+                        @msg.Text
+                    </div>
+                </li>
+            }
+        else
         {
-            <li class="msg-item">
-                @if ((msg.DateTime - lastDate).TotalDays != 0) // if msg is in earlier day than the prev msg then print curr msg date
-                {
-                <span class="dimmed-sm-label datetime">@msg.DateTime.ToString(new CultureInfo("en-US"));</span>
-                }
-                <div class="img-cr">
-                    <img src="~/images/@(msg.User.PhotoUrl!= null?msg.User.PhotoUrl:"default_dp.jpg")" class="rounded-circle" />
-                </div>
-                <div class="msg-details">
-                    <div class="row">
-                        <label class="name-sm-label">@msg.User.FirstName</label>
-                    </div>
-                    <div class="row">
-                        <p class="normal-text font-weight-bold">@msg.Text</p>
-                    </div>
-                </div>
+            <li class="normal-text font-weight-bold">
+                <h4>
+                    Start a converstaion with @contact.FirstName @contact.LastName
+                </h4>
             </li>
         }
-    else
-    {
-        <li class="normal-text font-weight-bold">
-            <h1>
-                Start a converstaion with @contact.FirstName @contact.LastName
-            </h1>
-        </li>
-    }
-</ul>
-<div>
-    <div class="sendmsg-cr">
-        <label for="ImageInput">
-            <img class="input-icon" src="~/assets/images/imageinput.png" />
-            <input hidden id="ImageInput" name="Image" type="file" accept="image/*" />
-        </label>
-        <input class="form-control" id="text" name="Text" type="text" />
-        <button class="form-control send-btn" id="send-btn">
-            <i class="fas fa-paper-plane"></i>
-        </button>
-    </div>
-</div>
+    </ul>
+
+</div> <!-- end chat-history -->
+
+<div class="chat-message clearfix">
+    <textarea name="message-to-send" id="message-to-send" placeholder="Type your message" rows="3"></textarea>
+
+    <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
+
+    <label for="ImageInput">
+        <i class="fa fa-file-image-o"></i>
+        @*<img class="input-icon" src="~/assets/images/imageinput.png" />*@
+        <input hidden id="ImageInput" name="Image" type="file" accept="image/*" />
+    </label>
+    <button id="send-btn">Send</button>
+
+</div> <!-- end chat-message -->
 
 
 @section Scripts{
@@ -101,8 +103,9 @@
 
     $('#send-btn').click(function () {
         console.log("clicked");
-        connection.invoke("send_message", '@Model.Chat.ChatId', $('#text').val());
+        connection.invoke("send_message", '@Model.Chat.ChatId', $('#message-to-send').val());
     });
     </script>
     <script src="~/js/chat.js"></script>
 }
+

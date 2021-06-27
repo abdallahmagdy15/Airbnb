@@ -7,19 +7,15 @@ for (const x of msgsDates) {
 
 function addMsgToList(msg) {
     console.log(msg.dateTime);
-    var newMsg = `<li class="msg-item">
-                    <span class="dimmed-sm-label">${moment(new Date(msg.dateTime), "YYYYMMDD").fromNow()}</span>
-                <div class="img-cr">
-                    <img src="~/images/${msg.photoUrl ? msg.photoUrl :'default_dp.jpg'}" class="rounded-circle" />
-                </div>
-                <div class="msg-details">
-                    <div class="row">
-                        <label class="name-sm-label">${msg.firstName}</label>
+    var new_msg = `<li class="clearfix">
+                    <div class="message-data align-right">
+                 <span class="dimmed-sm-label datetime">${moment(new Date(msg.dateTime), "YYYYMMDD").fromNow()}</span>
+                        &nbsp; &nbsp;
+                    <span class="message-data-name">${msg.firstName}</span> <i class="fa fa-circle me"></i>
                     </div>
-                    <div class="row">
-                        <p class="normal-text font-weight-bold">${msg.text}</p>
+                    <div class="message other-message float-right">
+                        ${msg.text}
                     </div>
-                </div>
-            </li>`;
-    $('#chatCr').append(newMsg);
+                </li>`;
+    $('#chatCr').append(new_msg);
 }
