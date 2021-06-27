@@ -304,3 +304,30 @@ body {
 table{
     margin:0 auto ;
 }
+/*user details*/
+.information-data card {
+    padding: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    min-height: 50px;
+    width: auto;
+    background-color: #fff;
+}
+
+.hr {
+    background-color: #b5b5b5;
+    border-radius: 1px;
+    height: 1px;
+    max-height: 0.8px;
+}
+
+.properties-items-container {
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.property-item-container {
+    width: 250px;
+    height: 300px;
+    margin: 25px;
+}

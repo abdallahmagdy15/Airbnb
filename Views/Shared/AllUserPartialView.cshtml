@@ -31,7 +31,7 @@
                 <td>@user.Email</td>
                 <td>@user.PhoneNumber</td>
                 <td>@user.JoinDate.ToString("MM/dd/yyyy")</td>
-                <td><button class="btn btn-info">View</button></td>
+                <td><button onclick="UserDetails('@user.Id')" class="btn btn-info">View</button></td>
                 <td><a asp-action="DeleteUser" onclick="return confirm('Are you sure ?')" asp-controller="Admin" asp-route-id="@user.Id" class="btn btn-danger">Delete</a></td>
             </tr>
         }

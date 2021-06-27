@@ -117,7 +117,7 @@
                     </div>
 
                     <div class="button-container">
-                        <img src="~/SVG/user.svg">
+                        <img src="~/SVG/home.svg">
                         <a asp-action="Index" asp-controller="Home" class="dashboard-button">Home</a>
                     </div>
                     <div class="button-container" style="margin-bottom:100px;">
@@ -227,6 +227,11 @@
             var Url = `AllUsers`
             console.log(Url)
             AjaxCall(null, Url,"GET");
+        }
+        function UserDetails(id) {
+            var Url = `UserDetails/${id}`;
+            console.log(Url);
+            AjaxCall({ id }, Url, "GET");
         }
         function getAllProperties() {
             var Url = `AllProperties`

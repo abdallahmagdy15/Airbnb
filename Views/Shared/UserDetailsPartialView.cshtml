@@ -1,0 +1,61 @@
+﻿@model Airbnb.Models.AppUser
+
+
+<div class="row">
+    <div class="col-3 text-center">
+        @if (Model.PhotoUrl != null)
+        {
+            <img style="max-height: 200px;max-width: 100%;" src="~/images/@Model.PhotoUrl">
+        }else 
+        {
+        <img style="max-height: 200px;max-width: 100%;" src="~/SVG/user.svg">
+        }
+        <br>
+        <p class=" font-weight-bold">@Model.FirstName @Model.LastName</p>
+        <button onclick="getAllUser()" class="btn btn-danger">Back</button>
+    </div>
+    <div class="col-9 information-data">
+        <card class="row justify-content-center">
+            <div class="col-3 font-weight-bold">Full Name</div>
+            <div class="col-9 text-secondary">@Model.FirstName @Model.LastName</div>
+        </card>
+        <div class="hr"></div>
+        <card class="row justify-content-center">
+            <div class="col-3 font-weight-bold">Phone Number</div>
+            <div class="col-9 text-secondary">@Model.PhoneNumber</div>
+        </card>
+        <div class="hr"></div>
+        <card class="row justify-content-center">
+            <div class="col-3 font-weight-bold">Email</div>
+            <div class="col-9 text-secondary">@Model.Email</div>
+        </card>
+        <div class="hr"></div>
+        <card class="row justify-content-center">
+            <div class="col-3 font-weight-bold">Gender</div>
+            <div class="col-9 text-secondary">@Model.Gender</div>
+        </card>
+        <div class="hr"></div>
+        <card class="row justify-content-center">
+            <div class="col-3 font-weight-bold">City</div>
+            <div class="col-9 text-secondary">@Model.City?.Name</div>
+        </card>
+    </div>
+</div>
+<br>
+<hr>
+<div class="row justify-content-center properties-items-container">
+    @if (Model.Properties.Count == 0) { 
+        <div class="font-weight-bolder text-center">No Properties</div>   
+    }
+
+    @foreach (var property in Model.Properties)
+    {
+        <div class="card rounded property-item-container text-center">
+            <img style="height: 263px;max-width: 100%; padding-bottom:10px" src="~/images/@property.Photos[0].Url">
+            <a asp-action="Details" asp-controller="Property" asp-route-id="@property.Id">@property.Title</a>
+        </div>
+    }
+    <!--//properties-container-->
+   
+
+</div>

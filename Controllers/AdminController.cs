@@ -361,6 +361,12 @@ namespace Airbnb.Controllers
         {
             return PartialView("Views/Shared/AllUserPartialView.cshtml", _db.AllUsers());
         }
+        public IActionResult UserDetails(string id)
+        {
+            var user = _db.GetUser(id);
+            return PartialView("Views/Shared/UserDetailsPartialView.cshtml",user);
+        }
+
         public IActionResult AllProperties()
         {
             return PartialView("Views/Shared/AllPropertiesPartialView.cshtml", _db.Allproperties());

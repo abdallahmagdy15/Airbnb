@@ -98,7 +98,7 @@ namespace Airbnb.Services
         }
         public AppUser GetUser(string userId)
         {
-            return AllUsers().SingleOrDefault(u => u.Id == userId);
+            return _db.Users.SingleOrDefault(u => u.Id == userId);
         }
         public void DeleteUser(string userId)
         {
