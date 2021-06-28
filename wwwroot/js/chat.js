@@ -1,4 +1,5 @@
-﻿var msgsDates = $('.datetime')
+﻿document.getElementById('chat-history').scrollTop=$('#chatCr').height();
+var msgsDates = $('.datetime')
 for (const x of msgsDates) {
     console.log($(x).text());
     console.log(moment(new Date($(x).text()), "YYYYMMDD").fromNow());
@@ -18,4 +19,7 @@ function addMsgToList(msg) {
                     </div>
                 </li>`;
     $('#chatCr').append(new_msg);
+    $('#chat-history').animate({ scrollTop: $('#chatCr').height() }, 300);
+    $('#message-to-send').text("");
+
 }

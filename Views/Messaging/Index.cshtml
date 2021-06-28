@@ -6,17 +6,15 @@
 <link href="~/css/Messaging.css" rel="stylesheet" />
 
 
-<div class="container clearfix">
+<div class="messaging-cr clearfix">
     <div class="people-list" id="people-list">
-        <div class="row">
-            <h2>All Messages</h2>
-            <div>
-                <a asp-action="CreateChat" asp-controller="Messaging" class="btn btn-default"
-                   data-ajax="true" data-ajax-update="#modal-render-body"
-                   data-ajax-success="$('#RegisterModal').modal('show');$('.modal-title').text('Suggested People');">
-                    <i class="fas fa-plus"></i> Add Chat
-                </a>
-            </div>
+        <div class="peoplelist-header">
+            <h4>All Messages</h4>
+            <a asp-action="CreateChat" asp-controller="Messaging" class="btn btn-default"
+               data-ajax="true" data-ajax-update="#modal-render-body"
+               onclick="$('#RegisterModal').modal('show');$('.modal-title').text('Suggested People');">
+                <i class="fas fa-plus"></i> Add Chat
+            </a>
         </div>
         @*<div class="search">
                 <input type="text" placeholder="search" />
@@ -32,9 +30,10 @@
                     lastMessage = chat.Messages.ToList().Last();
                 }
                 <li class="clearfix clickableItem" onclick="loadChat(@chat.ChatId)">
-                    <img src="~/images/@(lastMessage.User.PhotoUrl != null ? lastMessage.User.PhotoUrl : "default_dp.jpg")" alt="avatar" />
-                    <div class="about">
-                        <span class="name">@lastMessage?.User.FirstName</span>
+                    <img class="dp" src="~/images/@(lastMessage.User.PhotoUrl != null ? lastMessage.User.PhotoUrl : "default_dp.jpg")" alt="avatar" />
+                    <div class="contact-info">
+                        <div class="about">
+                            <span class="name font-weight-bold">@contact.FirstName @contact.LastName</span>
                             @if (lastMessage != null)
                             {
                                 if (lastMessage.User.Id == Model.Id)
@@ -43,7 +42,7 @@
                                 }
                                 else
                                 {
-                                    <span class="normal-text font-weight-bold">@lastMessage.User.FirstName : @lastMessage.Text</span>
+                                    <span class="normal-text">@lastMessage.User.FirstName : <b>@lastMessage.Text</b></span>
                                 }
                             }
                             else
@@ -55,6 +54,7 @@
                         <div class="status">
                             <i class="fa fa-circle online"></i> @lastMessage?.DateTime.ToString(new CultureInfo("en-US"))
                         </div>
+                    </div>
                 </li>
             }
             </ul>

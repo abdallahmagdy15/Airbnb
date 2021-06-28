@@ -8,14 +8,14 @@
 }
 
 <div class="chat-header clearfix">
-    <img src="~/images/@(contact.PhotoUrl!=null?contact.PhotoUrl:"default_dp.jpg")" alt="avatar" />
+    <img class="dp" style="height:3.5rem" src="~/images/@(contact.PhotoUrl!=null?contact.PhotoUrl:"default_dp.jpg")" alt="avatar" />
     <div class="chat-about">
         <div class="chat-with">@contact.FirstName @contact.LastName</div>
     </div>
     <i class="fa fa-star"></i>
 </div> <!-- end chat-header -->
 
-<div class="chat-history">
+<div class="chat-history" id="chat-history">
     <ul id="chatCr">
         @if (Model.Chat.Messages != null)
             foreach (var msg in Model.Chat.Messages.TakeLast(20))
@@ -49,7 +49,7 @@
 </div> <!-- end chat-history -->
 
 <div class="chat-message clearfix">
-    <textarea name="message-to-send" id="message-to-send" placeholder="Type your message" rows="3"></textarea>
+    <textarea name="message-to-send" id="message-to-send" placeholder="Type your message" rows="2"></textarea>
 
     <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
 
