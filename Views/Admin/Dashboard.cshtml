@@ -101,29 +101,26 @@
 
                     <div class="button-container">
                         <img src="~/SVG/user.svg">
-                        <button onclick="getAllUser()" class="dashboard-button">Mange Users</button>
+                        <button onclick="getAllUser()" class="dashboard-button">Manage Users</button>
                     </div>
                     <div class="button-container">
                         <img src="~/SVG/building.svg">
-                        <button onclick="getAllProperties()" class="dashboard-button">Mange Properties</button>
+                        <button onclick="getAllProperties()" class="dashboard-button">Manage Properties</button>
+                    </div>
+                    <div class="button-container">
+                        <img src="~/SVG/building.svg">
+                        <button onclick="getNewProperties()" class="dashboard-button">New Properties</button>
                     </div>
                     <div class="button-container">
                         <img src="~/SVG/travel.svg">
-                        <button class="dashboard-button">Mange Reservation</button>
+                        <button onclick="getAllReservations()" class="dashboard-button">Reservation</button>
                     </div>
+
                     <div class="button-container">
-                        <img src="~/SVG/debit-card.svg">
-                        <button class="dashboard-button">Mange payment</button>
-                    </div>
-                    <div class="button-container">
-                        <img src="~/SVG/review.svg">
-                        <button class="dashboard-button">Review Mangment</button>
-                    </div>
-                    <div class="button-container">
-                        <img src="~/SVG/user.svg">
+                        <img src="~/SVG/home.svg">
                         <a asp-action="Index" asp-controller="Home" class="dashboard-button">Home</a>
                     </div>
-                    <div class="button-container">
+                    <div class="button-container" style="margin-bottom:100px;">
                         <img src="~/SVG/logout.svg">
                         <a asp-action="Logout" asp-controller="Account" class="dashboard-button">Logout</a>
                     </div>
@@ -133,12 +130,12 @@
         <img src="~/SVG/fee.svg">
         <button class="dashboard-button">Mange payout</button>
         </div>
-    -->
 
                     <div class="button-container" style="margin-bottom:95px;">
                         <img src="~/SVG/password.svg">
                         <button class="dashboard-button">Change password</button>
                     </div>
+    -->
 
 
                 </div>
@@ -231,10 +228,26 @@
             console.log(Url)
             AjaxCall(null, Url,"GET");
         }
+        function UserDetails(id) {
+            var Url = `UserDetails/${id}`;
+            console.log(Url);
+            AjaxCall({ id }, Url, "GET");
+        }
         function getAllProperties() {
             var Url = `AllProperties`
             console.log(Url)
             AjaxCall(null, Url,"GET");
+        }
+
+        function getNewProperties() {
+            var Url = `NewProperties`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
+        }
+        function getAllReservations() {
+            var Url = `AllResevations`
+            console.log(Url)
+            AjaxCall(null, Url, "GET");
         }
         function getAllAdmins() {
             var Url = `AllAdmins`

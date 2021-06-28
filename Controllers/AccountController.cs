@@ -217,7 +217,7 @@ namespace Airbnb.Controllers
         }
 
         [HttpGet]
-        public IActionResult editprofile()
+        public IActionResult Editprofile()
         {
             var userid = userManager.GetUserId(HttpContext.User);
             if (userid==null)

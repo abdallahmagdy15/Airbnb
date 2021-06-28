@@ -348,18 +348,41 @@ namespace Airbnb.Controllers
             ViewBag.allUser = _db.AllUsers().Count;
             ViewBag.UserLastDay = _db.UserInLast24Hours().Count;
             ViewBag.UserLastMonth = _db.UserInLastMonth().Count;
-            ViewBag.allProperty = _db.Allproperties().Count;
-            ViewBag.PropertyLastDay = _db.PropertiesInLast24Hours().Count;
+            ViewBag.allProperty = _db.Allproperties().Count;//accepted property
+            ViewBag.PropertyLastDay = _db.Newproperties().Count;//waiting property
             ViewBag.PropertyLastMonth = _db.PropertiesInLast30Days().Count;
+
+            ViewBag.AcceptedReservations = _db.AcceptedReservations().Count;//accepted property
+            ViewBag.WaitingReservations = _db.WaitingReservations().Count;//waiting property
+            ViewBag.ReservationsLastMonth = _db.ReservationsInLast30Days().Count;
             return View();
         }
         public IActionResult AllUsers()
         {
             return PartialView("Views/Shared/AllUserPartialView.cshtml", _db.AllUsers());
         }
+        public IActionResult UserDetails(string id)
+        {
+            var user = _db.GetUser(id);
+            return PartialView("Views/Shared/UserDetailsPartialView.cshtml",user);
+        }
+
         public IActionResult AllProperties()
         {
             return PartialView("Views/Shared/AllPropertiesPartialView.cshtml", _db.Allproperties());
+        }
+        public IActionResult NewProperties()
+        {
+            return PartialView("Views/Shared/NewPropertiesPartialView.cshtml", _db.Newproperties());
+        }
+        public IActionResult AllResevations()
+        {
+            return PartialView("Views/Shared/AllReservationsPartialView.cshtml", _db.Allreservations());
+        }
+        public IActionResult AcceptNewProperty(int id)
+        {
+            _db.AcceptNewProperty(id);
+            return RedirectToAction("Dashboard", "Admin");
         }
         public IActionResult UsersExcel()
         {

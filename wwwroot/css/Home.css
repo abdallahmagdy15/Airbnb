@@ -654,7 +654,7 @@ ul li span {
 
 #bgmodal {
     margin: 0 !important;
-    height: 280%;
+    height:100%;
     width: 100%;
     background-color: black;
     position: absolute;

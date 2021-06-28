@@ -53,16 +53,17 @@ namespace Airbnb.Controllers
 
         private string GetVisitorCountryFromIp(string ip)
         {
-            string url = $"http://api.ipstack.com/156.217.254.119?access_key=60f517cfa63ceac43d9acc778d503e25&fields=country_name";
+            //string url = $"http://api.ipstack.com/156.217.254.119?access_key=60f517cfa63ceac43d9acc778d503e25&fields=country_name";
 
-            using (var client = new HttpClient())
-            {
-                var response = client.GetAsync(url).Result.Content.ReadAsStringAsync().Result;
+            //using (var client = new HttpClient())
+            //{
+            //    var response = client.GetAsync(url).Result.Content.ReadAsStringAsync().Result;
 
-                dynamic result = JsonConvert.DeserializeObject(response);
+            //    dynamic result = JsonConvert.DeserializeObject(response);
 
-                return result.country_name.ToString();
-            }
+            //    return result.country_name.ToString();
+            //}
+            return "Egypt";
         }
 
         private List<City> GetSuggestedCities(string countryName)

@@ -33,7 +33,7 @@ namespace Airbnb.ViewModels.Listing
         public double Lat { get; set; }
         public double Lon { get; set; }
 
-        public int Price { set; get; }
+        public decimal Price { set; get; }
 
         public List<Amenity> amenty { set; get; }
         public List<Space> Spaces { set; get; }

@@ -445,8 +445,8 @@
                                         </svg>
                                     </span>
                                     @* TODO rating after integrating reviews *@
-                                    <span class="rating">4.95</span>
-                                    <span class="reviews-count">&nbsp;(4 reviews)</span>
+                                <span class="rating">@(item.Reviews?.Select(r => r.Rating).DefaultIfEmpty().Average().ToString("F2"))</span>
+                                <span class="reviews-count">&nbsp;(@item.Reviews?.Count reviews)</span>
                                 </div>
                                 <div class="big-card-price">
                                     <span class="price"><b>@item.Price.ToString("C2")</b></span>
@@ -656,7 +656,7 @@
             let initialLocation;
 
             map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 10,
+                zoom: 13,
                 disableDefaultUI: true,
             });
 

@@ -115,7 +115,7 @@
                 <div class="DescriptionDivTypeOfPlace">
                 </div>
             </div>
-           
+
             <div class="ContainTipsInSmall">
                 <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                      role="presentation" focusable="false"
@@ -219,14 +219,14 @@
                     <partial name="GuestsRequirement.cshtml">
                         <partial name="HouseRoles.cshtml">
                             <partial name="PopertyImages.cshtml">
-                                                    <partial name="HowLongCanGuestStay">
-                                                        @*<partial name="price.cshtml">*@
-                                                        <partial name="PriceYourSpace">
+                                <partial name="HowLongCanGuestStay">
+                                    @*<partial name="price.cshtml">*@
+                                    <partial name="PriceYourSpace">
 
 </form>
 
-        @section Scripts{
-            <script>
+@section Scripts{
+    <script>
                 var PageNumber = 2
                 $(function () {
                     $('.ContainTitle').html('Property and guests');
@@ -315,12 +315,12 @@
                     $('#bgmodal').css('display', 'none')
 
                 })
-               
+
                 function enableNext() {
                     if (($('.SelectCategoryInput').val() != 'Select One') && ($('.SelectTypeOfPlaceInput').val() != 'Select One')) {
                         $('#next').prop('disabled', false)
                     }
-                    
+
 
                 }
                 $('#next').click(function () {
@@ -349,9 +349,9 @@
                             $('.containFooter').css('left', '55px')
                             $('.ValidationBoxForDescription').css('display', 'none')
                             $("#" + (PageNumber - 1)).css('display', 'none')
-                      
+
                             $("#" + PageNumber).css('display', 'flex')
-                
+
                             $('#file').val(function (i, oldval) {
                                 return parseInt(oldval, 10) + (100/18)
                             })
@@ -402,7 +402,7 @@
 
                     if (PageNumber > 2) {
                         $("#" + (PageNumber - 1)).css('display', 'none')
-                        
+
                             $("#" + (PageNumber - 2)).css('display', 'flex')
                         $('#file').val(function (i, oldval) {
                             return parseInt(oldval, 10) - (100 / 18)
@@ -484,7 +484,7 @@
         maxNights++;
         $('#max').val("" + maxNights + "  " + "max Nights");
     });
-       
+
                   function smartprice() {
         var x = document.getElementById("myDIV");
         if (x.style.display === "none") {
@@ -550,9 +550,9 @@
                         $('#number_Beds').val(NumberOfBeds)
                     }
                 })
-            </script>
-        }
-        
+    </script>
+}
+
 
 
 

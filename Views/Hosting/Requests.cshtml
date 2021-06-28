@@ -18,7 +18,7 @@
 
     <div class="row m-2">
         <span role="heading" aria-level="2">
-            <h3>@Model.Count() Requests </h3>
+            <h3>@Model.Where(r => !r.Accepted).Count() Requests </h3>
         </span>
     </div>
     <!-- End of number of list and create -->
@@ -44,6 +44,7 @@
                     <th>Check-Out Date</th>
                     <th>LISTING</th>
                     <th>LOCATION</th>
+                    <th></th>
                 </tr>
             </thead>
 
@@ -62,6 +63,16 @@
                         <td>@item.CheckOut</td>
                         <td>@item.Property.Title</td>
                         <td>@item.Property.City?.Name</td>
+                        <td>
+                            <a>Accept</a>
+                            <a onclick="return confirm('Are you sure?')"
+                               @*asp-controller="Property"
+                               asp-action="Delete"
+                               asp-route-id="@item.Id"*@
+                               style="color: red;">
+                                Refuse
+                            </a>
+                        </td>
 
                     </tr>
                 }
