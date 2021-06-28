@@ -31,6 +31,31 @@
 * {
     font-family: Airbnb Cereal App Medium;
 }
+.box {
+    position: absolute;
+    top: 150px;
+    left: 60px;
+}
+
+#choose_file {
+    width: 300px;
+    background: white;
+    border: none;
+    outline: none;
+    box-shadow: 2px 5px 2px black;
+    border-radius: 50px;
+}
+
+::-webkit-file-upload-button {
+    border: none;
+    background-color:magenta;
+    border-radius: 50px;
+    height: 40px;
+    color: white;
+    width: 100px;
+    box-shadow: 2px 0px 0px grey;
+}
+        
 
 .glow {
     position: absolute;
@@ -366,6 +391,30 @@ li {
 }
 .date{
     margin-bottom:10px;
+}
+.uploadedImgContainer {
+    background-color: rgb(247 247 247);
+    height: 250px;
+    width: 250px;
+    float: right;
+    margin-right: 50px;
+}
+
+.UploadedImg {
+    border-radius: 50%;
+    padding: 10px;
+    margin-left: 25px;
+    margin-top: 20px;
+    height: 200px;
+    width: 200px;
+}
+
+.customFilee {
+    margin-left: 40px;
+}
+
+.customlable {
+    margin-left: 80px;
 }
 
 
@@ -805,5 +854,26 @@ li {
     .row.pay {
         width: 45%;
         box-shadow: 0 2px 0px -1px #dddddd;
+    }
+    .uploadedImgContainer {
+        background-color: rgb(247 247 247);
+        height: 350px;
+        width: 350px;
+        float: right;
+        margin-right: 130px;
+    }
+    .UploadedImg{
+    border-radius: 50%;
+    padding:10px;
+    margin-left:25px;
+    margin-top:20px;
+    height:300px;
+    width:300px;
+    }
+    .customFilee {
+        margin-left: 80px;
+    }
+    .customlable {
+        margin-left: 170px;
     }
 }   

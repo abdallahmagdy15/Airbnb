@@ -2,6 +2,7 @@
 using Airbnb.Models;
 using Airbnb.ViewModels;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,6 +18,7 @@ namespace Airbnb.Controllers
         private readonly SignInManager<AppUser> signInManager;
         IWebHostEnvironment webHostEnvironment;
         private ApplicationDbContext DbContext;
+
 
         public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IWebHostEnvironment hostEnvironment,ApplicationDbContext applicationDb)
         {
@@ -217,7 +219,6 @@ namespace Airbnb.Controllers
         [HttpGet]
         public IActionResult editprofile()
         {
-          
             var userid = userManager.GetUserId(HttpContext.User);
             if (userid==null)
             {
@@ -225,15 +226,42 @@ namespace Airbnb.Controllers
             }
             else
             {
-                var user = DbContext.Users.FirstOrDefault(d=>d.Id==userid);
-                return View(user);
+                
+                editUserData editUserData = new editUserData
+                {
+                    User= DbContext.Users.Find(userid)
+
+            };
+                return View(editUserData);
             }
             
         }
         [HttpPost]
-        public IActionResult editprofile(AppUser user)
+        public IActionResult editprofile(editUserData model)
         {
-            var olduser = DbContext.Users.FirstOrDefault(d => d.Id == user.Id);
+            string fileName = string.Empty;
+            if (model.PhotoUrl != null)
+            {
+                string uploads = Path.Combine(webHostEnvironment.WebRootPath, "Images");
+                fileName = model.PhotoUrl.FileName;
+                string fullpath = Path.Combine(uploads, fileName); 
+                model.PhotoUrl.CopyTo(new FileStream(fullpath,FileMode.Create));
+            }
+
+            var user = new AppUser
+            {
+                UserName = model.User.UserName,
+                Email = model.User.Email,
+                PhoneNumber = model.User.PhoneNumber,
+                FirstName = model.User.FirstName,
+                LastName = model.User.LastName,
+                DateOfBirth = model.User.DateOfBirth,
+                Street = model.User.Street,
+                BuildingNo = model.User.BuildingNo,
+                City=model.User.City,
+                PhotoUrl = fileName,
+            };
+            var olduser = DbContext.Users.Find(model.User.Id); ;
             if (olduser.Id != null)
             {
                 olduser.FirstName = user.FirstName;
@@ -243,6 +271,7 @@ namespace Airbnb.Controllers
                 olduser.DateOfBirth = user.DateOfBirth;
                 olduser.Street = user.Street;
                 olduser.BuildingNo = user.BuildingNo;
+                olduser.PhotoUrl = user.PhotoUrl;
                 DbContext.SaveChanges();
                 return RedirectToAction("Index","Home");
             }
@@ -254,3 +283,4 @@ namespace Airbnb.Controllers
         }
     }
 }
+ 

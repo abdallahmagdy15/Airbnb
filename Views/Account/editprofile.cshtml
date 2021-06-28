@@ -5,8 +5,8 @@
     Layout = "~/Views/Account/_profileLayout.cshtml";
     ViewData["Title"] = "Profile";
 }
-@model Airbnb.Models.AppUser;
-<form form asp-action="editprofile" asp-controller="account" method="post">
+@model Airbnb.ViewModels.editUserData;
+<form form asp-action="editprofile" asp-controller="account" method="post" enctype="multipart/form-data">
     <div class="container-fluid">
         <div class="row mynavbar">
             <nav class="navbar navbar-expand-lg navbar-white bg-white">
@@ -24,53 +24,58 @@
             </div>
         </div>
         <div class="editProfileBody">
-            <input asp-for="Id" type="hidden" />
+            <div  style="background-color: rgb(247 247 247); height: 350px; width: 350px; float: right; margin-right: 130px;">
+                <img src="~/images/@Model.User.PhotoUrl" style="border-radius: 50%;padding:10px;margin-left:25px;margin-top:20px" height="300" width="300">
+                <input type="file" id="customFile" asp-for="PhotoUrl" style="margin-left:80px" hidden/>
+                <label for="customFile" style="margin-left:170px"><i class="fas fa-edit"></i></label>
+            </div>
+            <input asp-for="User.Id" type="hidden" />
             <div class="form-row">
                 <div class="form-group form-group col col-6 col-md-4">
-                    <label asp-for="FirstName">FirstName</label>
-                    <input asp-for="FirstName" class="form-control" />
-                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                    <label asp-for="@Model.User.FirstName">FirstName</label>
+                    <input asp-for="@Model.User.FirstName" class="form-control" />
+                    <span asp-validation-for="@Model.User.FirstName" class="text-danger"></span>
                 </div>
                 <div class="form-group form-group col col-6 col-md-4">
-                    <label asp-for="LastName">LastName</label>
-                    <input asp-for="LastName" class="form-control" />
-                    <span asp-validation-for="LastName" class="text-danger"></span>
+                    <label asp-for="@Model.User.LastName">LastName</label>
+                    <input asp-for="@Model.User.LastName" class="form-control" />
+                    <span asp-validation-for="@Model.User.LastName" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group form-group col col-6 col-md-4">
-                    <label asp-for="DateOfBirth">DateOfBirth</label>
-                    <input asp-for="DateOfBirth" class="form-control" />
-                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                    <label asp-for="@Model.User.DateOfBirth">DateOfBirth</label>
+                    <input asp-for="@Model.User.DateOfBirth" class="form-control" />
+                    <span asp-validation-for="@Model.User.DateOfBirth" class="text-danger"></span>
                 </div>
                 <div class="form-group form-group col col-6 col-md-4">
-                    <label asp-for="PhoneNumber">PhoneNumber</label>
-                    <input asp-for="PhoneNumber" class="form-control" />
-                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group form-group col col-6 col-md-4">
-                    <label asp-for="Email">Email</label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-                <div class="form-group form-group col col-6 col-md-4">
-                    <label asp-for="City">City</label>
-                    <input asp-for="City" class="form-control" />
-                    <span asp-validation-for="City" class="text-danger"></span>
+                    <label asp-for="@Model.User.PhoneNumber">PhoneNumber</label>
+                    <input asp-for="@Model.User.PhoneNumber" class="form-control" />
+                    <span asp-validation-for="@Model.User.PhoneNumber" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group form-group col col-6 col-md-4">
-                    <label asp-for="Street">Street</label>
-                    <input asp-for="Street" class="form-control" />
-                    <span asp-validation-for="Street" class="text-danger"></span>
+                    <label asp-for="@Model.User.Email">Email</label>
+                    <input asp-for="@Model.User.Email" class="form-control" />
+                    <span asp-validation-for="@Model.User.Email" class="text-danger"></span>
                 </div>
                 <div class="form-group form-group col col-6 col-md-4">
-                    <label asp-for="BuildingNo">Building Number</label>
-                    <input asp-for="BuildingNo" class="form-control" />
-                    <span asp-validation-for="BuildingNo" class="text-danger"></span>
+                    <label asp-for="@Model.User.City">City</label>
+                    <input asp-for="@Model.User.City" class="form-control" />
+                    <span asp-validation-for="@Model.User.City" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group form-group col col-6 col-md-4">
+                    <label asp-for="@Model.User.Street">Street</label>
+                    <input asp-for="@Model.User.Street" class="form-control" />
+                    <span asp-validation-for="@Model.User.Street" class="text-danger"></span>
+                </div>
+                <div class="form-group form-group col col-6 col-md-4">
+                    <label asp-for="@Model.User.BuildingNo">Building Number</label>
+                    <input asp-for="@Model.User.BuildingNo" class="form-control" />
+                    <span asp-validation-for="@Model.User.BuildingNo" class="text-danger"></span>
                 </div>
             </div>
             <div>
@@ -169,5 +174,6 @@
                     </ul>
                 </span>
             </div>
+        </div>
         </div>
 </form>
