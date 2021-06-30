@@ -39,11 +39,13 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>OWNER</th>
                     <th>Date</th>
                     <th>Check-In Date</th>
                     <th>Check-Out Date</th>
                     <th>LISTING</th>
                     <th>LOCATION</th>
+                    <th>STATUS</th>
                 </tr>
             </thead>
 
@@ -55,6 +57,8 @@
                         @item.Id
                     </td>
 
+                    <td>@item.Property.User?.FirstName @item.Property.User?.LastName</td>
+
                     <td>
                         @item.Date
                     </td>
@@ -62,7 +66,9 @@
                     <td>@item.CheckOut</td>
                     <td>@item.Property.Title</td>
                     <td>@item.Property.City?.Name</td>
-
+                    <td>
+                        @(item.Accepted ? "Confirmed" : "Bending..")
+                    </td>
                 </tr>
                 }
 

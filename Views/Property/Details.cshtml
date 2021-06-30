@@ -64,8 +64,8 @@
         <div>
             <span>
                 <i class="fas fa-star red_icon"></i>
-                <a href="#"> <span class="dark-span">5.0</span> </a>
-                <span class="light-span">(23)</span>
+                <a href="#"> <span class="dark-span">@(Model.Reviews?.Select(r => r.Rating).DefaultIfEmpty().Average().ToString("F2"))</span> </a>
+                <span class="light-span">(@Model.Reviews?.Count)</span>
             </span>
             <span>&middot;</span>
             <span class="address">

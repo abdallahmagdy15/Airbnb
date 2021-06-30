@@ -28,7 +28,7 @@
         </div>
         <div class="row mycardimage">
             <div class="cardimage col col-4 ">
-                <img src="https://a0.muscache.com/im/pictures/0f4c088e-b8a6-4979-a990-de64bfe797e4.jpg?aki_policy=large">
+                <img src="~/images/@((ViewBag.property as Property).Photos.Count > 0 ? (ViewBag.property as Property).Photos[0].Url : null)">
             </div>
             <div class="col col-8">
                 <div class="cardheader">
@@ -42,7 +42,7 @@
                 </div>
                 <div class="cardheader" style="margin-top: 8px;">
                     <i class="fa fa-star" aria-hidden="true" style="color: #ff385c;"></i>
-                    5.0 (1)
+                    @((ViewBag.property as Property).Reviews?.Select(r => r.Rating).DefaultIfEmpty().Average().ToString("F2")) (@((ViewBag.property as Property).Reviews?.Count))
                 </div><br>
             </div>
             <div class="row myPriceDetailsmd">

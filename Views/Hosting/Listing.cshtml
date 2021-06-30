@@ -45,7 +45,6 @@
             <thead>
                 <tr>
                     <th> LISTING</th>
-                    <th>INSTANT BOOK</th>
                     <th>BED ROOMS</th>
                     <th>BEDS</th>
                     <th>BATHS</th>
@@ -63,28 +62,22 @@
                                 <i class="fas fa-home-lg-alt"></i>&nbsp;@item.Title
                             </a>
                         </td>
-
-                        <td>
-                            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-label="Instant book on"
-                                 role="img" focusable="false"
-                                 style="display: inline-flex; height: 16px; width: 16px; fill: rgb(0, 138, 5);">
-                                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm3.159 4.869L6.67 9.355 4.42 7.105 3.289 8.236 6.67 11.62 12.291 6z">
-                                </path>
-                            </svg>&nbsp; on
-                        </td>
                         <td>@item.NumberOfBedRooms</td>
                         <td>@item.NumberOfBeds</td>
                         <td>@item.NumberOfBathrooms</td>
                         <td>@item.City?.Name</td>
                         <td>
                             <a><i class="btn far fa-edit" style="font-size: 25px;"></i></a>
-                            <a onclick="return confirm('Are you sure?')" 
-                               asp-controller="Property" 
-                               asp-action="Delete" 
-                               asp-route-id="@item.Id"
-                               style="color: red;">
-                                <i class="btn far fa-trash-alt" style="font-size: 25px; padding: 10px;"></i>
-                            </a>
+                            @if (item.Reservations.Where(r => r.CheckOut >= DateTime.Now).Count() == 0)
+                            {
+                                <a onclick="return confirm('Are you sure?')"
+                                   asp-controller="Property"
+                                   asp-action="Delete"
+                                   asp-route-id="@item.Id"
+                                   style="color: red;">
+                                    <i class="btn far fa-trash-alt" style="font-size: 25px; padding: 10px;"></i>
+                                </a>
+                            }
                         </td>
 
                     </tr>
