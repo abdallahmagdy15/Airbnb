@@ -1,0 +1,365 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <style>
+        ._e2l2kr {
+            display: block !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        .navbar {
+            overflow: hidden;
+            top: 0;
+            width: 100%;
+        }
+
+        .navbar-right > a {
+            cursor: pointer !important;
+        }
+
+        @media (min-width: 1128px) {
+            ._lu5le3 {
+                padding-bottom: 200px !important;
+                padding-left: 80px !important;
+                padding-right: 50% !important;
+            }
+        }
+
+        @media (min-width: 744px) {
+            ._lu5le3 {
+                padding-top: 180px !important;
+                padding-bottom: 148px !important;
+                padding-right: 40% !important;
+            }
+        }
+
+        ._lu5le3 {
+            color: #FFFFFF !important;
+            padding: 170px 24px 82px !important;
+            font-size: 32px !important;
+            line-height: 36px !important;
+        }
+
+        @media (min-width: 744px) {
+
+            ._1lv293m {
+                font-size: 32px !important;
+                line-height: 36px !important;
+                margin-right: 25% !important;
+            }
+        }
+
+        ._1lv293m {
+            font-size: 26px !important;
+            line-height: 30px !important;
+            font-weight: 800 !important;
+            max-width: 660px !important;
+        }
+
+        @media (min-width: 744px) {
+            ._1idha3q {
+                font-size: 26px !important;
+                line-height: 30px !important;
+                margin-top: 16px !important;
+                margin-right: 25% !important;
+            }
+        }
+
+        ._1idha3q {
+            margin-top: 12px !important;
+            margin-bottom: 5% !important;
+            max-width: 660px !important;
+            font-size: 18px !important;
+            line-height: 24px !important;
+            font-weight: 400 !important;
+        }
+
+        @media (min-width: 744px) {
+
+            ._12c9y46 {
+                font-size: 26px !important;
+                line-height: 26px !important;
+                margin-top: 24px !important;
+            }
+        }
+
+        ._12c9y46 {
+            font-size: 20px !important;
+            line-height: 22px !important;
+            font-weight: 600 !important;
+            margin-top: 12px !important;
+            margin-bottom: 8px !important;
+        }
+
+        @media (min-width: 744px) {
+
+            ._1uy2bx5 {
+                font-size: 18px !important;
+                line-height: 20px !important;
+            }
+        }
+
+        ._1uy2bx5 {
+            font-size: 16px !important;
+            line-height: 20px !important;
+            margin-right: 15% !important;
+        }
+
+        ._7qp4lh {
+            margin-top: 3px;
+            margin-bottom: 3px;
+            border-bottom: 1px solid rgb(235, 235, 235) !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="background-color: black; height: 50%; color: white;">
+        <nav class="navbar navbar-default col-12" style="background-color: black;">
+            <div class="nav navbar-nav navbar-right">
+                <a>
+                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+                         style="display:block;height:46px;width:46px;fill:white" aria-label="Home" role="img"
+                         focusable="false">
+                        <path d="M16 1c2.008 0 3.463.963 4.751 3.269l.533 1.025c1.954 3.83 6.114 12.54 7.1 14.836l.145.353c.667 1.591.91 2.472.96 3.396l.01.415.001.228c0 4.062-2.877 6.478-6.357 6.478-2.224 0-4.556-1.258-6.709-3.386l-.257-.26-.172-.179h-.011l-.176.185c-2.044 2.1-4.267 3.42-6.414 3.615l-.28.019-.267.006C5.377 31 2.5 28.584 2.5 24.522l.005-.469c.026-.928.23-1.768.83-3.244l.216-.524c.966-2.298 6.083-12.989 7.707-16.034C12.537 1.963 13.992 1 16 1zm0 2c-1.239 0-2.053.539-2.987 2.21l-.523 1.008c-1.926 3.776-6.06 12.43-7.031 14.692l-.345.836c-.427 1.071-.573 1.655-.605 2.24l-.009.33v.206C4.5 27.395 6.411 29 8.857 29c1.773 0 3.87-1.236 5.831-3.354-2.295-2.938-3.855-6.45-3.855-8.91 0-2.913 1.933-5.386 5.178-5.42 3.223.034 5.156 2.507 5.156 5.42 0 2.456-1.555 5.96-3.855 8.907C19.277 27.766 21.37 29 23.142 29c2.447 0 4.358-1.605 4.358-4.478l-.004-.411c-.019-.672-.17-1.296-.714-2.62l-.248-.6c-1.065-2.478-5.993-12.768-7.538-15.664C18.053 3.539 17.24 3 16 3zm.01 10.316c-2.01.021-3.177 1.514-3.177 3.42 0 1.797 1.18 4.58 2.955 7.044l.21.287.174-.234c1.73-2.385 2.898-5.066 2.989-6.875l.006-.221c0-1.906-1.167-3.4-3.156-3.421h-.001z">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+        </nav>
+        <div class="container" style="padding-bottom: 12%;">
+            <div class="_lu5le3">
+                <h1 class="_2ndpxm">Battling<br /> discrimination<br /> on Airbnb</h1>
+                <div class="_suyo0d">
+                    Since 2016, we've removed 1.3M people from Airbnb <br />for declining to treat
+                    others
+                    without judgement or<br /> bias. But discrimination still happens, so we're<br /> introducing some
+                    new ways to
+                    fight it.
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mt-5">
+        <h2 class="_1lv293m"> Project Lighthouse: finding & fighting<br /> discrimination on Airbnb</h2>
+        <div class="_1idha3q">
+            Project Lighthouse is a groundbreaking initiative<br /> we're launching in the United
+            States to
+            uncover,<br /> measure, and overcome discrimination when<br /> booking or hosting on Airbnb.
+        </div>
+    </div>
+    <div class="col row" style="padding-bottom: 5%;">
+        <div class="col-12 col-lg-6" style="padding-left:13%;">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"
+                 style="display: block; height: 48px; width: 48px; fill: rgb(227, 28, 95); stroke: currentcolor;"
+                 aria-hidden="true" role="presentation" focusable="false">
+                <g>
+                    <g stroke="none">
+                        <path d="M26 6c9.941 0 18 8.059 18 18 0 9.136-6.806 16.682-15.624 17.845A16.393 16.393 0 0 0 32.18 35c-1.885-6.919-8.144-12-15.575-12a15.93 15.93 0 0 0-8.545 2.474C8.02 24.988 8 24.497 8 24c0-9.941 8.059-18 18-18z"
+                              fill-opacity=".2"></path>
+                        <path d="M26 2c12.15 0 22 9.85 22 22s-9.85 22-22 22a22.18 22.18 0 0 1-3.228-.235c.748-.313 2.991-1.901 6.728-4.765 1.542-3.103 2.436-5.103 2.68-6-1.257-2.91-2.032-4.576-2.324-5h2.802c.22-1.892.342-3.908.342-6s-.121-4.107-.342-6H19.342a51.507 51.507 0 0 0-.333 5.015c-.001.054-1.322.007-1.999-.01.077-2.15.18-3.819.311-5.005H6.915a20.17 20.17 0 0 0-.715 8.845 16.261 16.261 0 0 0-1.727 1.712A22.06 22.06 0 0 1 4 24C4 11.85 13.85 2 26 2zm8.417 30c-.762 4.99-2.232 9.102-4.174 11.55 6.203-1.34 11.336-5.559 13.93-11.188l.162-.361h-9.918zm10.668-14H34.679c.21 1.909.321 3.922.321 6 0 2.079-.11 4.092-.321 6h10.405c.595-1.894.916-3.91.916-6s-.32-4.106-.915-6zM21.757 4.45l-.112.026C15.36 5.87 10.188 10.225 7.665 16h9.918c.762-4.99 2.232-9.101 4.174-11.55zm8.486 0l.038.05c1.923 2.453 3.379 6.543 4.136 11.5h9.919c-2.539-5.81-7.757-10.18-14.093-11.55zM26 4l-.137.004C23.236 4.168 20.74 9.044 19.62 16H32.38l-.128-.75c-1.174-6.548-3.58-11.08-6.11-11.245L26 4z">
+                        </path>
+                    </g>
+                    <g fill="none" stroke-width="2">
+                        <path d="M16.605 23c7.43 0 13.69 5.081 15.575 12-1.886 6.92-8.145 12-15.575 12S2.915 41.92 1.03 35c1.885-6.919 8.144-12 15.575-12z">
+                        </path>
+                        <ellipse cx="16.439" cy="35.333" rx="2.939" ry="3"></ellipse>
+                    </g>
+                </g>
+            </svg>
+            <h3 class="_12c9y46">Built to uncover discrimination</h3>
+            <div class="_1uy2bx5">
+                This project will address discrimination that's based on perception—and on Airbnb,
+                people perceive race from things like first names and profile photos. Together, with civil rights
+                organizations like Color Of Change and Upturn, we're beginning with research to understand when and
+                where racial discrimination happens on our platform and the effectiveness of policies that fight it. <a target="_blank"
+                                                                                                                        href="/resources/hosting-homes/a/a-new-tool-in-our-fight-against-discrimination-on-airbnb-201"
+                                                                                                                        class="_gzog035">Learn more</a>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6" style="padding-left:13%;">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"
+                 style="display: block; height: 48px; width: 48px; fill: rgb(227, 28, 95); stroke: currentcolor;"
+                 aria-hidden="true" role="presentation" focusable="false">
+                <g>
+                    <g stroke="none">
+                        <path d="m25 5 .5846837.00517475c4.2905015.07574932 8.8374917.98334075 13.644943 2.73687823l.7703733.28794702v27.3705076l-.0084766.1301365c-.0392237.2994207-.2122236.5656263-.4699074.7230756l-.1154775.0605995-11.4234694 5.0774159c.0623636-.7458456-.0433445-1.4943022-.3209346-2.2783707-.2495178-.7044496-.7667703-1.7805075-1.0418654-2.3950548-1.9094732-4.1561789-3.9589781-8.3688465-6.0912876-12.5211487l-.3317555-.6369277c-.4686141-.9115826-.8248653-1.6297768-1.3147672-2.2052384-.743401-.8737317-1.7668654-1.3549948-2.8821508-1.3549948-1.1154695 0-2.1391179.4816323-2.8828868 1.3557332-.6050254.7114646-1.0306408 1.6819288-1.6457867 2.8412431-.4956822.9653459-.9868615 1.9338929-1.47282629 2.9041739l.00159179-19.0721502.769087-.28647781c4.798406-1.75037189 9.3373349-2.65799308 13.6207364-2.73688762z"
+                              fill-opacity=".2"></path>
+                        <path d="m25 1c5.5985197 0 11.5175072 1.27473768 17.7548231 3.81642897.7027419.28641855 1.1783863.94329535 1.2386823 1.69066764l.0064946.16143432v28.73197667c0 1.8999458-1.0758761 3.6285379-2.7638433 4.4721215l-.2054644.0969363-15.0427818 6.6856808c-.4614217.2050763-1.8621146.3276624-2.7955525.3430957l-.192358.0016581.0009065-1.0005013c.6483674-.0069073 1.2843321-.1330366 1.8784107-.3747752.8327784-.3388673 1.5457548-.8939986 2.0790671-1.5885618l13.2600311-5.8942194c1.023196-.4547538 1.7028179-1.4383245 1.7751735-2.5449525l.0064111-.1964822v-28.73197667l-.6916987-.27704554c-5.7517231-2.26330416-11.1871718-3.39148539-16.3083013-3.39148539-5.1211255 0-10.5565697 1.12817946-16.3082877 3.39148006l-.6917123.27707479-.00030284 24.49382405c-.68067737 1.4079172-1.34834149 2.8151846-2.00083161 4.2173468l.00113445-28.71117085c0-.81311953.4922453-1.5453083 1.24525131-1.85215622 6.23725069-2.54166294 12.15623339-3.81639863 17.75474869-3.81639863z">
+                        </path>
+                    </g>
+                    <path d="m15.999908 41.6930234.6867258-.8851772c1.5957359-2.0328613 2.5919668-3.8873951 2.9612752-5.511912.2804314-1.2318637.2318527-2.5167089-.4804505-3.5591688-.6801015-.9952012-1.8642067-1.5894421-3.1673665-1.5894421-1.3033438 0-2.487633.5940563-3.1675505 1.5890729-.7099111 1.039137-.761802 2.3201055-.4810025 3.5580612.3689403 1.6247015 1.3653552 3.4796045 2.9616432 5.5133888l.6867258.8851772.6447715.7192179c1.1495113 1.2599236 2.1735278 2.122579 3.2227536 2.7149739.8151649.4602182 1.6400823.7413704 2.4521191.8358878.8812245.1033783 1.7585848-.0123685 2.559765-.3383795 1.6422905-.6682672 2.8186673-2.1775911 3.0700251-3.9387151.1205267-.8438258.0264975-1.6854363-.2876078-2.572644-.2495178-.7044496-.7667703-1.7805075-1.0418654-2.3950548-1.9094732-4.1561789-3.9589781-8.3688465-6.0912876-12.5211487-.6486357-1.2222643-1.0477537-2.1388241-1.6465227-2.8421661-.743401-.8737317-1.7668654-1.3549948-2.8821508-1.3549948-1.1154695 0-2.1391179.4816323-2.8828868 1.3557332-.6050254.7114646-1.0306408 1.6819288-1.6457867 2.8412431-2.1326775 4.1534098-4.1819984 8.3660775-6.09128759 12.5211487-.28227155.6306079-.79308369 1.6933742-1.04168139 2.3948702-.3141053.8872077-.40813448 1.7288182-.28760784 2.5731978.25117384 1.7609394 1.42736664 3.2700787 3.06965711 3.9385305.81939715.3333951 1.69418134.4397272 2.55958102.3385641.81295679-.0948866 1.63805829-.3760388 2.45248709-.8360724 1.0492258-.5922103 2.0732422-1.4550503 3.2227536-2.7149739z"
+                          fill="none" stroke-width="2"></path>
+                </g>
+            </svg>
+            <h3 class="_12c9y46">Designed with privacy in mind</h3>
+            <div class="_1uy2bx5">
+                We worked with leading privacy<br /> organizations like the Center for<br /> Democracy
+                &amp;
+                Technology to understand<br /> the best methods for privacy protection so<br /> we can make sure your
+                information
+                stays<br /> safe. We analyze trends in bulk, and Airbnb<br /> won't associate perceived race
+                information<br /> with
+                specific accounts. <a target="_blank"
+                                      href="/resources/hosting-homes/a/a-new-tool-in-our-fight-against-discrimination-on-airbnb-201"
+                                      class="_gzog035">Learn more</a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container mt-5">
+        <h2 class="_1lv293m"> What we’ve done so far</h2>
+        <div class="_1idha3q">
+            We know that addressing discrimination<br /> requires ongoing attention and care to
+            make<br /> sure we get things right. Here are some of the<br /> other actions we’ve taken—and what you
+            can<br />expect more of in the future.
+        </div>
+    </div>
+    <div class="col row" style="padding-bottom: 5%;">
+        <div class="col-12 col-lg-6" style="padding-left:13%;">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"
+                 style="display: block; height: 48px; width: 48px; fill: rgb(227, 28, 95); stroke: currentcolor;"
+                 aria-hidden="true" role="presentation" focusable="false">
+                <g>
+                    <g stroke="none">
+                        <path d="m19 8v5h22v-5h2l.1166211.00672773c.4590819.05332164.8233295.41756928.8766512.87665114l.0067277.11662113v34l-.0067277.1166211c-.0533217.4590819-.4175693.8233295-.8766512.8766512l-.1166211.0067277h-18v-11.5857864l-.0086724-.131444c-.0229835-.1733609-.0910753-.3377492-.1974082-.4765856l-.0868126-.0990772-8.7071068-8.7081068v-13.999l.0067277-.11662113c.0533217-.45908186.4175693-.8233295.8766512-.87665114l.1166211-.00672773z"
+                              fill-opacity=".2"></path>
+                        <path d="m30 0c2.2955888 0 4.2405197 1.55062654 4.8230753 3.69024792l.0536769.21588983.0182478.09386225h8.105c2.6887547 0 4.8818181 2.12230671 4.9953805 4.78311038l.0046195.21688962v34c0 2.6887547-2.1223067 4.8818181-4.7831104 4.9953805l-.2168896.0046195h-26c-1.1257794 0-2.1646597-.3720595-3.0003864-.9999241l10.0003864-.0000759.1166211-.0067277c.4590819-.0533217.8233295-.4175693.8766512-.8766512l.0067277-.1166211h18c1.5976809 0 2.9036609-1.24892 2.9949073-2.8237272l.0050927-.1762728v-34c0-1.59768088-1.24892-2.90366088-2.8237272-2.99490731l-.1762728-.00509269h-1v8h-24v-8h-1c-1.5976809 0-2.9036609 1.24891996-2.9949073 2.82372721l-.0050927.17627279v12l-.2928932-.2928932-.0942074-.0831886c-.3596002-.2796062-.8661986-.2796062-1.2257988 0l-.0942074.0831886-.2928932.2918932v-11.999c0-2.6887547 2.1223067-4.88181811 4.7831104-4.99538049l.2168896-.00461951h8.101l.0113611-.058971c.4553668-2.1117111 2.2445367-3.72735922 4.4420063-3.92144099l.228743-.0149685zm0 2c-1.5976809 0-2.9036609 1.24891996-2.9949073 2.82372721l-.0050927.17627279v1h-7v6h20v-6h-6.97578l-.0279095-1.15054716c-.078245-1.59188298-1.3953555-2.84945284-2.9963105-2.84945284zm0 2c.5522847 0 1 .44771525 1 1s-.4477153 1-1 1-1-.44771525-1-1 .4477153-1 1-1z">
+                        </path>
+                    </g>
+                    <g fill="none" stroke-width="2">
+                        <path d="m1 32.4142136v13.5857864c0 .5522847.44771525 1 1 1h22c.5522847 0 1-.4477153 1-1v-13.5857864c0-.2652165-.1053568-.5195704-.2928932-.7071068l-11-11c-.3905243-.3905243-1.0236893-.3905243-1.4142136 0l-10.99999998 11c-.18753638.1875364-.29289322.4418903-.29289322.7071068z">
+                        </path>
+                        <path d="m9 46v-10c0-.5522847.44771525-1 1-1h6c.5522847 0 1 .4477153 1 1v10"></path>
+                    </g>
+                </g>
+            </svg>
+            <h3 class="_12c9y46">Non-discrimination Policy</h3>
+            <div class="_1uy2bx5">
+                Everyone who uses Airbnb must agree to our Community Commitment and Non-discrimination
+                Policy. If you’ve experienced discrimination, we’ll investigate the issue, take action, and if needed,
+                help you find another place to stay.
+            </div>
+        </div>
+        <div class="col-12 col-lg-6" style="padding-left:13%;">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"
+                 style="display: block; height: 48px; width: 48px; fill: rgb(227, 28, 95); stroke: currentcolor;"
+                 aria-hidden="true" role="presentation" focusable="false">
+                <g>
+                    <g stroke="none">
+                        <path d="M26 6c9.941 0 18 8.059 18 18s-8.059 18-18 18c-1.277 0-2.524-.133-3.726-.386A11.944 11.944 0 0 0 25 34c0-6.627-5.373-12-12-12-1.775 0-3.46.386-4.977 1.077C8.503 13.565 16.368 6 26 6z"
+                              fill-opacity=".2"></path>
+                        <path d="M26 2c12.15 0 22 9.85 22 22s-9.85 22-22 22c-2.643 0-5.177-.466-7.524-1.32a11.978 11.978 0 0 0 2.147-1.412A19.97 19.97 0 0 0 26 44a19.941 19.941 0 0 0 14.368-6.088 17.01 17.01 0 0 0-11.15-7.608l-.383-.069-.835-.14v-2.314l.667-.236a8 8 0 1 0-9.864-4.049 11.822 11.822 0 0 0-2.495-1.034 9.9 9.9 0 0 1-.304-2.172L16 20c0-5.523 4.477-10 10-10s10 4.477 10 10c0 3.592-1.911 6.82-4.876 8.59l-.129.074.09.025a19.03 19.03 0 0 1 10.65 7.657A19.91 19.91 0 0 0 46 24c0-11.046-8.954-20-20-20S6 12.954 6 24l.003.25a12.068 12.068 0 0 0-1.917 1.716A22.461 22.461 0 0 1 4 24C4 11.85 13.85 2 26 2z">
+                        </path>
+                    </g>
+                    <g fill="none" stroke-width="2">
+                        <circle cx="13" cy="34" r="12"></circle>
+                        <path d="M7 35L11 39 19 31"></path>
+                    </g>
+                </g>
+            </svg>
+            <h3 class="_12c9y46">Profile photo protections</h3>
+            <div class="_1uy2bx5">
+                We all have bias. But companies like Airbnb<br /> can do more to create tools that
+                help<br /> prevent people from making biased<br /> decisions. That’s why guests’ profile photos<br />
+                aren’t displayed to hosts until after a<br /> booking is confirmed, which encourages<br /> with
+                more objective decision making by hosts.
+            </div>
+        </div>
+        <hr />
+    </div>
+
+    <div class="col row" style="padding-bottom: 5%;">
+        <div class="col-12 col-lg-6" style="padding-left:13%;">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"
+                 style="display: block; height: 48px; width: 48px; fill: rgb(227, 28, 95); stroke: currentcolor;"
+                 aria-hidden="true" role="presentation" focusable="false">
+                <g>
+                    <g stroke="none">
+                        <path d="M26 6c9.941 0 18 8.059 18 18 0 7.916-5.11 14.64-12.212 17.05a9.013 9.013 0 0 0-6.5-6.756l-.287-.07v-.76a4 4 0 1 0-4.187-.114l.186.115v.758a8.98 8.98 0 0 0-4.183 2.237l-.241.237.067.231a8.998 8.998 0 0 0-4.304-2.621l-.338-.084v-.759a4 4 0 1 0-3.836-7.02A18.109 18.109 0 0 1 8 24c0-9.941 8.059-18 18-18z"
+                              fill-opacity=".2"></path>
+                        <path d="M26 2c12.15 0 22 9.85 22 22 0 10.082-6.782 18.58-16.033 21.181l.034-2.097a20.058 20.058 0 0 0 12.172-10.722l.162-.361h-9.918c-.544 3.561-1.449 6.675-2.628 9.055a8.93 8.93 0 0 0-1.037-2.631c.676-1.811 1.237-3.99 1.629-6.424l-5.917.001L27 30h5.658c.22-1.892.342-3.908.342-6s-.121-4.107-.342-6H19.342a51.608 51.608 0 0 0-.336 5.22l-.004 1.2c.011 1.478.083 2.917.207 4.298.507 3.47.803 5.39.887 5.763a8.847 8.847 0 0 0-1.861.882 40.827 40.827 0 0 1-.57-2.85l-.082-.512h-4.119L14 30h3.321a54.427 54.427 0 0 1-.314-5.113l-.005-1.309a54.7 54.7 0 0 1 .32-5.578H6.914A19.992 19.992 0 0 0 6 24c0 1.433.15 2.831.437 4.179l-.988 3.69A21.944 21.944 0 0 1 4 24C4 11.85 13.85 2 26 2zm19.085 16H34.679c.21 1.909.321 3.922.321 6 0 2.079-.11 4.092-.321 6h10.405c.595-1.894.916-3.91.916-6s-.32-4.106-.915-6zM21.757 4.45l-.112.026C15.36 5.87 10.188 10.225 7.665 16h9.918c.762-4.99 2.232-9.101 4.174-11.55zm8.486 0l.038.05c1.923 2.453 3.379 6.543 4.136 11.5h9.919c-2.539-5.81-7.757-10.18-14.093-11.55zM26 4l-.137.004C23.236 4.168 20.74 9.044 19.62 16H32.38l-.128-.75c-1.174-6.548-3.58-11.08-6.11-11.245L26 4z">
+                        </path>
+                    </g>
+                    <g fill="none" stroke-width="2">
+                        <path d="M16.576 36.697A8.986 8.986 0 0 1 21 34.223v-.758a4 4 0 1 1 4.001 0v.758a9.004 9.004 0 0 1 6.995 8.499L32 43v2H19">
+                        </path>
+                        <path d="M10 26a4 4 0 0 1 2.001 7.464v.76a9.004 9.004 0 0 1 6.995 8.498L19 43v2H1v-2a9.003 9.003 0 0 1 7-8.777v-.758A4 4 0 0 1 10 26z">
+                        </path>
+                    </g>
+                </g>
+            </svg>
+            <h3 class="_12c9y46">Objective bookings</h3>
+            <div class="_1uy2bx5">
+                Instant Book allows a listing to be booked immediately, making the process easier for
+                hosts and ensuring the process is objective for guests. Millions of listings can be booked this way,
+                with more being added all the time.
+            </div>
+        </div>
+        <div class="col-12 col-lg-6" style="padding-left:13%;">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"
+                 style="display: block; height: 48px; width: 48px; fill: rgb(227, 28, 95); stroke: currentcolor;"
+                 aria-hidden="true" role="presentation" focusable="false">
+                <g>
+                    <g stroke="none">
+                        <path d="M43 8v31l-.007.117a1 1 0 0 1-.876.876L42 40H21.937A11.971 11.971 0 0 0 26 31c0-6.627-5.373-12-12-12-1.036 0-2.041.131-3 .378V8h32z"
+                              fill-opacity=".2"></path>
+                        <path d="M22 2v2h10V2h2v2h11a2 2 0 0 1 1.995 1.85L47 6v33a5 5 0 0 1-4.783 4.995L42 44H16v-2h26a3 3 0 0 0 2.995-2.824L45 39V6H34v2h-2V6H22v2h-2V6H9v14.5H7V6a2 2 0 0 1 1.85-1.995L9 4h11V2h2zm14 12a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z">
+                        </path>
+                    </g>
+                    <g fill="none" stroke-width="2">
+                        <circle cx="14" cy="31" r="12"></circle>
+                        <path d="M8 32l4 4 8-8"></path>
+                    </g>
+                </g>
+            </svg>
+            <h3 class="_12c9y46">Dedicated anti-discrimination team</h3>
+            <div class="_1uy2bx5">
+                Airbnb has a specialized team dedicated to<br /> making changes to our platform that
+                help<br /> prevent and address discrimination,<br /> including development of initiatives like<br />
+                Project Lighthouse and profile photo<br />protections.
+            </div>
+        </div>
+        <hr />
+    </div>
+
+    <div class="container mt-5">
+        <h2 class="_1lv293m"> We’re not alone in this</h2>
+        <div class="_1idha3q">
+            We’ve consulted and partnered with civil rights<br /> and privacy organizations to make
+            sure we’re<br /> battling discrimination thoughtfully and with the<br />support of others engaged in this
+            work.
+        </div>
+        <img class="_792k0r1" style="vertical-align:bottom ;width: 80%;" aria-hidden="true"
+             alt="Logos of partners Airbnb has worked with to fight discrimination. Partners include: Asian Americans Advancing Justice, Center for Democracy &amp; Technology, Color Of Change, The Leadership Conference, League of United Latin American Citizens, NAACP,  National Action Network, and Upturn."
+             src="https://a0.muscache.com/pictures/Antidiscrimination/AgainstDiscrimination/original/689b438f-e798-42b6-a423-15c85d1a8ae5.png"
+             data-original-uri="https://a0.muscache.com/pictures/Antidiscrimination/AgainstDiscrimination/original/689b438f-e798-42b6-a423-15c85d1a8ae5.png">
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>
