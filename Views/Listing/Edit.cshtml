@@ -220,7 +220,6 @@
                         <partial name="HouseRoles.cshtml">
                             <partial name="PopertyImages.cshtml">
                                 <partial name="HowLongCanGuestStay">
-                                    @*<partial name="price.cshtml">*@
                                     <partial name="PriceYourSpace">
 
 </form>
@@ -321,14 +320,14 @@
             if (PageNumber == 13) {
                 $('#next').val('Edit')
             }
-            if (PageNumber == 14) {
+            if (PageNumber == 14 && (FormValidation13) == true) {
                 $('#next').prop('type', 'submit')
             }
             if (PageNumber < 20) {
                 if ((FormValidation7) == false && $('#7').is(":visible") ||
                     (FormValidation4) == false && $('#4').is(":visible") ||
-                    (FormValidation8) == false && $('#8').is(":visible") 
-                    /*(FormValidation13) == false && $('#13').is(":visible")*/) {
+                    (FormValidation8) == false && $('#8').is(":visible")|| 
+                    (FormValidation13) == false && $('#13').is(":visible")) {
                     console.log('cantdothis')
                     $('.ValidationBoxForDescription').css('display', 'table')
                 }
@@ -490,6 +489,18 @@
 
                 }
                 ///Pricing
+        var FormValidation13 = true
+        $('#Price').keyup(function () {
+            if ($('#Price').val() != '') {
+                $('.ValidationBoxForDescription').css('display', 'none')
+                FormValidation13 = true
+            }
+            else {
+                $('.ValidationBoxForDescription').css('display', 'table')
+                FormValidation13 = false
+                console.log('jjj')
+            }
+        })
               
                 ///NumberOfGuestsAndBeds
             
