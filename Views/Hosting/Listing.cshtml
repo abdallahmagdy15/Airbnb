@@ -49,6 +49,7 @@
                     <th>BEDS</th>
                     <th>BATHS</th>
                     <th>LOCATIONS</th>
+                    <th>STATUS</th>
                     <th id="noSort">OPERATIONS</th>
                 </tr>
             </thead>
@@ -66,6 +67,9 @@
                         <td>@item.NumberOfBeds</td>
                         <td>@item.NumberOfBathrooms</td>
                         <td>@item.City?.Name</td>
+                        <td>
+                            @(item.Accepted ? "Active" : "Bending...")  
+                        </td>
                         <td>
                             <a><i class="btn far fa-edit" style="font-size: 25px;"></i></a>
                             @if (item.Reservations.Where(r => r.CheckOut >= DateTime.Now).Count() == 0)

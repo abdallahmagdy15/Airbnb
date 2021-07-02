@@ -57,7 +57,9 @@ namespace Airbnb.Controllers
 
             ViewBag.PlaceTypes = _db.GuestPlaceTypes;
 
-            return View(properties.Skip(search.Limit * search.Page).Take(search.Limit));
+            return View(properties.Where(p => p.Accepted)
+                .Skip(search.Limit * search.Page)
+                .Take(search.Limit));
         }
     }
 }

@@ -97,7 +97,10 @@ namespace Airbnb.Controllers
                     if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                         return RedirectToAction("ListRoles", "Administration");
                     await signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+
+                    var url = Url.Action("Index", "Home");
+
+                    return Content($"<script language='javascript' type='text/javascript'>location.href='{url}'</script>");
                 }
                 foreach (var Error in result.Errors)
                 {
