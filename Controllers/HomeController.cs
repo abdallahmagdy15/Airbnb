@@ -72,7 +72,6 @@ namespace Airbnb.Controllers
 
             var cities = _db.Cities.Where(c => c.State.CountryId == country.Id)
                 .OrderByDescending(c => c.Properties.Count).Take(8).ToList();
-
             return cities;
         }
     }
