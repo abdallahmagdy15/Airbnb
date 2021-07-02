@@ -77,6 +77,15 @@
 
 @section Scripts{
     <script>
+        //show dates in time ago format
+        document.getElementById('chat-history').scrollTop = $('#chatCr').height();
+        var msgsDates = $('.datetime')
+        for (const x of msgsDates) {
+            console.log($(x).text());
+            console.log(moment(new Date($(x).text()), "YYYYMMDD").fromNow());
+            $(x).text(moment(new Date($(x).text()), "YYYYMMDD").fromNow())
+        }
+        //define hub start func
     async function start() {
     try {
     await connection.start();
@@ -92,18 +101,8 @@
     }
     };
 
-
     // Start the connection.
     start();
-
-    connection.on("new_message", function (msg) {
-    console.log("New Message : ", msg);
-    addMsgToList(msg);
-    });
-
-    connection.on("removed_message", function (_messageId) {
-    console.log(_messageId);
-    });
 
     $('#send-btn').click(function () {
     console.log("clicked");
@@ -111,5 +110,4 @@
         $('#message-to-send').val("");
     });
     </script>
-    <script src="~/js/chat.js"></script>
 }
