@@ -180,36 +180,6 @@ namespace Airbnb.Controllers
             return RedirectToAction("Dashboard", "Admin");
         }
 
-        //Guest Details
-        public IActionResult AllGuestDetails()
-        {
-            return PartialView("Views/Shared/GuestDetailsPartialView.cshtml", _db.GuestDetails());
-        }
-        [HttpGet]
-        public IActionResult AddGuestDetails()
-        {
-            return View("Views/Shared/AddNewGuestDetailsPartialView.cshtml");
-        }
-        [HttpPost]
-        public IActionResult AddGuestDetails(GuestDetail guestDetail)
-        {
-            if (ModelState.IsValid)
-            {
-                var GuestDetails = new GuestDetail
-                {
-                    Name = guestDetail.Name,
-                };
-                _db.AddGuestDetails(GuestDetails);
-                return RedirectToAction("Dashboard", "Admin");
-            }
-            return View("Views/Shared/AddNewGuestDetailsPartialView.cshtml",guestDetail);
-        }
-        public IActionResult deleteGuestDetails(int id)
-        {
-            _db.DeleteGuestDetails(id);
-            return RedirectToAction("Dashboard", "Admin");
-        }
-
         //place type
         public IActionResult AllPlaceTypes()
         {
@@ -241,37 +211,7 @@ namespace Airbnb.Controllers
             return RedirectToAction("Dashboard", "Admin");
         }
 
-        //Guest Requirments
-        public IActionResult AllRequirments()
-        {
-            return PartialView("Views/Shared/GuestRequirmentsPartialView.cshtml", _db.GuestRequirements());
-        }
-        [HttpGet]
-        public IActionResult AddGuestRequirment()
-        {
-            return View("Views/Shared/AddNewGuestRequirmentPartialView.cshtml");
-        }
-        [HttpPost]
-        public IActionResult AddGuestRequirment(GuestRequirement guestRequirement)
-        {
-            if (ModelState.IsValid)
-            {
-                var GuestRequirment = new GuestRequirement
-                {
-                    Name = guestRequirement.Name,
-                };
-                _db.AddGuestRequirment(GuestRequirment);
-                return RedirectToAction("Dashboard", "Admin");
-            }
-            return View("Views/Shared/AddNewGuestRequirmentsPartialView.cshtml", guestRequirement);
-        }
-        public IActionResult deleteGuestRequirment(int id)
-        {
-            _db.DeleteGuestRequirment(id);
-            return RedirectToAction("Dashboard", "Admin");
-        }
-
-        //Guest Requirments
+        // Spaces
         public IActionResult AllSpaces()
         {
             return PartialView("Views/Shared/SpacesPartialView.cshtml", _db.Spaces());

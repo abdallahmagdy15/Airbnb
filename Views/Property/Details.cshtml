@@ -209,11 +209,11 @@
                         <!--grid-->
                         <div class="row">
 
-                            @foreach (var item in Model.GuestDetails)
+                            @foreach (var item in Model.Spaces)
                             {
                                 <div class="Amenity col-12 col-lg-6">
                                     <i class="fas fa-exclamation"></i>
-                                    <span class="dark-light">@item.GuestDetail.Name</span>
+                                    <span class="dark-light">@item.Space.Name</span>
                                 </div>
                             }
                         </div>

@@ -52,20 +52,10 @@ namespace Airbnb.Services
         public void AddHouseRules(HouseRule houseRule);
         public void DeleteHouseRules(int id);
 
-        //guest details
-        public List<GuestDetail> GuestDetails();
-        public void AddGuestDetails(GuestDetail guestDetail);
-        public void DeleteGuestDetails(int id);
-
         //Guest PlaceType
         public List<GuestPlaceType> GuestPlaceTypes();
         public void AddGuestPlaceType(GuestPlaceType guestPlaceType);
         public void DeleteGuestPlaceType(int id);
-
-        //Guest Requirment
-        public List<GuestRequirement> GuestRequirements();
-        public void AddGuestRequirment(GuestRequirement guestRequirement);
-        public void DeleteGuestRequirment(int id);
 
         //spaces
         public List<Space> Spaces();
@@ -231,23 +221,6 @@ namespace Airbnb.Services
             _db.SaveChanges();
         }
 
-        //Guest Details
-        public List<GuestDetail> GuestDetails()
-        {
-            return _db.GuestsDetails.ToList();
-        }
-        public void AddGuestDetails(GuestDetail guestDetail)
-        {
-            _db.GuestsDetails.Add(guestDetail);
-            _db.SaveChanges();
-        }
-        public void DeleteGuestDetails(int id)
-        {
-            var guestDetail = _db.GuestsDetails.SingleOrDefault(a => a.Id == id);
-            _db.GuestsDetails.Remove(guestDetail);
-            _db.SaveChanges();
-        }
-
         //Guest PlaceType
         public List<GuestPlaceType> GuestPlaceTypes()
         {
@@ -262,23 +235,6 @@ namespace Airbnb.Services
         {
             var guestPlaceType = _db.GuestPlaceTypes.SingleOrDefault(a => a.Id == id);
             _db.GuestPlaceTypes.Remove(guestPlaceType);
-            _db.SaveChanges();
-        }
-
-        //Guest Requirment
-        public List<GuestRequirement> GuestRequirements()
-        {
-            return _db.GuestRequirements.ToList();
-        }
-        public void AddGuestRequirment(GuestRequirement guestRequirement)
-        {
-            _db.GuestRequirements.Add(guestRequirement);
-            _db.SaveChanges();
-        }
-        public void DeleteGuestRequirment(int id)
-        {
-            var guestRequirement = _db.GuestRequirements.SingleOrDefault(a => a.Id == id);
-            _db.GuestRequirements.Remove(guestRequirement);
             _db.SaveChanges();
         }
 

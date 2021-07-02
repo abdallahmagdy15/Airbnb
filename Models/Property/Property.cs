@@ -72,8 +72,6 @@ namespace Airbnb.Models
         public virtual GuestPlaceType GuestPlaceType { get; set; }
         public virtual List<PropertyUnavailableDay> UnavailableDays { get; set; }
         public virtual List<PropertyAmenity> Amenities { get; set; }
-        public virtual List<PropertyGuestRequirement> GuestRequirements { get; set; }
-        public virtual List<PropertyGuestDetail> GuestDetails { get; set; }
         public virtual List<PropertyHouseRule> HouseRules { get; set; }
         public virtual List<PropertyPhoto> Photos { get; set; }
         public virtual List<PropertySpace> Spaces { get; set; }
