@@ -283,3 +283,28 @@ ul {
     font-size: 1.3rem;
     padding: .6rem 0;
 }
+
+.modal-dialog {
+    height: 85vh;
+    margin-top: 13vh;
+}
+.modal-content {
+    height: 100%;
+}
+div#modal-render-body {
+    overflow: auto;
+}
+
+li.chat-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 1rem .5rem;
+    cursor:pointer
+}
+li.chat-item:hover{
+    background-color:aliceblue;
+}
+li.chat-item label{
+    line-height:2;
+}
