@@ -1,0 +1,23 @@
+﻿@{ 
+    Layout = null;
+}
+@using Airbnb.Models
+@model List<AppUser>
+
+
+<h4>Start Chat With</h4>
+<hr />
+<ul class="chats-cr" type="none">
+    @foreach (var user in Model)
+    {
+    <li class="chat-item">
+        <label>@user.FirstName @user.LastName</label>
+        <form asp-action="CreateChat" asp-controller="Messaging" method="post">
+            <input name="contactId" hidden value="@user.Id" />
+            <button type="submit" class="btn btn-default">
+                <i class="fas fa-plus"></i>
+            </button>
+        </form>
+    </li>
+    }
+</ul>

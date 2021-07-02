@@ -29,7 +29,8 @@ namespace Airbnb.Data
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<Reservation> Reservations { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
-
+        public virtual DbSet<Chat> Chats { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
            

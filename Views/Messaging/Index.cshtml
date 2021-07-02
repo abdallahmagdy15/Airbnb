@@ -1,0 +1,112 @@
+﻿@using Airbnb.Models;
+@using System.Globalization
+@model AppUser
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+<link href="~/css/Messaging.css" rel="stylesheet" />
+
+
+<div class="messaging-cr clearfix">
+    <div class="people-list" id="people-list">
+        <div class="peoplelist-header">
+            <h4>All Messages</h4>
+            <a asp-action="CreateChat" asp-controller="Messaging" class="btn btn-default"
+               data-ajax="true" data-ajax-update="#modal-render-body"
+               onclick="$('#RegisterModal').modal('show');$('.modal-title').text('Suggested People');">
+                <i class="fas fa-plus"></i> Add Chat
+            </a>
+        </div>
+        @*<div class="search">
+                <input type="text" placeholder="search" />
+                <i class="fa fa-search"></i>
+            </div>*@
+        <ul class="list">
+            @foreach (var chat in Model.Chats)
+            {
+                var contact = chat.Users.FirstOrDefault(x => x.Id != Model.Id);
+                Message lastMessage = null;
+                @if (chat.Messages.Count() > 0)
+                {
+                    lastMessage = chat.Messages.ToList().Last();
+                }
+                <li class="clearfix clickableItem" onclick="loadChat(@chat.ChatId)">
+                    <img class="dp" src="~/images/@(lastMessage?.User.PhotoUrl != null ? lastMessage.User.PhotoUrl : "default_dp.jpg")" alt="avatar" />
+                    <div class="contact-info">
+                        <div class="about">
+                            <span class="name font-weight-bold">@contact.FirstName @contact.LastName</span>
+                            @if (lastMessage != null)
+                            {
+                                if (lastMessage.User.Id == Model.Id)
+                                {
+                                    <span class="normal-text">@lastMessage.Text</span>
+                                }
+                                else
+                                {
+                                    <span class="normal-text">@lastMessage.User.FirstName : <b>@lastMessage.Text</b></span>
+                                }
+                            }
+                            else
+                            {
+                                <span class="normal-text font-weight-bold">Start a converstaion with @contact.FirstName</span>
+                            }
+
+                        </div>
+                        <div class="status">
+                            <i class="fa fa-circle online"></i> @lastMessage?.DateTime.ToString(new CultureInfo("en-US"))
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div class="chat" id="chat-cr">
+    </div> <!-- end chat -->
+</div> <!-- end container -->
+
+
+
+@section Scripts{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.1/dist/umd/popper.min.js"
+            integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
+            crossorigin="anonymous"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
+    <script src="https://kit.fontawesome.com/c975a9ad44.js" crossorigin="anonymous"></script>
+    <script src="~/lib/signalr/signalr.min.js"></script>
+    <script src="~/js/moment.js"></script>
+
+    <script>
+        const currUserId = "@Model.Id";
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/chathub")
+            .configureLogging(signalR.LogLevel.Information)
+            .build();
+
+
+        async function loadChat(chatId) {
+            console.log(connection.stop)
+            console.log(connection.disconnect)
+
+            await connection.stop();
+            $.get("/Messaging/GetChat?chatid=" + chatId, function (data) {
+                $("#chat-cr").html(data);
+
+            });
+        }
+    </script>
+
+    @*load first chat by ajax call*@
+    @if (Model.Chats != null)
+        @if (Model.Chats.Count() > 0)
+        {
+            <script>
+                loadChat("");
+            </script>
+        }
+
+
+
+}
