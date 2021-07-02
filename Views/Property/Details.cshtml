@@ -194,7 +194,7 @@
                             @foreach (var item in Model.HouseRules)
                             {
                                 <div class="Amenity col-12 col-lg-6">
-                                    <i class="fas fa-exclamation"></i>
+                                    <i class="far fa-check-square"></i>
                                     <span class="dark-light">@item.HouseRule.Name</span>
                                 </div>
                             }
@@ -204,7 +204,7 @@
 
                 <div class="data-plugin-in-point">
                     <hr />
-                    <h1 class="mb-4 mt-2">Things to know</h1>
+                    <h1 class="mb-4 mt-2">Available Spaces</h1>
                     <div id="for-guests">
                         <!--grid-->
                         <div class="row">
@@ -212,7 +212,7 @@
                             @foreach (var item in Model.Spaces)
                             {
                                 <div class="Amenity col-12 col-lg-6">
-                                    <i class="fas fa-exclamation"></i>
+                                    <i class="far fa-circle"></i>
                                     <span class="dark-light">@item.Space.Name</span>
                                 </div>
                             }
@@ -247,7 +247,7 @@
                                 <tr>
                                     <td colspan="2">
                                         <div class="check-in">
-                                            <div class="font-light-dark">CHECK-INN <pre style="display: inline;">            </pre> CHECK-OoUT</div>
+                                            <div class="font-light-dark">CHECK-IN <pre style="display: inline;">            </pre> CHECK-OUT</div>
                                             <div>
                                                 <input class="font-light-dark" style="display: inline-block; width: 45%; margin-right: auto;" id="check-in-date" />
                                                 <input class="font-light-dark" style="display: inline-block; width: 45%;" id="check-out-date" />
