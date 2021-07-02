@@ -49,8 +49,9 @@ namespace Airbnb.Controllers.Listing
 
             return View(listingViewModel);
         }
-        public IActionResult Edit()
+        public IActionResult Edit(int Id)
         {
+
             ListingViewModel listingViewModel = new ListingViewModel()
             {
                 amenty = _db.Amenities.ToList(),
@@ -61,7 +62,7 @@ namespace Airbnb.Controllers.Listing
                 houseRoles = _db.HouseRules.ToList()
 
             };
-            var prop = _db.Properties.FirstOrDefault(x => x.Id == 5);
+            var prop = _db.Properties.FirstOrDefault(x => x.Id == Id);
 
             ViewData["Countries"] = _db.Countries;
             listingViewModel.Title = prop.Title;
@@ -74,10 +75,112 @@ namespace Airbnb.Controllers.Listing
             listingViewModel.Street = prop.Street;
             listingViewModel.NumberOfBathRooms = prop.NumberOfBathrooms;
             listingViewModel.NumOfGuests = prop.Capacity;
-            var id = _db.Categories.FirstOrDefault(x => x.Id == prop.CategoryId);
-            listingViewModel.Categoryname = id.Name;
+            listingViewModel.NumOfBedrooms = prop.NumberOfBedRooms.ToString();
+            listingViewModel.NumOfBeds = prop.NumberOfBeds;
+            listingViewModel.CityId = prop.CityId;
+            var Category = _db.Categories.FirstOrDefault(x => x.Id == prop.CategoryId);
+            listingViewModel.Categoryname = Category.Name;
+            var GuestPlaceType = _db.GuestPlaceTypes.FirstOrDefault(x => x.Id == prop.GuestPlaceTypeId);
+            listingViewModel.GuestPlaceTypeName = GuestPlaceType.Name;
             return View(listingViewModel);
         }
+        [HttpPost]
+        public IActionResult Edit(ListingViewModel listingViewModel,int Id)
+        {
+            var minNights = 0;
+            var maxNights = 0;
+
+            if (listingViewModel.MinNights != null)
+                minNights = int.Parse(listingViewModel.MinNights.Split(' ')[0]);
+            else minNights = 0;
+            if (listingViewModel.MaxNights != null)
+                maxNights = int.Parse(listingViewModel.MaxNights.Split(' ')[0]);
+            else maxNights = 0;
+            var name = _db.Categories.FirstOrDefault(x => x.Name == listingViewModel.Categoryname);
+            var id = name.Id;
+            var guestPlaceType = _db.GuestPlaceTypes.FirstOrDefault(x => x.Name == listingViewModel.GuestPlaceTypeName);
+            var PlaceTypeId = guestPlaceType.Id;
+            var NewProperty = _db.Properties.FirstOrDefault(x => x.Id == Id);
+            NewProperty.CategoryId = id;
+            NewProperty.GuestPlaceTypeId = PlaceTypeId;
+            NewProperty.NumberOfBedRooms = int.Parse(listingViewModel.NumOfBedrooms);
+            NewProperty.NumberOfBeds = listingViewModel.NumOfBeds;
+            NewProperty.Zipcode = listingViewModel.ZipCode;
+            NewProperty.BuildingNo = listingViewModel.Apt_Suite;
+            NewProperty.Street = listingViewModel.Street;
+            NewProperty.Title = listingViewModel.Title;
+            NewProperty.Description = listingViewModel.Description;
+            NewProperty.NumberOfBathrooms = listingViewModel.NumberOfBathRooms;
+            NewProperty.MinStay = minNights;
+            NewProperty.MaxStay = maxNights;
+            NewProperty.Price = listingViewModel.Price;
+            NewProperty.Capacity = listingViewModel.NumOfGuests;
+            NewProperty.Coordinates = new NetTopologySuite.Geometries.Point(listingViewModel.Lon, listingViewModel.Lat) { SRID = 4326 };
+            NewProperty.UserId = _manager.GetUserId(User);
+            _db.SaveChanges();
+            string UniqueFileName = null;
+            if (listingViewModel.Images != null)
+            {
+                for (var i = 0; i < listingViewModel.Images.Count; i++)
+                {
+                    string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "Images");
+                    UniqueFileName = Guid.NewGuid().ToString() + "_" + listingViewModel.Images[i].FileName;
+                    string FilePath = Path.Combine(uploadsFolder, UniqueFileName);
+                    listingViewModel.Images[i].CopyTo(new FileStream(FilePath, FileMode.Create));
+                    PropertyPhoto photo = new PropertyPhoto();
+                    photo.PropertyId = NewProperty.Id;
+                    photo.Url = UniqueFileName;
+                    //_db.Ed(photo);
+                    _db.SaveChanges();
+                }
+            }
+            //amenty
+            if (listingViewModel.IsChecked != null)
+            {
+                foreach (var item in listingViewModel.IsChecked)
+                {
+                    PropertyAmenity amenity = new PropertyAmenity();
+                    amenity.AmenityId = item;
+                    amenity.PropertyId = NewProperty.Id;
+                    //_db.Add(amenity);
+                    _db.SaveChanges();
+                }
+            }
+            //SpacesCanGuestUse
+            if (listingViewModel.IsSpacesChecked != null)
+            {
+                foreach (var item in listingViewModel.IsSpacesChecked)
+                {
+                    PropertySpace propertySpace = new PropertySpace();
+                    propertySpace.PropertyId = NewProperty.Id;
+                    propertySpace.SpaceId = item;
+                    //_db.Add(propertySpace);
+                    _db.SaveChanges();
+                }
+            }
+            //HouseRoles
+            if (listingViewModel.IsHouseRoleChecked != null)
+            {
+                foreach (var item in listingViewModel.IsHouseRoleChecked)
+                {
+                    PropertyHouseRule propertyHouseRule = new PropertyHouseRule();
+                    propertyHouseRule.PropertyId = NewProperty.Id;
+                    propertyHouseRule.HouseRuleId = item;
+                    //_db.Add(propertyHouseRule);
+                    _db.SaveChanges();
+                }
+            }
+            return RedirectToAction("Listing", "Hosting");
+        }
+
+
+
+
+
+
+
+
+
 
         [Authorize]
         [HttpPost]

@@ -77,7 +77,9 @@
                         <td>@item.NumberOfBathrooms</td>
                         <td>@item.City?.Name</td>
                         <td>
-                            <a><i class="btn far fa-edit" style="font-size: 25px;"></i></a>
+                            <a asp-controller="Listing" 
+                               asp-action="Edit" 
+                               asp-route-id="@item.Id"><i class="btn far fa-edit" style="font-size: 25px;"></i></a>
                             <a onclick="return confirm('Are you sure?')" 
                                asp-controller="Property" 
                                asp-action="Delete" 
