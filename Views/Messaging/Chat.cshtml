@@ -22,16 +22,29 @@
             {
 
                 <li class="clearfix">
-                    <div class="message-data align-right">
-                        @if ((msg.DateTime - lastDate).TotalDays != 0) // if msg is in earlier day than the prev msg then print curr msg date
-                        {
-                            <span class="dimmed-sm-label datetime">@msg.DateTime.ToString(new CultureInfo("en-US"));</span>
-                        }
-                        &nbsp; &nbsp;
-                        <span class="message-data-name">@msg.User.FirstName</span> <i class="fa fa-circle me"></i>
+                    <div class="message-data @(msg.UserId == Model.CurrentUser.Id ? "align-right" : "")">
 
+                        @if (msg.UserId == Model.CurrentUser.Id)
+                        {
+
+                            @if ((msg.DateTime - lastDate).TotalDays != 0) // if msg is in earlier day than the prev msg then print curr msg date
+                            {
+                                <span class="dimmed-sm-label datetime">@msg.DateTime.ToString(new CultureInfo("en-US"));</span>
+                            }
+                            <span>&nbsp; &nbsp;</span>
+                            <span class="message-data-name">@msg.User.FirstName</span> <i class="fa fa-circle me"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-circle me"></i><span class="message-data-name">@msg.User.FirstName</span>
+                            <span>&nbsp; &nbsp;</span>
+                            @if ((msg.DateTime - lastDate).TotalDays != 0) // if msg is in earlier day than the prev msg then print curr msg date
+                            {
+                                <span class="dimmed-sm-label datetime">@msg.DateTime.ToString(new CultureInfo("en-US"));</span>
+                            }
+                        }
                     </div>
-                    <div class="message other-message float-right">
+                    <div class="message @(msg.UserId == Model.CurrentUser.Id ? "my-message float-right" : "other-message")">
                         @msg.Text
                     </div>
                 </li>
@@ -62,50 +75,41 @@
 
 </div> <!-- end chat-message -->
 
-
 @section Scripts{
-    <script src="~/lib/signalr/signalr.min.js"></script>
-    <script src="~/js/moment.js"></script>
     <script>
-        const connection = new signalR.HubConnectionBuilder()
-        .withUrl("/chathub")
-        .configureLogging(signalR.LogLevel.Information)
-        .build();
+    async function start() {
+    try {
+    await connection.start();
+    console.log("chat hub Connected.");
+    try {
+    await connection.invoke("join_chat", "@Model.Chat.ChatId");
+    } catch (err) {
+    console.error(err);
+    }
+    } catch (err) {
+    console.log(err);
+    setTimeout(start, 5000);
+    }
+    };
 
-        async function start() {
-            try {
-                await connection.start();
-                console.log("chat hub Connected.");
-                try {
-                    await connection.invoke("join_chat", "@Model.Chat.ChatId");
-                } catch (err) {
-                    console.error(err);
-                }
-            } catch (err) {
-                console.log(err);
-                setTimeout(start, 5000);
-            }
-        };
 
-        connection.onclose(start);
+    // Start the connection.
+    start();
 
-        // Start the connection.
-        start();
+    connection.on("new_message", function (msg) {
+    console.log("New Message : ", msg);
+    addMsgToList(msg);
+    });
 
-        connection.on("new_message", function (msg) {
-            console.log("New Message : ", msg);
-                addMsgToList(msg);
-        });
-
-        connection.on("removed_message", function (_messageId) {
-            console.log(_messageId);
-        });
+    connection.on("removed_message", function (_messageId) {
+    console.log(_messageId);
+    });
 
     $('#send-btn').click(function () {
-        console.log("clicked");
+    console.log("clicked");
         connection.invoke("send_message", '@Model.Chat.ChatId', $('#message-to-send').val());
+        $('#message-to-send').val("");
     });
     </script>
     <script src="~/js/chat.js"></script>
 }
-

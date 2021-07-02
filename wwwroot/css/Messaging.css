@@ -6,6 +6,9 @@
 body{
     overflow:hidden
 }
+ul{
+    padding-left:0 !important;
+}
 .messaging-cr {
     margin: 0 auto;
     width: 97%;
@@ -140,29 +143,29 @@ body{
 
             .chat .chat-history .message:after {
                 bottom: 100%;
-                left: 7%;
+                right: 7%;
                 border: solid transparent;
                 content: " ";
                 height: 0;
                 width: 0;
                 position: absolute;
                 pointer-events: none;
-                border-bottom-color: #86BB71;
+                border-bottom-color: #94C2ED;
                 border-width: 10px;
                 margin-left: -10px;
             }
 
         .chat .chat-history .my-message {
-            background: #86BB71;
-        }
-
-        .chat .chat-history .other-message {
             background: #94C2ED;
         }
 
+        .chat .chat-history .other-message {
+            background: #86BB71;
+        }
+
             .chat .chat-history .other-message:after {
-                border-bottom-color: #94C2ED;
-                left: 93%;
+                border-bottom-color: #86BB71;
+                right: 93%;
             }
 
     .chat .chat-message {

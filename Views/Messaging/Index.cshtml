@@ -30,7 +30,7 @@
                     lastMessage = chat.Messages.ToList().Last();
                 }
                 <li class="clearfix clickableItem" onclick="loadChat(@chat.ChatId)">
-                    <img class="dp" src="~/images/@(lastMessage.User.PhotoUrl != null ? lastMessage.User.PhotoUrl : "default_dp.jpg")" alt="avatar" />
+                    <img class="dp" src="~/images/@(lastMessage?.User.PhotoUrl != null ? lastMessage.User.PhotoUrl : "default_dp.jpg")" alt="avatar" />
                     <div class="contact-info">
                         <div class="about">
                             <span class="name font-weight-bold">@contact.FirstName @contact.LastName</span>
@@ -57,36 +57,52 @@
                     </div>
                 </li>
             }
-            </ul>
-        </div>
+        </ul>
+    </div>
 
-        <div class="chat" id="chat-cr">
-        </div> <!-- end chat -->
-    </div> <!-- end container -->
+    <div class="chat" id="chat-cr">
+    </div> <!-- end chat -->
+</div> <!-- end container -->
 
 
 
-    @section Scripts{
-        @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>*@
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
+@section Scripts{
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
+    <script src="https://kit.fontawesome.com/c975a9ad44.js" crossorigin="anonymous"></script>
+    <script src="~/lib/signalr/signalr.min.js"></script>
+    <script src="~/js/moment.js"></script>
 
-        <script>
-            function loadChat(chatId) {
-                $.get("/Messaging/GetChat?chatid=" + chatId, function (data) {
-                    $("#chat-cr").html(data);
-                });
-            }
-        </script>
+    <script>
+        const currUserId = "@Model.Id";
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/chathub")
+            .configureLogging(signalR.LogLevel.Information)
+            .build();
 
-        @*load first chat by ajax call*@
-        @if (Model.Chats != null)
-            @if (Model.Chats.Count() > 0)
-            {
-                <script>
-                    loadChat("");
-                </script>
-            }
 
-            <script src="https://kit.fontawesome.com/c975a9ad44.js" crossorigin="anonymous"></script>
-  }
+        async function loadChat(chatId) {
+            console.log(connection.stop)
+            console.log(connection.disconnect)
+
+            await connection.stop();
+            $.get("/Messaging/GetChat?chatid=" + chatId, function (data) {
+                $("#chat-cr").html(data);
+
+            });
+        }
+    </script>
+
+    @*load first chat by ajax call*@
+    @if (Model.Chats != null)
+        @if (Model.Chats.Count() > 0)
+        {
+            <script>
+                 loadChat("");
+            </script>
+        }
+
+
+
+}
