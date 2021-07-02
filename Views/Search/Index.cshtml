@@ -399,21 +399,6 @@
                         </div>
 
                         <div class="big-card-text">
-                            <button class="btn-big-like" type="button">
-                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                     role="presentation" focusable="false"
-                                     style="display: block; fill: transparent; height: 24px; width: 24px; stroke: rgb(34, 34, 34); stroke-width: 2; overflow: visible;">
-                                    <path d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z">
-                                    </path>
-                                </svg>
-                                <!-- <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation"
-                                    focusable="false"
-                                    style="display: block; fill: rgb(255, 56, 92); height: 24px; width: 24px; stroke: rgb(255, 56, 92); stroke-width: 2; overflow: visible;">
-                                    <path
-                                        d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z">
-                                    </path>
-                                </svg> -->
-                            </button>
                             <div class="big-card-title">
                                 <div class="big-card-location">
                                     @item.GuestPlaceType?.Name in @item.City.Name
@@ -545,17 +530,7 @@
             </div>
 
             <div id="map-right">
-                <button class="btn-map btn-fixed-height btn-fixed-width p-0 btn-nostyle btn-transparent map-control"
-                        id="btn-filter-map" type="button">
-                    <span class="direction-span">
-                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                             role="presentation" focusable="false"
-                             style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 4; overflow: visible;">
-                            <path d="M7 16H3m26 0H15M29 6h-4m-8 0H3m26 20h-4M7 16a4 4 0 1 0 8 0 4 4 0 0 0-8 0zM17 6a4 4 0 1 0 8 0 4 4 0 0 0-8 0zm0 20a4 4 0 1 0 8 0 4 4 0 0 0-8 0zm0 0H3"
-                                  fill="none"></path>
-                        </svg>
-                    </span>
-                </button>
+                
                 <div class="btn-map btn-map-div-vertical btn-fixed-width map-control" id="btn-zoom">
                     <button class="btn-nostyle btn-fixed-width btn-fixed-height btn-transparent top-round"
                             id="btn-map-zoomin" type="button">
@@ -596,8 +571,7 @@
 </button>
 
 @section Scripts {
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
             integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
             crossorigin="anonymous"></script>

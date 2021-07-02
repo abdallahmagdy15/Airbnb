@@ -23,15 +23,14 @@ namespace Airbnb.Data
         public virtual DbSet<Amenity> Amenities { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<GuestPlaceType> GuestPlaceTypes { get; set; }
-        public virtual DbSet<GuestRequirement> GuestRequirements { get; set; }
-        public virtual DbSet<GuestDetail> GuestsDetails { get; set; }
         public virtual DbSet<HouseRule> HouseRules { get; set; }
         public virtual DbSet<PropertyPhoto> PropertyPhoto { get; set; }
         public virtual DbSet<Space> Spaces { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<Reservation> Reservations { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
-
+        public virtual DbSet<Chat> Chats { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
            
@@ -48,32 +47,6 @@ namespace Airbnb.Data
                 .HasOne(pa => pa.Amenity)
                 .WithMany(a => a.Properties)
                 .HasForeignKey(pa => pa.AmenityId);
-
-            builder.Entity<PropertyGuestRequirement>()
-                .HasKey(pa => new { pa.PropertyId, pa.GuestRequirementId });
-
-            builder.Entity<PropertyGuestRequirement>()
-                .HasOne(pa => pa.Property)
-                .WithMany(p => p.GuestRequirements)
-                .HasForeignKey(pa => pa.PropertyId);
-
-            builder.Entity<PropertyGuestRequirement>()
-                .HasOne(pa => pa.GuestRequirement)
-                .WithMany(a => a.Properties)
-                .HasForeignKey(pa => pa.GuestRequirementId);
-
-            builder.Entity<PropertyGuestDetail>()
-                .HasKey(pa => new { pa.PropertyId, pa.GuestDetailId });
-
-            builder.Entity<PropertyGuestDetail>()
-                .HasOne(pa => pa.Property)
-                .WithMany(p => p.GuestDetails)
-                .HasForeignKey(pa => pa.PropertyId);
-
-            builder.Entity<PropertyGuestDetail>()
-                .HasOne(pa => pa.GuestDetail)
-                .WithMany(a => a.Properties)
-                .HasForeignKey(pa => pa.GuestDetailId);
 
             builder.Entity<PropertyHouseRule>()
                 .HasKey(pa => new { pa.PropertyId, pa.HouseRuleId });

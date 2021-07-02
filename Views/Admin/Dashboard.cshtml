@@ -82,16 +82,8 @@
                             <button type="button" onclick="getAllHomeRules()" class="dashboard-button">Home Rules</button>
                         </div>
                         <div class="button-container">
-                            <img src="~/SVG/guestDetails.svg">
-                            <button type="button" onclick="getAllGuestDetails()" class="dashboard-button">Guest</button>
-                        </div>
-                        <div class="button-container">
                             <img src="~/SVG/placetype.svg">
                             <button type="button" onclick="getAllGuestPlaceType()" class="dashboard-button">Place type</button>
-                        </div>
-                        <div class="button-container">
-                            <img src="~/SVG/requirments.svg">
-                            <button type="button" onclick="getAllGuestRequirment()" class="dashboard-button">Requirments</button>
                         </div>
                         <div class="button-container">
                             <img src="~/SVG/space.svg">
@@ -117,7 +109,7 @@
                     </div>
 
                     <div class="button-container">
-                        <img src="~/SVG/user.svg">
+                        <img src="~/SVG/home.svg">
                         <a asp-action="Index" asp-controller="Home" class="dashboard-button">Home</a>
                     </div>
                     <div class="button-container" style="margin-bottom:100px;">
@@ -126,16 +118,16 @@
                     </div>
 
                     <!--
-        <div class="button-container">
-        <img src="~/SVG/fee.svg">
-        <button class="dashboard-button">Mange payout</button>
-        </div>
+                    <div class="button-container">
+                    <img src="~/SVG/fee.svg">
+                    <button class="dashboard-button">Mange payout</button>
+                    </div>
 
                     <div class="button-container" style="margin-bottom:95px;">
                         <img src="~/SVG/password.svg">
                         <button class="dashboard-button">Change password</button>
                     </div>
-    -->
+                    -->
 
 
                 </div>
@@ -227,6 +219,11 @@
             var Url = `AllUsers`
             console.log(Url)
             AjaxCall(null, Url,"GET");
+        }
+        function UserDetails(id) {
+            var Url = `UserDetails/${id}`;
+            console.log(Url);
+            AjaxCall({ id }, Url, "GET");
         }
         function getAllProperties() {
             var Url = `AllProperties`
@@ -364,19 +361,12 @@
             console.log(Url)
             AjaxCall(null, Url, "GET");
         }
-
-
-
-
         function MangeAdminRole(target) {
             var id = target.id;
             var Url = `EditUserInRole/${id}`
             console.log(Url)
             AjaxCall(null, Url, "GET");
         }
-        
-        
-
 
     </script>
 </body>

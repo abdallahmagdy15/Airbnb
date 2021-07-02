@@ -7,7 +7,7 @@
     @if (SignInManager.IsSignedIn(User) && !User.IsInRole("Admin"))
     {
         <li>
-            <a asp-controller="Hosting" asp-action="Index" id="becomeahost" style="display: block !important; margin-top: 5px;">be a host</a>
+            <a asp-controller="Hosting" asp-action="Index" id="becomeahost" style="display: block !important; margin-top: 5px;">Host</a>
         </li>
         <li class="nav-item ">
             <a asp-controller="Account" asp-action="Editprofile" class="nav-link btn btn-link text-warning">Account</a>
@@ -19,7 +19,7 @@
     else if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
     {
         <li>
-            <a asp-controller="Hosting" asp-action="Index" id="becomeahost" style="display: block !important; margin-top: 5px;">be a host</a>
+            <a asp-controller="Hosting" asp-action="Index" id="becomeahost" style="display: block !important; margin-top: 5px;">Host</a>
         </li>
         <li class="nav-item ">
             <a asp-controller="Account" asp-action="Editprofile" class="nav-link btn btn-link text-warning">Account</a>

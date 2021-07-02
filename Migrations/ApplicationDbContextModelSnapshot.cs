@@ -394,23 +394,6 @@ namespace Airbnb.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Airbnb.Models.PropertySubModels.GuestDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("GuestsDetails");
-                });
-
             modelBuilder.Entity("Airbnb.Models.PropertySubModels.GuestPlaceType", b =>
                 {
                     b.Property<int>("Id")
@@ -430,26 +413,6 @@ namespace Airbnb.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("GuestPlaceTypes");
-                });
-
-            modelBuilder.Entity("Airbnb.Models.PropertySubModels.GuestRequirement", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("IsCustom")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("GuestRequirements");
                 });
 
             modelBuilder.Entity("Airbnb.Models.PropertySubModels.HouseRule", b =>
@@ -485,36 +448,6 @@ namespace Airbnb.Migrations
                     b.HasIndex("AmenityId");
 
                     b.ToTable("PropertyAmenity");
-                });
-
-            modelBuilder.Entity("Airbnb.Models.PropertySubModels.PropertyGuestDetail", b =>
-                {
-                    b.Property<int>("PropertyId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GuestDetailId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PropertyId", "GuestDetailId");
-
-                    b.HasIndex("GuestDetailId");
-
-                    b.ToTable("PropertyGuestDetail");
-                });
-
-            modelBuilder.Entity("Airbnb.Models.PropertySubModels.PropertyGuestRequirement", b =>
-                {
-                    b.Property<int>("PropertyId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GuestRequirementId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PropertyId", "GuestRequirementId");
-
-                    b.HasIndex("GuestRequirementId");
-
-                    b.ToTable("PropertyGuestRequirement");
                 });
 
             modelBuilder.Entity("Airbnb.Models.PropertySubModels.PropertyHouseRule", b =>
@@ -910,44 +843,6 @@ namespace Airbnb.Migrations
                     b.Navigation("Property");
                 });
 
-            modelBuilder.Entity("Airbnb.Models.PropertySubModels.PropertyGuestDetail", b =>
-                {
-                    b.HasOne("Airbnb.Models.PropertySubModels.GuestDetail", "GuestDetail")
-                        .WithMany("Properties")
-                        .HasForeignKey("GuestDetailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Airbnb.Models.Property", "Property")
-                        .WithMany("GuestDetails")
-                        .HasForeignKey("PropertyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("GuestDetail");
-
-                    b.Navigation("Property");
-                });
-
-            modelBuilder.Entity("Airbnb.Models.PropertySubModels.PropertyGuestRequirement", b =>
-                {
-                    b.HasOne("Airbnb.Models.PropertySubModels.GuestRequirement", "GuestRequirement")
-                        .WithMany("Properties")
-                        .HasForeignKey("GuestRequirementId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Airbnb.Models.Property", "Property")
-                        .WithMany("GuestRequirements")
-                        .HasForeignKey("PropertyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("GuestRequirement");
-
-                    b.Navigation("Property");
-                });
-
             modelBuilder.Entity("Airbnb.Models.PropertySubModels.PropertyHouseRule", b =>
                 {
                     b.HasOne("Airbnb.Models.PropertySubModels.HouseRule", "HouseRule")
@@ -1132,10 +1027,6 @@ namespace Airbnb.Migrations
                 {
                     b.Navigation("Amenities");
 
-                    b.Navigation("GuestDetails");
-
-                    b.Navigation("GuestRequirements");
-
                     b.Navigation("HouseRules");
 
                     b.Navigation("Photos");
@@ -1159,17 +1050,7 @@ namespace Airbnb.Migrations
                     b.Navigation("Properties");
                 });
 
-            modelBuilder.Entity("Airbnb.Models.PropertySubModels.GuestDetail", b =>
-                {
-                    b.Navigation("Properties");
-                });
-
             modelBuilder.Entity("Airbnb.Models.PropertySubModels.GuestPlaceType", b =>
-                {
-                    b.Navigation("Properties");
-                });
-
-            modelBuilder.Entity("Airbnb.Models.PropertySubModels.GuestRequirement", b =>
                 {
                     b.Navigation("Properties");
                 });

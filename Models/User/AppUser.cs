@@ -47,6 +47,9 @@ namespace Airbnb.Models
         // Relations
         public virtual List<Review> Reviews { get; set; }
         public virtual List<Property> Properties { get; set; }
+
+        public virtual List<Message> Messages { get; set; }
+        public virtual List<Chat> Chats { get; set; }
     }
 
     public enum Gender

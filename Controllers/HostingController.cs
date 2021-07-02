@@ -24,6 +24,14 @@ namespace Airbnb.Controllers
         public IActionResult Index()
         {
             ViewBag.currentTab = "Home";
+            var userId = _manager.GetUserId(User);
+
+            var newRequests = _db.Reservations.Where(r => r.Property.UserId == userId && !r.Accepted).Count();
+            var upcomingReservations = _db.Reservations.Where(r => r.UserId == userId && r.CheckIn > DateTime.Now).Count();
+
+            ViewBag.newRequests = newRequests;
+            ViewBag.upcomingReservations = upcomingReservations;
+
             return View("Home");
         }
         public IActionResult Listing()
@@ -37,7 +45,8 @@ namespace Airbnb.Controllers
             ViewBag.currentTab = "Reservations";
             var userId = _manager.GetUserId(User);
 
-            return View(_db.Reservations.Where(r => r.UserId == userId));
+            return View(_db.Reservations.Where(r => r.UserId == userId)
+                .OrderByDescending(r => r.CheckIn));
         }
 
         public IActionResult Requests()
@@ -45,7 +54,8 @@ namespace Airbnb.Controllers
             ViewBag.currentTab = "Requests";
             var userId = _manager.GetUserId(User);
 
-            return View(_db.Reservations.Where(r => r.Property.UserId == userId));
+            return View(_db.Reservations.Where(r => r.Property.UserId == userId)
+                .OrderByDescending(r => r.Date));
         }
 
         public IActionResult Performance()
@@ -53,9 +63,26 @@ namespace Airbnb.Controllers
             ViewBag.currentTab = "Performance";
             var userId = _manager.GetUserId(User);
 
-            var reservations = _db.Reservations.Where(r => r.Property.UserId == userId);
+            var reservations = _db.Reservations.Where(r => r.Property.UserId == userId)
+                .OrderByDescending(r => r.Date);
 
             return View(reservations);
+        }
+
+        public IActionResult AcceptRequest(int id)
+        {
+            var request = _db.Reservations.SingleOrDefault(r => r.Id == id);
+            request.Accepted = true;
+            _db.SaveChanges();
+            return RedirectToAction(nameof(Requests));
+        }
+
+        public IActionResult RejectRequest(int id)
+        {
+            var request = _db.Reservations.SingleOrDefault(r => r.Id == id);
+            _db.Remove(request);
+            _db.SaveChanges();
+            return RedirectToAction(nameof(Requests));
         }
     }
 }

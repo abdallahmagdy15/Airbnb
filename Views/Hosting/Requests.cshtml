@@ -40,6 +40,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Date</th>
+                    <th>User</th>
                     <th>Check-In Date</th>
                     <th>Check-Out Date</th>
                     <th>LISTING</th>
@@ -59,19 +60,30 @@
                         <td>
                             @item.Date
                         </td>
+                        <td>@item.User.FirstName @item.User.LastName</td>
                         <td>@item.CheckIn</td>
                         <td>@item.CheckOut</td>
-                        <td>@item.Property.Title</td>
+                        <td>
+                            <a asp-controller="Property" asp-action="Details" asp-route-id="@item.Property.Id" style="color: inherit; text-decoration: none;">
+                                <i class="fas fa-home-lg-alt"></i>&nbsp;@item.Property.Title
+                            </a>
+                        </td>
                         <td>@item.Property.City?.Name</td>
                         <td>
-                            <a>Accept</a>
-                            <a onclick="return confirm('Are you sure?')"
-                               @*asp-controller="Property"
-                               asp-action="Delete"
-                               asp-route-id="@item.Id"*@
-                               style="color: red;">
-                                Refuse
-                            </a>
+                            @if (!item.Accepted)
+                            {
+                                <a class="text-success" 
+                                   asp-controller="Hosting" 
+                                   asp-action="AcceptRequest"
+                                   asp-route-id="@item.Id">Accept</a>
+                                <a onclick="return confirm('Are you sure?')"
+                                   asp-controller="Hosting"
+                                   asp-action="RejectRequest"
+                                   asp-route-id="@item.Id"
+                                   class="text-danger ml-4">
+                                    Refuse
+                                </a>
+                            }
                         </td>
 
                     </tr>

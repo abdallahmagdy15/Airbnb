@@ -64,8 +64,8 @@
         <div>
             <span>
                 <i class="fas fa-star red_icon"></i>
-                <a href="#"> <span class="dark-span">5.0</span> </a>
-                <span class="light-span">(23)</span>
+                <a href="#"> <span class="dark-span">@(Model.Reviews?.Select(r => r.Rating).DefaultIfEmpty().Average().ToString("F2"))</span> </a>
+                <span class="light-span">(@Model.Reviews?.Count)</span>
             </span>
             <span>&middot;</span>
             <span class="address">
@@ -73,21 +73,6 @@
             </span>
         </div>
     </div>
-    <button class="btn-big-like" type="button">
-        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-             role="presentation" focusable="false"
-             style="display: block; fill: transparent; height: 24px; width: 24px; stroke: rgb(34, 34, 34); stroke-width: 2; overflow: visible;">
-            <path d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z">
-            </path>
-        </svg>
-        <!-- <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation"
-            focusable="false"
-            style="display: block; fill: rgb(255, 56, 92); height: 24px; width: 24px; stroke: rgb(255, 56, 92); stroke-width: 2; overflow: visible;">
-            <path
-                d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z">
-            </path>
-        </svg> -->
-    </button>
 </section>
 <!--end title section-->
 <!--start pic section-->
@@ -209,7 +194,7 @@
                             @foreach (var item in Model.HouseRules)
                             {
                                 <div class="Amenity col-12 col-lg-6">
-                                    <i class="fas fa-exclamation"></i>
+                                    <i class="far fa-check-square"></i>
                                     <span class="dark-light">@item.HouseRule.Name</span>
                                 </div>
                             }
@@ -219,16 +204,16 @@
 
                 <div class="data-plugin-in-point">
                     <hr />
-                    <h1 class="mb-4 mt-2">Things to know</h1>
+                    <h1 class="mb-4 mt-2">Available Spaces</h1>
                     <div id="for-guests">
                         <!--grid-->
                         <div class="row">
 
-                            @foreach (var item in Model.GuestDetails)
+                            @foreach (var item in Model.Spaces)
                             {
                                 <div class="Amenity col-12 col-lg-6">
-                                    <i class="fas fa-exclamation"></i>
-                                    <span class="dark-light">@item.GuestDetail.Name</span>
+                                    <i class="far fa-circle"></i>
+                                    <span class="dark-light">@item.Space.Name</span>
                                 </div>
                             }
                         </div>
@@ -262,7 +247,7 @@
                                 <tr>
                                     <td colspan="2">
                                         <div class="check-in">
-                                            <div class="font-light-dark">CHECK-INN <pre style="display: inline;">            </pre> CHECK-OoUT</div>
+                                            <div class="font-light-dark">CHECK-IN <pre style="display: inline;">            </pre> CHECK-OUT</div>
                                             <div>
                                                 <input class="font-light-dark" style="display: inline-block; width: 45%; margin-right: auto;" id="check-in-date" />
                                                 <input class="font-light-dark" style="display: inline-block; width: 45%;" id="check-out-date" />

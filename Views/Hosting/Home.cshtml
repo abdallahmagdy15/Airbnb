@@ -5,6 +5,15 @@
     ViewData["Title"] = "Home";
     Layout = "~/Views/Shared/_Hosting.cshtml";
 }
+
+@section Styles {
+    <style>
+        a {
+            color: inherit !important;
+        }
+    </style>
+
+}
 <!-- Home -->
 <div class="_18hrqvin col-12">Dashboard</div>
 
@@ -13,7 +22,18 @@
         <div class="card col-12 col-lg-8 mt-2 mr-3">
             <div class="card-body">
                 <h4 class="card-title card-title-custom">Requests</h4>
-                <p class="card-text card-body-text">Nothing you need to do right now—you're all set!.</p>
+                <p class="card-text card-body-text">
+                    @if (ViewBag.newRequests > 0)
+                    {
+                        <a asp-action="Requests">
+                            @ViewBag.newRequests.ToString() Requests 
+                        </a>
+                    }
+                    else
+                    {
+                        @:Nothing you need to do right now—you're all set!.
+                    }
+                </p>
             </div>
         </div>
         <div class="card col-12 col-lg-3 d-inline-flex mt-2" style="float: right;">
@@ -29,7 +49,18 @@
             <h4 class="card-title card-title-custom">
                 Reservations
             </h4>
-            <p class="card-text card-body-text">No upcoming reservations.</p>
+            <p class="card-text card-body-text">
+                @if (ViewBag.upcomingReservations > 0)
+                {
+                <a asp-action="Reservations">
+                    @ViewBag.upcomingReservations.ToString() Reservations
+                </a>
+                }
+                else
+                {
+                    @:No upcoming reservations.
+                }
+            </p>
         </div>
     </div>
 

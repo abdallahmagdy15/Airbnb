@@ -32,7 +32,6 @@ $(".checkbox-input").on("change", (e) => {
 
 $("#btn-unfold-map").click((e) => {
     $(e.currentTarget).hide();
-    $("#btn-fold-map, #btn-filter-map").show();
     $("#map-wrapper").css({
         width: "99vw",
     });
@@ -42,7 +41,6 @@ $("#btn-unfold-map").click((e) => {
 });
 $("#btn-fold-map").click((e) => {
     $(e.currentTarget).hide();
-    $("#btn-filter-map").hide();
     $("#btn-unfold-map").show();
     $("#main-wrapper").css({
         transform: "translateX(-0%)",
