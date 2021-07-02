@@ -126,16 +126,16 @@
                     </div>
 
                     <!--
-        <div class="button-container">
-        <img src="~/SVG/fee.svg">
-        <button class="dashboard-button">Mange payout</button>
-        </div>
+                    <div class="button-container">
+                    <img src="~/SVG/fee.svg">
+                    <button class="dashboard-button">Mange payout</button>
+                    </div>
 
                     <div class="button-container" style="margin-bottom:95px;">
                         <img src="~/SVG/password.svg">
                         <button class="dashboard-button">Change password</button>
                     </div>
-    -->
+                    -->
 
 
                 </div>
@@ -369,19 +369,12 @@
             console.log(Url)
             AjaxCall(null, Url, "GET");
         }
-
-
-
-
         function MangeAdminRole(target) {
             var id = target.id;
             var Url = `EditUserInRole/${id}`
             console.log(Url)
             AjaxCall(null, Url, "GET");
         }
-        
-        
-
 
     </script>
 </body>
