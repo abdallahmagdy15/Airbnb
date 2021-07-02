@@ -229,6 +229,9 @@
             <script>
                 var PageNumber = 2
                 $(function () {
+                    $('#states').css('display', 'none')
+                    $('#cities').css('display', 'none')
+
                     $('.ContainTitle').html('Property and guests');
                     $('.ContainOptions').css('display', 'none')
                     $('.DescriptionDiv').css('display', 'none')
@@ -324,14 +327,18 @@
 
                 }
                 $('#next').click(function () {
-                    //if ($('#3').is(":visible")){
+                    //if ($('#next').val() == 'finish') {
+                    //    console.log('hi')
                     //    $('#next').prop('disabled', true)
                     //}
-                    if (PageNumber == 13) {
-                        $('#next').val('finsh')
+                     if (PageNumber == 13) {
+                        $('#next').val('finish')
                     }
                     if (PageNumber == 14 && (FormValidation13) == true) {
                         $('#next').prop('type', 'submit')
+                    }
+                    if (PageNumber == 15) {
+                        $('#next').prop('disabled', true)
 
                     }
                     if (PageNumber < 20) {
@@ -353,7 +360,7 @@
                             $("#" + PageNumber).css('display', 'flex')
                 
                             $('#file').val(function (i, oldval) {
-                                return parseInt(oldval, 10) + (100/18)
+                                return parseInt(oldval, 10) + (100/13)
                             })
                             PageNumber++
                         }

@@ -71,7 +71,9 @@
                             @(item.Accepted ? "Active" : "Bending...")  
                         </td>
                         <td>
-                            <a><i class="btn far fa-edit" style="font-size: 25px;"></i></a>
+                            <a asp-controller="Listing"
+                               asp-action="Edit"
+                               asp-route-id="@item.Id"><i class="btn far fa-edit" style="font-size: 25px;"></i></a>
                             @if (item.Reservations.Where(r => r.CheckOut >= DateTime.Now).Count() == 0)
                             {
                                 <a onclick="return confirm('Are you sure?')"
