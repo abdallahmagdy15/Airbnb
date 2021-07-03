@@ -7,16 +7,16 @@
 
             @Html.ValidationSummary(true)
             <input type="hidden" name="ReturnUrl" value="@ViewData["ReturnUrl"]?.ToString()" />
+
             <div class="column-container">
                 <input type="text" asp-for="Email" placeholder="Email">
-                <input type="text" asp-for="Password" placeholder="Password">
+                <span class="badge badge-danger" asp-validation-for="Email"></span>
             </div>
-            <div class="validation-container">
-                <span class="validation-span" asp-validation-for="Email"></span>
+            <div class="column-container">
+                <input type="password" asp-for="Password" placeholder="Password">
+                <span class="badge badge-danger" asp-validation-for="Password"></span>
             </div>
-            <div class="validation-container">
-                <span class="validation-span" asp-validation-for="Password"></span>
-            </div>
+
             <div class="form-group">
                 <div class="custom-control custom-checkbox">
                     <input asp-for="RememberMe" type="checkbox" class="custom-control-input">

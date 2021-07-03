@@ -1,6 +1,7 @@
 ﻿using Airbnb.Models;
 using Airbnb.Models.Location;
 using Airbnb.Models.PropertySubModels;
+using Airbnb.Models.SiteSettings;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,7 @@ namespace Airbnb.Data
 
         //public virtual DbSet<AppUser> AppUsers { get; set; }
         public virtual DbSet<CreditCard> CreditCards { get; set; }
+        public virtual DbSet<Logo> SiteLogo { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<State> States { get; set; }
