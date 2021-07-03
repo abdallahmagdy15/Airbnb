@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<Airbnb.Models.Property>
 
 <h2>Waiting Properties</h2>
-<div class="search_container">
+
+@*<div class="search_container">
     <form asp-action="FindProp" asp-controller="Admin" method="post">
         <div class="row">
             <input name="Title" id="search_text" type="text" placeholder="Search">
@@ -9,7 +10,8 @@
             <a id="download-data" class="btn-success" asp-action="PropertyExcel" asp-controller="Admin">Export data in CVS</a>
         </div>
     </form>
-</div>
+</div>*@
+<br />
 <table class="table table-responsive table-hover">
     <thead class="thead-dark">
         <tr>
