@@ -235,7 +235,7 @@
                         </span>
                         <span class="rightt">
                             <i class="fas fa-star red_icon"></i>
-                             
+
                             <a href="#"> <span class="dark-span">@(Model.Reviews?.Select(r => r.Rating).DefaultIfEmpty().Average().ToString("F2"))</span> </a>
                             <span class="light-span">(@Model.Reviews?.Count)</span>
                         </span>
@@ -384,6 +384,25 @@
             @Model.City.State.Country.Name
         </div>
         <div id="map"></div>
+    </div>
+
+    @*User Info*@
+    <div class="Reviews">
+        <hr>
+
+        <h1 class="mt-5">Host</h1>
+
+        <div>
+            <div>
+
+            </div>
+            <div>
+
+            </div>
+            <div>
+
+            </div>
+        </div>
     </div>
 </section>
 <!--end details section-->
