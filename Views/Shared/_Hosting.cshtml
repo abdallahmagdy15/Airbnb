@@ -37,14 +37,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link @(ViewBag.currentTab == "Home" ? "active" : null) d-none d-lg-block home" asp-action="Index">
+                    <a class="nav-link @(ViewBag.currentTab == "Home" ? "active" : null) d-none d-lg-block home" asp-controller="Hosting" asp-action="Index">
                         Home <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <div>
                         <div style="display: inline-flex;">
-                            <a class="nav-link @(ViewBag.currentTab == "Inbox" ? "active" : null) inbox" href="/Messaging">Inbox</a>
+                            <a class="nav-link @(ViewBag.currentTab == "Inbox" ? "active" : null) inbox" asp-controller="Messaging" asp-action="Index">Inbox</a>
                         </div>
                         <div class="d-inline-flex d-lg-none" style="float: right;">
                             <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
@@ -59,7 +59,7 @@
                 <li class="nav-item">
                     <div>
                         <div style="display: inline-flex;">
-                            <a class="nav-link @(ViewBag.currentTab == "Performance" ? "active" : null) inbox" asp-action="Performance">Performance</a>
+                            <a class="nav-link @(ViewBag.currentTab == "Performance" ? "active" : null) inbox" asp-controller="Hosting" asp-action="Performance">Performance</a>
                         </div>
                     </div>
                 </li>
@@ -87,7 +87,7 @@
                 <li class="nav-item ">
                     <div>
                         <div style="display: inline-flex;">
-                            <a class="nav-link @(ViewBag.currentTab == "Requests" ? "active" : null) listing" asp-action="Requests">Requests</a>
+                            <a class="nav-link @(ViewBag.currentTab == "Requests" ? "active" : null) listing" asp-controller="Hosting" asp-action="Requests">Requests</a>
                         </div>
                         <div class="d-inline-flex d-lg-none" style="float: right;">
                             <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
@@ -101,7 +101,7 @@
                 <li class="nav-item ">
                     <div>
                         <div style="display: inline-flex;">
-                            <a class="nav-link @(ViewBag.currentTab == "Listing" ? "active" : null) listing" asp-action="Listing">Listing</a>
+                            <a class="nav-link @(ViewBag.currentTab == "Listing" ? "active" : null) listing" asp-controller="Hosting" asp-action="Listing">Listing</a>
                         </div>
                         <div class="d-inline-flex d-lg-none" style="float: right;">
                             <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
