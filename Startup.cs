@@ -11,6 +11,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authentication;
 using Stripe;
 using Microsoft.AspNetCore.HttpOverrides;
+using Airbnb.Hubs;
+using Airbnb.Repositories;
+using Microsoft.AspNetCore.Http;
 
 namespace Airbnb
 {
@@ -70,6 +73,13 @@ namespace Airbnb
             services.AddScoped<ISearchService, PropertySearchService>();
             services.AddScoped<IAdminServices, AdminServices>();
 
+            services.AddSignalR(e => {
+                e.MaximumReceiveMessageSize = 102400000;
+            });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IMessagingService, MessagingService>();
+            services.AddScoped<IChatRepository, ChatRepository>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
         }
 
       
@@ -110,6 +120,7 @@ namespace Airbnb
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapHub<ChatHub>("/chathub");
             });
         }
     }

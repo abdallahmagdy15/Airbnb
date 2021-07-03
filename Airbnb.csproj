@@ -25,6 +25,8 @@
     <PackageReference Include="bootstrap" Version="4.6.0" />
     <PackageReference Include="ClosedXML" Version="0.95.4" />
     <PackageReference Include="jQuery.Ajax.Unobtrusive" Version="2.0.20710" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.4.2" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.JS" Version="2.4.2" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Core" Version="2.2.0" />
@@ -56,7 +58,14 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\assets\images\" />
-    <Folder Include="wwwroot\Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Messaging\Chat.cshtml" />
+    <None Include="Views\Messaging\CreateChat.cshtml" />
+    <None Include="Views\Messaging\Index.cshtml" />
+    <None Include="wwwroot\lib\signalr\signalr.min.js" />
+    <None Include="wwwroot\lib\signalr\signalr.min.js.map" />
   </ItemGroup>
 
   <ItemGroup>

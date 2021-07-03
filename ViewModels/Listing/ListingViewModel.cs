@@ -12,14 +12,14 @@ namespace Airbnb.ViewModels.Listing
         public int NumOfGuests { get; set; }
 
         public string NumOfTotalRooms { get; set; } 
-        public int NumOfBeds { get; set; }
+        public int? NumOfBeds { get; set; }
         public string NumOfBedrooms { get; set; }
         public string Categoryname { get; set; }
         public string GuestPlaceTypeName { get; set; }
         public int NumberOfBathRooms { get; set; }
         public string Street { get; set; }
         public string Apt_Suite { get; set; }
-        public int CityId { get; set; }
+        public int? CityId { get; set; }
         public string ZipCode { get; set; }
         public string Description { set; get; }
         public string Title { set; get; }

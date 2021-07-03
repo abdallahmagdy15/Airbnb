@@ -64,22 +64,7 @@
                 </span>
             </div>
 
-            <div class="ContainLocation col col-11">
-                <div class="NumberOfRooms">
-                    Country/Region
-                </div>
-                <div class="ContainSelectLocation">
-                    <div class="SelectLocation">
-                        <select class="form-select" id="countries" asp-items='new SelectList(ViewData["Countries"] as IEnumerable<Airbnb.Models.Location.Country>, "Id", "Name")' onchange="fetchStates()">
-                        </select>
-                        <div  id="states"></div>
-                        <div id="cities"></div>
-                        <div id="map" style="width: 90%; height: 30vw; margin: 20px auto"></div>
-                        <input type="hidden" asp-for="Lat" id="lat" />
-                        <input type="hidden" asp-for="Lon" id="lon" />
-                    </div>
-                </div>
-            </div>
+           
 
             <div class="ContainLocation col col-11 ">
                 <label class="LocationInput">
@@ -132,7 +117,7 @@
         var FormValidation4 = false
         var inputt = $('.SelectLocationInput')
         $('#next').click(function () {
-            if ($('#street').val() != '' && $('#apt-suite').val() != '' && $('#zip-code').val() != '' && $('#states') && $('#cities').css('display') == 'block' ) {
+            if ($('#street').val() != '' && $('#apt-suite').val() != '' /*&& $('#zip-code').val() != '' && $('#states') && $('#cities').css('display') == 'block'*/ ) {
                 FormValidation4 = true
             }
             else {
@@ -157,7 +142,7 @@
 
 
             //    }
-               
+
             //}
         });
 
@@ -245,6 +230,6 @@
 
             console.log($('#lat').val(), $('#lon').val())
         }
-        
+
     </script>
 }
