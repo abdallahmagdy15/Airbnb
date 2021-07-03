@@ -65,6 +65,10 @@ namespace Airbnb.Controllers.Listing
             var prop = _db.Properties.FirstOrDefault(x => x.Id == Id);
 
             ViewData["Countries"] = _db.Countries;
+            ViewData["CountryId"] = prop.City?.State.CountryId;
+            ViewData["StateId"] = prop.City?.StateId;
+            ViewData["lat"] = prop.Coordinates.Coordinate.Y;
+            ViewData["lon"] = prop.Coordinates.Coordinate.X;
             listingViewModel.Title = prop.Title;
             listingViewModel.Description = prop.Description;
             listingViewModel.Price = prop.Price;
@@ -115,6 +119,7 @@ namespace Airbnb.Controllers.Listing
             NewProperty.MaxStay = maxNights;
             NewProperty.Price = listingViewModel.Price;
             NewProperty.Capacity = listingViewModel.NumOfGuests;
+            NewProperty.CityId = listingViewModel.CityId;
             NewProperty.Coordinates = new NetTopologySuite.Geometries.Point(listingViewModel.Lon, listingViewModel.Lat) { SRID = 4326 };
             NewProperty.UserId = _manager.GetUserId(User);
             _db.SaveChanges();

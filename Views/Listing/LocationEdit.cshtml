@@ -64,7 +64,22 @@
                 </span>
             </div>
 
-           
+            <div class="ContainLocation col col-11">
+                <div class="NumberOfRooms">
+                    Country/Region
+                </div>
+                <div class="ContainSelectLocation">
+                    <div class="SelectLocation">
+                        <select class="form-select" id="countries" asp-items='new SelectList(ViewData["Countries"] as IEnumerable<Airbnb.Models.Location.Country>, "Id", "Name", ViewData["CountryId"] != null ? (int)ViewData["CountryId"] : "")' onchange="fetchStates()">
+                        </select>
+                        <div id="states"></div>
+                        <div id="cities"></div>
+                        <div id="map" style="width: 90%; height: 30vw; margin: 20px auto"></div>
+                        <input type="hidden" asp-for="Lat" id="lat" />
+                        <input type="hidden" asp-for="Lon" id="lon" />
+                    </div>
+                </div>
+            </div>
 
             <div class="ContainLocation col col-11 ">
                 <label class="LocationInput">
@@ -146,6 +161,13 @@
             //}
         });
 
+        $(document).ready(function () {
+            @if (Model.CityId.HasValue)
+            {
+               @:$('#countries').trigger("change");
+            }
+        });
+
         function fetchStates() {
             var id = $('#countries').val();
 
@@ -155,6 +177,10 @@
                 success: function (response) {
                     $('#states').css('display','block')
                     $('#states').html(response);
+                    @if (Model.CityId.HasValue)
+                    {
+                        @:$('#statesSelect').val(@((int)ViewData["StateId"])).trigger("change");
+                    }
                 }
             });
         }
@@ -170,8 +196,12 @@
                 success: function (response) {
                     $('#cities').css('display', 'block')
                     $('#cities').html(response);
-                    setMapCenter();
-                    $('#map').show();
+                     @if (Model.CityId.HasValue)
+                     {
+                         @:$('#citySelect').val(@Model.CityId);
+                     }
+                     setMapCenter();
+                     $('#map').show();
                 }
             });
         }
@@ -198,7 +228,7 @@
             let initialLocation;
 
             map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 14,
+                zoom: 12,
                 disableDefaultUI: false,
             });
 
@@ -206,10 +236,14 @@
                 navigator.geolocation.getCurrentPosition((position) => {
                     initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                     map.setCenter(initialLocation);
-                    marker = new google.maps.Marker({
-                        position: initialLocation,
-                        map: map,
-                    });
+                    @if(Model.CityId.HasValue)
+                    {
+                        @:marker = new google.maps.Marker({ position: new google.maps.LatLng(@ViewBag.lat, @ViewBag.lon), map: map, });
+                    } else
+                    {
+                        @:marker = new google.maps.Marker({ position: initialLocation, map: map, });
+                    }
+
                 });
             }
             google.maps.event.addListener(map, 'click', function (event) {
