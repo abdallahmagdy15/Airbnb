@@ -276,6 +276,7 @@ namespace Airbnb.Controllers
                 olduser.Street = user.Street;
                 olduser.BuildingNo = user.BuildingNo;
                 olduser.PhotoUrl = user.PhotoUrl;
+    
                 DbContext.SaveChanges();
                 return RedirectToAction("Index","Home");
             }
