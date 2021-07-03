@@ -337,11 +337,15 @@
                     if (PageNumber == 14 && (FormValidation13) == true) {
                         $('#next').prop('type', 'submit')
                     }
+                    else if (FormValidation13 == false) {
+                        $('.ValidationBoxForDescription').css('display', 'table')
+
+                    }
                     if (PageNumber == 15) {
                         $('#next').prop('disabled', true)
 
                     }
-                    if (PageNumber < 20) {
+                    if (PageNumber < 14) {
                         if ((FormValidation7) == false && $('#7').is(":visible") ||
                             (FormValidation4) == false && $('#4').is(":visible") ||
                             (FormValidation8) == false && $('#8').is(":visible") ||
@@ -515,8 +519,10 @@
                     else {
                         $('.ValidationBoxForDescription').css('display', 'table')
                         FormValidation13 = false
+                        console.log('jjj')
                     }
                 })
+                
                 ///NumberOfGuestsAndBeds
                 var NumberOfGuest = 0
                 var NumberOfBeds = 0

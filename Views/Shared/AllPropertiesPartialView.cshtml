@@ -10,38 +10,55 @@
         </div>
     </form>
 </div>
-<table class="table table-responsive table-hover">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">Proprity ID</th>
-            <th scope="col">Title</th>
-            <th scope="col">City</th>
-            <th scope="col">Price</th>
-            <th scope="col">Max Stay</th>
-            <th scope="col">Min Stay</th>
-            <th scope="col">Adding Date</th>
-            <th scope="col">Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var prop in Model)
-        {
+
+
+
+    <table class="table table-responsive table-hover">
+        <thead class="thead-dark">
             <tr>
-                <th scope="row">@prop.Id</th>
-                <td>
-                    <a class="text-dark font-weight-bold" asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" target="_blank">
-                        @prop.Title
-                    </a>
-                </td>
-                <td>@prop.City?.Name</td>
-                <td>@prop.Price</td>
-                <td>@prop.MaxStay</td>
-                <td>@prop.MinStay</td>
-                <td>@prop.Date</td>
-                <td><a asp-action="DeleteProperty" onclick="return confirm('Are you sure ?')" asp-controller="Admin" asp-route-id="@prop.Id" class="btn btn-danger">Delete</a></td>
+                <th scope="col">Proprity ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">City</th>
+                <th scope="col">Price</th>
+                <th scope="col">Max Stay</th>
+                <th scope="col">Min Stay</th>
+                <th scope="col">Adding Date</th>
+                <th scope="col">Delete</th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @if (Model.Count() > 0)
+            {
+                @foreach (var prop in Model)
+                {
+                    <tr>
+                        <th scope="row">@prop.Id</th>
+                        <td>
+                            <a class="text-dark font-weight-bold" asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" target="_blank">
+                                @prop.Title
+                            </a>
+                        </td>
+                        <td>@prop.City?.Name</td>
+                        <td>@prop.Price</td>
+                        <td>@prop.MaxStay</td>
+                        <td>@prop.MinStay</td>
+                        <td>@prop.Date</td>
+                        <td><a asp-action="DeleteProperty" onclick="return confirm('Are you sure ?')" asp-controller="Admin" asp-route-id="@prop.Id" class="btn btn-danger">Delete</a></td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="8">
+                        <h2 class="text-center">There is no Properities</h2>
+                    </td>
+                </tr>
+            }
 
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+
+
+

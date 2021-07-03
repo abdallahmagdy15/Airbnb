@@ -20,7 +20,7 @@
             {
                 <tr>
                     <th scope="row"> @Amenity.Id</th>
-                    <td> <img style="max-width: 50px; max-height: 50px;" src="~/SVG/amenity.svg" /></td>
+                    <td> @Html.Raw(Amenity.Icon)</td>
                     <td> @Amenity.Name</td>
                     <td> @Amenity.Description</td>
                     <td> @Amenity.Type</td>

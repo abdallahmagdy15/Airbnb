@@ -212,13 +212,11 @@
     <partial name="NumberOfGustsAndBeds.cshtml" />
     <partial name="NumberOfBathRooms.cshtml" />
     <partial name="LocationEdit.cshtml" />
-    <partial name="Amenty.cshtml">
-        <partial name="placesCanGuestUse.cshtml">
+    
             <partial name="Description.cshtml">
                 <partial name="Title.cshtml">
                     <partial name="GuestsRequirement.cshtml">
-                        <partial name="HouseRoles.cshtml">
-                            <partial name="PopertyImages.cshtml">
+                            @*<partial name="PopertyImages.cshtml">*@
                                 <partial name="HowLongCanGuestStay">
                                     <partial name="PriceYourSpace">
 
@@ -337,14 +335,33 @@
                     $('.containFooter').removeClass('col col-xl-12')
                     $('.containFooter').css('left', '55px')
                     $('.ValidationBoxForDescription').css('display', 'none')
-                    $("#" + (PageNumber - 1)).css('display', 'none')
+                    if (PageNumber == 5 ) {
+                        $("#" + (PageNumber+2)).css('display', 'flex')
+                        console.log(PageNumber)
+                    }
+                    else if (PageNumber == 9) {
+                        $("#" + (PageNumber + 3)).css('display', 'flex')
+                    }
+                    else {
+                        $("#" + PageNumber).css('display', 'flex')
+                    }
+                     $("#" + (PageNumber - 1)).css('display', 'none')
 
-                    $("#" + PageNumber).css('display', 'flex')
-
+                        console.log(PageNumber)
+                    
                     $('#file').val(function (i, oldval) {
-                        return parseInt(oldval, 10) + (100 / 13)
+                        return parseInt(oldval, 10) + (100 / 8)
                     })
-                    PageNumber++
+                    if (PageNumber == 5) {
+                        PageNumber +=3
+                    }
+                    else if (PageNumber == 9) {
+                        PageNumber += 4
+
+                    }
+                    else {
+                        PageNumber++
+                    }
                 }
             }
         
@@ -391,14 +408,29 @@
                     $('#next').val('next')
 
                     if (PageNumber > 2) {
-                        $("#" + (PageNumber - 1)).css('display', 'none')
-
+                        if (PageNumber == 8) {
+                            $("#" + (PageNumber - 4)).css('display', 'flex')
+                        }
+                        else if(PageNumber == 13) {
+                            $("#" + (PageNumber - 5)).css('display', 'flex')
+                            console.log('hi')
+                        }
+                        else {
                             $("#" + (PageNumber - 2)).css('display', 'flex')
+                        }
+                        $("#" + (PageNumber - 1)).css('display', 'none')
                         $('#file').val(function (i, oldval) {
                             return parseInt(oldval, 10) - (100 / 18)
                         })
+                    }
+                    if (PageNumber == 8) {
+                        PageNumber -= 3
+                    }
+                    else if (PageNumber == 13) {
+                        PageNumber -=4
+                    }
+                    else {
                         PageNumber--
-                        console.log(PageNumber)
                     }
                     switch (PageNumber) {
                         case 2:

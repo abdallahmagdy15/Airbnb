@@ -33,7 +33,7 @@ namespace Airbnb.Models
         [StringLength(500, MinimumLength = 3)]
         public string Title { set; get; }
 
-        [StringLength(1000, MinimumLength = 3)]
+        [StringLength(10000, MinimumLength = 3)]
         public string Description { set; get; }
 
         [Column(TypeName = "Money")]

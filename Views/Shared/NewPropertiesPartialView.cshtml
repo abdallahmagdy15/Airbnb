@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<Airbnb.Models.Property>
 
 <h2>Waiting Properties</h2>
-<div class="search_container">
+
+@*<div class="search_container">
     <form asp-action="FindProp" asp-controller="Admin" method="post">
         <div class="row">
             <input name="Title" id="search_text" type="text" placeholder="Search">
@@ -9,7 +10,8 @@
             <a id="download-data" class="btn-success" asp-action="PropertyExcel" asp-controller="Admin">Export data in CVS</a>
         </div>
     </form>
-</div>
+</div>*@
+<br />
 <table class="table table-responsive table-hover">
     <thead class="thead-dark">
         <tr>
@@ -25,25 +27,33 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var prop in Model)
+        @if (Model.Count() > 0)
         {
-        <tr>
-            <th scope="row">@prop.Id</th>
-            <td>
-                <a class="text-dark font-weight-bold" asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" target="_blank">
-                    @prop.Title
-                </a>
-            </td>
-            <td>@prop.City?.Name</td>
-            <td>@prop.Price</td>
-            <td>@prop.MaxStay</td>
-            <td>@prop.MinStay</td>
-            <td>@prop.Date.ToString("dd/MM/yyyy")</td>
-            <td><a asp-action="AcceptNewProperty" asp-controller="Admin" asp-route-id="@prop.Id" class="btn btn-info">Accebt</a></td>
-            <td><a asp-action="DeleteProperty" onclick="return confirm('Are you sure ?')" asp-controller="Admin" asp-route-id="@prop.Id" class="btn btn-danger">Delete</a></td>
-        </tr>
+            @foreach (var prop in Model)
+            {
+                <tr>
+                    <th scope="row">@prop.Id</th>
+                    <td>
+                        <a class="text-dark font-weight-bold" asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" target="_blank">
+                            @prop.Title
+                        </a>
+                    </td>
+                    <td>@prop.City?.Name</td>
+                    <td>@prop.Price</td>
+                    <td>@prop.MaxStay</td>
+                    <td>@prop.MinStay</td>
+                    <td>@prop.Date.ToString("dd/MM/yyyy")</td>
+                    <td><a asp-action="AcceptNewProperty" asp-controller="Admin" asp-route-id="@prop.Id" class="btn btn-info">Accebt</a></td>
+                    <td><a asp-action="DeleteProperty" onclick="return confirm('Are you sure ?')" asp-controller="Admin" asp-route-id="@prop.Id" class="btn btn-danger">Delete</a></td>
+                </tr>
+            }}
+        else
+        {
+            <tr>
+                <td colspan="8">
+                    <h2 class="text-center">There is no Properities</h2>
+                </td>
+            </tr>
         }
-
-
     </tbody>
 </table>

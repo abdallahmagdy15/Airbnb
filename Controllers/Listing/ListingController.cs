@@ -172,16 +172,6 @@ namespace Airbnb.Controllers.Listing
             }
             return RedirectToAction("Listing", "Hosting");
         }
-
-
-
-
-
-
-
-
-
-
         [Authorize]
         [HttpPost]
         public IActionResult New(ListingViewModel listingViewModel)

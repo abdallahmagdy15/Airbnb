@@ -301,8 +301,9 @@ body {
 
 /*end right col*/
 
-table{
+.table{
     margin:0 auto ;
+    border-radius:5px;
 }
 /*user details*/
 .information-data card {
@@ -330,4 +331,11 @@ table{
     width: 250px;
     height: 300px;
     margin: 25px;
+}
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    min-width: 110px !important;
+    text-align: center!important;
 }

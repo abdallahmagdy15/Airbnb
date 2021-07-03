@@ -32,6 +32,7 @@ $(".checkbox-input").on("change", (e) => {
 
 $("#btn-unfold-map").click((e) => {
     $(e.currentTarget).hide();
+    $("#btn-fold-map").show();
     $("#map-wrapper").css({
         width: "99vw",
     });
