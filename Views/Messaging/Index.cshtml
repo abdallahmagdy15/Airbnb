@@ -27,7 +27,7 @@
             {
                 var contact = chat.Users.FirstOrDefault(x => x.Id != Model.Id);
                 Message lastMessage = null;
-                @if (chat.Messages.Count() > 0)
+                @if (chat.Messages?.Count() > 0)
                 {
                     lastMessage = chat.Messages.ToList().Last();
                 }
