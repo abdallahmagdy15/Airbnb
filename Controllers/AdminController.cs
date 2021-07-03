@@ -416,7 +416,7 @@ namespace Airbnb.Controllers
             return PartialView("Views/Shared/AllUserPartialView.cshtml", _db.FindUserByName(name));
         }
         [HttpPost]
-        public IActionResult FindProp(string Title)
+        public IActionResult FindProp(string Title)//by city name
         {
             return PartialView("Views/Shared/AllPropertiesPartialView.cshtml", _db.FindPeopByTitle(Title));
         }
