@@ -55,6 +55,11 @@ namespace Airbnb.Controllers
 
         public IActionResult CheckDate(int id, string checkIn, string checkOut)
         {
+            if (checkIn == null || checkOut == null)
+            {
+                return BadRequest();
+            }
+
             var checkInSplitted = checkIn.Split('-');
             var checkOutSplitted = checkOut.Split('-');
             var checkInDate = new DateTime(int.Parse(checkInSplitted[0]), int.Parse(checkInSplitted[1]), int.Parse(checkInSplitted[2]));

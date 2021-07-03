@@ -127,17 +127,17 @@
             padding: 2px;
         }
 
-            .switch:hover {
-                background-color: #6b6b6b;
-            }
+        .switch:hover {
+            background-color: #6b6b6b;
+        }
 
-            .switch:focus {
-                outline: none;
-            }
+        .switch:focus {
+            outline: none;
+        }
 
-            .switch.checked {
-                background-color: black;
-            }
+        .switch.checked {
+            background-color: black;
+        }
 
         .switch-circle {
             position: absolute;
@@ -315,7 +315,7 @@
                                 <div class="price-body">
                                     <div class="mr-2">$</div>
                                     <div class="price-input-div">
-                                        <input type="number" name="MinPrice" value="@(ViewBag.minPrice > 0 ? ViewBag.minPrice : "")" id="filter-min-price" class="price-input">
+                                        <input type="number" name="MinPrice" id="filter-min-price" class="price-input">
                                     </div>
                                 </div>
                             </label>
@@ -327,7 +327,7 @@
                                 <div class="price-body">
                                     <div class="mr-2">$</div>
                                     <div class="price-input-div">
-                                        <input type="number" name="MaxPrice" value="@(ViewBag.maxPrice > 0 ? ViewBag.maxPrice : "")" id="filter-max-price" class="price-input">
+                                        <input type="number" name="MaxPrice" id="filter-max-price" class="price-input">
                                     </div>
                                 </div>
                             </label>
@@ -630,7 +630,7 @@
             let initialLocation;
 
             map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 13,
+                zoom: 10,
                 disableDefaultUI: true,
             });
 
