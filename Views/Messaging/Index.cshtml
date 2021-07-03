@@ -62,7 +62,10 @@
 
     <div class="chat" id="chat-cr">
         <div class="loading-cr">
+            @if (Model.Chats?.Count() > 0)
+            {
             <img src="~/SVG/loading_animated.svg" style="width:8rem;" />
+            }
         </div>
     </div> <!-- end chat -->
 </div> <!-- end container -->
@@ -102,7 +105,7 @@
     <script>
         const currUserId = "@Model.Id";
         const connection = new signalR.HubConnectionBuilder()
-            .withUrl("/chathub")
+            .withUrl("/ChatHub")
             .configureLogging(signalR.LogLevel.Information)
             .build();
 
