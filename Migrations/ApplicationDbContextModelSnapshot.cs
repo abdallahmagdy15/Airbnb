@@ -333,7 +333,7 @@ namespace Airbnb.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(10000)
+                        .HasMaxLength(500000)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("GuestPlaceTypeId")
@@ -364,8 +364,8 @@ namespace Airbnb.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
