@@ -30,7 +30,7 @@
                     lastMessage = chat.Messages.ToList().Last();
                 }
                 <li class="clearfix clickableItem" onclick="loadChat(@chat.ChatId)">
-                    <img class="dp" src="~/images/@(lastMessage?.User.PhotoUrl != null ? lastMessage.User.PhotoUrl : "default_dp.jpg")" alt="avatar" />
+                    <img class="dp" src="~/images/@(contact.PhotoUrl ?? "default_dp.jpg")" alt="avatar" />
                     <div class="contact-info">
                         <div class="about">
                             <span class="name font-weight-bold">@contact.FirstName @contact.LastName</span>
@@ -62,7 +62,10 @@
 
     <div class="chat" id="chat-cr">
         <div class="loading-cr">
+            @if (Model.Chats?.Count() > 0)
+            {
             <img src="~/SVG/loading_animated.svg" style="width:8rem;" />
+            }
         </div>
     </div> <!-- end chat -->
 </div> <!-- end container -->
@@ -102,7 +105,7 @@
     <script>
         const currUserId = "@Model.Id";
         const connection = new signalR.HubConnectionBuilder()
-            .withUrl("/chathub")
+            .withUrl("/ChatHub")
             .configureLogging(signalR.LogLevel.Information)
             .build();
 
@@ -132,7 +135,7 @@
         @if (Model.Chats.Count() > 0)
         {
             <script>
-                loadChat("");
+                loadChat("@ViewBag.ChatId");
             </script>
         }
 }

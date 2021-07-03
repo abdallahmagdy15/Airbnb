@@ -1,17 +1,14 @@
 ﻿using Airbnb.Models;
 using Airbnb.Services;
-using Microsoft.AspNet.SignalR.Hubs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Security.Claims;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Airbnb.Hubs
 {
-    [HubName("chathub")]
     public class ChatHub : Hub
     {
         private readonly IMessagingService messagingService;

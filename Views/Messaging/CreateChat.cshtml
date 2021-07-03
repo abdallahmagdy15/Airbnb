@@ -13,7 +13,7 @@
     <li class="chat-item">
         <label>@user.FirstName @user.LastName</label>
         <form asp-action="CreateChat" asp-controller="Messaging" method="post">
-            <input name="contactId" hidden value="@user.Id" />
+            <input name="contactid" hidden value="@user.Id" />
             <button type="submit" class="btn btn-default">
                 <i class="fas fa-plus"></i>
             </button>

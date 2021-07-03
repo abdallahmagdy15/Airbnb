@@ -8,8 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Authentication;
-using Stripe;
 using Microsoft.AspNetCore.HttpOverrides;
 using Airbnb.Hubs;
 using Airbnb.Repositories;

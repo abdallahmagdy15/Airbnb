@@ -34,8 +34,8 @@ body {
 }
 
 #contain {
-    background-color: #000000;
-    padding: 0 2%;
+    background-color: transparent;
+    padding: 0;
 }
 
 #language_Icon {
@@ -48,10 +48,12 @@ body {
     margin-top: 30px;
 }
 
+
+
 #becomeahost {
-    background-color: black;
-    color: white;
-    border: 1px solid white;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
     border-radius: 10px;
     height: 35px;
     padding: 5px 10px;
@@ -61,7 +63,7 @@ body {
 }
 
     #becomeahost:hover {
-        background-color: gray;
+        background-color: lightgray;
         cursor: pointer;
     }
 
@@ -712,10 +714,27 @@ ul li span {
     font-weight: bold;
 }
 
+#search {
+    transition-duration: 0.2s;
+}
+
+#search:hover {
+    transform: scale(1.15);
+}
+
+#search:active {
+    transform: scale(0.9);
+}
+
+.nav-item {
+    transition-duration: 0.2s;
+}
+
+.nav-item:hover {
+    transform: translateY(-10%);
+}
 /* end of search in small screen */
-
 /* Guests in small screen */
-
 .guests_sm_src {
     width: 100%;
     top: 160px !important;
