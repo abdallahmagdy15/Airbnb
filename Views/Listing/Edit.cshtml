@@ -310,6 +310,73 @@
 
                 })
 
+
+        //location/////////////
+
+        var FormValidation4 = false
+        var inputt = $('.SelectLocationInput')
+        $('#next').click(function () {
+            if ($('#street').val() != '' && $('#apt-suite').val() != '' && $('#zip-code').val() != '') {
+                FormValidation4 = true
+            }
+            else {
+                FormValidation4 = false
+            }
+            if ($('#cities').css('display') == 'none') {
+                console.log('none')
+            }
+            else {
+                console.log('block')
+            }
+
+        });
+
+
+
+
+        //description
+        var FormValidation7 = false
+        var NumberOfBathrooms = 0
+        $(function () {
+            $('.ValidationBoxForDescription').css('display', 'none')
+            $('.TipsInMobile').css('display', 'none')
+            $('#bgmodal').css('display', 'none')
+
+        })
+        $('.ContainTipsInSmall').click(function () {
+            $('.TipsInMobile').css('display', 'block')
+            $('#bgmodal').css('display', 'block')
+        })
+        $('.close').click(function () {
+            $('.TipsInMobile').css('display', 'none')
+            $('#bgmodal').css('display', 'none')
+        })
+
+        $('#next').click(function () {
+            if ($('textarea').val() != '') {
+                $('.ValidationBoxForDescription').css('display', 'none')
+                FormValidation7 = true
+            }
+            else {
+                $('.ValidationBoxForDescription').css('display', 'table')
+                FormValidation7 = false
+            }
+        })
+        //end of descriptoion
+        //title
+        FormValidation8 = false
+        $('#next').click(function () {
+            if ($('.InputTitle').val() != '') {
+                $('.ValidationBoxForDescription').css('display', 'none')
+                FormValidation8 = true
+            }
+            else {
+                $('.ValidationBoxForDescription').css('display', 'table')
+                FormValidation8 = false
+            }
+        })
+                //end of title
+
                
         $('#next').click(function () {
             //if ($('#3').is(":visible")){
@@ -420,18 +487,19 @@
                         }
                         $("#" + (PageNumber - 1)).css('display', 'none')
                         $('#file').val(function (i, oldval) {
-                            return parseInt(oldval, 10) - (100 / 18)
+                            return parseInt(oldval, 10) - (100 / 8)
                         })
+                        if (PageNumber == 8) {
+                            PageNumber -= 3
+                        }
+                        else if (PageNumber == 13) {
+                            PageNumber -= 4
+                        }
+                        else {
+                            PageNumber--
+                        }
                     }
-                    if (PageNumber == 8) {
-                        PageNumber -= 3
-                    }
-                    else if (PageNumber == 13) {
-                        PageNumber -=4
-                    }
-                    else {
-                        PageNumber--
-                    }
+                    
                     switch (PageNumber) {
                         case 2:
                         case 3:

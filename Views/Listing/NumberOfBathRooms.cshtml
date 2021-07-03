@@ -1,10 +1,7 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
-    Layout = "~/Views/Shared/ListingLayout.cshtml";
 
-}
 @model ListingViewModel
 
 <div id="3" style="display:flex">
@@ -31,7 +28,7 @@
                             </svg>
                         </span>
                     </button>
-                    <input asp-for="NumberOfBathRooms" type="text" style="border:none;width:20px ;display: inline;font-size: 18px;" id="number_Children">
+                    <input asp-for="NumberOfBathRooms" type="text" style="border:none;width:30px ;display: inline;font-size: 18px;" id="number_Children">
                     <button type="button" id="add_Children">
                         <span>
                             <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
@@ -56,14 +53,13 @@
 @section Scripts {
     <script>
 
-       
         $('#add_Children').click(function () {
             $('#number_Children').val(parseInt($('#number_Children').val())+1)
         })
-        $('#subtract_Children').click(function () {
 
-            NumberOfBathrooms -= 1;
-            $('#number_Children').val(NumberOfBathrooms)
+        $('#subtract_Children').click(function () {
+            if (parseInt($('#number_Children').val())!=0)
+            $('#number_Children').val(parseInt($('#number_Children').val()) - 1)
         })
     </script>
 }

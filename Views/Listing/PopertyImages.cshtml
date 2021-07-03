@@ -1,13 +1,8 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
-    Layout = "~/Views/Shared/ListingLayout.cshtml";
-}
+
 @model ListingViewModel
-
-
-
 <div id="11" style="display:flex">
     <div class="col col-12 col-md-7" style="margin-bottom: 150px;">
 
@@ -86,57 +81,8 @@
 @section Scripts {
 
     <script>
-        var inputIncr = 0;
-        $('.addImg').css('display', 'none')
-
-        $('body').on('change', '.file-upload', function (e) {
-            alert();
-            var file = e.currentTarget.files[0];
-
-            if (file) {
-                $('#imagesDisplay').append(`
-                    <div class="image-div">
-                        <button type="button" class="removeImg edit" data-input="${e.currentTarget.id}">
-                            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
-                                 aria-label="Delete" role="img" focusable="false"
-                                 style="display: block; height: 20px; width: 20px;">
-                                <path d="M19 2a1 1 0 0 1 .993.883L20 3v3h8v2h-2.001L26 28a2 2 0 0 1-1.85 1.995L24 30H8a2 2 0 0 1-1.995-1.85L6 28 5.999 8H4V6h8V3a1 1 0 0 1 .883-.993L13 2zm4.999 6h-16L8 28h16zM12 10v16h-2V10zm5 0v16h-2V10zm5 0v16h-2V10zm-4-6.001h-4v2h4z">
-                                </path>
-                            </svg>
-                        </button>
-                        <img src="${URL.createObjectURL(file)}" alt="imag" />
-                    </div>`
-                );
-            }
-
-            $('#imgInputs').append(`
-                    <input id="img${++inputIncr}" name="Images" type='file' class="file-upload" />
-                `
-            );
-
-            $('.upload').css('display', 'none');
-            $('.ContainInput').remove();
-            $('.addImg').css('display', 'block');
-        });
-
-        $('body').on('click', '.removeImg', (e) => {
-            var result = confirm("Do you want to delete permenantly?");
-            if (!result)
-                return;
-
-            var inputId = $(e.currentTarget).data('input');
-            $(`#${inputId}`).remove();
-            $(e.currentTarget).parent().remove();
-        });
-
-        $('.Input').click(function () {
-            $(".file-upload")[0].click();
-        });
-
-        $('.addImg').click(function () {
-            console.log($(".file-upload").length)
-            $(".file-upload")[$(".file-upload").length - 1].click();
-        });
+       
+       
         
     </script>
 }
