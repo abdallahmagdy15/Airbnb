@@ -223,6 +223,7 @@ namespace Airbnb.Controllers
         public IActionResult Editprofile()
         {
             var userid = userManager.GetUserId(HttpContext.User);
+            ViewData["Countries"] = DbContext.Countries;
             if (userid==null)
             {
                 return View("Login");
@@ -240,7 +241,7 @@ namespace Airbnb.Controllers
             
         }
         [HttpPost]
-        public IActionResult editprofile(editUserData model)
+        public IActionResult editprofile(editUserData model, int? CityId)
         {
             string fileName = string.Empty;
             if (model.PhotoUrl != null)
@@ -261,7 +262,7 @@ namespace Airbnb.Controllers
                 DateOfBirth = model.User.DateOfBirth,
                 Street = model.User.Street,
                 BuildingNo = model.User.BuildingNo,
-                City=model.User.City,
+                CityId= CityId ?? null,
                 PhotoUrl = fileName,
             };
             var olduser = DbContext.Users.Find(model.User.Id); ;
@@ -273,6 +274,7 @@ namespace Airbnb.Controllers
                 olduser.UserName = olduser.Email = user.Email;
                 olduser.NormalizedUserName = olduser.NormalizedEmail = user.Email.ToUpper();
                 olduser.DateOfBirth = user.DateOfBirth;
+                olduser.CityId = user.CityId;
                 olduser.Street = user.Street;
                 olduser.BuildingNo = user.BuildingNo;
                 olduser.PhotoUrl = user.PhotoUrl;
@@ -282,6 +284,7 @@ namespace Airbnb.Controllers
             }
             else
             {
+                ViewData["Countries"] = DbContext.Countries;
                 return View(user);
             }
 
