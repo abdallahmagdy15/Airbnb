@@ -877,3 +877,15 @@ li {
         margin-left: 170px;
     }
 }   
+
+
+/*change password a */
+#change_password {
+    width: 200px;
+    margin-top: 13px;
+    min-height: 56px;
+    line-height: 2.45rem;
+    margin-left: 10px;
+    border-radius:10px;
+
+}

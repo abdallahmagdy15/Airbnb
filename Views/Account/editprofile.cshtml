@@ -61,9 +61,36 @@
                     <span asp-validation-for="@Model.User.Email" class="text-danger"></span>
                 </div>
                 <div class="form-group form-group col col-6 col-md-4">
-                    <label asp-for="@Model.User.City">City</label>
-                    <input asp-for="@Model.User.City" class="form-control" />
-                    <span asp-validation-for="@Model.User.City" class="text-danger"></span>
+                    <label>Country</label>
+                    <select class="form-control" 
+                            id="countries" 
+                            asp-items='new SelectList(ViewData["Countries"] as IEnumerable<Airbnb.Models.Location.Country>, "Id", "Name", Model.User.City?.State.CountryId)' 
+                            onchange="fetchStates()">
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col col-6 col-md-4">
+                    <label>State</label>
+                    <div id="states">
+                        @if (Model.User.CityId.HasValue)
+                        {
+                            <div style="overflow: hidden; width: 50px;">
+                                <img style="object-fit: cover; width: 100%;" src="https://uploads.toptal.io/blog/image/122384/toptal-blog-image-1489082600190-18810897d0cb0ab42b276537a18dafdf.gif" alt="as" />
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="form-group col col-6 col-md-4">
+                    <label>City</label>
+                    <div id="cities">
+                        @if (Model.User.CityId.HasValue)
+                        {
+                            <div style="overflow: hidden; width: 50px;">
+                                <img style="object-fit: cover; width: 100%;" src="https://uploads.toptal.io/blog/image/122384/toptal-blog-image-1489082600190-18810897d0cb0ab42b276537a18dafdf.gif" alt="as" />
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
             <div class="form-row">
@@ -85,95 +112,57 @@
                     </span>
                     Save
                 </button>
+                <a id="change_password" asp-action="ResetPassword" asp-controller="Account" class="btn btn-outline-dark mb-4" style="width:200px; margin-top:10px">
+                    Go to Change Password
+                </a>
             </div>
         </div>
-        <div class="row footersm">
-            <div class="footer">
-                <div class="about" style="box-shadow: 0 2px 0px -1px #dddddd;">
-                    <h4>about</h4>
-                    <ul>
-                        <li><a href="#">How Airbnb works</a></li>
-                        <li><a href="#">Newsroom</a></li>
-                        <li><a href="#">Investors</a></li>
-                        <li><a href="#">Airbnb Plus</a></li>
-                        <li><a href="#">Airbnb Luxe</a></li>
-                        <li><a href="#">HotelTonight</a></li>
-                        <li><a href="#">Airbnb for Work</a></li>
-                        <li><a href="#">Made possible by Hosts</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Founders'Letter</a></li>
-                        <br />
-                    </ul>
-                </div>
-                <div class="community" style="box-shadow: 0 2px 0px -1px #dddddd;">
-                    <h4>community</h4>
-                    <ul>
-                        <li><a href="#">Diversity & Belonging</a></li>
-                        <li><a href="#">Against Discrimination</a></li>
-                        <li><a href="#">Accessibility</a></li>
-                        <li><a href="#">Airbnb Associates</a></li>
-                        <li><a href="#">Frontline Stays</a></li>
-                        <li><a href="#">Guest Referrals</a></li>
-                        <li><a href="#">Gift cards</a></li>
-                        <li><a href="#">Airbnb.org</a></li>
-                        <br>
-                    </ul>
-                </div>
-                <div class="host" style="box-shadow: 0 2px 0px -1px #dddddd;">
-                    <h4>host</h4>
-                    <ul>
-                        <li><a href="#">Host your home</a></li>
-                        <li><a href="#">Host an Online Experience</a></li>
-                        <li><a href="#">Host an Experience</a></li>
-                        <li><a href="#">Responsible hosting</a></li>
-                        <li><a href="#">Resource Center</a></li>
-                        <li><a href="#">Community Center</a></li>
-                        <br>
-                    </ul>
-                </div>
-                <div class="support" style="box-shadow: 0 2px 0px -1px #dddddd;">
-                    <h4>support</h4>
-                    <ul>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Cancellation options</a></li>
-                        <li><a href="#">Neighborhood Support</a></li>
-                        <li><a href="#">Responsible hosting</a></li>
-                        <li><a href="#">Trust & Safety</a></li>
-                        <br>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="footermd">
-                <div class="socialandlan">
-                    <span class="glope" style="display:inline-flex;">
-                        <i class="fas fa-globe"></i>
-                    </span>
-                    <a href="#" style="color: black; text-decoration: underline;">English(US)</a>
-                    <span class="money">
-                        <i class="fas fa-dollar-sign"></i>
-                        <a href="#" style="color: black; text-decoration: underline;">AUD</a>
-                    </span>
-                    <span class="socialmedia">
-                        <ul style="display: inline-flex;">
-                            <il style="padding-right: 20px;"><a href="#"><i class="fab fa-facebook-f fa-lg" style="color: black;"></i></a></il>
-                            <il style="padding-right: 20px;"><a href="#"><i class="fab fa-twitter fa-lg" style="color: black;"></i></a></il>
-                            <il style="padding-right: 20px;"><a href="#"><i class="fab fa-instagram fa-lg" style="color: black;"></i></a></il>
-                        </ul>
-                    </span>
-                </div>
-                <div class="copyrights">
-                    ©2021 Airbnb, Inc.
-                </div>
-                <span class="footerlinks">
-                    <ul>
-                        <il><a href="#" style="color: #222222">Privacy</a></il>
-                        <il><a href="#" style="color: #222222">Terms</a></il>
-                        <il><a href="#" style="color: #222222">Sitemap</a></il>
-                    </ul>
-                </span>
-            </div>
-        </div>
-        </div>
+        
 </form>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            @if (Model.User.CityId.HasValue)
+            {
+               @:$('#countries').trigger("change");
+            }
+        });
+
+        function fetchStates() {
+            var id = $('#countries').val();
+
+            $.ajax({
+                type: "GET",
+                url: `/listing/states/${id}`,
+                success: function (response) {
+                    $('#states').css('display', 'block')
+                    $('#states').html(response);
+                    @if (Model.User.CityId.HasValue)
+                    {
+                        @:$('#statesSelect').val(@Model.User.City.StateId).trigger("change");
+                    }
+                }
+            });
+        }
+
+        function fetchCities() {
+            var id = $('#statesSelect').val();
+
+            $.ajax({
+                type: "GET",
+                url: `/listing/cities/${id}`,
+                success: function (response) {
+                    $('#cities').css('display', 'block')
+                    $('#cities').html(response);
+                    @if (Model.User.CityId.HasValue)
+                    {
+                        @:$('#citySelect').val(@Model.User.CityId);
+                    }
+                }
+            });
+        }
+
+        function setMapCenter() {  }
+    </script>
+}
