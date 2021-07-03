@@ -87,7 +87,7 @@
                 </label>
                 <div class="ContainSelectLocation">
                     <div class="SelectLocation">
-                        <input asp-for="Street" value="mohamed" class="SelectLocationInput" id="street">
+                        <input asp-for="Street"  class="SelectLocationInput" id="street">
                     </div>
                 </div>
                 <div class="DescriptionUnderInput">
@@ -129,38 +129,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbwcRdDylRg2IoZhU9_LmWa7dD6YL85Xk&callback=initMap&libraries=&v=weekly"
             async></script>
     <script>
-        var FormValidation4 = false
-        var inputt = $('.SelectLocationInput')
-        $('#next').click(function () {
-            if ($('#street').val() != '' && $('#apt-suite').val() != '' && $('#zip-code').val() != '' && $('#states') && $('#cities').css('display') == 'block' ) {
-                FormValidation4 = true
-            }
-            else {
-                FormValidation4 = false
-            }
-            if ($('#cities').css('display') == 'none') {
-                console.log('none')
-            }
-            else {
-                console.log('block')
-            }
-            //for (var i = 0; i < $('.SelectLocationInput').length; i++) {
-            //    console.log($(inputt[i]).val())
-            //    if ($(inputt[i]).val()) {
-            //        FormValidation4 = true
-            //        console.log(FormValidation4)
-            //    }
-            //    else {
-
-            //        FormValidation4 = false
-            //        console.log(FormValidation4)
-
-
-            //    }
-               
-            //}
-        });
-
         function fetchStates() {
             var id = $('#countries').val();
 
@@ -168,7 +136,7 @@
                 type: "GET",
                 url: `/listing/states/${id}`,
                 success: function (response) {
-                    $('#states').css('display','block')
+                    $('#states').css('display', 'block')
                     $('#states').html(response);
                 }
             });
