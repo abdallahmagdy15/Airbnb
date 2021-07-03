@@ -3,13 +3,14 @@
 *, *:before, *:after {
     box-sizing: border-box;
 }
+
 body {
     overflow: hidden;
     background-color: #d3d3d3;
 }
 
 .messaging-cr {
-    margin: 0 auto;
+    margin: 1rem auto;
     width: 97%;
     height: 87vh;
     background: #444753;
@@ -66,7 +67,7 @@ body {
         float: left;
         display: flex;
         flex-direction: column;
-        color:white;
+        color: white;
     }
 
     .people-list .status {
@@ -80,11 +81,13 @@ body {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     color: #434651;
-    height:87vh;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
 }
 
     .chat .chat-header {
-        padding: 16px;
+        padding: 1rem;
         box-shadow: 0px 3px 4px #dfdfdf;
     }
 
@@ -100,7 +103,7 @@ body {
 
         .chat .chat-header .chat-with {
             font-weight: bold;
-            font-size: 16px;
+            font-size: 1.5rem;
         }
 
         .chat .chat-header .chat-num-messages {
@@ -117,8 +120,8 @@ body {
     .chat .chat-history {
         padding: 30px 30px 20px;
         border-bottom: 2px solid white;
-        overflow-y: scroll;
-        height: 58vh;
+        overflow-y: auto;
+        height: 74%;
     }
 
         .chat .chat-history .message-data {
@@ -169,18 +172,24 @@ body {
             }
 
     .chat .chat-message {
-        padding: 1rem;
-        box-shadow:0px -3px 4px #dfdfdf;
+        padding: .8rem 1rem;
+        box-shadow: 0px -3px 4px #dfdfdf;
+        position: absolute;
+        width: 100%;
+        background: #ffffff;
+        bottom: 0;
     }
 
         .chat .chat-message textarea {
             width: 100%;
             border: none;
-            padding: 10px 20px;
+            padding: 0.4rem;
             font: 14px/22px "Lato", Arial, sans-serif;
-            margin-bottom: 10px;
+            margin-bottom: 3px;
             border-radius: 5px;
             resize: none;
+            height: 2.2rem;
+            background: #f1f1f1;
         }
 
         .chat .chat-message .fa-file-o, .chat .chat-message .fa-file-image-o {
@@ -289,9 +298,11 @@ ul {
     height: 85vh;
     margin-top: 13vh;
 }
+
 .modal-content {
     height: 100%;
 }
+
 div#modal-render-body {
     overflow: auto;
 }
@@ -301,14 +312,16 @@ li.chat-item {
     justify-content: space-between;
     margin: 0 auto;
     padding: 1rem .5rem;
-    cursor:pointer
+    cursor: pointer
 }
-li.chat-item:hover{
-    background-color:aliceblue;
-}
-li.chat-item label{
-    line-height:2;
-}
+
+    li.chat-item:hover {
+        background-color: aliceblue;
+    }
+
+    li.chat-item label {
+        line-height: 2;
+    }
 
 .loading-cr {
     display: flex;
