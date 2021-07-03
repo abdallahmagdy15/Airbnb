@@ -159,7 +159,7 @@
             </div>
 
         </div>
-        <div class="col col-md-5 d-none d-md-block ContainRightDiv">
+        <div class="col col-md-5 d-none d-md-block ContainRightDiv" style="height:1200px;">
             <div class="TipsInFullScreen">
                 <div style="margin-bottom: 20px;">
                     <div style="display: table-cell;vertical-align: middle;">
@@ -391,7 +391,17 @@
                         FormValidation8 = false
                     }
                 })
-                //end of title
+                    //end of title
+                    // bathrooms
+
+                $('#add_Children').click(function () {
+                    $('#number_Children').val(parseInt($('#number_Children').val()) + 1)
+                })
+
+                $('#subtract_Children').click(function () {
+                    if (parseInt($('#number_Children').val()) != 0)
+                        $('#number_Children').val(parseInt($('#number_Children').val()) - 1)
+                })
 
 
                 $('#next').click(function () {
@@ -478,7 +488,7 @@
                 })
                 $('#prev').click(function () {
                     $('.ValidationBoxForDescription').css('display', 'none')
-                    $('#next').val('next')
+                    $('#next').val('Next')
 
                     if (PageNumber > 2) {
                         $("#" + (PageNumber - 1)).css('display', 'none')
