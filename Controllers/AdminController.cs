@@ -1,9 +1,11 @@
 ﻿using Airbnb.Models;
 using Airbnb.Models.PropertySubModels;
+using Airbnb.Models.SiteSettings;
 using Airbnb.Services;
 using Airbnb.ViewModels;
 using ClosedXML.Excel;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,13 +21,16 @@ namespace Airbnb.Controllers
     {
         readonly IAdminServices _db;
         private readonly RoleManager<IdentityRole> roleManager;
+        IWebHostEnvironment webHostEnvironment;
         private readonly UserManager<AppUser> userManager;
 
-        public AdminController(IAdminServices db, RoleManager<IdentityRole> roleManager, UserManager<AppUser> userManager)
+        public AdminController(IAdminServices db, RoleManager<IdentityRole> roleManager, UserManager<AppUser> userManager, IWebHostEnvironment hostEnvironment)
         {
             _db = db;
             this.roleManager = roleManager;
             this.userManager = userManager;
+            webHostEnvironment = hostEnvironment;
+
         }
 
         public IActionResult CreateRole()
@@ -505,11 +510,42 @@ namespace Airbnb.Controllers
         [HttpGet]
         public IActionResult ChangeLogo()
         {
+            var logo = _db.getLogo();
+            ViewBag.logo = logo?.LogoUrl;
+
             return PartialView("Views/Shared/ChangeLogoPartialView.cshtml");
         }
+        [HttpPost]
+        public IActionResult ChangeLogo(LogoViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string uniqueFileName = UploadedFile(model);
+                var logo = new Logo
+                {
+                    LogoUrl = uniqueFileName,
+                };
+                _db.AddLogo(logo);
+            }
+            return RedirectToAction("Dashboard", "Admin");
+        }
 
+        private string UploadedFile(LogoViewModel model)
+        {
+            string uniqueFileName = null;
 
-
+            if (model.LogoUrl != null)
+            {
+                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.LogoUrl.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.LogoUrl.CopyTo(fileStream);
+                }
+            }
+            return uniqueFileName;
+        }
 
 
 

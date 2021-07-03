@@ -32,16 +32,19 @@
                         <img id="arrow-down" class="arrow-img" src="~/SVG/arrow-down-sign-to-navigate.svg" />
                         <img id="arrow-up" style="display:none" class="arrow-img" src="~/SVG/arrow-down-sign-to-navigate.svg" />
                     </div>
-                    <div id="site-setting" style="display:none;">
-                        <div class="button-container">
-                            <img src="~/SVG/airbnb-logo.svg">
-                            <button type="button" onclick="GetChangeLogoView()" class="dashboard-button">Site Logo</button>
-                        </div>
-                        <div class="button-container">
-                            <img src="~/SVG/home.svg">
-                            <button class="dashboard-button">Home Image</button>
-                        </div>
-                    </div>
+                    <!--
+        <div id="site-setting" style="display:none;">
+        <div class="button-container">
+            <img src="~/SVG/airbnb-logo.svg">
+            <button type="button" onclick="GetChangeLogoView()" class="dashboard-button">Site Logo</button>
+        </div>
+        <div class="button-container">
+            <img src="~/SVG/home.svg">
+            <button class="dashboard-button">Home Image</button>
+        </div>
+    </div>
+    -->
+
 
                     <div class="button-container">
                         <img src="~/SVG/admin.svg">
@@ -118,16 +121,16 @@
                     </div>
 
                     <!--
-                    <div class="button-container">
-                    <img src="~/SVG/fee.svg">
-                    <button class="dashboard-button">Mange payout</button>
-                    </div>
+    <div class="button-container">
+    <img src="~/SVG/fee.svg">
+    <button class="dashboard-button">Mange payout</button>
+    </div>
 
-                    <div class="button-container" style="margin-bottom:95px;">
-                        <img src="~/SVG/password.svg">
-                        <button class="dashboard-button">Change password</button>
-                    </div>
-                    -->
+    <div class="button-container" style="margin-bottom:95px;">
+        <img src="~/SVG/password.svg">
+        <button class="dashboard-button">Change password</button>
+    </div>
+    -->
 
 
                 </div>
@@ -250,13 +253,17 @@
             var name = $("#search_text").val();
             var Url = `FindUser`;
             console.log(name);
-            AjaxCall({ name }, Url, "POST");
+            if (name != null) {
+                AjaxCall({ name }, Url, "POST");
+            }
         }
         function findProperty() {
             var Title = $("#search_text").val();
             var Url = `FindProp`;
             console.log(Title);
-            AjaxCall({ Title }, Url, "POST");
+            if (Title != null) {
+                AjaxCall({ Title }, Url, "POST");
+            }
         }
         function GetChangeLogoView() {
             var Url = `ChangeLogo`
