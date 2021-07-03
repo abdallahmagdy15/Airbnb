@@ -28,6 +28,8 @@ namespace Airbnb.Services
         public Property GetProperity(int PropId);
         public void DeleteProp(int PropId);
         public List<Property> FindPeopByTitle(string Title);
+        public List<Property> FindPeopByCityName(string name);
+
         public void AcceptNewProperty(int id);
 
         // reservation
@@ -105,9 +107,21 @@ namespace Airbnb.Services
         {
             return AllUsers().Where(u => u.FirstName.Contains(Name)).ToList();
         }
-        
+
 
         //operations on properties
+
+        public List<Property> FindPeopByCityName(string name)
+        {
+            if (name != null)
+            {
+                var properties = _db.Properties.Where(p => p.City.Name == name).ToList();
+
+                return properties;
+            }
+            return null;
+        }
+
         public List<Property> Allproperties()
         {
             var p = _db.Properties.Where(p=>p.Accepted==true).ToList();
