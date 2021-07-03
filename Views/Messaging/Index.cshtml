@@ -12,7 +12,7 @@
             <h4>All Messages</h4>
             <a asp-action="CreateChat" asp-controller="Messaging" class="btn btn-default"
                data-ajax="true" data-ajax-update="#modal-render-body"
-               onclick="$('#RegisterModal').modal('show');$('.modal-title').text('Suggested People');">
+               onclick="$('#chatModal').modal('show');$('.modal-title').text('Suggested People');">
                 <i class="fas fa-plus"></i> Add Chat
             </a>
         </div>
@@ -61,10 +61,30 @@
     </div>
 
     <div class="chat" id="chat-cr">
+        <div class="loading-cr">
+            <img src="~/SVG/loading_animated.svg" style="width:8rem;" />
+        </div>
     </div> <!-- end chat -->
 </div> <!-- end container -->
 
+<div class="modal" tabindex="-1" id="chatModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-render-body">
+                <div class="loading-cr">
+                    <img src="~/SVG/loading_animated.svg" style="width:8rem;"/>
+                </div>
+            </div>
 
+        </div>
+    </div>
+</div>
 
 @section Scripts{
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -77,6 +97,7 @@
     <script src="https://kit.fontawesome.com/c975a9ad44.js" crossorigin="anonymous"></script>
     <script src="~/lib/signalr/signalr.min.js"></script>
     <script src="~/js/moment.js"></script>
+    <script src="~/js/chat.js"></script>
 
     <script>
         const currUserId = "@Model.Id";
@@ -85,6 +106,14 @@
             .configureLogging(signalR.LogLevel.Information)
             .build();
 
+        connection.on("new_message", function (msg) {
+            console.log("New Message : ", msg);
+            addMsgToList(msg);
+        });
+
+        connection.on("removed_message", function (_messageId) {
+            console.log(_messageId);
+        });
 
         async function loadChat(chatId) {
             console.log(connection.stop)
@@ -106,7 +135,4 @@
                 loadChat("");
             </script>
         }
-
-
-
 }

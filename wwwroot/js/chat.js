@@ -1,12 +1,4 @@
-﻿document.getElementById('chat-history').scrollTop=$('#chatCr').height();
-var msgsDates = $('.datetime')
-for (const x of msgsDates) {
-    console.log($(x).text());
-    console.log(moment(new Date($(x).text()), "YYYYMMDD").fromNow());
-    $(x).text(moment(new Date($(x).text()), "YYYYMMDD").fromNow())
-}
-
-function addMsgToList(msg) {
+﻿function addMsgToList(msg) {
     console.log(msg.text + " , isMine? " , msg.UserId == currUserId);
     var new_msg = `<li class="clearfix">
                     <div class="message-data ${msg.userId == currUserId ? 'align-right' : ''}">
@@ -20,5 +12,4 @@ function addMsgToList(msg) {
                 </li>`;
     $('#chatCr').append(new_msg);
     $('#chat-history').animate({ scrollTop: $('#chatCr').height() }, 300);
-
 }
