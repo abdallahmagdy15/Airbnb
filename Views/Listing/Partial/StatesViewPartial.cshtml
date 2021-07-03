@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Airbnb.Models.Location.State>
 
 <div>
-    <select id="statesSelect" asp-items='new SelectList(Model, "Id", "Name")' onchange="fetchCities()">
+    <select id="statesSelect" class="form-select" asp-items='new SelectList(Model, "Id", "Name")' onchange="fetchCities()">
     </select>
 </div>

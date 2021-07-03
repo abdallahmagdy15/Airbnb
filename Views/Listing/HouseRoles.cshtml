@@ -1,10 +1,7 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
-    Layout = "~/Views/Shared/ListingLayout.cshtml";
 
-}
 @model ListingViewModel
 <div id="10" style="display:flex">
     <div class="col col-12 col-md-7">
@@ -72,58 +69,7 @@
 @section Scripts {
 <script>
    
-    $('.ContainTrueFalse').mousedown(function (e) {
-        var True = $(this).find('.True')[0]
-        var False = $(this).find('.False')[0]
-        $(True).click(function () {
-            if ($(True).find('input')[0].value != "false") {
-                $(True).find('input').attr('checked', 'checked')
-                $(True).find('label')[0].classList.add('SelectedLabel')
-                $(True).find('svg')[0].classList.add('SelectedLabel')
-                $(False).find('label')[0].classList.remove('SelectedLabel')
-                $(False).find('svg')[0].classList.remove('SelectedLabel')
-            }
-        })
-
-        $(False).click(function () {
-            if ($(False).find('input')[0].value == "false") {
-                $(False).find('input').attr('checked', 'checked')
-                $(True).find('input').removeAttr('checked', 'checked')
-
-                $(False).find('label')[0].classList.add('SelectedLabel')
-                $(False).find('svg')[0].classList.add('SelectedLabel')
-                $(True).find('label')[0].classList.remove('SelectedLabel')
-                $(True).find('svg')[0].classList.remove('SelectedLabel')
-
-            }
-        })
-
-
-        // else if($(this).find('input')[0].value == "true"){
-        //     $(this).find('input')[0].value=false
-        //     $(this).find('label')[0].classList.remove('SelectedLabel')
-        //     $(this).find('svg')[0].classList.remove('SelectedLabel')
-        // }
-
-    })
-        // $('.ContainTrueFalse').click(function () {
-        //     var True=$(this).find('.True')[0]
-        //     var False=$(this).find('.False')[0]
-        //     if ($(False).find('input')[0].value == "false") {
-        //         $(False).find('input')[0].value = true
-        //         $(False).find('label')[0].classList.add('SelectedLabel')
-        //         $(False).find('svg')[0].classList.add('SelectedLabel')
-        //         $(True).find('input')[0].value = false
-        //         $(True).find('label')[0].classList.remove('SelectedLabel')
-        //         $(True).find('svg')[0].classList.remove('SelectedLabel')
-
-        //     }
-        //     // else if($(this).find('input')[0].value == "true"){
-        //     //     $(this).find('input')[0].value=false
-        //     //     $(this).find('label')[0].classList.remove('SelectedLabel')
-        //     //     $(this).find('svg')[0].classList.remove('SelectedLabel')
-        //     // }
-
-        // })
+   
+        
     </script>
 }

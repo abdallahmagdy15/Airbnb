@@ -223,6 +223,7 @@ namespace Airbnb.Controllers
         public IActionResult Editprofile()
         {
             var userid = userManager.GetUserId(HttpContext.User);
+            ViewData["Countries"] = DbContext.Countries;
             if (userid==null)
             {
                 return View("Login");
@@ -234,13 +235,13 @@ namespace Airbnb.Controllers
                 {
                     User= DbContext.Users.Find(userid)
 
-            };
+                };
                 return View(editUserData);
             }
             
         }
         [HttpPost]
-        public IActionResult editprofile(editUserData model)
+        public IActionResult editprofile(editUserData model, int? CityId)
         {
             string fileName = string.Empty;
             if (model.PhotoUrl != null)
@@ -261,7 +262,7 @@ namespace Airbnb.Controllers
                 DateOfBirth = model.User.DateOfBirth,
                 Street = model.User.Street,
                 BuildingNo = model.User.BuildingNo,
-                City=model.User.City,
+                CityId= CityId ?? null,
                 PhotoUrl = fileName,
             };
             var olduser = DbContext.Users.Find(model.User.Id); ;
@@ -273,6 +274,7 @@ namespace Airbnb.Controllers
                 olduser.UserName = olduser.Email = user.Email;
                 olduser.NormalizedUserName = olduser.NormalizedEmail = user.Email.ToUpper();
                 olduser.DateOfBirth = user.DateOfBirth;
+                olduser.CityId = user.CityId;
                 olduser.Street = user.Street;
                 olduser.BuildingNo = user.BuildingNo;
                 olduser.PhotoUrl = user.PhotoUrl;
@@ -282,10 +284,60 @@ namespace Airbnb.Controllers
             }
             else
             {
+                ViewData["Countries"] = DbContext.Countries;
                 return View(user);
             }
 
         }
+
+
+
+
+
+        [HttpGet]
+        public IActionResult ResetPassword()
+        {
+            var userId = userManager.GetUserId(HttpContext.User);
+            var user = DbContext.Users.SingleOrDefault(u => u.Id == userId);
+            ViewBag.userToken = user.PasswordHash;
+            ViewBag.emial = user.Email;
+            return View();
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var userid = userManager.GetUserId(HttpContext.User);
+                if (userid == null)
+                {
+                    return View("Login");
+                }
+                else
+                {
+                    var user = DbContext.Users.Find(userid);
+                    if (user != null)
+                    {
+                        var result = await userManager.ChangePasswordAsync(user, model.OldPassword, model.Password);
+                        if (result.Succeeded)
+                        {
+                            return RedirectToAction("Logout","Account");
+                        }
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError("Old Password is Wrong..!", error.Description);
+                        }
+                        return View(model);
+                    }
+            }
+                return View(model);
+            }
+            return View(model);
+        }
+
+
+
     }
 }
  
