@@ -234,7 +234,7 @@ namespace Airbnb.Controllers
                 {
                     User= DbContext.Users.Find(userid)
 
-            };
+                };
                 return View(editUserData);
             }
             
@@ -286,6 +286,55 @@ namespace Airbnb.Controllers
             }
 
         }
+
+
+
+
+
+        [HttpGet]
+        public IActionResult ResetPassword()
+        {
+            var userId = userManager.GetUserId(HttpContext.User);
+            var user = DbContext.Users.SingleOrDefault(u => u.Id == userId);
+            ViewBag.userToken = user.PasswordHash;
+            ViewBag.emial = user.Email;
+            return View();
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var userid = userManager.GetUserId(HttpContext.User);
+                if (userid == null)
+                {
+                    return View("Login");
+                }
+                else
+                {
+                    var user = DbContext.Users.Find(userid);
+                    if (user != null)
+                    {
+                        var result = await userManager.ChangePasswordAsync(user, model.OldPassword, model.Password);
+                        if (result.Succeeded)
+                        {
+                            return RedirectToAction("Logout","Account");
+                        }
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError("Old Password is Wrong..!", error.Description);
+                        }
+                        return View(model);
+                    }
+            }
+                return View(model);
+            }
+            return View(model);
+        }
+
+
+
     }
 }
  
