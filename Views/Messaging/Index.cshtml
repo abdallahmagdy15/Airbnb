@@ -135,7 +135,7 @@
         @if (Model.Chats.Count() > 0)
         {
             <script>
-                loadChat("");
+                loadChat("@ViewBag.ChatId");
             </script>
         }
 }

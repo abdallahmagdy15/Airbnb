@@ -22,36 +22,45 @@ namespace Airbnb.Controllers
             this.messagingService = messagingService;
             this.userManager = userManager;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string contactid="")
         {
+            if (!string.IsNullOrEmpty(contactid))
+            {
+                //in service it will check if chat already exists then dont create again
+                var chat=await messagingService.CreateChat(contactid);
+                ViewBag.ChatId = chat.ChatId;
+            }
+            else
+                ViewBag.ChatId = "";
+
             return View(await userManager.FindByIdAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value));
         }
         public async Task<IActionResult> GetChat(string chatid)
         {
             var currUser = await userManager.FindByIdAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            Chat chat ; int _chatId;
-            if (chatid == null || !int.TryParse(chatid,out _chatId))
+            Chat chat; int _chatId;
+            if (chatid == null || !int.TryParse(chatid, out _chatId))
             {
                 chat = currUser.Chats.FirstOrDefault();
             }
-            else 
+            else
                 chat = await messagingService.GetChatById(_chatId);
 
-            return View("Chat",new ChatViewModel() { Chat = chat,CurrentUser = currUser });
+            return View("Chat", new ChatViewModel() { Chat = chat, CurrentUser = currUser });
         }
-        
+
         [HttpGet]
         public ActionResult<List<AppUser>> CreateChat()
         {
             return View(messagingService.GetSuggestedContacts());
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateChat(string contactId)
-        {
-            await messagingService.CreateChat(contactId);
-            return RedirectToAction("Index");
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> CreateChat(string contactId)
+        //{
+        //    await messagingService.CreateChat(contactId);
+        //    return RedirectToAction("Index",new { contactid= contactId });
+        //}
         public async Task<ActionResult<Chat>> GetChatWith(string recieverid)
         {
             return Ok(await messagingService.GetChatWith(recieverid));
