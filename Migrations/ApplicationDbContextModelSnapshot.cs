@@ -128,6 +128,18 @@ namespace Airbnb.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Airbnb.Models.Chat", b =>
+                {
+                    b.Property<int>("ChatId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("ChatId");
+
+                    b.ToTable("Chats");
+                });
+
             modelBuilder.Entity("Airbnb.Models.CreditCard", b =>
                 {
                     b.Property<string>("Number")
@@ -259,6 +271,37 @@ namespace Airbnb.Migrations
                     b.ToTable("States");
                 });
 
+            modelBuilder.Entity("Airbnb.Models.Message", b =>
+                {
+                    b.Property<int>("MessageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ChatId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(640)
+                        .HasColumnType("nvarchar(640)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("MessageId");
+
+                    b.HasIndex("ChatId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Messages");
+                });
+
             modelBuilder.Entity("Airbnb.Models.Property", b =>
                 {
                     b.Property<int>("Id")
@@ -290,8 +333,8 @@ namespace Airbnb.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasMaxLength(500000)
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("GuestPlaceTypeId")
                         .HasColumnType("int");
@@ -321,8 +364,8 @@ namespace Airbnb.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -600,6 +643,22 @@ namespace Airbnb.Migrations
                     b.ToTable("Reviews");
                 });
 
+            modelBuilder.Entity("Airbnb.Models.SiteSettings.Logo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("LogoUrl")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SiteLogo");
+                });
+
             modelBuilder.Entity("Airbnb.Models.Transaction", b =>
                 {
                     b.Property<string>("Id")
@@ -620,6 +679,21 @@ namespace Airbnb.Migrations
                         .IsUnique();
 
                     b.ToTable("Transactions");
+                });
+
+            modelBuilder.Entity("AppUserChat", b =>
+                {
+                    b.Property<int>("ChatsChatId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UsersId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ChatsChatId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("AppUserChat");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -793,6 +867,25 @@ namespace Airbnb.Migrations
                     b.Navigation("Country");
                 });
 
+            modelBuilder.Entity("Airbnb.Models.Message", b =>
+                {
+                    b.HasOne("Airbnb.Models.Chat", "Chat")
+                        .WithMany("Messages")
+                        .HasForeignKey("ChatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Airbnb.Models.AppUser", "User")
+                        .WithMany("Messages")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Chat");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Airbnb.Models.Property", b =>
                 {
                     b.HasOne("Airbnb.Models.PropertySubModels.Category", "Category")
@@ -950,6 +1043,21 @@ namespace Airbnb.Migrations
                     b.Navigation("Reservation");
                 });
 
+            modelBuilder.Entity("AppUserChat", b =>
+                {
+                    b.HasOne("Airbnb.Models.Chat", null)
+                        .WithMany()
+                        .HasForeignKey("ChatsChatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Airbnb.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -1003,9 +1111,16 @@ namespace Airbnb.Migrations
 
             modelBuilder.Entity("Airbnb.Models.AppUser", b =>
                 {
+                    b.Navigation("Messages");
+
                     b.Navigation("Properties");
 
                     b.Navigation("Reviews");
+                });
+
+            modelBuilder.Entity("Airbnb.Models.Chat", b =>
+                {
+                    b.Navigation("Messages");
                 });
 
             modelBuilder.Entity("Airbnb.Models.Location.City", b =>

@@ -1,6 +1,7 @@
 ﻿using Airbnb.Data;
 using Airbnb.Models;
 using Airbnb.Models.PropertySubModels;
+using Airbnb.Models.SiteSettings;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,8 @@ namespace Airbnb.Services
         public Property GetProperity(int PropId);
         public void DeleteProp(int PropId);
         public List<Property> FindPeopByTitle(string Title);
+        public List<Property> FindPeopByCityName(string name);
+
         public void AcceptNewProperty(int id);
 
         // reservation
@@ -61,6 +64,10 @@ namespace Airbnb.Services
         public List<Space> Spaces();
         public void AddSpace(Space space);
         public void DeleteSpace(int id);
+
+        //site settings
+        public void AddLogo(Logo logo);
+        public Logo getLogo();
 
     }
 
@@ -100,9 +107,21 @@ namespace Airbnb.Services
         {
             return AllUsers().Where(u => u.FirstName.Contains(Name)).ToList();
         }
-        
+
 
         //operations on properties
+
+        public List<Property> FindPeopByCityName(string name)
+        {
+            if (name != null)
+            {
+                var properties = _db.Properties.Where(p => p.City.Name == name).ToList();
+
+                return properties;
+            }
+            return null;
+        }
+
         public List<Property> Allproperties()
         {
             var p = _db.Properties.Where(p=>p.Accepted==true).ToList();
@@ -253,6 +272,27 @@ namespace Airbnb.Services
             var space = _db.Spaces.SingleOrDefault(a => a.Id == id);
             _db.Spaces.Remove(space);
             _db.SaveChanges();
+        }
+
+        //site settings
+        public void AddLogo(Logo logo)
+        {
+            if (logo != null)
+            {
+                if (_db.SiteLogo.ToList() != null)
+                {
+                    _db.SiteLogo.ToList().Clear();
+                }
+                _db.SiteLogo.Add(logo);
+                _db.SaveChanges();
+            }
+        }
+        public Logo getLogo()
+        {
+            
+                var logo = _db.SiteLogo.FirstOrDefault();
+                return logo;
+            
         }
 
 

@@ -4,7 +4,7 @@
 <div class="search_container">
     <form asp-action="FindUser" asp-controller="Admin" method="post">
         <div class="row">
-            <input name="name" id="search_text" type="text" placeholder="Search">
+            <input name="name" id="search_text" type="text" placeholder="User Name">
             <button type="button" onclick="findUser()" class="btn-dark" id="search_btn" >Find</button>
             <a id="download-data" class="btn-success" asp-action="UsersExcel" asp-controller="Admin">Download</a>
         </div>
@@ -23,19 +23,30 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var user in Model)
+        @if (Model.Count() > 0)
+        {
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <th scope="row">@user.Id</th>
+                    <td>@user.FirstName @user.LastName</td>
+                    <td>@user.Email</td>
+                    <td>@user.PhoneNumber</td>
+                    <td>@user.JoinDate.ToString("MM/dd/yyyy")</td>
+                    <td><button onclick="UserDetails('@user.Id')" class="btn btn-info">View</button></td>
+                    <td><a asp-action="DeleteUser" onclick="return confirm('Are you sure ?')" asp-controller="Admin" asp-route-id="@user.Id" class="btn btn-danger">Delete</a></td>
+                </tr>
+            }
+        }
+        else
         {
             <tr>
-                <th scope="row">@user.Id</th>
-                <td>@user.FirstName @user.LastName</td>
-                <td>@user.Email</td>
-                <td>@user.PhoneNumber</td>
-                <td>@user.JoinDate.ToString("MM/dd/yyyy")</td>
-                <td><button onclick="UserDetails('@user.Id')" class="btn btn-info">View</button></td>
-                <td><a asp-action="DeleteUser" onclick="return confirm('Are you sure ?')" asp-controller="Admin" asp-route-id="@user.Id" class="btn btn-danger">Delete</a></td>
+                <td colspan="8">
+                    <h2 class="text-center">There is no Users</h2>
+                </td>
             </tr>
         }
 
-       
+
     </tbody>
 </table>

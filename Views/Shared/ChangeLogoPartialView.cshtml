@@ -1,20 +1,32 @@
 ﻿
-
+@model LogoViewModel
 <h2>Change Site Logo</h2>
 <div class="flex-xl-row-reverse">
     <div style="margin:auto;" class="col-xl-5 col-md-12">
         <div class="Logo-container">
             <div class="top-row row">
-                <img src="~/SVG/airbnb-logo.svg">
+                @if (ViewBag.logo == null)
+                {
+                    <img src="~/SVG/airbnb-logo.svg">
+                }
+                else
+                {
+                    <img src="~/images/@ViewBag.logo">
+                }
             </div>
         </div>
     </div>
     <div style="margin:15px auto;" class="col-xl-5 col-md-12">
         <div class="Logo-container ">
-            <form class="row" style="justify-content: space-between;">
-                <input type="file">
-                <button class="btn btn-success">Upload</button>
+
+            <form class="row" style="justify-content: space-between;" asp-action="ChangeLogo" asp-controller="Admin" enctype="multipart/form-data" method="post">
+
+                <label class="input-file-label" for="customFile">Upload a photo</label>
+                <input asp-for="LogoUrl" >
+
+                <button type="submit" class="btn btn-success" id="customFile">Upload</button>
             </form>
+
         </div>
     </div>
 </div>

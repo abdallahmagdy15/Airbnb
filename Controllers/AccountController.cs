@@ -270,11 +270,13 @@ namespace Airbnb.Controllers
                 olduser.FirstName = user.FirstName;
                 olduser.LastName = user.LastName;
                 olduser.PhoneNumber = user.PhoneNumber;
-                olduser.Email = user.Email;
+                olduser.UserName = olduser.Email = user.Email;
+                olduser.NormalizedUserName = olduser.NormalizedEmail = user.Email.ToUpper();
                 olduser.DateOfBirth = user.DateOfBirth;
                 olduser.Street = user.Street;
                 olduser.BuildingNo = user.BuildingNo;
                 olduser.PhotoUrl = user.PhotoUrl;
+    
                 DbContext.SaveChanges();
                 return RedirectToAction("Index","Home");
             }
