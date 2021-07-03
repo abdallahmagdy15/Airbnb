@@ -28,7 +28,7 @@ namespace Airbnb.Controllers
             {
                 //in service it will check if chat already exists then dont create again
                 var chat=await messagingService.CreateChat(contactid);
-                ViewBag.ChatId = chat.ChatId;
+                ViewBag.ChatId = chat?.ChatId;
             }
             else
                 ViewBag.ChatId = "";

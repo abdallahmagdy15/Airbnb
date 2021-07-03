@@ -21,8 +21,8 @@ body {
 
     .messaging-cr img.dp {
         height: 5rem;
-        max-width: 5rem;
-        object-fit: cover;
+        width: 5rem;
+        object-fit: contain;
     }
 
 .people-list {
