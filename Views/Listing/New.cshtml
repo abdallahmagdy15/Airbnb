@@ -391,7 +391,17 @@
                         FormValidation8 = false
                     }
                 })
-                //end of title
+                    //end of title
+                    // location
+
+                $('#add_Children').click(function () {
+                    $('#number_Children').val(parseInt($('#number_Children').val()) + 1)
+                })
+
+                $('#subtract_Children').click(function () {
+                    if (parseInt($('#number_Children').val()) != 0)
+                        $('#number_Children').val(parseInt($('#number_Children').val()) - 1)
+                })
 
 
                 $('#next').click(function () {
