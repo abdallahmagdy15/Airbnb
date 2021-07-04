@@ -594,6 +594,9 @@ namespace Airbnb.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("NOfGuests")
+                        .HasColumnType("int");
+
                     b.Property<int>("PropertyId")
                         .HasColumnType("int");
 

@@ -12,7 +12,7 @@ namespace Airbnb.Services
         [Required]
         public int CityId { get; set; }
         public int Page { get; set; } = 0;
-        public int Limit { get; set; } = 20;
+        public int Limit { get; set; } = 4;
         public DateTime? CheckIn { get; set; }
         public DateTime? Checkout { get; set; }
         public int? NoOfGuests { get; set; }

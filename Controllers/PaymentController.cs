@@ -99,6 +99,7 @@ namespace Airbnb.Controllers
                             CheckIn = checkInDate,
                             CheckOut = checkOutDate,
                             UserId = _userManager.GetUserId(User),
+                            NOfGuests = guests,
                         };
                         _db.Add(reservation);
                         _db.SaveChanges();
