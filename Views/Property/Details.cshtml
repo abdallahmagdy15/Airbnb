@@ -415,7 +415,7 @@
                 </div>
             </div>
             <div>
-                <i class="fas fa-map-marker-alt"></i> · <span>@Model.User.City.Name · @Model.User.City.State.Name · @Model.User.City.State.Country.Name</span>
+                <i class="fas fa-map-marker-alt"></i> · <span>@Model.User.City?.Name · @Model.User.City?.State.Name · @Model.User.City?.State.Country.Name</span>
             </div>
             <div style="margin-top: 50px; text-align: right;">
                 <a asp-controller="Messaging" 
