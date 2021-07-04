@@ -155,9 +155,11 @@
                     <span>@Model.NumberOfBeds beds</span>
                     <span>&middot;</span>
                     <span>@Model.NumberOfBathrooms baths</span>
-                    <div class="hostImg">
-                        <!-- Host Image Tag Here -->
-                    </div>
+                    <span>&middot;</span>
+                    <span>@Model.MinStay Nights Minimum</span>
+                    <span>&middot;</span>
+                    <span>@Model.MaxStay Nights Maximum</span>
+
                 </div>
                 <hr>
                 <!----- host description ------>
@@ -336,7 +338,16 @@
                     <div class="review col-12 col-lg-6">
                         <div class="review-header">
                             <div class="review-image">
-                                <img src="https://banner2.cleanpng.com/20180920/yko/kisspng-computer-icons-portable-network-graphics-avatar-ic-5ba3c66df14d32.3051789815374598219884.jpg" alt="imag" />
+                                @if (r.User.PhotoUrl != null)
+                                {
+                                    <img src="~/images/@r.User.PhotoUrl" alt="imag" />
+
+                                }
+                                else
+                                {
+                                    <img src="https://banner2.cleanpng.com/20180920/yko/kisspng-computer-icons-portable-network-graphics-avatar-ic-5ba3c66df14d32.3051789815374598219884.jpg" alt="imag" />
+
+                                }
                             </div>
                             <div class="review-user">
                                 <h5>@r.User.FirstName @r.User.LastName</h5>
@@ -451,9 +462,13 @@
 
         $('#check-in-date').daterangepicker({
             opens: 'left',
+            "maxSpan": {
+                "days": @(Model.MaxStay),
+            },
             autoUpdateInput: false,
             isInvalidDate: (date) => {
-                    $('.cancelBtn').text('Clear');
+                $('.cancelBtn').text('Clear');
+                console.log(date);
                 return unavailableDays.indexOf(date._d.toLocaleDateString()) != -1
                     || new Date() >= date._d;
                 },

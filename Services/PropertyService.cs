@@ -56,6 +56,11 @@ namespace Airbnb.Services
             if (prop == null)
                 return false;
 
+            double daysSpan = (checkOut - checkIn).TotalDays;
+
+            if (daysSpan < prop.MinStay || daysSpan > prop.MaxStay)
+                return false;
+
             var rangeDays = PropertySearchService.GetDays(checkIn, checkOut);
             var unAvailabledays = prop.UnavailableDays.Select(p => p.UnavailableDay);
 
