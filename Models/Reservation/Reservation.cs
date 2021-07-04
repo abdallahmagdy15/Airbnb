@@ -16,6 +16,8 @@ namespace Airbnb.Models
 
         public DateTime Date { get; set; } = DateTime.Now;
 
+        public int NOfGuests { get; set; } = 1;
+
         public bool Accepted { get; set; } = false;
 
 

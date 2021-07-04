@@ -38,7 +38,7 @@ namespace Airbnb.Controllers
 
             var properties = _propService.FilterBy(search);
 
-            var count = properties.Count();
+            var count = properties.Where(p=> p.Accepted).Count();
 
             var pages = count / search.Limit;
 

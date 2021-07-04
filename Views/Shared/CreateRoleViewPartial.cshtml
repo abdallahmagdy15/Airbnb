@@ -13,11 +13,11 @@
             <div asp-validation-summary="ModelOnly" class="badge badge-danger"></div>
             <div class="form-group">
                 <label asp-for="RoleName" class="control-label"></label>
-                <input asp-for="RoleName" class="form-control" />
+                <input onkeyup="disshow()" id="rolename" asp-for="RoleName" class="form-control" />
                 <span asp-validation-for="RoleName" class="badge badge-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input id="add-btnn" type="submit" value="Create" class="btn btn-primary" disabled/>
             </div>
         </form>
     </div>
@@ -26,7 +26,17 @@
 <div>
     <button type="button" onclick="getAllRoles()" class="dashboard-button text-dark">Back to list</button>
 </div>
-
+<script>
+    function disshow() {
+        console.log("a")
+        if (document.getElementById('rolename').value == "") {
+            document.getElementById('add-btnn').disabled = true;
+        } else {
+            document.getElementById('add-btnn').disabled = false;
+        }
+    }
+</script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
 }
