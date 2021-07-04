@@ -24,6 +24,7 @@ namespace Airbnb.Controllers
         }
         public async Task<IActionResult> Index(string contactid="")
         {
+            ViewBag.currentTab = "Inbox";
             if (!string.IsNullOrEmpty(contactid))
             {
                 //in service it will check if chat already exists then dont create again
