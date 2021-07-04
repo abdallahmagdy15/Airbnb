@@ -82,13 +82,13 @@
 
         @if (Model.Photos.Count > 0)
         {
-            <div class="img1" style="max-height: 400px; overflow: hidden;">
+            <div class="img1" style="height: 400px; overflow: hidden;">
                 <img style="object-fit: cover; width: 100%; height: 100%;" src="~/images/@Model.Photos[0].Url">
             </div>
         }
         else
         {
-        <div class="img1" style="max-height: 400px; overflow: hidden;">
+        <div class="img1" style="height: 400px; overflow: hidden;">
             <img style="object-fit: cover; width: 100%; height: 100%;" src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg">
         </div>
             }
@@ -96,13 +96,13 @@
             {
                 if (i < Model.Photos.Count())
                 {
-        <div style="max-height: 400px; overflow: hidden;" class="img@(i + 1)">
+        <div style="height: 195px; overflow: hidden;" class="img@(i + 1)">
             <img style="object-fit: cover; width: 100%; height: 100%;" src="~/images/@Model.Photos[i].Url">
         </div>
             }
             else
             {
-        <div style="max-height: 400px; overflow: hidden;" class="img@(i + 1)">
+        <div style="height: 195px; overflow: hidden;" class="img@(i + 1)">
             <img style="object-fit: cover; width: 100%; height: 100%;" src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg">
         </div>
                 }
