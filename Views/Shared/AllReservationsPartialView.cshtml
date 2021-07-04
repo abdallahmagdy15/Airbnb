@@ -2,6 +2,8 @@
 
 <h2>Reservations</h2>
 
+<h3>Total Profit: @Model.Select(r => r.Transaction.Amount * 0.05m).Sum().ToString("C2")</h3>
+
 <table class="table table-responsive table-hover">
     <thead class="thead-dark">
         <tr>
@@ -11,6 +13,7 @@
             <th scope="col">Listing</th>
             <th scope="col">Location</th>
             <th scope="col">Is Accepted</th>
+            <th>Profit</th>
         </tr>
     </thead>
     <tbody>
@@ -23,6 +26,7 @@
             <td>@reservation.Property.Title</td>
             <td>@reservation.Property.City.Name</td>
             <td>@reservation.Accepted</td>
+            <td>@((reservation.Transaction.Amount * 0.05m).ToString("C2"))</td>
         </tr>
         }
 
