@@ -37,8 +37,8 @@
                     <th>User</th>
                     <th>Check-In Date</th>
                     <th>Check-Out Date</th>
+                    <th># Guests</th>
                     <th>LISTING</th>
-                    <th>LOCATION</th>
                     <th></th>
                 </tr>
             </thead>
@@ -57,12 +57,12 @@
                         <td>@item.User.FirstName @item.User.LastName</td>
                         <td>@item.CheckIn</td>
                         <td>@item.CheckOut</td>
+                        <td>@item.NOfGuests</td>
                         <td>
                             <a asp-controller="Property" asp-action="Details" asp-route-id="@item.Property.Id" style="color: inherit; text-decoration: none;">
                                 <i class="fas fa-home-lg-alt"></i>&nbsp;@item.Property.Title
                             </a>
                         </td>
-                        <td>@item.Property.City?.Name</td>
                         <td>
                             @if (!item.Accepted)
                             {
