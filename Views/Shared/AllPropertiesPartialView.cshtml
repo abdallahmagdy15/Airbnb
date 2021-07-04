@@ -31,20 +31,27 @@
             {
                 @foreach (var prop in Model)
                 {
-                    <tr>
-                        <th scope="row">@prop.Id</th>
-                        <td>
-                            <a class="text-dark font-weight-bold" asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" target="_blank">
-                                @prop.Title
-                            </a>
-                        </td>
-                        <td>@prop.City?.Name</td>
-                        <td>@prop.Price</td>
-                        <td>@prop.MaxStay</td>
-                        <td>@prop.MinStay</td>
-                        <td>@prop.Date</td>
-                        <td><a asp-action="DeleteProperty" onclick="return confirm('Are you sure ?')" asp-controller="Admin" asp-route-id="@prop.Id" class="btn btn-danger">Delete</a></td>
-                    </tr>
+            <tr>
+                <th scope="row">@prop.Id</th>
+                <td>
+                    <a class="text-dark font-weight-bold" asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" target="_blank">
+                        @prop.Title
+                    </a>
+                </td>
+                <td>@prop.City?.Name</td>
+                <td>@prop.Price</td>
+                <td>@prop.MaxStay</td>
+                <td>@prop.MinStay</td>
+                <td>@prop.Date</td>
+                @if (prop.Reservations.Count() > 0)
+                {
+                    <td><p class="text-danger font-weight-bold">RESERVED</p></td>
+                }
+                else
+                {
+                    <td><a asp-action="DeleteProperty" onclick="return confirm('Are you sure ?')" asp-controller="Admin" asp-route-id="@prop.Id" class="btn btn-danger">Delete</a></td>
+                }
+            </tr>
                 }
             }
             else
