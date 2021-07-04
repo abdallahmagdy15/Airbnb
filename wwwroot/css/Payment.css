@@ -609,11 +609,11 @@ li {
     }
 
     .price {
-        margin-left: 62px;
+        margin-left: 90px;
     }
 
     .servicefeemd {
-        margin-left: 98px;
+        margin-left: 105px;
         color: rgb(176, 176, 176,1);
     }
 
@@ -717,7 +717,7 @@ li {
     }
 
     .total {
-        margin-left: 90px;
+        margin-left: 100px;
     }
 }
 /*----------------------------------------------------------------------*/
@@ -768,7 +768,7 @@ li {
     }
 
     .price {
-        margin-left: 200px;
+        margin-left: 220px;
     }
 
     .total {
