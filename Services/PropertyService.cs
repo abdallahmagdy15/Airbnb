@@ -34,7 +34,7 @@ namespace Airbnb.Services
                 properties =
                     _searchService.FilterByDate(properties, search.CheckIn.Value, search.Checkout.Value);
 
-            if (search.MinPrice != null)
+            if (search.MinPrice != null && search.MaxPrice != null)
                 properties =
                     _searchService.FilterByPrice(properties, search.MinPrice.Value, search.MaxPrice.Value);
 
